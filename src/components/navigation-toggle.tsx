@@ -1,11 +1,12 @@
 import React from 'react';
 
-import type { NavigationData } from '../types/navigation';
 import { css } from '@emotion/css';
 import { useDispatch } from 'react-redux';
-import { setMenuSelected } from '../lib/layout/actions';
+import { setMenuOpen } from '../lib/layout/actions';
 
-interface Props extends NavigationData {};
+interface Props {
+  open: boolean;
+}
 
 const styles = css`
   align-items: center;
@@ -34,18 +35,21 @@ const styles = css`
   }
 `;
 
-export function NavigationItem(props: Props): JSX.Element {
+export function NavigationToggle(props: Props): JSX.Element {
   const dispatch = useDispatch();
-  const status = props.selected ? 'selected' : '';
+
+  const status = props.open ? 'open' : '';
+  const icon = props.open ? 'ri-menu-fold-line' : 'ri-menu-unfold-line';
+  const text = props.open ? 'Collapse' : 'Show';
 
   function handleClick() {
-    dispatch(setMenuSelected(props.name));
+    dispatch(setMenuOpen(!props.open));
   }
 
   return (
     <button className={`${styles} ${status}`} onClick={handleClick}>
-      <i className={props.icon} />
-      <span>{props.title}</span>
+      <i className={icon} />
+      <span>{text}</span>
     </button>
   );
 }

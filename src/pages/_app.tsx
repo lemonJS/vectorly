@@ -2,6 +2,12 @@ import React from 'react';
 
 import type { AppProps } from 'next/app';
 import { injectGlobal } from '@emotion/css';
+import { Provider } from 'react-redux';
+import { getOrCreateStore } from '../lib/store';
+
+interface Props extends AppProps {
+  state: any;
+}
 
 injectGlobal`  
   :root {
@@ -39,7 +45,13 @@ injectGlobal`
   }
 `;
 
-export default function App(props: AppProps): JSX.Element {
+export default function App(props: Props): JSX.Element {
   const { Component, pageProps } = props;
-  return <Component {...pageProps} />
+  const store = getOrCreateStore(undefined);
+
+  return (
+    <Provider store={store}>
+      <Component {...pageProps} />
+    </Provider>
+  )
 }
