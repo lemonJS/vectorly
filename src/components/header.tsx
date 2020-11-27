@@ -3,6 +3,7 @@ import React from 'react';
 import Image from 'next/image';
 import { css } from '@emotion/css';
 import { Menu } from './menu';
+import { Title } from './title';
 
 const styles = css`
   background: var(--header-background-color);
@@ -29,8 +30,8 @@ export function Header(): JSX.Element {
         <a href='#' className='logo'>
           <Image src='/logo.svg' alt='logo' height='48' width='48' />
         </a>
+        <Title />
       </div>
-
       <Menu />
     </header>
   );

@@ -15,6 +15,8 @@ injectGlobal`
     --sidebar-background-color: #36404a;
     --sidebar-navigation-background-color: #283037;
     
+    --primary-accent-color: #4aacd9;
+    
     --background-color: #ebeff2;
     --foreground-color: #ffffff;
     
