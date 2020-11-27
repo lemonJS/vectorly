@@ -6,6 +6,7 @@ import { Button } from '../button';
 const styles = css`
   display: flex;
   flex-direction: column;
+  overflow-y: auto;
   padding: 1.5rem;
   width: 100%;
 `;

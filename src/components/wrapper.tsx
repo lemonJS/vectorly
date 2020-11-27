@@ -17,7 +17,7 @@ const styles = css`
     'header header'
     'sidebar content';
   grid-template-columns: 6rem 1fr;
-  grid-template-rows: 64px 1fr;
+  grid-template-rows: 64px minmax(0, 1fr);
   height: 100vh;
   width: 100vw;
   
