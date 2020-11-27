@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { css } from '@emotion/css';
-import { Button } from '../button';
+import { Input } from '../input';
 
 const styles = css`
   display: flex;
@@ -10,13 +10,10 @@ const styles = css`
   width: 100%;
 `;
 
-export function Text(): JSX.Element {
+export function Stickers(): JSX.Element {
   return (
     <div className={styles}>
-      <Button className='secondary'>
-        Add Text
-        <i className='ri-add-line' />
-      </Button>
+      <Input placeholder='Search...' />
     </div>
   );
 }

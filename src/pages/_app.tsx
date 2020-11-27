@@ -22,9 +22,9 @@ injectGlobal`
     --primary-button-border-color: #51aacc;
     --primary-button-text-color: #ffffff;
     
-    --secondary-button-background-color: #ffffff;
+    --secondary-button-background-color: none;
     --secondary-button-border-color: #d9e0e6;
-    --secondary-button-font-color: #d9e0e6;
+    --secondary-button-text-color: #d9e0e6;
     
     --primary-text-color: #2a2e37;
     --secondary-text-color: #878787;
