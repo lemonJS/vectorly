@@ -1,8 +1,14 @@
 import React from 'react';
 
-import type { EditorElement } from '../types/editor-element';
+import type { EditorElement } from '../types/editor';
 import { css } from '@emotion/css';
+import { useDispatch } from 'react-redux';
 import { Element } from './svg/element';
+import { setSelectionId } from '../lib/selection/actions';
+
+interface Props {
+  elements: EditorElement[];
+}
 
 const styles = css`
   background: var(--foreground-color);
@@ -17,49 +23,23 @@ const styles = css`
   }
 `;
 
-export function Canvas(): JSX.Element {
-  const elements: EditorElement[] = [
-    {
-      id: 'sdfsdfd',
-      element: 'text',
-      transform: [50, 50],
-      props: {
-        color: 'black',
-        fontSize: 24
-      },
-      children: 'Hello world'
-    },
-    {
-      id: '3423423',
-      element: 'circle',
-      transform: [100, 100],
-      props: {
-        cx: 100,
-        cy: 100,
-        r: 100,
-        fill: 'red',
-        stroke: 'blue',
-        strokeWidth: 5
-      }
-    },
-    {
-      id: '34534345',
-      element: 'rect',
-      transform: [50, 400],
-      props: {
-        width: 300,
-        height: 100,
-        stroke: 'green',
-        strokeDasharray: 5,
-        fill: 'none'
-      }
+export function Canvas(props: Props): JSX.Element {
+  const dispatch = useDispatch();
+
+  function handleClick(event: React.MouseEvent<SVGElement>) {
+    const element = event.target as Element;
+
+    if (element.tagName === 'svg') {
+      // Clear the selection
+      event.stopPropagation();
+      dispatch(setSelectionId(null));
     }
-  ];
+  }
 
   return (
     <div className={styles}>
-      <svg id='#canvas' viewBox='0 0 500 800'>
-        {elements.map(element => (
+      <svg id='#canvas' viewBox='0 0 500 800' onClick={handleClick}>
+        {props.elements.map(element => (
           <Element key={element.id} element={element} />
         ))}
       </svg>

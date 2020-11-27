@@ -1,18 +1,32 @@
 import React from 'react';
 
-interface Props extends React.SVGProps<SVGGElement> {}
+import { useDispatch } from 'react-redux';
+import { setSelectionId } from '../../lib/selection/actions';
+
+interface Props extends React.SVGProps<SVGGElement> {
+  id: string;
+  selected: boolean;
+}
 
 export function Container(props: Props) {
+  const dispatch = useDispatch();
   const ref = React.useRef(null);
-  const [selected, setSelected] = React.useState(false);
+
+  console.log(props.selected)
 
   function handleClick(event: React.MouseEvent<SVGGElement>) {
-    setSelected(!selected);
+    dispatch(setSelectionId(props.id));
   }
 
   return (
     <g {...props} ref={ref} onClick={handleClick}>
       {props.children}
+
+      {props.selected && (
+        <g className='selection'>
+          <rect stroke='red' fill='none' width={50} height={50} transform='translate(-4, -4)' />
+        </g>
+      )}
     </g>
   );
 }

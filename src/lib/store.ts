@@ -2,6 +2,8 @@ import thunk from 'redux-thunk';
 import { createStore, applyMiddleware, combineReducers } from 'redux';
 
 import { layout, initialState as initialLayoutState } from '../lib/layout/reducers';
+import { project, initialState as initialProjectState } from '../lib/project/reducers';
+import { selection, initialState as initialSelectionState } from '../lib/selection/reducers';
 
 declare global {
   interface Window {
@@ -12,13 +14,17 @@ declare global {
 const isServer = typeof window === 'undefined';
 
 const initialState = {
-  layout: initialLayoutState
+  layout: initialLayoutState,
+  project: initialProjectState,
+  selection: initialSelectionState
 };
 
 export function initializeStore(state = initialState) {
   return createStore(
     combineReducers({
-      layout
+      layout,
+      project,
+      selection
     }),
     state,
     applyMiddleware(thunk)

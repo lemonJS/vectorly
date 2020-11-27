@@ -16,7 +16,7 @@ const styles = css`
 export function Title(): JSX.Element {
   return (
     <div className={styles}>
-      <Input placeholder='Project title' value='Untitled' />
+      <Input placeholder='Project title' value='Untitled' readOnly />
     </div>
   );
 }

@@ -1,9 +1,10 @@
 import React from 'react';
 
-import type { AppProps } from 'next/app';
+import type { AppContext, AppProps } from 'next/app';
 import { injectGlobal } from '@emotion/css';
 import { Provider } from 'react-redux';
 import { getOrCreateStore } from '../lib/store';
+import { setProject } from '../lib/project/actions';
 
 interface Props extends AppProps {
   state: any;
@@ -47,13 +48,24 @@ injectGlobal`
   }
 `;
 
-export default function App(props: Props): JSX.Element {
-  const { Component, pageProps } = props;
-  const store = getOrCreateStore(undefined);
+const App = (props: Props) => {
+  const { Component } = props;
+  const store = getOrCreateStore(props.state);
 
   return (
     <Provider store={store}>
-      <Component {...pageProps} />
+      <Component />
     </Provider>
-  )
+  );
 }
+
+App.getInitialProps = async (ctx: AppContext) => {
+  const store = getOrCreateStore(undefined);
+  const res = await fetch('http://localhost:3000/api/projects/5');
+  const project = await res.json();
+
+  store.dispatch(setProject(project));
+  return { state: store.getState() };
+};
+
+export default App;
