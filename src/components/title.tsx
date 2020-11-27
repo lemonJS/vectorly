@@ -2,25 +2,48 @@ import React from 'react';
 
 import { css } from '@emotion/css';
 import { useSelector } from 'react-redux';
+import { Button } from './button';
 import { Input } from './input';
+import { Label } from './label';
+import { Modal } from './modal';
 import { projectSelector } from '../lib/project/selectors';
 
 const styles = css`
   align-items: center;
   display: flex;
   
-  input {
+  button {
+    background: none;
     border: none;
     color: var(--secondary-text-color);
   }
 `;
 
 export function Title(): JSX.Element {
+  const ref = React.useRef(null);
   const { title } = useSelector(projectSelector);
+
+  function handleModalOpen() {
+    ref.current.open();
+  }
+
+  function handleModalClose() {
+    ref.current.close();
+  }
 
   return (
     <div className={styles}>
-      <Input placeholder='Project title' value={title} readOnly />
+      <Button onClick={handleModalOpen}>{title}</Button>
+
+      <Modal ref={ref}>
+        <Label htmlFor='project-title'>Project Title</Label>
+        <Input value={title} id='project-title' name='project-title' />
+
+        <div className='actions'>
+          <Button>Save Changes</Button>
+          <Button className='secondary' onClick={handleModalClose}>Cancel</Button>
+        </div>
+      </Modal>
     </div>
   );
 }
