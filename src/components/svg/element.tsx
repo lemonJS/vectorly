@@ -15,7 +15,7 @@ export function Element(props: Props): JSX.Element {
   const element = React.createElement(props.element.element, props.element.props, props.element.children);
 
   return (
-    <Container id={props.element.id} selected={props.element.id === id} transform={`translate(${x}, ${y})`}>
+    <Container id={props.element.id} selected={props.element.id === id} defaultCoords={[x, y]}>
       {element}
     </Container>
   );

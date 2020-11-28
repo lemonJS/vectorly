@@ -6,8 +6,16 @@ import { useDispatch } from 'react-redux';
 import { Element } from './svg/element';
 import { setSelectionId } from '../lib/selection/actions';
 
+type Canvas = SVGGraphicsElement & HTMLElement;
+
 interface Props {
   elements: EditorElement[];
+}
+
+declare global {
+  interface Window {
+    canvas: Canvas;
+  }
 }
 
 const styles = css`
@@ -30,15 +38,20 @@ export function Canvas(props: Props): JSX.Element {
     const element = event.target as Element;
 
     if (element.tagName === 'svg') {
-      // Clear the selection
       event.stopPropagation();
       dispatch(setSelectionId(null));
     }
   }
 
+  React.useEffect(() => {
+    // Store this against the window as a cache for the
+    // SVG element positioning
+    window.canvas = document.getElementById('canvas') as Canvas;
+  }, []);
+
   return (
     <div className={styles}>
-      <svg id='#canvas' viewBox='0 0 500 800' onClick={handleClick}>
+      <svg id='canvas' viewBox='0 0 500 800' onClick={handleClick}>
         {props.elements.map(element => (
           <Element key={element.id} element={element} />
         ))}
