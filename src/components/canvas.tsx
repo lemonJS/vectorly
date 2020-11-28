@@ -33,6 +33,7 @@ const styles = css`
 
 export function Canvas(props: Props): JSX.Element {
   const dispatch = useDispatch();
+  const [mounted, setMounted] = React.useState(false);
 
   function handleClick(event: React.MouseEvent<SVGElement>) {
     const element = event.target as Element;
@@ -47,12 +48,13 @@ export function Canvas(props: Props): JSX.Element {
     // Store this against the window as a cache for the
     // SVG element positioning
     window.canvas = document.getElementById('canvas') as Canvas;
+    setMounted(true);
   }, []);
 
   return (
     <div className={styles}>
       <svg id='canvas' viewBox='0 0 500 800' onClick={handleClick}>
-        {props.elements.map(element => (
+        {mounted && props.elements.map(element => (
           <Element key={element.id} element={element} />
         ))}
       </svg>

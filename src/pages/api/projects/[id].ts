@@ -13,7 +13,9 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
         transform: [50, 50],
         props: {
           color: 'black',
-          fontSize: 24
+          fontSize: 24,
+          alignmentBaseline: 'hanging',
+          dominantBaseline: 'hanging'
         },
         children: 'Hello world'
       },
@@ -39,7 +41,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
           height: 100,
           stroke: 'green',
           strokeDasharray: 5,
-          fill: 'none'
+          fill: 'white'
         }
       }
     ],
