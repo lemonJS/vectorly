@@ -38,6 +38,13 @@ export class Move extends React.Component<Props, State> {
     document.removeEventListener('mousemove', this.handleMouseMove, false);
   }
 
+  private get moveHandleOffset() {
+    return {
+      x: (this.props.box.width - (this.props.padding * 4)) / 2,
+      y: - this.props.padding * 7
+    }
+  }
+
   private handleMouseUp = () => {
     this.setState({ pressed: false });
     this.resetOffsets();
@@ -49,11 +56,10 @@ export class Move extends React.Component<Props, State> {
   };
 
   private handleMouseDown = (event: React.MouseEvent<SVGGElement>) => {
-    const element = event.target as SVGGElement;
+    const { x, y } = this.moveHandleOffset;
 
-    const { e, f } = element.getCTM();
-    this.grabPoint.x = this.trueCoords.x + 100 // - Number(e);
-    this.grabPoint.y = this.trueCoords.y - 40 // - Number(f);
+    this.grabPoint.x = this.trueCoords.x + x;
+    this.grabPoint.y = this.trueCoords.y + y;
 
     this.setState({ pressed: true });
   };
@@ -75,10 +81,10 @@ export class Move extends React.Component<Props, State> {
   };
 
   public render(): JSX.Element {
-    const { width } = this.props.box;
+    const { x, y } = this.moveHandleOffset;
 
     return (
-      <g ref={this.ref} transform={`translate(${(width - (this.props.padding * 4)) / 2}, -${this.props.padding * 7})`} onMouseDown={this.handleMouseDown}>
+      <g ref={this.ref} transform={`translate(${x}, ${y})`} onMouseDown={this.handleMouseDown}>
         <circle cx={this.props.padding * 2} cy={this.props.padding * 2} r={this.props.padding * 2} />
         <g transform='translate(3.5, 3.5)'>
           <path fill='none' d='M0 0h24v24H0z' />

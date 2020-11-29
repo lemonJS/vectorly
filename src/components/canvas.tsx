@@ -36,7 +36,7 @@ export function Canvas(props: Props): JSX.Element {
   const dispatch = useDispatch();
   const [mounted, setMounted] = React.useState(false);
 
-  function handleMouseUp(event: React.MouseEvent<SVGElement>) {
+  function handleMouseDown(event: React.MouseEvent<SVGElement>) {
     const element = event.target as Element;
 
     if (element.tagName === 'svg') {
@@ -65,7 +65,7 @@ export function Canvas(props: Props): JSX.Element {
 
   return (
     <div className={styles}>
-      <svg id='canvas' viewBox='0 0 500 800' onMouseUp={handleMouseUp} onDrop={handleDrop} onDragOver={handleDragOver}>
+      <svg id='canvas' viewBox='0 0 500 800' onMouseDown={handleMouseDown} onDrop={handleDrop} onDragOver={handleDragOver}>
         {mounted && props.elements.map(element => (
           <Element key={element.id} element={element} />
         ))}
