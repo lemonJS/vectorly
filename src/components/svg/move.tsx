@@ -52,8 +52,8 @@ export class Move extends React.Component<Props, State> {
     const element = event.target as SVGGElement;
 
     const { e, f } = element.getCTM();
-    this.grabPoint.x = this.trueCoords.x // - Number(e);
-    this.grabPoint.y = this.trueCoords.y // - Number(f);
+    this.grabPoint.x = this.trueCoords.x + 100 // - Number(e);
+    this.grabPoint.y = this.trueCoords.y - 40 // - Number(f);
 
     this.setState({ pressed: true });
   };

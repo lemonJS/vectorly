@@ -5,6 +5,7 @@ import { css } from '@emotion/css';
 import { useDispatch } from 'react-redux';
 import { Element } from './svg/element';
 import { setSelectionId } from '../lib/selection/actions';
+import { createProjectElement } from '../lib/project/actions';
 
 type Canvas = SVGGraphicsElement & HTMLElement;
 
@@ -44,6 +45,17 @@ export function Canvas(props: Props): JSX.Element {
     }
   }
 
+  function handleDrop(event: React.DragEvent<SVGGElement>) {
+    event.preventDefault();
+    const data = event.dataTransfer.getData('element');
+    const payload = JSON.parse(data);
+    dispatch(createProjectElement(payload));
+  }
+
+  function handleDragOver(event: React.DragEvent<SVGGElement>) {
+    event.preventDefault();
+  }
+
   React.useEffect(() => {
     // Store this against the window as a cache for the
     // SVG element positioning
@@ -53,7 +65,7 @@ export function Canvas(props: Props): JSX.Element {
 
   return (
     <div className={styles}>
-      <svg id='canvas' viewBox='0 0 500 800' onMouseUp={handleMouseUp}>
+      <svg id='canvas' viewBox='0 0 500 800' onMouseUp={handleMouseUp} onDrop={handleDrop} onDragOver={handleDragOver}>
         {mounted && props.elements.map(element => (
           <Element key={element.id} element={element} />
         ))}

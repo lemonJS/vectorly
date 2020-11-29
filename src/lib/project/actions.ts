@@ -1,4 +1,5 @@
 import type { ProjectAction } from './reducers';
+import type { SidebarElement, EditorElement } from '../../types/editor';
 import type { Project } from '../../types/project';
 
 export function setProject(project: Project) {
@@ -29,6 +30,29 @@ export function updateProject(payload: Partial<Project>) {
     const action: ProjectAction = {
       type: 'PROJECT',
       payload: await res.json()
+    };
+
+    dispatch(action);
+  }
+}
+
+export function createProjectElement(payload: SidebarElement) {
+  return async function(dispatch, getState) {
+    const { project } = getState();
+
+    const element: EditorElement = {
+      id: payload.id, // TODO
+      element: payload.type,
+      rotate: 0,
+      transform: [100, 100],
+      props: payload.props
+    };
+
+    project.elements.push(element);
+
+    const action: ProjectAction = {
+      type: 'PROJECT',
+      payload: project
     };
 
     dispatch(action);

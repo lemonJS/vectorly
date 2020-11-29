@@ -1,7 +1,9 @@
 import React from 'react';
 
 import { css } from '@emotion/css';
+import { shapes } from './data/shapes';
 import { Input } from '../input';
+import { Shape } from './shape';
 
 const styles = css`
   display: flex;
@@ -26,6 +28,11 @@ const styles = css`
     &:hover {
       transform: translate(-2px, -2px);
     }
+    
+    svg {
+      height: 100%;
+      width: 100%;
+    }
   }
 `;
 
@@ -35,16 +42,9 @@ export function Shapes(): JSX.Element {
       <Input placeholder='Search...' />
 
       <div className='shapes'>
-        <div className='shape' />
-        <div className='shape' />
-        <div className='shape' />
-        <div className='shape' />
-        <div className='shape' />
-        <div className='shape' />
-        <div className='shape' />
-        <div className='shape' />
-        <div className='shape' />
-        <div className='shape' />
+        {shapes.map(shape => (
+          <Shape key={shape.id} shape={shape} />
+        ))}
       </div>
     </div>
   );
