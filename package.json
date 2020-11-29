@@ -2,7 +2,7 @@
   "name": "svg-editor",
   "version": "1.0.0",
   "description": "SVG Editor",
-  "main": "src/pages/index.tsx",
+  "main": "src/pages/[id].tsx",
   "author": "Lewis Monteith <lemon@hackerstash.com>",
   "license": "MIT",
   "scripts": {
@@ -12,12 +12,14 @@
   },
   "dependencies": {
     "@emotion/css": "^11.0.0",
+    "aws-sdk": "^2.799.0",
     "next": "^10.0.3",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-redux": "^7.2.2",
     "redux": "^4.0.5",
-    "redux-thunk": "^2.3.0"
+    "redux-thunk": "^2.3.0",
+    "uuid": "^8.3.1"
   },
   "devDependencies": {
     "@types/node": "^14.14.10",

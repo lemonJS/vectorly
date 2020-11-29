@@ -60,9 +60,14 @@ const App = (props: Props) => {
 }
 
 App.getInitialProps = async (ctx: AppContext) => {
+  const { id } = ctx.router.query;
   const store = getOrCreateStore(undefined);
-  const res = await fetch('http://localhost:3000/api/projects/5');
+  const res = await fetch(`http://localhost:3000/api/projects/${id}`);
   const project = await res.json();
+
+  if (res.status !== 200) {
+    throw new Error(project.error || 'Unknown error');
+  }
 
   store.dispatch(setProject(project));
   return { state: store.getState() };
