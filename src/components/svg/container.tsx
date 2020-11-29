@@ -1,102 +1,39 @@
 import React from 'react';
 
+import type { Transform } from '../../types/editor';
+import { css } from '@emotion/css';
+import { useDispatch } from 'react-redux';
 import { Selection } from './selection';
-
-type Coords = [number, number];
-type SvgInHtml = HTMLElement & SVGSVGElement;
+import { setSelectionId } from '../../lib/selection/actions';
 
 interface Props extends React.SVGProps<SVGGElement> {
   id: string;
   selected: boolean;
-  defaultCoords: Coords;
-  setSelection: (id: string) => void;
+  defaultTransform: Transform;
 }
 
-interface State {
-  coords: Coords;
-  pressed: boolean;
-}
+const styles = css`
+  transform-box: fill-box;
+  transform-origin: center;
+`;
 
-export class Container extends React.Component<Props, State> {
-  private readonly ref: React.RefObject<SVGGElement>;
-  private svg: SvgInHtml;
-  private box: DOMRect;
-  private grabPoint: DOMPoint;
-  private trueCoords: DOMPoint;
+export function Container(props: Props): JSX.Element {
+  const dispatch = useDispatch();
+  const ref = React.useRef(null);
+  const [transform, setTransform] = React.useState(props.defaultTransform);
 
-  public constructor(props: Props) {
-    super(props);
-    this.ref = React.createRef();
-
-    this.state = {
-      coords: props.defaultCoords,
-      pressed: false
-    };
+  function handleClick() {
+    dispatch(setSelectionId(props.id));
   }
 
-  public componentDidMount() {
-    this.svg = document.getElementById('canvas') as SvgInHtml;
-    this.grabPoint = this.svg.createSVGPoint();
-    this.trueCoords = this.svg.createSVGPoint();
-    this.box = this.ref.current.getBBox();
+  function handleTransform(update: Partial<Transform>) {
+    setTransform({ ...transform, ...update });
   }
 
-  private get x() {
-    return this.state.coords[0];
-  }
-
-  private get y() {
-    return this.state.coords[1];
-  }
-
-  private handleMouseDown = (event: React.MouseEvent<SVGGElement>) => {
-    if (!this.props.selected) {
-      return this.props.setSelection(this.props.id);
-    }
-
-    const element = event.target as SVGGElement;
-    const { e, f } = element.getCTM();
-    this.grabPoint.x = this.trueCoords.x - Number(e);
-    this.grabPoint.y = this.trueCoords.y - Number(f);
-
-    this.setState({ pressed: true });
-  };
-
-  private handleMouseMove = (event: React.MouseEvent<SVGGElement>) => {
-    if (this.props.selected) {
-      const {x, y} = this.svg.currentTranslate;
-
-      this.trueCoords.x = (event.clientX - x) / this.svg.currentScale;
-      this.trueCoords.y = (event.clientY - y) / this.svg.currentScale;
-
-      if (this.state.pressed) {
-        const coords = [this.trueCoords.x - this.grabPoint.x, this.trueCoords.y - this.grabPoint.y] as Coords;
-        this.setState({ coords });
-      }
-    }
-  };
-
-  private handleMouseUp = (_event: React.MouseEvent<SVGGElement>) => {
-    this.setState({ pressed: false });
-  };
-
-  private handleMouseLeave = (_event: React.MouseEvent<SVGGElement>) => {
-    this.setState({ pressed: false });
-  };
-
-  public render(): JSX.Element {
-    const handlers = {
-      onMouseDown: this.handleMouseDown,
-      onMouseMove: this.handleMouseMove,
-      onMouseUp: this.handleMouseUp,
-      onMouseLeave: this.handleMouseLeave
-    };
-
-    return (
-      <g id={this.props.id} {...handlers} ref={this.ref} transform={`translate(${this.x}, ${this.y})`}>
-        {this.props.children}
-        {this.props.selected && this.box && <Selection box={this.box} />}
-      </g>
-    );
-  }
+  return (
+    <g id={props.id} className={`${styles} container`} onClick={handleClick} ref={ref} transform={`translate(${transform.x}, ${transform.y}), rotate(${transform.r})`}>
+      {props.children}
+      {props.selected && <Selection box={ref.current.getBBox()} handleTransform={handleTransform} />}
+    </g>
+  );
 }

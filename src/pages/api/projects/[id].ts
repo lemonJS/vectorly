@@ -10,6 +10,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
       {
         id: 'sdfsdfd',
         element: 'text',
+        rotate: 0,
         transform: [50, 50],
         props: {
           color: 'black',
@@ -22,6 +23,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
       {
         id: '3423423',
         element: 'circle',
+        rotate: 0,
         transform: [100, 100],
         props: {
           cx: 100,
@@ -35,6 +37,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
       {
         id: '34534345',
         element: 'rect',
+        rotate: 0,
         transform: [50, 400],
         props: {
           width: 300,
