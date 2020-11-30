@@ -13,6 +13,7 @@
   "dependencies": {
     "@emotion/css": "^11.0.0",
     "aws-sdk": "^2.799.0",
+    "emojilib": "^2.4.0",
     "lodash": "^4.17.20",
     "next": "^10.0.3",
     "react": "^17.0.1",

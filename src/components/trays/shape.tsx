@@ -1,6 +1,7 @@
 import React from 'react';
 
 import type { SidebarElement } from '../../types/editor';
+import { clone } from 'lodash';
 import { useDispatch } from 'react-redux';
 import { createProjectElement } from '../../lib/project/actions';
 
@@ -13,8 +14,7 @@ export function Shape(props: Props): JSX.Element {
   const element = React.createElement(props.shape.type, props.shape.props);
 
   function formatShapeForCreation() {
-    // TODO
-    const shape = JSON.parse(JSON.stringify(props.shape));
+    const shape = clone(props.shape);
     delete shape.props.x;
     delete shape.props.y;
     delete shape.props.transform;

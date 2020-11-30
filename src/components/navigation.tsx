@@ -36,10 +36,10 @@ export function Navigation(): JSX.Element {
       selected: menuSelected === 'text'
     },
     {
-      title: 'Stickers',
-      name: 'stickers',
-      icon: 'ri-sticky-note-line',
-      selected: menuSelected === 'stickers'
+      title: 'Emojis',
+      name: 'emojis',
+      icon: 'ri-emotion-line',
+      selected: menuSelected === 'emojis'
     },
     {
       title: 'Shapes',

@@ -5,7 +5,7 @@ import { layoutSelector } from '../lib/layout/selectors';
 import { Designs } from './trays/designs';
 import { Photos } from './trays/photos';
 import { Shapes } from './trays/shapes';
-import { Stickers } from './trays/stickers';
+import { Emojis } from './trays/emojis';
 import { Text } from './trays/text';
 
 export function Tray(): JSX.Element {
@@ -18,8 +18,8 @@ export function Tray(): JSX.Element {
       return <Photos />;
     case 'shapes':
       return <Shapes />;
-    case 'stickers':
-      return <Stickers />;
+    case 'emojis':
+      return <Emojis />;
     case 'text':
       return <Text />;
     default:
