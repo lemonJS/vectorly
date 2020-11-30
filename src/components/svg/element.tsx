@@ -12,12 +12,14 @@ interface Props {
 export function Element(props: Props): JSX.Element {
   const { id } = useSelector(selectionSelector);
 
-  const r = props.element.rotate;
-  const [x, y] = props.element.transform;
-  const element = React.createElement(props.element.element, props.element.props, props.element.children);
+  const element = React.createElement(
+    props.element.element,
+    props.element.props,
+    props.element.children
+  );
 
   return (
-    <Container id={props.element.id} selected={props.element.id === id} defaultTransform={{ x, y, r }}>
+    <Container id={props.element.id} selected={props.element.id === id} element={props.element}>
       {element}
     </Container>
   );

@@ -3,8 +3,6 @@ import React from 'react';
 import { Transform } from '../../types/editor';
 
 interface Props {
-  box: SVGRect;
-  padding: number;
   handleTransform: (transform: Partial<Transform>) => void;
 }
 
@@ -13,7 +11,7 @@ interface State {
 }
 
 export class Rotate extends React.Component<Props, State> {
-  private readonly ref: React.RefObject<SVGGElement>;
+  private readonly ref: React.RefObject<HTMLDivElement>;
 
   public constructor(props) {
     super(props);
@@ -58,16 +56,10 @@ export class Rotate extends React.Component<Props, State> {
   };
 
   public render(): JSX.Element {
-    const { height, width } = this.props.box;
-
     return (
-      <g ref={this.ref} transform={`translate(${(width - (this.props.padding * 4)) / 2}, ${height + (this.props.padding * 3)})`} onMouseDown={this.handleMouseDown}>
-        <circle cx={this.props.padding * 2} cy={this.props.padding * 2} r={this.props.padding * 2} />
-        <g transform='translate(3.5, 3.5)'>
-          <path fill='none' d='M0 0h24v24H0z' />
-          <path fill='white' d='M5.463 4.433A9.961 9.961 0 0 1 12 2c5.523 0 10 4.477 10 10 0 2.136-.67 4.116-1.81 5.74L17 12h3A8 8 0 0 0 6.46 6.228l-.997-1.795zm13.074 15.134A9.961 9.961 0 0 1 12 22C6.477 22 2 17.523 2 12c0-2.136.67-4.116 1.81-5.74L7 12H4a8 8 0 0 0 13.54 5.772l.997 1.795z' />
-        </g>
-      </g>
+      <div className='handle bottom' ref={this.ref} onMouseDown={this.handleMouseDown}>
+        <i className='ri-refresh-line' />
+      </div>
     );
   }
 }

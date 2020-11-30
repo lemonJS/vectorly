@@ -1,6 +1,7 @@
 import type { ProjectAction } from './reducers';
 import type { SidebarElement, EditorElement } from '../../types/editor';
 import type { Project } from '../../types/project';
+import { v4 as uuid } from 'uuid';
 
 export function setProject(project: Project) {
   return async function(dispatch) {
@@ -36,25 +37,33 @@ export function updateProject(payload: Partial<Project>) {
   }
 }
 
-export function createProjectElement(payload: SidebarElement) {
+export function createProjectElement(payload: Partial<SidebarElement>) {
   return async function(dispatch, getState) {
     const { project } = getState();
 
     const element: EditorElement = {
-      id: payload.id, // TODO
+      id: uuid(),
       element: payload.type,
-      rotate: 0,
-      transform: [100, 100],
-      props: payload.props
+      transform: {
+        x: 100,
+        y: 100,
+        r: 0
+      },
+      props: payload.props,
+      children: payload.children
     };
 
-    project.elements.push(element);
+    const elements: EditorElement[] = [...project.elements, element];
 
-    const action: ProjectAction = {
-      type: 'PROJECT',
-      payload: project
-    };
+    dispatch(updateProject({ elements }));
+  }
+}
 
-    dispatch(action);
+export function updateProjectElement(payload: EditorElement) {
+  return async function (dispatch, getState) {
+    const { project } = getState();
+    const elements = project.elements.map(el => el.id === payload.id ? payload : el);
+
+    dispatch(updateProject({ elements }));
   }
 }

@@ -16,7 +16,7 @@ export class Move extends React.Component<Props, State> {
   private svg: SVG;
   private grabPoint: DOMPoint;
   private trueCoords: DOMPoint;
-  private readonly ref: React.RefObject<SVGGElement>;
+  private readonly ref: React.RefObject<HTMLDivElement>;
 
   public constructor(props: Props) {
     super(props);
@@ -55,7 +55,7 @@ export class Move extends React.Component<Props, State> {
     this.trueCoords = this.svg.createSVGPoint();
   };
 
-  private handleMouseDown = (event: React.MouseEvent<SVGGElement>) => {
+  private handleMouseDown = () => {
     const { x, y } = this.moveHandleOffset;
 
     this.grabPoint.x = this.trueCoords.x + x;
@@ -81,16 +81,10 @@ export class Move extends React.Component<Props, State> {
   };
 
   public render(): JSX.Element {
-    const { x, y } = this.moveHandleOffset;
-
     return (
-      <g ref={this.ref} transform={`translate(${x}, ${y})`} onMouseDown={this.handleMouseDown}>
-        <circle cx={this.props.padding * 2} cy={this.props.padding * 2} r={this.props.padding * 2} />
-        <g transform='translate(3.5, 3.5)'>
-          <path fill='none' d='M0 0h24v24H0z' />
-          <path fill='white' d='M11 11V5.828L9.172 7.657 7.757 6.243 12 2l4.243 4.243-1.415 1.414L13 5.828V11h5.172l-1.829-1.828 1.414-1.415L22 12l-4.243 4.243-1.414-1.415L18.172 13H13v5.172l1.828-1.829 1.415 1.414L12 22l-4.243-4.243 1.415-1.414L11 18.172V13H5.828l1.829 1.828-1.414 1.415L2 12l4.243-4.243 1.414 1.415L5.828 11z' />
-        </g>
-      </g>
+      <div className='handle top' ref={this.ref} onMouseDown={this.handleMouseDown}>
+        <i className='ri-drag-move-2-line' />
+      </div>
     );
   }
 }

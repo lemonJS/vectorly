@@ -1,7 +1,9 @@
+import type { EditorElement } from './editor';
+
 export interface Project {
   id: string;
   title: string;
-  elements: [];
+  elements: EditorElement[];
   createdAt: string;
   updatedAt: string;
 }
