@@ -1,8 +1,9 @@
 import React from 'react';
 
-import { Transform } from '../../types/editor';
+import { SVG, Transform } from '../../types/editor';
 
 interface Props {
+  parent: string;
   handleTransform: (transform: Partial<Transform>) => void;
 }
 
@@ -11,6 +12,7 @@ interface State {
 }
 
 export class Rotate extends React.Component<Props, State> {
+  private readonly parent: SVG;
   private readonly ref: React.RefObject<HTMLDivElement>;
 
   public constructor(props) {
@@ -18,6 +20,7 @@ export class Rotate extends React.Component<Props, State> {
 
     this.ref = React.createRef();
     this.state = { pressed: false };
+    this.parent = document.getElementById(this.props.parent) as SVG;
   }
 
   public componentDidMount() {
@@ -32,8 +35,7 @@ export class Rotate extends React.Component<Props, State> {
 
   private handleMouseMove = (event: MouseEvent) => {
     if (this.state.pressed) {
-      const container = this.ref.current.closest('.container');
-      const bound = container.getBoundingClientRect();
+      const bound = this.parent.getBoundingClientRect();
       const x = bound.left + bound.width / 2;
       const y = bound.top + bound.height / 2;
 

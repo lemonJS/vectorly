@@ -4,6 +4,7 @@ import type { Transform, EditorElement } from '../../types/editor';
 import { css } from '@emotion/css';
 import { useDispatch } from 'react-redux';
 import { debounce } from 'lodash';
+import { Selection } from './selection';
 import { setSelectionId } from '../../lib/selection/actions';
 import { updateProjectElement } from '../../lib/project/actions';
 
@@ -39,13 +40,20 @@ export function Container(props: Props): JSX.Element {
 
   const saveChanges = debounce((transform: Transform) => {
     const payload: EditorElement = { ...props.element, transform };
-    console.log(payload);
-    // dispatch(updateProjectElement(payload));
+    dispatch(updateProjectElement(payload));
   }, 1000);
 
   return (
     <g id={props.id} className={`${styles} container`} onClick={handleClick} ref={ref} transform={`translate(${transform.x}, ${transform.y}), rotate(${transform.r})`}>
       {props.children}
+      {props.selected && (
+        <Selection
+          box={ref.current.getBBox()}
+          transform={transform}
+          parent={props.id}
+          handleTransform={handleTransform}
+        />
+      )}
     </g>
   );
 }

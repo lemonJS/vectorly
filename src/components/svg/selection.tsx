@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 
 import type { Transform } from '../../types/editor';
 import { css } from '@emotion/css';
@@ -7,15 +8,16 @@ import { Rotate } from './rotate';
 
 interface Props {
   box: SVGRect;
+  transform: Transform;
+  parent: string;
   handleTransform: (transform: Partial<Transform>) => void;
 }
 
-const styles = css`  
-  .selection-container {
-    overflow: visible;
-    position: absolute;
-    z-index: 2;
-  }
+const styles = css`
+  left: 0;  
+  position: absolute;
+  top: 0;
+  z-index: 2;
   
   .selection {
     border: 1px solid var(--primary-accent-color);
@@ -80,22 +82,69 @@ const styles = css`
   }
 `;
 
-export const Selection = React.memo((props: Props) => {
-  const padding = 8;
-  const { width, height } = props.box;
+export class Selection extends React.Component<Props> {
+  private offset: { x: number, y: number };
+  private readonly padding = 8;
+  private readonly element: HTMLDivElement;
 
-  return (
-    <g className={styles}>
-      <foreignObject className='selection-container' width={width + (padding * 2)} height={height + (padding * 2)} x={-padding} y={-padding}>
+  public constructor(props: Props) {
+    super(props);
+
+    this.element = document.createElement('div');
+
+    const svg = document.getElementById('canvas');
+    const { x, y } = svg.getBoundingClientRect();
+    this.offset = { x, y };
+  }
+
+  public componentDidMount() {
+    document.body.appendChild(this.element);
+  }
+
+  public componentWillUnmount() {
+    document.body.removeChild(this.element);
+  }
+
+  private get height() {
+    return this.props.box.height + (this.padding * 2);
+  }
+
+  private get left() {
+    return this.props.transform.x + this.offset.x - this.padding;
+  }
+
+  private get rotate() {
+    return this.props.transform.r;
+  }
+
+  private get top() {
+    return this.props.transform.y + this.offset.y - this.padding;
+  }
+
+  private get width() {
+    return this.props.box.width + (this.padding * 2);
+  }
+
+  public render() {
+    const style = {
+      height: this.height,
+      transform: `translate(${this.left}px, ${this.top}px) rotate(${this.rotate}deg)`,
+      width: this.width
+    };
+
+    const Element = (
+      <div className={styles} style={style}>
         <div className='selection'>
           <div className='scale top-left' />
           <div className='scale top-right' />
           <div className='scale bottom-right' />
           <div className='scale bottom-left' />
         </div>
-        <Move padding={padding} box={props.box} handleTransform={props.handleTransform}  />
-        <Rotate handleTransform={props.handleTransform} />
-      </foreignObject>
-    </g>
-  );
-}, () => true);
+        <Move padding={this.padding} box={this.props.box} handleTransform={this.props.handleTransform}  />
+        <Rotate parent={this.props.parent} handleTransform={this.props.handleTransform} />
+      </div>
+    );
+
+    return ReactDOM.createPortal(Element, this.element);
+  }
+}

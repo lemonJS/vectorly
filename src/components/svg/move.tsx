@@ -16,12 +16,10 @@ export class Move extends React.Component<Props, State> {
   private svg: SVG;
   private grabPoint: DOMPoint;
   private trueCoords: DOMPoint;
-  private readonly ref: React.RefObject<HTMLDivElement>;
 
   public constructor(props: Props) {
     super(props);
 
-    this.ref = React.createRef();
     this.state = { pressed: false };
   }
 
@@ -82,7 +80,7 @@ export class Move extends React.Component<Props, State> {
 
   public render(): JSX.Element {
     return (
-      <div className='handle top' ref={this.ref} onMouseDown={this.handleMouseDown}>
+      <div className='handle top' onMouseDown={this.handleMouseDown}>
         <i className='ri-drag-move-2-line' />
       </div>
     );
