@@ -6,7 +6,7 @@ import { Select } from '../select';
 const styles = css`
   display: flex;
   flex-direction: column;
-  overflow-y: auto;
+  overflow-y: scroll;
   padding: 1.5rem;
   width: 100%;
   

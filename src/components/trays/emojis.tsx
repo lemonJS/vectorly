@@ -1,6 +1,5 @@
 import React from 'react';
 
-// TODO move server-side
 import emojis from 'emojilib';
 import { css } from '@emotion/css';
 import { Button } from '../button';
@@ -13,7 +12,7 @@ import type { EmojiData } from '../../types/emoji';
 const styles = css`
   display: flex;
   flex-direction: column;
-  overflow-y: auto;
+  overflow-y: scroll;
   padding: 1.5rem;
   width: 100%;
   

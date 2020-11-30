@@ -8,14 +8,14 @@ import { Shape } from './shape';
 const styles = css`
   display: flex;
   flex-direction: column;
-  overflow-y: auto;
+  overflow-y: scroll;
   padding: 1.5rem;
   width: 100%;
   
   .shapes {
     display: grid;
     grid-gap: 1.5rem;
-    grid-template-columns: repeat(auto-fill, minmax(96px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(88px, 1fr));
     padding-top: 1.5rem;
   }
   

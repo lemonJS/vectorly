@@ -11,12 +11,12 @@ export const shapes: EditorElement[] = [
     },
     props: {
       strokeWidth: 2,
-      r: 40,
+      r: 36,
       fill: 'transparent',
-      cx: 40,
+      cx: 36,
       stroke: 'white',
-      cy: 49,
-      transform: 'translate(7, 0)'
+      cy: 44,
+      transform: 'translate(8, 7)'
     }
   },
   {
@@ -31,10 +31,10 @@ export const shapes: EditorElement[] = [
       strokeWidth: 2,
       fill: 'transparent',
       stroke: 'white',
-      width: 76,
-      height: 76,
+      width: 70,
+      height: 70,
       x: 9.5,
-      y: 12
+      y: 15
     }
   },
   {
@@ -49,8 +49,8 @@ export const shapes: EditorElement[] = [
       strokeWidth: 2,
       stroke: 'white',
       fill: 'transparent',
-      points: '38,0 76,76 0,76',
-      transform: 'translate(9, 11)'
+      points: '35,0 70,70 0,70',
+      transform: 'translate(9, 15)'
     }
   }
 ];

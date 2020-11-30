@@ -15,7 +15,6 @@ const styles = css`
     background-color: var(--sidebar-navigation-background-color);
     background-position: center center;
     background-size: cover;
-    border: 4px solid var(--sidebar-navigation-background-color);
     border-radius: .25rem;
     cursor: pointer;
     height: 200px;
