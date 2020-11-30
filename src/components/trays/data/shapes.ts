@@ -1,9 +1,14 @@
-import type { SidebarElement } from '../../../types/editor';
+import type { EditorElement } from '../../../types/editor';
 
-export const shapes: SidebarElement[] = [
+export const shapes: EditorElement[] = [
   {
     id: '979b0b3d-7216-425d-a1b2-b3f11a1cf95f',
-    type: 'circle',
+    element: 'circle',
+    transform: {
+      x: 0,
+      y: 0,
+      r: 0
+    },
     props: {
       strokeWidth: 2,
       r: 40,
@@ -16,7 +21,12 @@ export const shapes: SidebarElement[] = [
   },
   {
     id: '4d8244d0-6aed-4ac7-9fe4-b2ee939243e6',
-    type: 'rect',
+    element: 'rect',
+    transform: {
+      x: 0,
+      y: 0,
+      r: 0
+    },
     props: {
       strokeWidth: 2,
       fill: 'transparent',
@@ -29,7 +39,12 @@ export const shapes: SidebarElement[] = [
   },
   {
     id: '6a5c4abc-bc36-4d06-8338-ecdcfc09e13f',
-    type: 'polygon',
+    element: 'polygon',
+    transform: {
+      x: 0,
+      y: 0,
+      r: 0
+    },
     props: {
       strokeWidth: 2,
       stroke: 'white',

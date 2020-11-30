@@ -1,7 +1,7 @@
 import React from 'react';
 
 import type { EmojiData } from '../../types/emoji';
-import type { SidebarElement } from '../../types/editor';
+import type { EditorElement } from '../../types/editor';
 import { css } from '@emotion/css';
 import { useDispatch } from 'react-redux';
 import { createProjectElement } from '../../lib/project/actions';
@@ -29,9 +29,14 @@ const styles = css`
 export function Emoji(props: Props): JSX.Element {
   const dispatch = useDispatch();
 
-  function formatEmojiForCreation(): Omit<SidebarElement, 'id'>  {
+  function formatEmojiForCreation(): Omit<EditorElement, 'id'>  {
     return {
-      type: 'text',
+      element: 'text',
+      transform: {
+        x: 0,
+        y: 0,
+        r: 0
+      },
       props: {
         alignmentBaseline: 'hanging',
         color: '#283037',

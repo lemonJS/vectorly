@@ -1,5 +1,5 @@
 import type { ProjectAction } from './reducers';
-import type { SidebarElement, EditorElement } from '../../types/editor';
+import type { EditorElement } from '../../types/editor';
 import type { Project } from '../../types/project';
 import { v4 as uuid } from 'uuid';
 
@@ -37,18 +37,14 @@ export function updateProject(payload: Partial<Project>) {
   }
 }
 
-export function createProjectElement(payload: Partial<SidebarElement>) {
+export function createProjectElement(payload: Partial<EditorElement>) {
   return async function(dispatch, getState) {
     const { project } = getState();
 
     const element: EditorElement = {
       id: uuid(),
-      element: payload.type,
-      transform: {
-        x: 100,
-        y: 100,
-        r: 0
-      },
+      element: payload.element,
+      transform: payload.transform,
       props: payload.props,
       children: payload.children
     };

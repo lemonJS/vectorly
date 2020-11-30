@@ -1,6 +1,6 @@
 import React from 'react';
 
-import type { EditorElement } from '../types/editor';
+import type { EditorElement, Transform } from '../types/editor';
 import { css } from '@emotion/css';
 import { useDispatch } from 'react-redux';
 import { Element } from './svg/element';
@@ -45,11 +45,22 @@ export function Canvas(props: Props): JSX.Element {
     }
   }
 
+  function getDropTransform(event: React.DragEvent<SVGGElement>): Transform {
+    const bounds = window.canvas.getBoundingClientRect();
+
+    return {
+      x: event.clientX - bounds.x,
+      y: event.clientY - bounds.y,
+      r: 0
+    };
+  }
+
   function handleDrop(event: React.DragEvent<SVGGElement>) {
     event.preventDefault();
     const data = event.dataTransfer.getData('element');
     const payload = JSON.parse(data);
-    dispatch(createProjectElement(payload));
+    const transform = getDropTransform(event);
+    dispatch(createProjectElement({ ...payload, transform }));
   }
 
   function handleDragOver(event: React.DragEvent<SVGGElement>) {

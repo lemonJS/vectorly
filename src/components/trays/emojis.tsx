@@ -1,5 +1,6 @@
 import React from 'react';
 
+// TODO move server-side
 import emojis from 'emojilib';
 import { css } from '@emotion/css';
 import { Button } from '../button';

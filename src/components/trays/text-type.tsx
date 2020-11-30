@@ -1,6 +1,6 @@
 import React from 'react';
 
-import type { SidebarElement } from '../../types/editor';
+import type { EditorElement } from '../../types/editor';
 import { useDispatch } from 'react-redux';
 import { createProjectElement } from '../../lib/project/actions';
 
@@ -25,9 +25,14 @@ export function TextType(props: Props): JSX.Element {
     }
   }
 
-  function formatTextForCreation(): Omit<SidebarElement, 'id'> {
+  function formatTextForCreation(): Omit<EditorElement, 'id'> {
     return {
-      type: 'text',
+      element: 'text',
+      transform: {
+        x: 0,
+        y: 0,
+        r: 0
+      },
       props: {
         alignmentBaseline: 'hanging',
         color: '#283037',
