@@ -1,6 +1,6 @@
 import type { ProjectAction } from './reducers';
 import type { EditorElement } from '../../types/editor';
-import type { Project } from '../../types/project';
+import type { Project, Image } from '../../types/project';
 import { v4 as uuid } from 'uuid';
 
 export function setProject(project: Project) {
@@ -61,5 +61,30 @@ export function updateProjectElement(payload: EditorElement) {
     const elements = project.elements.map(el => el.id === payload.id ? payload : el);
 
     dispatch(updateProject({ elements }));
+  }
+}
+
+export function uploadImages(files: File[]) {
+  return async function (dispatch, getState) {
+    const { project } = getState();
+
+    const images = files.map(file => ({
+      id: uuid(),
+      name: file.name,
+      url: URL.createObjectURL(file),
+      height: 50,
+      width: 50
+    }));
+
+    project.images.push(...images);
+
+    const action: ProjectAction = {
+      type: 'PROJECT',
+      payload: project
+    };
+
+    dispatch(action);
+
+    // dispatch(updateProject({ images: [...project.images, ...images] }));
   }
 }

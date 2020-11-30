@@ -64,7 +64,7 @@ export function Text(): JSX.Element {
       type: 'regular'
     },
     {
-      title: 'Small Test',
+      title: 'Small Text',
       type: 'small'
     }
   ];

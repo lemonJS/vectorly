@@ -1,7 +1,11 @@
 import React from 'react';
 
 import { css } from '@emotion/css';
-import { Button } from '../button';
+import { useSelector } from 'react-redux';
+import { ImageUpload } from './image-upload';
+import { Images } from './images';
+import { ImageDnd } from './image-dnd';
+import { projectSelector } from '../../lib/project/selectors';
 
 const styles = css`
   display: flex;
@@ -9,43 +13,19 @@ const styles = css`
   overflow-y: auto;
   padding: 1.5rem;
   width: 100%;
-  
-  .drag-and-drop-upload {
-    align-items: center;
-    border: 2px dashed var(--secondary-button-border-color);
-    border-radius: .25rem;
-    color: var(--secondary-button-text-color);
-    cursor: pointer;
-    display: flex;
-    flex: 1;
-    flex-direction: column;
-    justify-content: center;
-    margin-top: 1.5rem;
-    padding: 1.5rem;
-    text-align: center;
-    
-    i {
-      font-size: 2.5rem;
-    }
-    
-    p {
-      font-size: 14px;
-    }
-  }
 `;
 
 export function Photos(): JSX.Element {
+  const { images } = useSelector(projectSelector);
+
   return (
     <div className={styles}>
-      <Button className='secondary'>
-        Add Photos
-        <i className='ri-add-line' />
-      </Button>
+      <ImageUpload />
 
-      <div className='drag-and-drop-upload'>
-        <i className='ri-image-add-line' />
-        <p>Drag and drop photos here to upload</p>
-      </div>
+      {images.length > 0
+        ? <Images images={images} />
+        : <ImageDnd />
+      }
     </div>
   );
 }

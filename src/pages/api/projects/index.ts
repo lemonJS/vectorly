@@ -15,6 +15,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     id: uuid(),
     title: 'Untitled Project',
     elements: [],
+    images: [],
     createdAt: now,
     updatedAt: now
   };
