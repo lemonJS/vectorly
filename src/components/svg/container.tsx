@@ -1,6 +1,7 @@
 import React from 'react';
 
-import type { Transform, EditorElement } from '../../types/editor';
+import type { Element as ProjectElement } from '../../types/project';
+import type { Transform } from '../../types/editor';
 import { css } from '@emotion/css';
 import { useDispatch } from 'react-redux';
 import { debounce } from 'lodash';
@@ -11,7 +12,7 @@ import { updateProjectElement } from '../../lib/project/actions';
 interface Props extends React.SVGProps<SVGGElement> {
   id: string;
   selected: boolean;
-  element: EditorElement;
+  element: ProjectElement;
 }
 
 const styles = css`
@@ -39,7 +40,7 @@ export function Container(props: Props): JSX.Element {
   }
 
   const saveChanges = debounce((transform: Transform) => {
-    const payload: EditorElement = { ...props.element, transform };
+    const payload: ProjectElement = { ...props.element, transform };
     dispatch(updateProjectElement(payload));
   }, 1000);
 

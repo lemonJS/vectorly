@@ -1,17 +1,10 @@
-import type { ProjectAction } from './reducers';
-import type { EditorElement } from '../../types/editor';
-import type { Project } from '../../types/project';
+import type { Project, Element } from '../../types/project';
 import { v4 as uuid } from 'uuid';
 import { config } from '../../lib/config';
 
 export function setProject(project: Project) {
   return async function(dispatch) {
-    const action: ProjectAction = {
-      type: 'PROJECT',
-      payload: {...project}
-    };
-
-    dispatch(action);
+    dispatch({ type: 'PROJECT', payload: {...project} });
   };
 }
 
@@ -29,34 +22,30 @@ export function updateProject(payload: Partial<Project>) {
       body: JSON.stringify(update)
     });
 
-    const action: ProjectAction = {
-      type: 'PROJECT',
-      payload: await res.json()
-    };
-
-    dispatch(action);
+    dispatch({ type: 'PROJECT', payload: await res.json() });
   }
 }
 
-export function createProjectElement(payload: Partial<EditorElement>) {
+export function createProjectElement(payload: Partial<Element>) {
   return async function(dispatch, getState) {
     const { project } = getState();
 
-    const element: EditorElement = {
+    const element: Element = {
       id: uuid(),
+      type: payload.type,
       element: payload.element,
       transform: payload.transform,
       props: payload.props,
       children: payload.children
     };
 
-    const elements: EditorElement[] = [...project.elements, element];
+    const elements: Element[] = [...project.elements, element];
 
     dispatch(updateProject({ elements }));
   }
 }
 
-export function updateProjectElement(payload: EditorElement) {
+export function updateProjectElement(payload: Element) {
   return async function (dispatch, getState) {
     const { project } = getState();
     const elements = project.elements.map(el => el.id === payload.id ? payload : el);

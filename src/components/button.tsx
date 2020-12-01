@@ -33,6 +33,18 @@ const styles = css`
       color: var(--secondary-button-background-color);
     }
   }
+  
+  &.tertiary {
+    background: var(--tertiary-button-background-color);
+    border: 2px solid var(--tertiary-button-border-color);
+    color: var(--tertiary-button-text-color);
+    
+    &:hover {
+      background: var(--tertiary-button-border-color);
+      border-color: var(--tertiary-button-border-color);
+      color: var(--tertiary-button-background-color);
+    }
+  }
 `;
 
 export function Button(props: Props): JSX.Element {

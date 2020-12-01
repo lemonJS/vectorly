@@ -1,12 +1,12 @@
 import React from 'react';
 
-import type { EditorElement } from '../../types/editor';
+import type { Element } from '../../types/project';
 import { cloneDeep } from 'lodash';
 import { useDispatch } from 'react-redux';
 import { createProjectElement } from '../../lib/project/actions';
 
 interface Props {
-  shape: EditorElement;
+  shape: Element;
 }
 
 export function Shape(props: Props): JSX.Element {

@@ -1,4 +1,6 @@
-import type { EditorElement } from './editor';
+import React from 'react';
+
+import { Transform } from './editor';
 
 export interface Image {
   id: string;
@@ -8,10 +10,19 @@ export interface Image {
   width: string;
 }
 
+export interface Element {
+  id: string;
+  type: string;
+  element: string;
+  transform: Transform;
+  props: React.SVGProps<SVGElement>;
+  children?: string;
+}
+
 export interface Project {
   id: string;
   title: string;
-  elements: EditorElement[];
+  elements: Element[];
   images: Image[];
   createdAt: string;
   updatedAt: string;

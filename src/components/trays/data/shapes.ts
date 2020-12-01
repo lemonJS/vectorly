@@ -1,8 +1,9 @@
-import type { EditorElement } from '../../../types/editor';
+import type { Element } from '../../../types/project';
 
-export const shapes: EditorElement[] = [
+export const shapes: Element[] = [
   {
     id: '979b0b3d-7216-425d-a1b2-b3f11a1cf95f',
+    type: 'shape',
     element: 'circle',
     transform: {
       x: 0,
@@ -21,6 +22,7 @@ export const shapes: EditorElement[] = [
   },
   {
     id: '4d8244d0-6aed-4ac7-9fe4-b2ee939243e6',
+    type: 'shape',
     element: 'rect',
     transform: {
       x: 0,
@@ -39,6 +41,7 @@ export const shapes: EditorElement[] = [
   },
   {
     id: '6a5c4abc-bc36-4d06-8338-ecdcfc09e13f',
+    type: 'shape',
     element: 'polygon',
     transform: {
       x: 0,

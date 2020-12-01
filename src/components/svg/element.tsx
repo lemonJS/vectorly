@@ -1,12 +1,12 @@
 import React from 'react';
 
-import type { EditorElement } from '../../types/editor';
+import type { Element as ProjectElement } from '../../types/project';
 import { useSelector } from 'react-redux';
 import { Container } from './container';
 import { selectionSelector } from '../../lib/selection/selectors';
 
 interface Props {
-  element: EditorElement;
+  element: ProjectElement;
 }
 
 export function Element(props: Props): JSX.Element {

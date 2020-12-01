@@ -1,6 +1,7 @@
 import React from 'react';
 
-import type { EditorElement, Transform } from '../types/editor';
+import type { Element as ProjectElement } from '../types/project';
+import type { Transform } from '../types/editor';
 import { css } from '@emotion/css';
 import { useDispatch } from 'react-redux';
 import { Element } from './svg/element';
@@ -10,7 +11,7 @@ import { createProjectElement } from '../lib/project/actions';
 type Canvas = SVGGraphicsElement & HTMLElement;
 
 interface Props {
-  elements: EditorElement[];
+  elements: ProjectElement[];
 }
 
 declare global {
@@ -37,7 +38,7 @@ export function Canvas(props: Props): JSX.Element {
   const [mounted, setMounted] = React.useState(false);
 
   function handleMouseDown(event: React.MouseEvent<SVGElement>) {
-    const element = event.target as Element;
+    const element = event.target as HTMLElement;
 
     if (element.tagName === 'svg') {
       event.stopPropagation();
