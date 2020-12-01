@@ -3,8 +3,7 @@ import React from 'react';
 import type { SVG, Transform } from '../../types/editor';
 
 interface Props {
-  box: SVGRect;
-  padding: number;
+  parent: string;
   handleTransform: (transform: Partial<Transform>) => void;
 }
 
@@ -14,8 +13,8 @@ interface State {
 
 export class Move extends React.Component<Props, State> {
   private svg: SVG;
-  private grabPoint: DOMPoint;
-  private trueCoords: DOMPoint;
+  private parent: HTMLElement;
+  private offset: { x: number, y: number };
 
   public constructor(props: Props) {
     super(props);
@@ -25,7 +24,8 @@ export class Move extends React.Component<Props, State> {
 
   public componentDidMount() {
     this.svg = document.getElementById('canvas') as SVG;
-    this.resetOffsets();
+    this.parent = document.getElementById(this.props.parent) as HTMLElement;
+    this.offset = { x: 0, y: 0 };
 
     document.addEventListener('mouseup', this.handleMouseUp);
     document.addEventListener('mousemove', this.handleMouseMove);
@@ -36,28 +36,19 @@ export class Move extends React.Component<Props, State> {
     document.removeEventListener('mousemove', this.handleMouseMove, false);
   }
 
-  private get moveHandleOffset() {
-    return {
-      x: (this.props.box.width - (this.props.padding * 4)) / 2,
-      y: - this.props.padding * 7
-    }
-  }
-
   private handleMouseUp = () => {
     this.setState({ pressed: false });
-    this.resetOffsets();
   };
 
-  private resetOffsets = () => {
-    this.grabPoint = this.svg.createSVGPoint();
-    this.trueCoords = this.svg.createSVGPoint();
-  };
+  private handleMouseDown = (event: React.MouseEvent<HTMLDivElement>) => {
+    const element = event.target as HTMLDivElement;
+    const { x: x1, y: y1 } = element.getBoundingClientRect();
+    const { x: x2, y: y2 } = this.parent.getBoundingClientRect();
 
-  private handleMouseDown = () => {
-    const { x, y } = this.moveHandleOffset;
-
-    this.grabPoint.x = this.trueCoords.x + x;
-    this.grabPoint.y = this.trueCoords.y + y;
+    // Store where exactly the user grabbed the handle
+    // so it can be subtracted later. Otherwise it will
+    // jump around all over the place
+    this.offset = { x: x1 - x2, y: y1 - y2 };
 
     this.setState({ pressed: true });
   };
@@ -66,15 +57,10 @@ export class Move extends React.Component<Props, State> {
     if (this.state.pressed) {
       const { x, y } = this.svg.getBoundingClientRect();
 
-      this.trueCoords.x = (event.clientX - x);
-      this.trueCoords.y = (event.clientY - y);
-
-      const coords = {
-        x: this.trueCoords.x - this.grabPoint.x,
-        y: this.trueCoords.y - this.grabPoint.y
-      };
-
-      this.props.handleTransform(coords);
+      this.props.handleTransform({
+        x: event.clientX - x - this.offset.x,
+        y: event.clientY - y - this.offset.y
+      });
     }
   };
 

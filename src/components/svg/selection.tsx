@@ -140,7 +140,7 @@ export class Selection extends React.Component<Props> {
           <div className='scale bottom-right' />
           <div className='scale bottom-left' />
         </div>
-        <Move padding={this.padding} box={this.props.box} handleTransform={this.props.handleTransform}  />
+        <Move parent={this.props.parent} handleTransform={this.props.handleTransform}  />
         <Rotate parent={this.props.parent} handleTransform={this.props.handleTransform} />
       </div>
     );
