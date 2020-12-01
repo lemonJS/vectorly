@@ -1,7 +1,8 @@
 import type { ProjectAction } from './reducers';
 import type { EditorElement } from '../../types/editor';
-import type { Project, Image } from '../../types/project';
+import type { Project } from '../../types/project';
 import { v4 as uuid } from 'uuid';
+import { config } from '../../lib/config';
 
 export function setProject(project: Project) {
   return async function(dispatch) {
@@ -19,7 +20,7 @@ export function updateProject(payload: Partial<Project>) {
     const { project } = getState();
     const update = { ...project, ...payload };
 
-    const res = await fetch(`http://localhost:3000/api/projects/${update.id}`, {
+    const res = await fetch(`${config.apiHost}/projects/${update.id}`, {
       method: 'PUT',
       headers: {
         'Accept': 'application/json',
@@ -66,25 +67,6 @@ export function updateProjectElement(payload: EditorElement) {
 
 export function uploadImages(files: File[]) {
   return async function (dispatch, getState) {
-    const { project } = getState();
-
-    const images = files.map(file => ({
-      id: uuid(),
-      name: file.name,
-      url: URL.createObjectURL(file),
-      height: 50,
-      width: 50
-    }));
-
-    project.images.push(...images);
-
-    const action: ProjectAction = {
-      type: 'PROJECT',
-      payload: project
-    };
-
-    dispatch(action);
-
-    // dispatch(updateProject({ images: [...project.images, ...images] }));
+    console.log(files);
   }
 }

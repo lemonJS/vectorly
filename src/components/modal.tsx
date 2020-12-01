@@ -21,7 +21,15 @@ export class Modal extends React.Component<Props, State> {
   }
 
   private static get root() {
-    return document.getElementById('modal-container');
+    let container = document.getElementById('modal-container');
+
+    if (!container) {
+      container = document.createElement('div');
+      container.id = 'modal-container';
+      document.body.appendChild(container);
+    }
+
+    return container;
   }
 
   public componentDidMount() {
