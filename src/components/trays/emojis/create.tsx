@@ -2,20 +2,14 @@ import React from 'react';
 
 import emojis from 'emojilib';
 import { css } from '@emotion/css';
-import { Button } from '../button';
-import { Input } from '../input';
-import { Label } from '../label';
+import { Button } from '../../button';
+import { Input } from '../../input';
+import { Label } from '../../label';
 import { Emoji } from './emoji';
 
-import type { EmojiData } from '../../types/emoji';
+import type { EmojiData } from '../../../types/emoji';
 
 const styles = css`
-  display: flex;
-  flex-direction: column;
-  overflow-y: scroll;
-  padding: 1.5rem;
-  width: 100%;
-  
   .emojis {
     display: grid;
     grid-gap: 1.5rem;
@@ -35,7 +29,7 @@ const styles = css`
   }
 `;
 
-export function Emojis(): JSX.Element {
+export function Create(): JSX.Element {
   const perPage = 99;
   const [page, setPage] = React.useState(1);
   const [search, setSearch] = React.useState('');

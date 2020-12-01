@@ -5,7 +5,7 @@ import { layoutSelector } from '../lib/layout/selectors';
 import { Designs } from './trays/designs';
 import { Photos } from './trays/photos';
 import { Shapes } from './trays/shapes';
-import { Emojis } from './trays/emojis';
+import { Emojis } from './trays/emojis/emojis';
 import { Text } from './trays/text/text';
 
 export function Tray(): JSX.Element {

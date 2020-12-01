@@ -2,8 +2,12 @@ import React from 'react';
 
 import { css } from '@emotion/css';
 import { useDispatch } from 'react-redux';
-import { setSelectionId } from '../../../lib/selection/actions';
-import { Divider } from '../../divider';
+import { setSelectionId } from '../../lib/selection/actions';
+import { Divider } from '../divider';
+
+interface Props {
+  title: String;
+}
 
 const styles = css`
   margin-bottom: 1.5rem;
@@ -33,7 +37,7 @@ const styles = css`
   }
 `;
 
-export function Close(): JSX.Element {
+export function Close(props: Props): JSX.Element {
   const dispatch = useDispatch();
 
   function handleClick() {
@@ -43,7 +47,7 @@ export function Close(): JSX.Element {
   return (
     <div className={styles}>
       <div className='header'>
-        <p>Edit Text</p>
+        <p>{props.title}</p>
         <button onClick={handleClick}>
           <i className='ri-close-line' />
         </button>

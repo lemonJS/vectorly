@@ -3,7 +3,7 @@ import React from 'react'
 import type { Element } from '../../../types/project';
 import { useDispatch } from 'react-redux';
 import { updateProjectElement } from '../../../lib/project/actions';
-import { Close } from './close';
+import { Close } from '../close';
 import { Actions } from './actions';
 import { FontAndSize } from './font-and-size';
 import { Style } from './style';
@@ -25,7 +25,7 @@ export function Edit(props: Props): JSX.Element {
 
   return (
     <div>
-      <Close />
+      <Close title='Edit Text' />
       <FontAndSize element={props.element} handleUpdate={handleUpdate} />
       <Style element={props.element} handleUpdate={handleUpdate} />
       <Alignment />

@@ -1,10 +1,10 @@
 import React from 'react';
 
-import { css } from '@emotion/css';
 import { useSelector } from 'react-redux';
-import { Edit } from './edit';
-import { Create } from './create';
+import { css } from '@emotion/css';
 import { selectedElementSelector } from '../../../lib/selection/selectors';
+import { Create } from './create';
+import { Edit } from './edit';
 
 const styles = css`
   display: flex;
@@ -14,12 +14,12 @@ const styles = css`
   width: 100%;
 `;
 
-export function Text(): JSX.Element {
+export function Emojis(): JSX.Element {
   const element = useSelector(selectedElementSelector);
 
   return (
     <div className={styles}>
-      {element && element.type === 'text'
+      {element && element.type === 'emoji'
         ? <Edit element={element} />
         : <Create />
       }
