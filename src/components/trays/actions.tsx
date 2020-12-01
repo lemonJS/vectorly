@@ -1,11 +1,11 @@
 import React from 'react';
 
-import type { Element } from '../../../types/project';
+import type { Element } from '../../types/project';
 import { css } from '@emotion/css';
 import { useDispatch } from 'react-redux';
-import { Button } from '../../button';
-import { Divider } from '../../divider';
-import { deleteProjectElement } from '../../../lib/project/actions';
+import { Button } from '../button';
+import { Divider } from '../divider';
+import { deleteProjectElement } from '../../lib/project/actions';
 
 interface Props {
   element: Element;

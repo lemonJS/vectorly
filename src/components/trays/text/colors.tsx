@@ -29,11 +29,17 @@ const styles = css`
       &:hover {
         scale: 2;
       }
+      
+      &.selected {
+        border-color: white;
+      }
     }
   }
 `;
 
 export function Colors(props: Props): JSX.Element {
+  const { fill } = props.element.props;
+
   function handleColor(hex: string) {
     props.handleUpdate({ fill: hex });
   }
@@ -46,7 +52,7 @@ export function Colors(props: Props): JSX.Element {
         {colors.map(color => (
           <div
             key={color.hex}
-            className='color'
+            className={`color ${color.hex === fill ? 'selected' : ''}`}
             style={{ backgroundColor: color.hex }}
             onClick={() => handleColor(color.hex)}
           />

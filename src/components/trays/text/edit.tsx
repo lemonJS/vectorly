@@ -4,7 +4,7 @@ import type { Element } from '../../../types/project';
 import { useDispatch } from 'react-redux';
 import { updateProjectElement } from '../../../lib/project/actions';
 import { Close } from '../close';
-import { Actions } from './actions';
+import { Actions } from '../actions';
 import { FontAndSize } from './font-and-size';
 import { Style } from './style';
 import { Alignment } from './alignment';

@@ -1,8 +1,8 @@
 import React from 'react';
 
 import { css } from '@emotion/css';
-import { shapes } from './data/shapes';
-import { Input } from '../input';
+import { shapes } from '../data/shapes';
+import { Input } from '../../input';
 import { Shape } from './shape';
 
 const styles = css`

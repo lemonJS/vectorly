@@ -1,9 +1,9 @@
 import React from 'react';
 
-import type { Element } from '../../types/project';
+import type { Element } from '../../../types/project';
 import { cloneDeep } from 'lodash';
 import { useDispatch } from 'react-redux';
-import { createProjectElement } from '../../lib/project/actions';
+import { createProjectElement } from '../../../lib/project/actions';
 
 interface Props {
   shape: Element;
