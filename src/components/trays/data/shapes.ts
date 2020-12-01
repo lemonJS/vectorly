@@ -16,6 +16,7 @@ export const shapes: Element[] = [
       fill: 'transparent',
       cx: 36,
       stroke: 'white',
+      strokeDasharray: 'none',
       cy: 44,
       transform: 'translate(8, 7)'
     }
@@ -33,6 +34,7 @@ export const shapes: Element[] = [
       strokeWidth: 2,
       fill: 'transparent',
       stroke: 'white',
+      strokeDasharray: 'none',
       width: 70,
       height: 70,
       x: 9.5,
@@ -51,6 +53,7 @@ export const shapes: Element[] = [
     props: {
       strokeWidth: 2,
       stroke: 'white',
+      strokeDasharray: 'none',
       fill: 'transparent',
       points: '35,0 70,70 0,70',
       transform: 'translate(9, 15)'
