@@ -13,12 +13,10 @@ interface State {
 
 export class Rotate extends React.Component<Props, State> {
   private readonly parent: SVG;
-  private readonly ref: React.RefObject<HTMLDivElement>;
 
   public constructor(props) {
     super(props);
 
-    this.ref = React.createRef();
     this.state = { pressed: false };
     this.parent = document.getElementById(this.props.parent) as SVG;
   }
@@ -59,7 +57,7 @@ export class Rotate extends React.Component<Props, State> {
 
   public render(): JSX.Element {
     return (
-      <div className='handle bottom' ref={this.ref} onMouseDown={this.handleMouseDown}>
+      <div className='handle bottom' onMouseDown={this.handleMouseDown}>
         <i className='ri-refresh-line' />
       </div>
     );

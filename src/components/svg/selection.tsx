@@ -5,6 +5,7 @@ import type { Transform } from '../../types/editor';
 import { css } from '@emotion/css';
 import { Move } from './move';
 import { Rotate } from './rotate';
+import { Scale } from './scale';
 
 interface Props {
   box: SVGRect;
@@ -24,34 +25,6 @@ const styles = css`
     height: 100%;
     position: relative;
     width: 100%;
-  }
-  
-  .scale {
-    background: var(--primary-accent-color);
-    border-radius: 50%;
-    height: 1rem;
-    position: absolute;
-    width: 1rem;
-    
-    &.top-left {
-      left: -.5rem;
-      top: -.5rem;
-    }
-    
-    &.top-right {
-      right: -.5rem;
-      top: -.5rem;
-    }
-    
-    &.bottom-right {
-      bottom: -.5rem;
-      right: -.5rem;
-    }
-    
-    &.bottom-left {
-      bottom: -.5rem;
-      left: -.5rem;
-    }
   }
   
   .handle {
@@ -135,12 +108,12 @@ export class Selection extends React.Component<Props> {
     const Element = (
       <div className={styles} style={style}>
         <div className='selection'>
-          <div className='scale top-left' />
-          <div className='scale top-right' />
-          <div className='scale bottom-right' />
-          <div className='scale bottom-left' />
+          <Scale parent={this.props.parent} position='top-left' handleTransform={this.props.handleTransform} />
+          <Scale parent={this.props.parent} position='top-right' handleTransform={this.props.handleTransform} />
+          <Scale parent={this.props.parent} position='bottom-right' handleTransform={this.props.handleTransform} />
+          <Scale parent={this.props.parent} position='bottom-left' handleTransform={this.props.handleTransform} />
         </div>
-        <Move parent={this.props.parent} handleTransform={this.props.handleTransform}  />
+        <Move parent={this.props.parent} handleTransform={this.props.handleTransform} />
         <Rotate parent={this.props.parent} handleTransform={this.props.handleTransform} />
       </div>
     );
