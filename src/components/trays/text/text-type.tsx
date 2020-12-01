@@ -69,9 +69,13 @@ export function TextType(props: Props): JSX.Element {
       },
       props: {
         alignmentBaseline: 'hanging',
-        color: '#283037',
         dominantBaseline: 'hanging',
-        fontSize: getFontSize()
+        fill: '#283037',
+        fontSize: getFontSize(),
+        fontFamily: 'Arial',
+        fontWeight: 'normal',
+        fontStyle: 'normal',
+        textDecoration: 'none'
       },
       children: 'Enter your text'
     };

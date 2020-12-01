@@ -1,11 +1,14 @@
 import React from 'react';
 
+import type { Element } from '../../../types/project';
 import { css } from '@emotion/css';
+import { useDispatch } from 'react-redux';
 import { Button } from '../../button';
 import { Divider } from '../../divider';
+import { deleteProjectElement } from '../../../lib/project/actions';
 
 interface Props {
-
+  element: Element;
 }
 
 const styles = css`
@@ -24,6 +27,12 @@ const styles = css`
 `;
 
 export function Actions(props: Props): JSX.Element {
+  const dispatch = useDispatch();
+
+  function handleDelete() {
+    dispatch(deleteProjectElement(props.element));
+  }
+
   return (
     <div className={styles}>
       <Divider />
@@ -33,7 +42,7 @@ export function Actions(props: Props): JSX.Element {
         Duplicate
       </Button>
 
-      <Button className='tertiary'>
+      <Button className='tertiary' onClick={handleDelete}>
         <i className='ri-delete-bin-2-line' />
         Delete
       </Button>

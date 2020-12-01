@@ -54,6 +54,15 @@ export function updateProjectElement(payload: Element) {
   }
 }
 
+export function deleteProjectElement(payload: Element) {
+  return async function (dispatch, getState) {
+    const { project } = getState();
+    const elements = project.elements.filter(el => el.id !== payload.id);
+
+    dispatch(updateProject({ elements }));
+  }
+}
+
 export function uploadImages(files: File[]) {
   return async function (dispatch, getState) {
     console.log(files);
