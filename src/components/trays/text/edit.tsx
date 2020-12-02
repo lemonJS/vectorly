@@ -9,6 +9,7 @@ import { FontAndSize } from './font-and-size';
 import { Style } from './style';
 import { Alignment } from './alignment';
 import { Colors } from './colors';
+import { Positioning } from '../positioning';
 
 interface Props {
   element: Element;
@@ -30,6 +31,7 @@ export function Edit(props: Props): JSX.Element {
       <Style element={props.element} handleUpdate={handleUpdate} />
       <Alignment />
       <Colors element={props.element} handleUpdate={handleUpdate} />
+      <Positioning element={props.element} handleUpdate={handleUpdate} />
       <Actions element={props.element} />
     </div>
   );

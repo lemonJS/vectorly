@@ -43,7 +43,7 @@ export class Rotate extends React.Component<Props, State> {
       const degrees = (inverted * (180 / Math.PI) * -1) - 90;
 
       // TODO snap to within x of 0, 45, 90 etc
-      this.props.handleTransform({ r: degrees });
+      this.props.handleTransform({ r: Math.ceil(degrees) });
     }
   };
 

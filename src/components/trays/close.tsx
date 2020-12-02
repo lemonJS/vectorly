@@ -10,7 +10,7 @@ interface Props {
 }
 
 const styles = css`
-  margin-bottom: 1.5rem;
+  margin-bottom: 2rem;
   
   .header {
     align-items: center;

@@ -6,6 +6,7 @@ import { Close } from '../close';
 import { Background } from './background';
 import { Border } from './border';
 import { Actions } from '../actions';
+import { Positioning } from '../positioning';
 import { updateProjectElement } from '../../../lib/project/actions';
 
 interface Props {
@@ -24,8 +25,9 @@ export function Edit(props: Props): JSX.Element {
   return (
     <div>
       <Close title='Edit Shape' />
-      <Background element={props.element} handleUpdate={handleUpdate} />
       <Border element={props.element} handleUpdate={handleUpdate} />
+      <Background element={props.element} handleUpdate={handleUpdate} />
+      <Positioning element={props.element} handleUpdate={handleUpdate} />
       <Actions element={props.element} />
     </div>
   );

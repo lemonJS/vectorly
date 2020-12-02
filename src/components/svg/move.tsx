@@ -58,8 +58,8 @@ export class Move extends React.Component<Props, State> {
       const { x, y } = this.svg.getBoundingClientRect();
 
       this.props.handleTransform({
-        x: event.clientX - x - this.offset.x,
-        y: event.clientY - y - this.offset.y
+        x: Math.ceil(event.clientX - x - this.offset.x),
+        y: Math.ceil(event.clientY - y - this.offset.y)
       });
     }
   };
