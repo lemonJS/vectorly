@@ -2,6 +2,7 @@ import React from 'react';
 
 import type { Element } from '../../types/project';
 import { css } from '@emotion/css';
+import { LazyInput } from './lazy-input';
 import { Divider } from '../divider';
 import { Label } from '../label';
 import { Input } from '../input';
@@ -10,7 +11,7 @@ import { Slider } from '../slider';
 
 interface Props {
   element: Element;
-  handleUpdate: (update: Partial<React.SVGProps<SVGElement>>) => void;
+  handleUpdate: (update: Partial<Element>) => void;
 }
 
 const styles = css`
@@ -26,6 +27,10 @@ const styles = css`
     align-items: center;
     display: flex;
     
+    .inputs {
+      flex: 1;
+    }
+    
     i {
       color: white;
       margin: 0 .5rem;
@@ -37,6 +42,16 @@ export function Positioning(props: Props): JSX.Element {
   const { id, transform } = props.element;
   const element = document.getElementById(id);
   const bounds = element.getBoundingClientRect();
+
+  function handleTransform(property: string) {
+    return function(event: React.ChangeEvent<HTMLInputElement>) {
+      const element = event.target as HTMLInputElement;
+      const value = Number(element.value);
+
+      const update = { ...transform, [property]: Math.ceil(value) }
+      props.handleUpdate({ transform: update });
+    }
+  }
 
   return (
     <div className={styles}>
@@ -55,12 +70,12 @@ export function Positioning(props: Props): JSX.Element {
 
       <Label>Position</Label>
       <div className='input-group'>
-        <div className='input-x'>
-          <Input defaultValue={transform.x} />
+        <div className='inputs input-x'>
+          <LazyInput value={transform.x} onChange={handleTransform('x')} />
         </div>
         <i className='ri-close-line' />
-        <div className='input-y'>
-          <Input defaultValue={transform.y} />
+        <div className='inputs input-y'>
+          <LazyInput value={transform.y} onChange={handleTransform('y')} />
         </div>
       </div>
 

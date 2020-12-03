@@ -16,17 +16,19 @@ interface Props {
 export function Edit(props: Props): JSX.Element {
   const dispatch = useDispatch();
 
-  function handleUpdate(update: Partial<React.SVGProps<SVGElement>>) {
-    const { element } = props;
-    element.props = { ...element.props, ...update };
-    dispatch(updateProjectElement(element));
+  function handlePropsUpdate(update: Partial<React.SVGProps<SVGElement>>) {
+    dispatch(updateProjectElement(props.element.id, { props: update }));
+  }
+
+  function handleUpdate(update: Partial<Element>) {
+    dispatch(updateProjectElement(props.element.id, update));
   }
 
   return (
     <div>
       <Close title='Edit Shape' />
-      <Border element={props.element} handleUpdate={handleUpdate} />
-      <Background element={props.element} handleUpdate={handleUpdate} />
+      <Border element={props.element} handleUpdate={handlePropsUpdate} />
+      <Background element={props.element} handleUpdate={handlePropsUpdate} />
       <Positioning element={props.element} handleUpdate={handleUpdate} />
       <Actions element={props.element} />
     </div>

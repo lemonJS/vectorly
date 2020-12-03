@@ -68,8 +68,6 @@ const styles = css`
 export function Slider(props: Props): JSX.Element {
   const { className } = props;
 
-  console.log(props.value);
-
   return (
     <div className={`${styles} ${className}`}>
       <input type='range' {...props} />

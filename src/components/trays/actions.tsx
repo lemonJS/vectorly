@@ -30,7 +30,7 @@ export function Actions(props: Props): JSX.Element {
   const dispatch = useDispatch();
 
   function handleDelete() {
-    dispatch(deleteProjectElement(props.element));
+    dispatch(deleteProjectElement(props.element.id));
   }
 
   return (

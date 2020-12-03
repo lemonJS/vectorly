@@ -40,8 +40,7 @@ export function Container(props: Props): JSX.Element {
   }
 
   const saveChanges = debounce((transform: Transform) => {
-    const payload: ProjectElement = { ...props.element, transform };
-    dispatch(updateProjectElement(payload));
+    dispatch(updateProjectElement(props.element.id, { transform }));
   }, 1000);
 
   return (

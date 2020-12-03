@@ -1,5 +1,6 @@
 import type { Project, Element } from '../../types/project';
 import { v4 as uuid } from 'uuid';
+import { merge } from 'lodash';
 import { config } from '../../lib/config';
 
 export function setProject(project: Project) {
@@ -45,19 +46,19 @@ export function createProjectElement(payload: Partial<Element>) {
   }
 }
 
-export function updateProjectElement(payload: Element) {
+export function updateProjectElement(id: string, payload: Partial<Element>) {
   return async function (dispatch, getState) {
     const { project } = getState();
-    const elements = project.elements.map(el => el.id === payload.id ? payload : el);
+    const elements = project.elements.map(el => el.id === id ? merge(el, payload) : el);
 
     dispatch(updateProject({ elements }));
   }
 }
 
-export function deleteProjectElement(payload: Element) {
+export function deleteProjectElement(id: string) {
   return async function (dispatch, getState) {
     const { project } = getState();
-    const elements = project.elements.filter(el => el.id !== payload.id);
+    const elements = project.elements.filter(el => el.id !== id);
 
     dispatch(updateProject({ elements }));
   }
