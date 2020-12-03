@@ -2,7 +2,7 @@ import React from 'react';
 
 import { css } from '@emotion/css';
 import { useSelector } from 'react-redux';
-import { layoutSelector } from '../lib/layout/selectors'
+import { layoutSelector } from '../../lib/layout/selectors'
 import { Content } from './content';
 import { Header } from './header';
 import { Sidebar } from './sidebar';

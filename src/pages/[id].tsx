@@ -2,8 +2,8 @@ import React from 'react';
 
 import Head from 'next/head';
 import { useSelector } from 'react-redux';
-import { Canvas } from '../components/canvas';
-import { Wrapper } from '../components/wrapper';
+import { Canvas } from '../components/svg/canvas';
+import { Wrapper } from '../components/layout/wrapper';
 import { projectSelector } from '../lib/project/selectors';
 
 export default function Home(): JSX.Element {

@@ -2,7 +2,7 @@ import React from 'react';
 
 import { css } from '@emotion/css';
 import { Navigation } from './navigation';
-import { Tray } from './tray';
+import { Tray } from '../trays/tray';
 
 interface Props {
   open: boolean;

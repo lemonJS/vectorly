@@ -2,7 +2,7 @@ import React from 'react';
 
 import { css } from '@emotion/css';
 import { useDispatch } from 'react-redux';
-import { setMenuOpen } from '../lib/layout/actions';
+import { setMenuOpen } from '../../lib/layout/actions';
 
 interface Props {
   open: boolean;

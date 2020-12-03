@@ -2,12 +2,12 @@ import React from 'react';
 
 import { css } from '@emotion/css';
 import { useDispatch, useSelector } from 'react-redux';
-import { Button } from './button';
-import { Input } from './input';
-import { Label } from './label';
-import { Modal } from './modal';
-import { projectSelector } from '../lib/project/selectors';
-import { updateProject } from '../lib/project/actions';
+import { Button } from '../button';
+import { Input } from '../input';
+import { Label } from '../label';
+import { Modal } from '../modal';
+import { projectSelector } from '../../lib/project/selectors';
+import { updateProject } from '../../lib/project/actions';
 
 const styles = css`
   align-items: center;

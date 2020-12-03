@@ -14,35 +14,27 @@ export function updateProject(payload: Partial<Project>) {
     const { project } = getState();
     const update = { ...project, ...payload };
 
-    const res = await fetch(`${config.apiHost}/projects/${update.id}`, {
-      method: 'PUT',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(update)
-    });
+    // const res = await fetch(`${config.apiHost}/projects/${update.id}`, {
+    //   method: 'PUT',
+    //   headers: {
+    //     'Accept': 'application/json',
+    //     'Content-Type': 'application/json'
+    //   },
+    //   body: JSON.stringify(update)
+    // });
 
-    dispatch({ type: 'PROJECT', payload: await res.json() });
+    // await res.json()
+
+    dispatch({ type: 'PROJECT', payload: update });
   }
 }
 
 export function createProjectElement(payload: Partial<Element>) {
   return async function(dispatch, getState) {
     const { project } = getState();
+    const element = { ...payload, id: uuid() };
 
-    const element: Element = {
-      id: uuid(),
-      type: payload.type,
-      element: payload.element,
-      transform: payload.transform,
-      props: payload.props,
-      children: payload.children
-    };
-
-    const elements: Element[] = [...project.elements, element];
-
-    dispatch(updateProject({ elements }));
+    dispatch(updateProject({ elements: [...project.elements, element] }));
   }
 }
 

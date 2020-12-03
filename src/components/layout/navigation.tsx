@@ -1,11 +1,11 @@
 import React from 'react';
 
-import type { NavigationData } from '../types/navigation';
+import type { NavigationData } from '../../types/navigation';
 import { css } from '@emotion/css';
 import { useSelector } from 'react-redux';
 import { NavigationItem } from './navigation-item';
 import { NavigationToggle } from './navigation-toggle';
-import { layoutSelector } from '../lib/layout/selectors';
+import { layoutSelector } from '../../lib/layout/selectors';
 
 const styles = css`
   background: var(--sidebar-navigation-background-color);
