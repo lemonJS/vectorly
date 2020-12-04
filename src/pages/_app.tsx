@@ -3,7 +3,6 @@ import React from 'react';
 import type { AppContext, AppProps } from 'next/app';
 import { injectGlobal } from '@emotion/css';
 import { Provider } from 'react-redux';
-import { config } from '../lib/config';
 import { getOrCreateStore } from '../lib/store';
 import { setProject } from '../lib/project/actions';
 
@@ -71,7 +70,7 @@ const App = (props: Props) => {
 App.getInitialProps = async (ctx: AppContext) => {
   const { id } = ctx.router.query;
   const store = getOrCreateStore(undefined);
-  const res = await fetch(`${config.apiHost}/projects/${id}`);
+  const res = await fetch(`http://localhost:3000/api/projects/${id}`);
   const project = await res.json();
 
   if (res.status !== 200) {

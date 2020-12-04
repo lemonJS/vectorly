@@ -5,9 +5,9 @@ import { Transform } from './editor';
 export interface Image {
   id: string;
   name: string;
-  height: string;
+  height: number;
   url: string;
-  width: string;
+  width: number;
 }
 
 export interface Element {

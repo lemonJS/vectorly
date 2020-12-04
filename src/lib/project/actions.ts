@@ -3,7 +3,6 @@ import type { Project, Element } from '../../types/project';
 import type { GetState } from '../../types/redux';
 import { v4 as uuid } from 'uuid';
 import { merge } from 'lodash';
-// import { config } from '../../lib/config';
 
 export function setProject(project: Project) {
   return async function(dispatch: Dispatch<any>) {
@@ -15,18 +14,6 @@ export function updateProject(payload: Partial<Project>) {
   return async function(dispatch: Dispatch<any>, getState: GetState) {
     const { project } = getState();
     const update = { ...project, ...payload };
-
-    // const res = await fetch(`${config.apiHost}/projects/${update.id}`, {
-    //   method: 'PUT',
-    //   headers: {
-    //     'Accept': 'application/json',
-    //     'Content-Type': 'application/json'
-    //   },
-    //   body: JSON.stringify(update)
-    // });
-
-    // await res.json()
-
     dispatch({ type: 'PROJECT', payload: update });
   }
 }
@@ -59,7 +46,18 @@ export function deleteProjectElement(id: string) {
 }
 
 export function uploadImages(files: File[]) {
-  return async function (_dispatch: Dispatch<any>, _getState: GetState) {
-    console.log(files);
+  return async function (_dispatch: Dispatch<any>, getState: GetState) {
+    const form = new FormData();
+    const { project } = getState();
+
+    files.forEach(file => form.append('image', file));
+
+    const req = await fetch(`/api/projects/${project.id}/images`, {
+      body: form,
+      method: 'POST'
+    });
+    const res = await req.json();
+
+    console.log(res);
   }
 }
