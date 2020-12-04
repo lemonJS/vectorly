@@ -52,7 +52,8 @@ export function Canvas(props: Props): JSX.Element {
     return {
       x: event.clientX - bounds.x,
       y: event.clientY - bounds.y,
-      r: 0
+      r: 0,
+      s: 1
     };
   }
 

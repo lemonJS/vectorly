@@ -34,7 +34,7 @@ export function Shape(props: Props): JSX.Element {
 
   return (
     <div className='shape' draggable onClick={handleClick} onDragStart={handleDragStart}>
-      <svg>
+      <svg viewBox='0 0 88 100'>
         {element}
       </svg>
     </div>

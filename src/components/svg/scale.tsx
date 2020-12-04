@@ -83,10 +83,16 @@ export class Scale extends React.Component<Props, State> {
     this.setState({ pressed: false });
   };
 
-  private handleMouseMove = (_event: MouseEvent) => {
+  private handleMouseMove = (event: MouseEvent) => {
     if (this.state.pressed) {
       const { x, y } = this.svg.getBoundingClientRect();
-      console.log(x, y, this.offset.x, this.offset.y);
+
+      const position = {
+        x: Math.ceil(event.clientX - x - this.offset.x),
+        y: Math.ceil(event.clientY - y - this.offset.y)
+      };
+
+      console.log(position);
     }
   }
 
