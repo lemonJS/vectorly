@@ -12,22 +12,6 @@ const styles = css`
     grid-template-columns: repeat(auto-fill, minmax(88px, 1fr));
     padding-top: 1.5rem;
   }
-  
-  .shape {
-    background: var(--sidebar-navigation-background-color);
-    border-radius: .25rem;
-    cursor: pointer;
-    height: 100px;
-    
-    &:hover {
-      transform: translate(-2px, -2px);
-    }
-    
-    svg {
-      height: 100%;
-      width: 100%;
-    }
-  }
 `;
 
 export function Create(): JSX.Element {
