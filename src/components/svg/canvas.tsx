@@ -29,13 +29,13 @@ const styles = css`
   
   svg {
     height: 100%;
+    user-select: none;
     width: 100%;
   }
 `;
 
 export function Canvas(props: Props): JSX.Element {
   const dispatch = useDispatch();
-  const [mounted, setMounted] = React.useState(false);
 
   function handleMouseDown(event: React.MouseEvent<SVGElement>) {
     const element = event.target as HTMLElement;
@@ -72,13 +72,12 @@ export function Canvas(props: Props): JSX.Element {
     // Store this against the window as a cache for the
     // SVG element positioning
     window.canvas = document.getElementById('canvas') as Canvas;
-    setMounted(true);
   }, []);
 
   return (
     <div className={styles}>
       <svg id='canvas' viewBox='0 0 500 800' onMouseDown={handleMouseDown} onDrop={handleDrop} onDragOver={handleDragOver}>
-        {mounted && props.elements.map(element => (
+        {props.elements.map(element => (
           <Element key={element.id} element={element} />
         ))}
       </svg>

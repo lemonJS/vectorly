@@ -1,8 +1,10 @@
+import type { Dispatch } from 'redux';
+import type { GetState } from '../../types/redux';
 import { setMenuSelected } from '../layout/actions';
 import { getLayoutForElementType } from '../layout/helpers';
 
 export function setSelectionId(id: string | null) {
-  return async function(dispatch, getState) {
+  return async function(dispatch: Dispatch<any>, getState: GetState) {
     const { project } = getState();
 
     // Set the currently selected item

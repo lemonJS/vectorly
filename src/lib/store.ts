@@ -1,3 +1,4 @@
+import type { State } from '../types/redux';
 import thunk from 'redux-thunk';
 import { createStore, applyMiddleware, combineReducers } from 'redux';
 
@@ -5,15 +6,9 @@ import { layout, initialState as initialLayoutState } from '../lib/layout/reduce
 import { project, initialState as initialProjectState } from '../lib/project/reducers';
 import { selection, initialState as initialSelectionState } from '../lib/selection/reducers';
 
-declare global {
-  interface Window {
-    __NEXT_REDUX_STORE__: any;
-  }
-}
-
 const isServer = typeof window === 'undefined';
 
-const initialState = {
+const initialState: State = {
   layout: initialLayoutState,
   project: initialProjectState,
   selection: initialSelectionState
@@ -31,7 +26,7 @@ export function initializeStore(state = initialState) {
   );
 }
 
-export function getOrCreateStore(initialState) {
+export function getOrCreateStore(initialState: State) {
   if (isServer) {
     return initializeStore(initialState);
   }
