@@ -15,12 +15,25 @@ const styles = css`
 `;
 
 export function Create(): JSX.Element {
+  const [search, setSearch] = React.useState('');
+
+  function handleSearch(event: React.ChangeEvent<HTMLInputElement>) {
+    const element = event.target as HTMLInputElement;
+    setSearch(element.value);
+  }
+
+  const results = shapes.filter(shape => {
+    return search
+      ? shape.keywords.some(keyword => keyword.includes(search))
+      : true;
+  });
+
   return (
     <div className={styles}>
-      <Input placeholder='Search...' />
+      <Input placeholder='Search...' value={search} onChange={handleSearch} />
 
       <div className='shapes'>
-        {shapes.map(shape => (
+        {results.map(shape => (
           <Shape key={shape.id} shape={shape} />
         ))}
       </div>

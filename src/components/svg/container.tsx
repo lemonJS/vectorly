@@ -23,8 +23,8 @@ export function Container(props: Props): JSX.Element {
   const dispatch = useDispatch();
   const ref = React.useRef(null);
 
-  const { x, y, r } = props.element.transform;
-  const transform = `translate(${x}, ${y}), rotate(${r})`;
+  const { x, y, r, s } = props.element.transform;
+  const transform = `translate(${x}, ${y}), rotate(${r}) scale(${s})`;
 
   function handleClick() {
     dispatch(setSelectionId(props.id));

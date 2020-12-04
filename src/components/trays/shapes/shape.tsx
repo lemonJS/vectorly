@@ -1,13 +1,13 @@
 import React from 'react';
 
-import type { Element } from '../../../types/project';
+import type { ShapeListItem } from '../data/shapes';
 import { css } from '@emotion/css';
 import { cloneDeep } from 'lodash';
 import { useDispatch } from 'react-redux';
 import { createProjectElement } from '../../../lib/project/actions';
 
 interface Props {
-  shape: Element;
+  shape: ShapeListItem;
 }
 
 const styles = css`
@@ -28,10 +28,10 @@ const styles = css`
 
 export function Shape(props: Props): JSX.Element {
   const dispatch = useDispatch();
-  const element = React.createElement(props.shape.element, props.shape.props);
+  const element = React.createElement(props.shape.shape.element, props.shape.shape.props);
 
   function formatShapeForCreation() {
-    const shape = cloneDeep(props.shape);
+    const shape = cloneDeep(props.shape.shape);
     delete shape.props.x;
     delete shape.props.y;
     delete shape.props.transform;
