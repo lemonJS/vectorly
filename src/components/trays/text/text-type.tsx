@@ -15,7 +15,7 @@ const styles = css`
   background: var(--sidebar-navigation-background-color);
   border: 2px solid var(--sidebar-navigation-background-color);
   border-radius: .25rem;
-  color: var(--secondary-text-color);
+  color: white;
   cursor: pointer;
   display: flex;
   height: 100px;

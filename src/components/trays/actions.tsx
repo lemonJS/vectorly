@@ -1,11 +1,12 @@
 import React from 'react';
 
 import type { Element } from '../../types/project';
+import { cloneDeep } from 'lodash';
 import { css } from '@emotion/css';
 import { useDispatch } from 'react-redux';
 import { Button } from '../button';
 import { Divider } from '../divider';
-import { deleteProjectElement } from '../../lib/project/actions';
+import { createProjectElement, deleteProjectElement } from '../../lib/project/actions';
 
 interface Props {
   element: Element;
@@ -33,11 +34,18 @@ export function Actions(props: Props): JSX.Element {
     dispatch(deleteProjectElement(props.element.id));
   }
 
+  function handleDuplicate() {
+    const element = cloneDeep(props.element);
+    element.transform.x += 20;
+    element.transform.y += 20;
+    dispatch(createProjectElement(element));
+  }
+
   return (
     <div className={styles}>
       <Divider />
 
-      <Button className='secondary'>
+      <Button className='secondary' onClick={handleDuplicate}>
         <i className='ri-file-copy-line' />
         Duplicate
       </Button>

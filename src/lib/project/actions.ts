@@ -3,6 +3,7 @@ import type { Project, Element } from '../../types/project';
 import type { GetState } from '../../types/redux';
 import { v4 as uuid } from 'uuid';
 import { merge } from 'lodash';
+import { setSelectionId } from '../selection/actions';
 
 export function setProject(project: Project) {
   return async function(dispatch: Dispatch<any>) {
@@ -24,6 +25,9 @@ export function createProjectElement(payload: Partial<Element>) {
     const element = { ...payload, id: uuid() } as Element;
 
     dispatch(updateProject({ elements: [...project.elements, element] }));
+
+    // Set the newly created element as selected
+    setTimeout(() => dispatch(setSelectionId(element.id)), 10);
   }
 }
 
