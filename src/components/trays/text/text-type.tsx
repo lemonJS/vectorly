@@ -77,6 +77,7 @@ export function TextType(props: Props): JSX.Element {
         fontFamily: 'Arial',
         fontWeight: 'normal',
         fontStyle: 'normal',
+        letterSpacing: 1,
         textDecoration: 'none'
       },
       children: 'Enter your text'

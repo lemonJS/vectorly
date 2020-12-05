@@ -4,6 +4,7 @@ import type { Element } from '../../../types/project';
 import { css } from '@emotion/css';
 import { Label } from '../../label';
 import { Button } from '../../button';
+import { Scale } from '../../scale';
 
 interface Props {
   element: Element;
@@ -40,7 +41,7 @@ const styles = css`
 `;
 
 export function Style(props: Props): JSX.Element {
-  const { fontWeight, fontStyle, textDecoration } = props.element.props;
+  const { fontWeight, fontStyle, textDecoration, letterSpacing } = props.element.props;
 
   function handleBold() {
     props.handleUpdate({ fontWeight: fontWeight === 'bold' ? 'normal' : 'bold' });
@@ -69,6 +70,10 @@ export function Style(props: Props): JSX.Element {
     }
   }
 
+  function handleLetterSpacing(value: number) {
+    props.handleUpdate({ letterSpacing: value });
+  }
+
   return (
     <div className={styles}>
       <Label>Font Style</Label>
@@ -87,6 +92,9 @@ export function Style(props: Props): JSX.Element {
           <i className='ri-strikethrough' />
         </Button>
       </div>
+
+      <Label>Letter Spacing</Label>
+      <Scale max={10} min={-10} value={Number(letterSpacing ?? 1)} handleChange={handleLetterSpacing} />
     </div>
   );
 }

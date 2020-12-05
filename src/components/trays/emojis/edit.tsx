@@ -5,6 +5,7 @@ import { useDispatch } from 'react-redux';
 import { Close } from '../close';
 import { Size } from './size';
 import { Actions } from '../actions';
+import { Opacity } from '../opacity';
 import { Positioning } from '../positioning';
 import { updateProjectElement } from '../../../lib/project/actions';
 
@@ -27,6 +28,7 @@ export function Edit(props: Props): JSX.Element {
     <div>
       <Close title='Edit emoji' />
       <Size element={props.element} handleUpdate={handlePropsUpdate} />
+      <Opacity element={props.element} handleUpdate={handlePropsUpdate} />
       <Positioning element={props.element} handleUpdate={handleUpdate} />
       <Actions element={props.element} />
     </div>

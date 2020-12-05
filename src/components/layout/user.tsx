@@ -15,19 +15,8 @@ const styles = css`
   margin-left: 1rem;
   padding: .5rem;
   
-  .avatar {
-    align-items: center;
-    background: var(--primary-accent-color);
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    margin-left: .75rem;
-    height: 1.5rem;
-    width: 1.5rem;
-  }
-  
   i {
-     color: white;
+    margin-left: .5rem;
   }
 `;
 
@@ -35,9 +24,7 @@ export function User(): JSX.Element {
   return (
     <button className={styles}>
       <span>Guest</span>
-      <span className='avatar'>
-        <i className='ri-user-line' />
-      </span>
+      <i className='ri-arrow-down-s-line' />
     </button>
   );
 }

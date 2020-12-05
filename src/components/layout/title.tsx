@@ -3,9 +3,8 @@ import React from 'react';
 import { css } from '@emotion/css';
 import { useDispatch, useSelector } from 'react-redux';
 import { Button } from '../button';
-import { Input } from '../input';
-import { Label } from '../label';
 import { Modal } from '../modal';
+import { EditTitle } from './edit-title';
 import { projectSelector } from '../../lib/project/selectors';
 import { updateProject } from '../../lib/project/actions';
 
@@ -43,18 +42,17 @@ export function Title(): JSX.Element {
 
   return (
     <div className={styles}>
-      <Button onClick={handleModalOpen}>{title}</Button>
+      <Button onClick={handleModalOpen}>
+        {title}
+        <i className='ri-pencil-line' />
+      </Button>
 
       <Modal ref={ref}>
-        <form onSubmit={handleSubmit}>
-          <Label htmlFor='project-title'>Project Title</Label>
-          <Input defaultValue={title} id='project-title' name='title' />
-
-          <div className='actions'>
-            <Button>Save Changes</Button>
-            <Button className='secondary' onClick={handleModalClose}>Cancel</Button>
-          </div>
-        </form>
+        <EditTitle
+          title={title}
+          handleCancel={handleModalClose}
+          handleSubmit={handleSubmit}
+        />
       </Modal>
     </div>
   );
