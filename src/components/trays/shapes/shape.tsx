@@ -12,12 +12,13 @@ interface Props {
 
 const styles = css`
   background: var(--sidebar-navigation-background-color);
+  border: 2px solid var(--sidebar-navigation-background-color);
   border-radius: .25rem;
   cursor: pointer;
   height: 88px;
   
   &:hover {
-    transform: translate(-2px, -2px);
+    border-color: white;
   }
   
   svg {

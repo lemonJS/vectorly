@@ -50,7 +50,7 @@ export const shapes: ShapeListItem[] = [
         strokeDasharray: 'none',
         width: 70,
         height: 70,
-        transform: 'translate(8, 8)'
+        transform: 'translate(9, 9)'
       }
     }
   },

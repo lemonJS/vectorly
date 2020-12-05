@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { css } from '@emotion/css';
-import { Select } from '../select';
+import { Select } from '../../select';
 
 const styles = css`
   display: flex;
@@ -16,13 +16,14 @@ const styles = css`
   
   .design {
     background: var(--sidebar-navigation-background-color);
+    border: 2px solid var(--sidebar-navigation-background-color);
     border-radius: .25rem;
     cursor: pointer;
     height: 200px;
     margin-bottom: 1.5rem;
     
     &:hover {
-      transform: translate(-2px, -2px);
+      border-color: white;
     }
 `;
 

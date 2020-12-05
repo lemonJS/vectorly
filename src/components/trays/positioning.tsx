@@ -2,7 +2,6 @@ import React from 'react';
 
 import type { Element } from '../../types/project';
 import { css } from '@emotion/css';
-import { LazyInput } from './lazy-input';
 import { Divider } from '../divider';
 import { Label } from '../label';
 import { Input } from '../input';
@@ -71,16 +70,16 @@ export function Positioning(props: Props): JSX.Element {
       <Label>Position</Label>
       <div className='input-group'>
         <div className='inputs input-x'>
-          <LazyInput value={transform.x} onChange={handleTransform('x')} />
+          <Input value={transform.x} onChange={handleTransform('x')} />
         </div>
         <i className='ri-close-line' />
         <div className='inputs input-y'>
-          <LazyInput value={transform.y} onChange={handleTransform('y')} />
+          <Input value={transform.y} onChange={handleTransform('y')} />
         </div>
       </div>
 
       <Label>Rotation</Label>
-      <Slider min={-270} max={90} value={transform.r} step={1} onChange={() => ''} />
+      <Slider min={-270} max={90} value={transform.r} step={1} onChange={handleTransform('r')} />
 
       <Label>Stacking</Label>
       <Scale max={10} min={0} value={0} handleChange={console.log} />

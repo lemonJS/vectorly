@@ -2,8 +2,8 @@ import React from 'react';
 
 import { useSelector } from 'react-redux';
 import { layoutSelector } from '../../lib/layout/selectors';
-import { Designs } from './designs';
-import { Photos } from './photos';
+import { Designs } from './designs/designs';
+import { Photos } from './photos/photos';
 import { Shapes } from './shapes/shapes';
 import { Emojis } from './emojis/emojis';
 import { Text } from './text/text';

@@ -13,6 +13,7 @@ interface Props {
 const styles = css`
   align-items: center;
   background: var(--sidebar-navigation-background-color);
+  border: 2px solid var(--sidebar-navigation-background-color);
   border-radius: .25rem;
   color: var(--secondary-text-color);
   cursor: pointer;
@@ -22,7 +23,7 @@ const styles = css`
   margin-bottom: 1.5rem;
   
   &:hover {
-    transform: translate(-2px, -2px);
+    border-color: white;
   }
   
   &.heading {

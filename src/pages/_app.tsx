@@ -29,10 +29,6 @@ injectGlobal`
     --secondary-button-border-color: #d9e0e6;
     --secondary-button-text-color: #d9e0e6;
     
-    --secondary-button-background-color: none;
-    --secondary-button-border-color: #d9e0e6;
-    --secondary-button-text-color: #d9e0e6;
-    
     --tertiary-button-background-color: none;
     --tertiary-button-border-color: #e66767;
     --tertiary-button-text-color: #e66767;

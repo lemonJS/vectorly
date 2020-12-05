@@ -46,7 +46,7 @@ export function deleteProjectElement(id: string) {
 }
 
 export function uploadImages(files: File[]) {
-  return async function (_dispatch: Dispatch<any>, getState: GetState) {
+  return async function (dispatch: Dispatch<any>, getState: GetState) {
     const form = new FormData();
     const { project } = getState();
 
@@ -56,8 +56,21 @@ export function uploadImages(files: File[]) {
       body: form,
       method: 'POST'
     });
-    const res = await req.json();
 
-    console.log(res);
+    const res = await req.json();
+    dispatch(setProject(res));
+  }
+}
+
+export function deleteImage(id: string) {
+  return async function (dispatch: Dispatch<any>, getState: GetState) {
+    const { project } = getState();
+
+    const req = await fetch(`/api/projects/${project.id}/images/${id}`, {
+      method: 'DELETE'
+    });
+
+    const res = await req.json();
+    dispatch(setProject(res));
   }
 }
