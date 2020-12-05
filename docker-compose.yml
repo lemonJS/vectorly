@@ -1,0 +1,14 @@
+version: '2.0'
+
+services:
+  app:
+    build: .
+    ports:
+      - '3000:3000'
+    command: 'yarn dev'
+    environment:
+      - AWS_PROFILE=lemon
+    volumes:
+      - '.:/app'
+      - '~/.aws:/root/.aws'
+    restart: always

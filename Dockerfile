@@ -1,4 +1,4 @@
-FROM node:14.15.1
+FROM node:14.15.1-alpine
 
 WORKDIR /app
 
@@ -9,7 +9,7 @@ COPY yarn.lock /app
 
 RUN yarn install --production=false
 
-COPY . /app
+COPY public src next-env.d.ts tsconfig.json /app/
 
 RUN yarn build
 
