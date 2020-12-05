@@ -8,7 +8,7 @@ import { Element } from './element';
 import { setSelectionId } from '../../lib/selection/actions';
 import { createProjectElement } from '../../lib/project/actions';
 
-type Canvas = SVGGraphicsElement & HTMLElement;
+type Svg = SVGGraphicsElement & HTMLElement;
 
 interface Props {
   elements: ProjectElement[];
@@ -16,7 +16,7 @@ interface Props {
 
 declare global {
   interface Window {
-    canvas: Canvas;
+    canvas: Svg;
   }
 }
 
@@ -34,7 +34,7 @@ const styles = css`
   }
 `;
 
-export function Canvas(props: Props): JSX.Element {
+export function SVG(props: Props): JSX.Element {
   const dispatch = useDispatch();
 
   function handleMouseDown(event: React.MouseEvent<SVGElement>) {
@@ -67,6 +67,7 @@ export function Canvas(props: Props): JSX.Element {
 
   function handleDrop(event: React.DragEvent<SVGGElement>) {
     event.preventDefault();
+
     const data = event.dataTransfer.getData('element');
     const payload = getElementFromDataTransfer(data);
 
@@ -83,7 +84,7 @@ export function Canvas(props: Props): JSX.Element {
   React.useEffect(() => {
     // Store this against the window as a cache for the
     // SVG element positioning
-    window.canvas = document.getElementById('canvas') as Canvas;
+    window.canvas = document.getElementById('canvas') as Svg;
   }, []);
 
   return (

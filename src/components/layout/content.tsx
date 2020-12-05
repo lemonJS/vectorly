@@ -16,7 +16,7 @@ const styles = css`
 
 export function Content(props: Props): JSX.Element {
   return (
-    <main className={styles}>
+    <main id='editor-content' className={styles}>
       {props.children}
     </main>
   );
