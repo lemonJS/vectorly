@@ -12,3 +12,4 @@ export function setMenuSelected(name: string | null) {
     dispatch({ type: 'LAYOUT', payload: { menuSelected: name } });
   }
 }
+
