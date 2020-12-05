@@ -57,12 +57,23 @@ export function Canvas(props: Props): JSX.Element {
     };
   }
 
+  function getElementFromDataTransfer(data: string) {
+    try {
+      return JSON.parse(data);
+    } catch {
+      return null;
+    }
+  }
+
   function handleDrop(event: React.DragEvent<SVGGElement>) {
     event.preventDefault();
     const data = event.dataTransfer.getData('element');
-    const payload = JSON.parse(data);
-    const transform = getDropTransform(event);
-    dispatch(createProjectElement({ ...payload, transform }));
+    const payload = getElementFromDataTransfer(data);
+
+    if (payload) {
+      const transform = getDropTransform(event);
+      dispatch(createProjectElement({ ...payload, transform }));
+    }
   }
 
   function handleDragOver(event: React.DragEvent<SVGGElement>) {
