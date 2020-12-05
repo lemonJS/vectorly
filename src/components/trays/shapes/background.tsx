@@ -4,6 +4,7 @@ import type { Element } from '../../../types/project';
 import { css } from '@emotion/css';
 import { Label } from '../../label';
 import { ColorPicker } from '../color-picker';
+import { Opacity } from '../opacity';
 
 interface Props {
   element: Element;
@@ -17,16 +18,21 @@ const styles = css`
 `;
 
 export function Background(props: Props): JSX.Element {
-  const { fill } = props.element.props;
+  const { fill, fillOpacity } = props.element.props;
 
   function handleFill(color: string) {
     props.handleUpdate({ fill: color });
+  }
+
+  function handleFillOpacity(value: number) {
+    props.handleUpdate({ fillOpacity: value });
   }
 
   return (
     <div className={styles}>
       <Label>Background Color</Label>
       <ColorPicker selected={fill} handleChange={handleFill} />
+      <Opacity title='Background Opacity' selected={fillOpacity} handleUpdate={handleFillOpacity} />
     </div>
   );
 }

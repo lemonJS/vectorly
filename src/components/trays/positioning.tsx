@@ -59,11 +59,11 @@ export function Positioning(props: Props): JSX.Element {
       <Label>Dimensions</Label>
       <div className='input-group'>
         <div className='input-x'>
-          <Input defaultValue={Math.ceil(bounds.width)} />
+          <Input readOnly defaultValue={Math.ceil(bounds.width)} />
         </div>
         <i className='ri-close-line' />
         <div className='input-y'>
-          <Input defaultValue={Math.ceil(bounds.height)} />
+          <Input readOnly defaultValue={Math.ceil(bounds.height)} />
         </div>
       </div>
 

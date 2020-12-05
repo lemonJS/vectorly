@@ -6,6 +6,7 @@ import { ColorPicker } from '../color-picker';
 import { Label } from '../../label';
 import { Scale } from '../../scale';
 import { Button } from '../../button';
+import { Opacity } from '../opacity';
 
 interface Props {
   element: Element;
@@ -39,7 +40,7 @@ const styles = css`
 `;
 
 export function Border(props: Props): JSX.Element {
-  const { strokeWidth, strokeDasharray, stroke } = props.element.props;
+  const { strokeWidth, strokeDasharray, stroke, strokeOpacity } = props.element.props;
 
   function handleBorderWidth(value: number) {
     props.handleUpdate({ strokeWidth: value });
@@ -59,6 +60,10 @@ export function Border(props: Props): JSX.Element {
 
   function handleBorderColor(hex: string) {
     props.handleUpdate({ stroke: hex });
+  }
+
+  function handleStrokeOpacity(value: number) {
+    props.handleUpdate({ strokeOpacity: value });
   }
 
   return (
@@ -81,6 +86,7 @@ export function Border(props: Props): JSX.Element {
 
       <Label>Border Color</Label>
       <ColorPicker selected={stroke} handleChange={handleBorderColor} />
+      <Opacity title='Border Opacity' selected={strokeOpacity} handleUpdate={handleStrokeOpacity} />
     </div>
   );
 }
