@@ -2,7 +2,7 @@ import React from 'react';
 
 import { css } from '@emotion/css';
 
-interface Props extends React.InputHTMLAttributes<HTMLInputElement> {}
+interface Props extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {}
 
 export const styles = css`
   background: var(--secondary-button-background-color);
@@ -12,17 +12,17 @@ export const styles = css`
   display: block;
   font: inherit;
   font-size: 14px;
-  height: 42px;
   line-height: 20px;
+  min-height: 42px;
   padding: .5rem;
   position: relative;
   width: 100%;
 `;
 
-export function Input(props: Props): JSX.Element {
+export function TextArea(props: Props): JSX.Element {
   const { className, ...rest } = props;
 
   return (
-    <input className={`${styles} ${className}`} {...rest} />
+    <textarea className={`${styles} ${className}`} {...rest} />
   );
 }

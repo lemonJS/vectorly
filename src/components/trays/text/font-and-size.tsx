@@ -13,6 +13,10 @@ interface Props {
 }
 
 const styles = css`
+  label {
+    margin-top: 2rem;
+  }
+  
   .select {
     margin-bottom: 1rem;
   }

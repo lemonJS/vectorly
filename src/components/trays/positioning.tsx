@@ -52,6 +52,14 @@ export function Positioning(props: Props): JSX.Element {
     }
   }
 
+  function handleRotate(event: React.ChangeEvent<HTMLInputElement>) {
+    const element = event.target as HTMLInputElement;
+    const value = Number(element.value);
+
+    const update = { ...transform, r: Math.ceil(value) + 90 }
+    props.handleUpdate({ transform: update });
+  }
+
   return (
     <div className={styles}>
       <Divider />
@@ -79,7 +87,7 @@ export function Positioning(props: Props): JSX.Element {
       </div>
 
       <Label>Rotation</Label>
-      <Slider min={-270} max={90} value={transform.r} step={1} onChange={handleTransform('r')} />
+      <Slider min={-270} max={90} value={transform.r - 90} step={1} onChange={handleRotate} />
 
       <Label>Stacking</Label>
       <Scale max={10} min={0} value={0} handleChange={console.log} />

@@ -16,7 +16,7 @@ export interface Element {
   element: string;
   transform: Transform;
   props: React.SVGProps<SVGElement>;
-  children?: string;
+  text?: string;
 }
 
 export interface Project {

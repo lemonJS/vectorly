@@ -80,7 +80,7 @@ export function TextType(props: Props): JSX.Element {
         letterSpacing: 1,
         textDecoration: 'none'
       },
-      children: 'Enter your text'
+      text: 'Enter your text'
     };
   }
 

@@ -46,7 +46,7 @@ export function Emoji(props: Props): JSX.Element {
         dominantBaseline: 'hanging',
         fontSize: 80
       },
-      children: props.emoji.char
+      text: props.emoji.char
     };
   }
 
