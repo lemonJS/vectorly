@@ -27,8 +27,7 @@ export function FontAndSize(props: Props): JSX.Element {
 
   function handleFontFamily(event: React.ChangeEvent<HTMLSelectElement>) {
     const element = event.target as HTMLSelectElement;
-    const font = fonts.find(f => f.value === element.value);
-    props.handleUpdate({ fontFamily: font.name });
+    props.handleUpdate({ fontFamily: element.value });
   }
 
   return (
@@ -37,7 +36,7 @@ export function FontAndSize(props: Props): JSX.Element {
 
       <Select className='select' value={fontFamily} onChange={handleFontFamily}>
         {fonts.map(font => (
-          <option key={font.value} value={font.value}>{font.name}</option>
+          <option key={font} value={font}>{font}</option>
         ))}
       </Select>
 

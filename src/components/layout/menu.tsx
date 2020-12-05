@@ -2,6 +2,7 @@ import React from 'react';
 
 import { css } from '@emotion/css';
 import { User } from './user';
+import { Price } from './price';
 
 const styles = css`
   align-items: center;
@@ -13,6 +14,7 @@ const styles = css`
 export function Menu(): JSX.Element {
   return (
     <menu className={styles}>
+      <Price />
       <User />
     </menu>
   );

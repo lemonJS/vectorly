@@ -7,7 +7,7 @@ const styles = css`
   background: none;
   border: none;
   border-radius: .25rem;
-  color: var(--secondary-text-color);
+  color: var(--primary-text-color);
   cursor: pointer;
   display: flex;
   font: inherit;
