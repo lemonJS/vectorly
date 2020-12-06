@@ -42,9 +42,9 @@ const styles = css`
 `;
 
 export class Scale extends React.Component<Props, State> {
-  private svg: SVG;
-  private parent: HTMLElement;
+  private parent: SVG;
   private offset: { x: number, y: number };
+  private box: { width: number, height: number };
 
   public constructor(props: Props) {
     super(props);
@@ -53,9 +53,9 @@ export class Scale extends React.Component<Props, State> {
   }
 
   public componentDidMount() {
-    this.svg = document.getElementById('canvas') as SVG;
-    this.parent = document.getElementById(this.props.parent) as HTMLElement;
+    this.parent = document.getElementById(this.props.parent) as SVG;
     this.offset = { x: 0, y: 0 };
+    this.box = { width: 0, height: 0 };
 
     document.addEventListener('mouseup', this.handleMouseUp);
     document.addEventListener('mousemove', this.handleMouseMove);
@@ -68,6 +68,7 @@ export class Scale extends React.Component<Props, State> {
 
   private handleMouseDown = (event: React.MouseEvent<HTMLDivElement>) => {
     const element = event.target as HTMLDivElement;
+    const box = this.parent.getBBox();
     const { x: x1, y: y1 } = element.getBoundingClientRect();
     const { x: x2, y: y2 } = this.parent.getBoundingClientRect();
 
@@ -75,6 +76,8 @@ export class Scale extends React.Component<Props, State> {
     // so it can be subtracted later. Otherwise it will
     // jump around all over the place
     this.offset = { x: x1 - x2, y: y1 - y2 };
+
+    this.box = { width: box.width, height: box.height };
 
     this.setState({ pressed: true });
   }
@@ -85,14 +88,20 @@ export class Scale extends React.Component<Props, State> {
 
   private handleMouseMove = (event: MouseEvent) => {
     if (this.state.pressed) {
-      const { x, y } = this.svg.getBoundingClientRect();
+      const { x, y } = this.parent.getBoundingClientRect();
 
       const position = {
-        x: Math.ceil(event.clientX - x - this.offset.x),
-        y: Math.ceil(event.clientY - y - this.offset.y)
+        x: Math.ceil(event.clientX - x - this.offset.x - 8),
+        y: Math.ceil(event.clientY - y - this.offset.y - 8) // TODO for padding
       };
 
-      console.log(position);
+      // I know JS has poor rounding, but why does toFixed have to return a string?!
+      const scaleX = Number(((this.box.width + position.x) / this.box.width).toFixed(2));
+      const scaleY = Number(((this.box.height + position.y) / this.box.height).toFixed(2));
+
+      const scale = [scaleX, scaleY] as [number, number];
+
+      this.props.handleTransform({ s: scale });
     }
   }
 
