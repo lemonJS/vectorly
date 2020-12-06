@@ -1,11 +1,12 @@
 import React from 'react';
 
-import type { SVG, Transform } from '../../types/editor';
+import type { SVG, Transform } from '../../../types/editor';
 import { css } from '@emotion/css';
 
 interface Props {
   parent: string;
   position: string;
+  transform: Transform;
   handleTransform: (transform: Partial<Transform>) => void;
 }
 
@@ -105,9 +106,20 @@ export class Scale extends React.Component<Props, State> {
     }
   }
 
+  private get scale() {
+    const x = 1 / this.props.transform.s[0];
+    const y = 1 / this.props.transform.s[1];
+
+    return `scale(${x}, ${y})`;
+  }
+
   public render(): JSX.Element {
     return (
-      <div className={`${styles} ${this.props.position}`} onMouseDown={this.handleMouseDown} />
+      <div
+        style={{ transform: this.scale }}
+        className={`${styles} ${this.props.position}`}
+        onMouseDown={this.handleMouseDown}
+      />
     );
   }
 }

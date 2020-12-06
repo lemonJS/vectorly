@@ -1,15 +1,37 @@
 import React from 'react';
 
-import type { SVG, Transform } from '../../types/editor';
+import type { SVG, Transform } from '../../../types/editor';
+import { css } from '@emotion/css';
 
 interface Props {
   parent: string;
+  transform: Transform;
   handleTransform: (transform: Partial<Transform>) => void;
 }
 
 interface State {
   pressed: boolean;
 }
+
+const styles = css`
+  align-items: center;
+  background: var(--primary-accent-color);
+  border-radius: 50%;
+  display: flex;
+  height: 1.5rem;
+  justify-content: center;
+  left: 50%;
+  margin-left: -.75rem;
+  position: absolute;
+  top: -2rem;
+  width: 1.5rem;
+  z-index: 3;
+  
+  i {
+    color: white;
+    font-size: 1.25rem;
+  }
+`;
 
 export class Move extends React.Component<Props, State> {
   private svg: SVG;
@@ -64,9 +86,16 @@ export class Move extends React.Component<Props, State> {
     }
   };
 
+  private get scale() {
+    const x = 1 / this.props.transform.s[0];
+    const y = 1 / this.props.transform.s[1];
+
+    return `scale(${x}, ${y})`;
+  }
+
   public render(): JSX.Element {
     return (
-      <div className='handle top' onMouseDown={this.handleMouseDown}>
+      <div style={{ transform: this.scale }} className={styles} onMouseDown={this.handleMouseDown}>
         <i className='ri-drag-move-2-line' />
       </div>
     );

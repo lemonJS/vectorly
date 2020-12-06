@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import type { Transform } from '../../types/editor';
+import type { Transform } from '../../../types/editor';
 import { css } from '@emotion/css';
 import { Move } from './move';
 import { Rotate } from './rotate';
@@ -21,37 +21,11 @@ const styles = css`
   z-index: 2;
   
   .selection {
-    border: 1px solid var(--primary-accent-color);
+    border-color: var(--primary-accent-color);
+    border-style: solid;
     height: 100%;
     position: relative;
     width: 100%;
-  }
-  
-  .handle {
-    align-items: center;
-    background: var(--primary-accent-color);
-    border-radius: 50%;
-    display: flex;
-    height: 1.5rem;
-    justify-content: center;
-    left: 50%;
-    margin-left: -.75rem;
-    position: absolute;
-    width: 1.5rem;
-    z-index: 3;
-    
-    i {
-      color: white;
-      font-size: 1.25rem;
-    }
-    
-    &.top {
-      top: -2rem;
-    }
-    
-    &.bottom {
-      bottom: -2rem;
-    }
   }
 `;
 
@@ -78,8 +52,16 @@ export class Selection extends React.Component<Props> {
     document.body.removeChild(this.element);
   }
 
+  private get scaleX() {
+    return this.props.transform.s[0];
+  }
+
+  private get scaleY() {
+    return this.props.transform.s[1];
+  }
+
   private get height() {
-    return this.props.box.height + (this.padding * 2);
+    return (this.props.box.height) + (this.padding * 2);
   }
 
   private get left() {
@@ -95,26 +77,38 @@ export class Selection extends React.Component<Props> {
   }
 
   private get width() {
-    return this.props.box.width + (this.padding * 2);
+    return (this.props.box.width) + (this.padding * 2);
+  }
+
+  private get styles() {
+    return {
+      borderWidth: `${1 / this.scaleX}px ${1 / this.scaleY}px`,
+    };
   }
 
   public render() {
     const style = {
       height: this.height,
-      transform: `translate(${this.left}px, ${this.top}px) rotate(${this.rotate}deg)`,
+      transform: `translate(${this.left}px, ${this.top}px) rotate(${this.rotate}deg) scale(${this.scaleX}, ${this.scaleY})`,
       width: this.width
+    };
+
+    const props = {
+      transform: this.props.transform,
+      parent: this.props.parent,
+      handleTransform: this.props.handleTransform
     };
 
     const Element = (
       <div className={styles} style={style}>
-        <div className='selection'>
-          <Scale parent={this.props.parent} position='top-left' handleTransform={this.props.handleTransform} />
-          <Scale parent={this.props.parent} position='top-right' handleTransform={this.props.handleTransform} />
-          <Scale parent={this.props.parent} position='bottom-right' handleTransform={this.props.handleTransform} />
-          <Scale parent={this.props.parent} position='bottom-left' handleTransform={this.props.handleTransform} />
+        <div className='selection' style={this.styles}>
+          <Scale position='top-left' {...props} />
+          <Scale position='top-right' {...props} />
+          <Scale position='bottom-right' {...props} />
+          <Scale position='bottom-left' {...props} />
         </div>
-        <Move parent={this.props.parent} handleTransform={this.props.handleTransform} />
-        <Rotate parent={this.props.parent} handleTransform={this.props.handleTransform} />
+        <Move {...props} />
+        <Rotate {...props} />
       </div>
     );
 

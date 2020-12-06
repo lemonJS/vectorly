@@ -4,7 +4,7 @@ import type { Element as ProjectElement } from '../../types/project';
 import type { Transform } from '../../types/editor';
 import { css } from '@emotion/css';
 import { useDispatch } from 'react-redux';
-import { Selection } from './selection';
+import { Selection } from './selection/selection';
 import { setSelectionId } from '../../lib/selection/actions';
 import { updateProjectElement } from '../../lib/project/actions';
 
