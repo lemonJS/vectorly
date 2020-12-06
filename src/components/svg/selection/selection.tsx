@@ -81,9 +81,10 @@ export class Selection extends React.Component<Props> {
   }
 
   private get styles() {
-    return {
-      borderWidth: `${1 / this.scaleX}px ${1 / this.scaleY}px`,
-    };
+    const x = Math.max(2, 1 / this.scaleX);
+    const y = Math.max(2, 1 / this.scaleY);
+
+    return { borderWidth: `${x}px ${y}px` };
   }
 
   public render() {
