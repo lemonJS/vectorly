@@ -1,6 +1,7 @@
 # Node
 .next
 node_modules
+yarn-error.log
 
 # Editors
 .idea

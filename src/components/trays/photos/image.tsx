@@ -46,7 +46,7 @@ export function Image(props: Props): JSX.Element {
         x: 0,
         y: 0,
         r: 0,
-        s: 1
+        s: [1, 1] as [number, number] // it kicks off with number[]
       },
       props: {
         'data-id': props.image.id,

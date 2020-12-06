@@ -65,7 +65,6 @@ export class Selection extends React.Component<Props> {
 
     this.element = document.createElement('div');
 
-
     const svg = document.getElementById('canvas');
     const { x, y } = svg.getBoundingClientRect();
     this.offset = { x, y };
@@ -80,7 +79,7 @@ export class Selection extends React.Component<Props> {
   }
 
   private get height() {
-    return (this.props.box.height * this.props.transform.s) + (this.padding * 2);
+    return this.props.box.height + (this.padding * 2);
   }
 
   private get left() {

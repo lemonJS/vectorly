@@ -38,7 +38,7 @@ export function Emoji(props: Props): JSX.Element {
         x: 0,
         y: 0,
         r: 0,
-        s: 1
+        s: [1, 1]
       },
       props: {
         alignmentBaseline: 'hanging',

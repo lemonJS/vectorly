@@ -53,7 +53,7 @@ export function SVG(props: Props): JSX.Element {
       x: event.clientX - bounds.x,
       y: event.clientY - bounds.y,
       r: 0,
-      s: 1
+      s: [1, 1]
     };
   }
 
