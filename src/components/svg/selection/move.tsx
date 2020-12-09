@@ -1,37 +1,19 @@
 import React from 'react';
 
 import type { SVG, Transform } from '../../../types/editor';
-import { css } from '@emotion/css';
 
 interface Props {
+  height: number;
+  padding: number;
   parent: string;
   transform: Transform;
   handleTransform: (transform: Partial<Transform>) => void;
+  width: number;
 }
 
 interface State {
   pressed: boolean;
 }
-
-const styles = css`
-  align-items: center;
-  background: var(--primary-accent-color);
-  border-radius: 50%;
-  display: flex;
-  height: 1.5rem;
-  justify-content: center;
-  left: 50%;
-  margin-left: -.75rem;
-  position: absolute;
-  top: -2rem;
-  width: 1.5rem;
-  z-index: 3;
-  
-  i {
-    color: white;
-    font-size: 1.25rem;
-  }
-`;
 
 export class Move extends React.Component<Props, State> {
   private svg: SVG;
@@ -58,11 +40,27 @@ export class Move extends React.Component<Props, State> {
     document.removeEventListener('mousemove', this.handleMouseMove, false);
   }
 
+  private get cx() {
+    return (this.props.width / 2);
+  }
+
+  private get cy() {
+    return - (this.props.padding * 3) / this.props.transform.s[1];
+  }
+
+  private get rx() {
+    return this.props.padding / this.props.transform.s[0];
+  }
+
+  private get ry() {
+    return this.props.padding / this.props.transform.s[1];
+  }
+
   private handleMouseUp = () => {
     this.setState({ pressed: false });
   };
 
-  private handleMouseDown = (event: React.MouseEvent<HTMLDivElement>) => {
+  private handleMouseDown = (event: React.MouseEvent<SVGEllipseElement>) => {
     const element = event.target as HTMLDivElement;
     const { x: x1, y: y1 } = element.getBoundingClientRect();
     const { x: x2, y: y2 } = this.parent.getBoundingClientRect();
@@ -86,18 +84,17 @@ export class Move extends React.Component<Props, State> {
     }
   };
 
-  private get scale() {
-    const x = 1 / this.props.transform.s[0];
-    const y = 1 / this.props.transform.s[1];
-
-    return `scale(${x}, ${y})`;
-  }
-
   public render(): JSX.Element {
     return (
-      <div style={{ transform: this.scale }} className={styles} onMouseDown={this.handleMouseDown}>
-        <i className='ri-drag-move-2-line' />
-      </div>
+      <ellipse
+        cx={this.cx}
+        cy={this.cy}
+        rx={this.rx}
+        ry={this.ry}
+        cursor='move'
+        fill='var(--primary-accent-color)'
+        onMouseDown={this.handleMouseDown}
+      />
     );
   }
 }

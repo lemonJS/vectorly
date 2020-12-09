@@ -1,6 +1,6 @@
 import React from 'react';
 
-import type { Element as ProjectElement } from '../../types/project';
+import type { Element } from '../../types/project';
 import type { Transform } from '../../types/editor';
 import { css } from '@emotion/css';
 import { useDispatch } from 'react-redux';
@@ -11,7 +11,7 @@ import { updateProjectElement } from '../../lib/project/actions';
 interface Props extends React.SVGProps<SVGGElement> {
   id: string;
   selected: boolean;
-  element: ProjectElement;
+  element: Element;
 }
 
 const styles = css`

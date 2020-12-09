@@ -1,46 +1,20 @@
 import React from 'react';
 
 import type { SVG, Transform } from '../../../types/editor';
-import { css } from '@emotion/css';
 
 interface Props {
+  height: number;
   parent: string;
-  position: string;
+  padding: number;
+  position: 'top-left' | 'top-right' | 'bottom-right' | 'bottom-left';
   transform: Transform;
   handleTransform: (transform: Partial<Transform>) => void;
+  width: number;
 }
 
 interface State {
   pressed: boolean;
 }
-
-const styles = css`
-  background: var(--primary-accent-color);
-  border-radius: 50%;
-  height: 1rem;
-  position: absolute;
-  width: 1rem;
-  
-  &.top-left {
-    left: -.5rem;
-    top: -.5rem;
-  }
-  
-  &.top-right {
-    right: -.5rem;
-    top: -.5rem;
-  }
-  
-  &.bottom-right {
-    bottom: -.5rem;
-    right: -.5rem;
-  }
-  
-  &.bottom-left {
-    bottom: -.5rem;
-    left: -.5rem;
-  }
-`;
 
 export class Scale extends React.Component<Props, State> {
   private parent: SVG;
@@ -67,7 +41,50 @@ export class Scale extends React.Component<Props, State> {
     document.removeEventListener('mousemove', this.handleMouseMove, false);
   }
 
-  private handleMouseDown = (event: React.MouseEvent<HTMLDivElement>) => {
+  private get cx() {
+    switch(this.props.position) {
+      case 'top-right':
+      case 'bottom-right':
+        return this.props.width;
+      default:
+        return 0;
+    }
+  }
+
+  private get cy() {
+    switch(this.props.position) {
+      case 'bottom-right':
+      case 'bottom-left':
+        return this.props.height;
+      default:
+        return 0;
+    }
+  }
+
+  private get rx() {
+    return this.props.padding / this.props.transform.s[0];
+  }
+
+  private get ry() {
+    return this.props.padding / this.props.transform.s[1];
+  }
+
+  private get cursor() {
+    switch (this.props.position) {
+      case 'top-left':
+        return 'nw-resize';
+      case 'top-right':
+        return 'ne-resize';
+      case 'bottom-right':
+        return 'se-resize';
+      case 'bottom-left':
+        return 'sw-resize';
+      default:
+        return 'default';
+    }
+  }
+
+  private handleMouseDown = (event: React.MouseEvent<SVGEllipseElement>) => {
     const element = event.target as HTMLDivElement;
     const box = this.parent.getBBox();
     const { x: x1, y: y1 } = element.getBoundingClientRect();
@@ -92,8 +109,8 @@ export class Scale extends React.Component<Props, State> {
       const { x, y } = this.parent.getBoundingClientRect();
 
       const position = {
-        x: Math.ceil(event.clientX - x - this.offset.x - 8),
-        y: Math.ceil(event.clientY - y - this.offset.y - 8) // TODO for padding
+        x: Math.ceil(event.clientX - x - this.offset.x - this.props.padding),
+        y: Math.ceil(event.clientY - y - this.offset.y - this.props.padding)
       };
 
       // I know JS has poor rounding, but why does toFixed have to return a string?!
@@ -106,19 +123,16 @@ export class Scale extends React.Component<Props, State> {
     }
   }
 
-  private get scale() {
-    const x = 1 / this.props.transform.s[0];
-    const y = 1 / this.props.transform.s[1];
-
-    return `scale(${x}, ${y})`;
-  }
-
   public render(): JSX.Element {
     return (
-      <div
-        style={{ transform: this.scale }}
-        className={`${styles} ${this.props.position}`}
+      <ellipse
+        cx={this.cx}
+        cy={this.cy}
+        cursor={this.cursor}
+        fill='var(--primary-accent-color)'
         onMouseDown={this.handleMouseDown}
+        rx={this.rx}
+        ry={this.ry}
       />
     );
   }

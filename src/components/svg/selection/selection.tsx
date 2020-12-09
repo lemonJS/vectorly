@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import type { Transform } from '../../../types/editor';
-import { css } from '@emotion/css';
+import type { SVG, Transform } from '../../../types/editor';
+import { Outline } from './outline';
 import { Move } from './move';
 import { Rotate } from './rotate';
 import { Scale } from './scale';
@@ -14,42 +14,14 @@ interface Props {
   handleTransform: (transform: Partial<Transform>) => void;
 }
 
-const styles = css`
-  left: 0;  
-  position: absolute;
-  top: 0;
-  z-index: 2;
-  
-  .selection {
-    border-color: var(--primary-accent-color);
-    border-style: solid;
-    height: 100%;
-    position: relative;
-    width: 100%;
-  }
-`;
-
 export class Selection extends React.Component<Props> {
-  private offset: { x: number, y: number };
+  private readonly svg: SVG;
   private readonly padding = 8;
-  private readonly element: HTMLDivElement;
 
   public constructor(props: Props) {
     super(props);
 
-    this.element = document.createElement('div');
-
-    const svg = document.getElementById('canvas');
-    const { x, y } = svg.getBoundingClientRect();
-    this.offset = { x, y };
-  }
-
-  public componentDidMount() {
-    document.body.appendChild(this.element);
-  }
-
-  public componentWillUnmount() {
-    document.body.removeChild(this.element);
+    this.svg = document.getElementById('canvas') as SVG;
   }
 
   private get scaleX() {
@@ -65,7 +37,7 @@ export class Selection extends React.Component<Props> {
   }
 
   private get left() {
-    return this.props.transform.x + this.offset.x - this.padding;
+    return this.props.transform.x - this.padding;
   }
 
   private get rotate() {
@@ -73,46 +45,39 @@ export class Selection extends React.Component<Props> {
   }
 
   private get top() {
-    return this.props.transform.y + this.offset.y - this.padding;
+    return this.props.transform.y - this.padding;
   }
 
   private get width() {
     return (this.props.box.width) + (this.padding * 2);
   }
 
-  private get styles() {
-    const x = Math.max(2, 1 / this.scaleX);
-    const y = Math.max(2, 1 / this.scaleY);
-
-    return { borderWidth: `${x}px ${y}px` };
+  private get transform() {
+    return `translate(${this.left}, ${this.top}) rotate(${this.rotate}, ${this.width / 2}, ${this.height / 2}) scale(${this.scaleX}, ${this.scaleY})`;
   }
 
   public render() {
-    const style = {
+    const props = {
       height: this.height,
-      transform: `translate(${this.left}px, ${this.top}px) rotate(${this.rotate}deg) scale(${this.scaleX}, ${this.scaleY})`,
+      transform: this.props.transform,
+      padding: this.padding,
+      parent: this.props.parent,
+      handleTransform: this.props.handleTransform,
       width: this.width
     };
 
-    const props = {
-      transform: this.props.transform,
-      parent: this.props.parent,
-      handleTransform: this.props.handleTransform
-    };
-
     const Element = (
-      <div className={styles} style={style}>
-        <div className='selection' style={this.styles}>
-          <Scale position='top-left' {...props} />
-          <Scale position='top-right' {...props} />
-          <Scale position='bottom-right' {...props} />
-          <Scale position='bottom-left' {...props} />
-        </div>
+      <g transform={this.transform}>
+        <Outline {...props} />
+        <Scale position='top-left' {...props} />
+        <Scale position='top-right' {...props} />
+        <Scale position='bottom-right' {...props} />
+        <Scale position='bottom-left' {...props} />
         <Move {...props} />
         <Rotate {...props} />
-      </div>
+      </g>
     );
 
-    return ReactDOM.createPortal(Element, this.element);
+    return ReactDOM.createPortal(Element, this.svg);
   }
 }

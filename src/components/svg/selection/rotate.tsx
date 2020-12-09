@@ -1,37 +1,19 @@
 import React from 'react';
 
 import { SVG, Transform } from '../../../types/editor';
-import { css } from '@emotion/css';
 
 interface Props {
+  height: number;
+  padding: number;
   parent: string;
   transform: Transform;
+  width: number;
   handleTransform: (transform: Partial<Transform>) => void;
 }
 
 interface State {
   pressed: boolean;
 }
-
-const styles = css`
-  align-items: center;
-  background: var(--primary-accent-color);
-  border-radius: 50%;
-  bottom: -2rem;
-  display: flex;
-  height: 1.5rem;
-  justify-content: center;
-  left: 50%;
-  margin-left: -.75rem;
-  position: absolute;
-  width: 1.5rem;
-  z-index: 3;
-  
-  i {
-    color: white;
-    font-size: 1.25rem;
-  }
-`;
 
 export class Rotate extends React.Component<Props, State> {
   private readonly parent: SVG;
@@ -51,6 +33,22 @@ export class Rotate extends React.Component<Props, State> {
   public componentWillUnmount() {
     document.removeEventListener('mouseup', this.handleMouseUp, false);
     document.removeEventListener('mousemove', this.handleMouseMove, false);
+  }
+
+  private get cx() {
+    return (this.props.width / 2);
+  }
+
+  private get cy() {
+    return (this.props.height + (this.props.padding * 3) / this.props.transform.s[1]);
+  }
+
+  private get rx() {
+    return this.props.padding / this.props.transform.s[0];
+  }
+
+  private get ry() {
+    return this.props.padding / this.props.transform.s[1];
   }
 
   private handleMouseMove = (event: MouseEvent) => {
@@ -77,18 +75,17 @@ export class Rotate extends React.Component<Props, State> {
     this.setState({ pressed: true });
   };
 
-  private get scale() {
-    const x = 1 / this.props.transform.s[0];
-    const y = 1 / this.props.transform.s[1];
-
-    return `scale(${x}, ${y})`;
-  }
-
   public render(): JSX.Element {
     return (
-      <div style={{ transform: this.scale }} className={styles} onMouseDown={this.handleMouseDown}>
-        <i className='ri-refresh-line' />
-      </div>
+      <ellipse
+        cx={this.cx}
+        cy={this.cy}
+        rx={this.rx}
+        ry={this.ry}
+        cursor='all-scroll'
+        fill='var(--primary-accent-color)'
+        onMouseDown={this.handleMouseDown}
+      />
     );
   }
 }

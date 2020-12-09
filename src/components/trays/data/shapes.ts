@@ -27,7 +27,8 @@ export const shapes: ShapeListItem[] = [
         stroke: 'white',
         strokeDasharray: 'none',
         cy: 44,
-        transform: 'translate(8, 0)'
+        transform: 'translate(8, 0)',
+        vectorEffect: 'non-scaling-stroke'
       }
     }
   },
@@ -50,7 +51,8 @@ export const shapes: ShapeListItem[] = [
         strokeDasharray: 'none',
         width: 70,
         height: 70,
-        transform: 'translate(9, 9)'
+        transform: 'translate(9, 9)',
+        vectorEffect: 'non-scaling-stroke'
       }
     }
   },
@@ -72,7 +74,8 @@ export const shapes: ShapeListItem[] = [
         strokeDasharray: 'none',
         fill: 'transparent',
         points: '35,0 70,70 0,70',
-        transform: 'translate(9, 8)'
+        transform: 'translate(9, 8)',
+        vectorEffect: 'non-scaling-stroke'
       }
     }
   },
@@ -94,7 +97,8 @@ export const shapes: ShapeListItem[] = [
         stroke: 'white',
         strokeDasharray: 'none',
         fill: 'transparent',
-        transform: 'translate(8, 14)'
+        transform: 'translate(8, 14)',
+        vectorEffect: 'non-scaling-stroke'
       }
     }
   },
@@ -116,7 +120,8 @@ export const shapes: ShapeListItem[] = [
         stroke: 'white',
         strokeDasharray: 'none',
         fill: 'transparent',
-        transform: 'translate(9, 10)'
+        transform: 'translate(9, 10)',
+        vectorEffect: 'non-scaling-stroke'
       }
     }
   },
@@ -138,7 +143,8 @@ export const shapes: ShapeListItem[] = [
         stroke: 'white',
         strokeDasharray: 'none',
         fill: 'transparent',
-        transform: 'translate(9, 10)'
+        transform: 'translate(9, 10)',
+        vectorEffect: 'non-scaling-stroke'
       }
     }
   },
@@ -160,7 +166,8 @@ export const shapes: ShapeListItem[] = [
         stroke: 'white',
         strokeDasharray: 'none',
         fill: 'transparent',
-        transform: 'translate(9, 9)'
+        transform: 'translate(9, 9)',
+        vectorEffect: 'non-scaling-stroke'
       }
     }
   }
