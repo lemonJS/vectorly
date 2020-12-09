@@ -1,10 +1,10 @@
 import React from 'react';
 
-import { Element } from '@type/project';
-import { Transform } from '@type/editor';
 import { css } from '@emotion/css';
 import { useDispatch } from 'react-redux';
-import { Selection } from './selection/selection';
+import { Element } from '@type/project';
+import { Transform } from '@type/editor';
+import { Selection } from '@components/builder/svg/selection/selection';
 import { setSelectionId } from '@lib/selection/actions';
 import { updateProjectElement } from '@lib/project/actions';
 

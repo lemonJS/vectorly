@@ -1,8 +1,8 @@
 import React from 'react';
 
-import type { Image as ProjectImage } from '@type/project';
 import { css } from '@emotion/css';
-import { Image } from './image';
+import { Image as ProjectImage } from '@type/project';
+import { Image } from '@components/builder/trays/photos/image';
 
 interface Props {
   images: ProjectImage[];

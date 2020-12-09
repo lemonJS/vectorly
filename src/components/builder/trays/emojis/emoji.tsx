@@ -1,9 +1,9 @@
 import React from 'react';
 
-import { EmojiData } from '@type/emoji';
-import { Element } from '@type/project';
 import { css } from '@emotion/css';
 import { useDispatch } from 'react-redux';
+import { EmojiData } from '@type/emoji';
+import { Element } from '@type/project';
 import { createProjectElement } from '@lib/project/actions';
 
 interface Props {

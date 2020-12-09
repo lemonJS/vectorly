@@ -1,10 +1,10 @@
 import React from 'react';
 
-import type { Element } from '../../../../type/project';
 import { css } from '@emotion/css';
-import { Label } from '../../../common/label';
-import { ColorPicker } from '../color-picker';
-import { Opacity } from '../opacity';
+import { Element } from '@type/project';
+import { Label } from '@components/common/label';
+import { ColorPicker } from '@components/builder/trays/color-picker';
+import { Opacity } from '@components/builder/trays/opacity';
 
 interface Props {
   element: Element;

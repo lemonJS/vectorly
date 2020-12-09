@@ -3,8 +3,8 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { css } from '@emotion/css';
 import { selectedElementSelector } from '@lib/selection/selectors';
-import { Create } from './create';
-import { Edit } from './edit';
+import { Create } from '@components/builder/trays/emojis/create';
+import { Edit } from '@components/builder/trays/emojis/edit';
 
 const styles = css`
   display: flex;

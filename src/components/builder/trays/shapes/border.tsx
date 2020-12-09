@@ -1,12 +1,12 @@
 import React from 'react';
 
-import type { Element } from '../../../../type/project';
 import { css } from '@emotion/css';
-import { ColorPicker } from '../color-picker';
-import { Label } from '../../../common/label';
-import { Scale } from '../../../common/scale';
-import { Button } from '../../../common/button';
-import { Opacity } from '../opacity';
+import { Element } from '@type/project';
+import { ColorPicker } from '@components/builder/trays/color-picker';
+import { Label } from '@components/common/label';
+import { Scale } from '@components/common/scale';
+import { Button } from '@components/common/button';
+import { Opacity } from '@components/builder/trays/opacity';
 
 interface Props {
   element: Element;

@@ -1,11 +1,11 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 
+import ReactDOM from 'react-dom';
 import { SVG, Transform } from '@type/editor';
-import { Outline } from './outline';
-import { Move } from './move';
-import { Rotate } from './rotate';
-import { Scale } from './scale';
+import { Outline } from '@components/builder/svg/selection/outline';
+import { Move } from '@components/builder/svg/selection/move';
+import { Rotate } from '@components/builder/svg/selection/rotate';
+import { Scale } from '@components/builder/svg/selection/scale';
 
 interface Props {
   box: SVGRect;

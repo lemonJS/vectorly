@@ -1,7 +1,7 @@
 import React from 'react';
 
-import type { NextPageContext } from 'next';
-import type { Project } from '@type/project';
+import { NextPageContext } from 'next';
+import { Project } from '@type/project';
 import { Button } from '@components/common/button';
 
 interface Props {

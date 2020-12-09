@@ -1,9 +1,9 @@
 import React from 'react';
 
-import { Transform } from '@type/editor';
 import { css } from '@emotion/css';
 import { useDispatch, useSelector } from 'react-redux';
-import { Element } from './element';
+import { Transform } from '@type/editor';
+import { Element } from '@components/builder/svg/element';
 import { setSelectionId } from '@lib/selection/actions';
 import { createProjectElement } from '@lib/project/actions';
 import { projectSelector } from '@lib/project/selectors';

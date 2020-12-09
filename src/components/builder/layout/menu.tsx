@@ -1,8 +1,8 @@
 import React from 'react';
 
 import { css } from '@emotion/css';
-import { User } from './user';
-import { Price } from './price';
+import { User } from '@components/builder/layout/user';
+import { Price } from '@components/builder/layout/price';
 
 const styles = css`
   align-items: center;

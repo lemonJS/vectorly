@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { Element } from '@type/project';
-import { Opacity } from '../opacity';
+import { Opacity } from '@components/builder/trays/opacity';
 
 interface Props {
   element: Element;

@@ -1,9 +1,9 @@
 import React from 'react';
 
-import { css } from '@emotion/css';
 import { useSelector } from 'react-redux';
-import { Create } from './create';
-import { Edit } from './edit';
+import { css } from '@emotion/css';
+import { Create } from '@components/builder/trays/shapes/create';
+import { Edit } from '@components/builder/trays/shapes/edit';
 import { selectedElementSelector } from '@lib/selection/selectors';
 
 const styles = css`

@@ -1,10 +1,10 @@
 import React from 'react';
 
-import { NavigationData } from '@type/navigation';
 import { css } from '@emotion/css';
 import { useSelector } from 'react-redux';
-import { NavigationItem } from './navigation-item';
-import { NavigationToggle } from './navigation-toggle';
+import { NavigationData } from '@type/navigation';
+import { NavigationItem } from '@components/builder/layout/navigation-item';
+import { NavigationToggle } from '@components/builder/layout/navigation-toggle';
 import { layoutSelector } from '@lib/layout/selectors';
 
 const styles = css`

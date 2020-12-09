@@ -2,8 +2,8 @@ import React from 'react';
 
 import Image from 'next/image';
 import { css } from '@emotion/css';
-import { Menu } from './menu';
-import { Title } from './title';
+import { Menu } from '@components/builder/layout/menu';
+import { Title } from '@components/builder/layout/title';
 
 const styles = css`
   background: var(--header-background-color);

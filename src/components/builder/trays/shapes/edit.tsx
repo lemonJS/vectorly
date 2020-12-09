@@ -1,13 +1,13 @@
 import React from 'react';
 
-import type { Element } from '../../../../type/project';
 import { useDispatch } from 'react-redux';
-import { Close } from '../close';
-import { Background } from './background';
-import { Border } from './border';
-import { Actions } from '../actions';
-import { Positioning } from '../positioning';
-import { updateProjectElement } from '../../../../lib/project/actions';
+import { Element } from '@type/project';
+import { Close } from '@components/builder/trays/close';
+import { Background } from '@components/builder/trays/shapes/background';
+import { Border } from '@components/builder/trays/shapes/border';
+import { Actions } from '@components/builder/trays/actions';
+import { Positioning } from '@components/builder/trays/positioning';
+import { updateProjectElement } from '@lib/project/actions';
 
 interface Props {
   element: Element;

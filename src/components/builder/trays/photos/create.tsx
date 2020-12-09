@@ -1,9 +1,9 @@
 import React from 'react';
 
 import { useSelector } from 'react-redux';
-import { ImageUpload } from './image-upload';
-import { Images } from './images';
-import { ImageDnd } from './image-dnd';
+import { ImageUpload } from '@components/builder/trays/photos/image-upload';
+import { Images } from '@components/builder/trays/photos/images';
+import { ImageDnd } from '@components/builder/trays/photos/image-dnd';
 import { projectSelector } from '@lib/project/selectors';
 
 export function Create(): JSX.Element {

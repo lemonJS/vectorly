@@ -1,9 +1,9 @@
 import React from 'react';
 
-import { Element as ProjectElement } from '@type/project';
 import { useSelector } from 'react-redux';
-import { Container } from './container';
-import { Text } from './text';
+import { Element as ProjectElement } from '@type/project';
+import { Container } from '@components/builder/svg/container';
+import { Text } from '@components/builder/svg/text';
 import { selectionSelector } from '@lib/selection/selectors';
 
 interface Props {

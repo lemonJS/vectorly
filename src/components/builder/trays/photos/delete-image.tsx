@@ -1,8 +1,8 @@
 import React from 'react';
 
-import type { Image } from '@type/project';
 import { css } from '@emotion/css';
 import { useDispatch } from 'react-redux';
+import { Image } from '@type/project';
 import { deleteImage } from '@lib/project/actions';
 
 interface Props {

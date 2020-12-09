@@ -1,9 +1,9 @@
 import React from 'react';
 
 import { css } from '@emotion/css';
-import { shapes } from '../data/shapes';
-import { Input } from '../../../common/input';
-import { Shape } from './shape';
+import { shapes } from '@components/builder/trays/data/shapes';
+import { Input } from '@components/common/input';
+import { Shape } from '@components/builder/trays/shapes/shape';
 
 const styles = css` 
   .shapes {

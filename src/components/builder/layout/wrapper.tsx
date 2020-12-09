@@ -1,11 +1,11 @@
 import React from 'react';
 
-import { css } from '@emotion/css';
 import { useSelector } from 'react-redux';
+import { css } from '@emotion/css';
 import { layoutSelector } from '@lib/layout/selectors'
-import { Content } from './content';
-import { Header } from './header';
-import { Sidebar } from './sidebar';
+import { Content } from '@components/builder/layout/content';
+import { Header } from '@components/builder/layout/header';
+import { Sidebar } from '@components/builder/layout/sidebar';
 
 interface Props {
   children: React.ReactNode;

@@ -1,12 +1,12 @@
 import React from 'react';
 
-import { EmojiData } from '@type/emoji';
 import emojis from 'emojilib';
 import { css } from '@emotion/css';
+import { EmojiData } from '@type/emoji';
 import { Button } from '@components/common/button';
 import { Input } from '@components/common/input';
 import { Label } from '@components/common/label';
-import { Emoji } from './emoji';
+import { Emoji } from '@components/builder/trays/emojis/emoji';
 
 const styles = css`
   .emojis {

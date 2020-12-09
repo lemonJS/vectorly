@@ -1,12 +1,12 @@
 import React from 'react';
 
-import { Element } from '@type/project';
 import { useDispatch } from 'react-redux';
-import { Close } from '../close';
-import { Size } from './size';
-import { Actions } from '../actions';
-import { Colors } from './colors';
-import { Positioning } from '../positioning';
+import { Element } from '@type/project';
+import { Close } from '@components/builder/trays/close';
+import { Size } from '@components/builder/trays/emojis/size';
+import { Actions } from '@components/builder/trays/actions';
+import { Colors } from '@components/builder/trays/emojis/colors';
+import { Positioning } from '@components/builder/trays/positioning';
 import { updateProjectElement } from '@lib/project/actions';
 
 interface Props {

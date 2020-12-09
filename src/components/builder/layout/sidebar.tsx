@@ -1,8 +1,8 @@
 import React from 'react';
 
 import { css } from '@emotion/css';
-import { Navigation } from './navigation';
-import { Tray } from '../trays/tray';
+import { Navigation } from '@components/builder/layout/navigation';
+import { Tray } from '@components/builder/trays/tray';
 
 interface Props {
   open: boolean;

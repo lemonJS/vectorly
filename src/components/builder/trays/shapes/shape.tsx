@@ -1,9 +1,9 @@
 import React from 'react';
 
-import type { ShapeListItem } from '../data/shapes';
-import { css } from '@emotion/css';
 import { cloneDeep } from 'lodash';
 import { useDispatch } from 'react-redux';
+import { css } from '@emotion/css';
+import { ShapeListItem } from '@components/builder/trays/data/shapes';
 import { createProjectElement } from '@lib/project/actions';
 
 interface Props {

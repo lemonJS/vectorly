@@ -1,8 +1,8 @@
 import React from 'react';
 
-import { NavigationData } from '@type/navigation';
 import { css } from '@emotion/css';
 import { useDispatch } from 'react-redux';
+import { NavigationData } from '@type/navigation';
 import { setMenuSelected } from '@lib/layout/actions';
 
 interface Props extends NavigationData {}
