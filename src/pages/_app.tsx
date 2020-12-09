@@ -3,6 +3,7 @@ import React from 'react';
 import type { AppContext, AppProps } from 'next/app';
 import { injectGlobal } from '@emotion/css';
 import { Provider } from 'react-redux';
+import { cssVariables } from '../lib/config';
 import { getOrCreateStore } from '../lib/store';
 import { setProject } from '../lib/project/actions';
 
@@ -12,29 +13,7 @@ interface Props extends AppProps {
 
 injectGlobal`  
   :root {
-    --header-background-color: #ffffff;
-    --sidebar-background-color: #36404a;
-    --sidebar-navigation-background-color: #283037;
-    
-    --primary-accent-color: #4aacd9;
-    
-    --background-color: #ebeff2;
-    --foreground-color: #ffffff;
-    
-    --primary-button-background-color: #4aacd9;
-    --primary-button-border-color: #51aacc;
-    --primary-button-text-color: #ffffff;
-    
-    --secondary-button-background-color: none;
-    --secondary-button-border-color: #d9e0e6;
-    --secondary-button-text-color: #d9e0e6;
-    
-    --tertiary-button-background-color: none;
-    --tertiary-button-border-color: #e66767;
-    --tertiary-button-text-color: #e66767;
-    
-    --primary-text-color: #2a2e37;
-    --secondary-text-color: #878787;
+    ${cssVariables}
   }
   
   * {
