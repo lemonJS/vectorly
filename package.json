@@ -2,7 +2,7 @@
   "name": "svg-editor",
   "version": "1.0.0",
   "description": "SVG Editor",
-  "main": "src/pages/[id].tsx",
+  "main": "src/pages/projects/[id].tsx",
   "author": "Lewis Monteith <lemon@hackerstash.com>",
   "license": "MIT",
   "scripts": {

@@ -41,7 +41,7 @@ async function updateProject(id: string, images: Image[]) {
   const now = new Date().toISOString();
 
   const params = {
-    TableName: 'dev-projects',
+    TableName: 'projects',
     Key: { id },
     UpdateExpression: 'SET #images = list_append(#images, :list), #updatedAt = :updatedAt',
     ExpressionAttributeNames: {
@@ -60,7 +60,7 @@ async function updateProject(id: string, images: Image[]) {
 
 async function getProject(id: string) {
   const params = {
-    TableName: 'dev-projects',
+    TableName: 'projects',
     Key: { id }
   };
 

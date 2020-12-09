@@ -1,18 +1,14 @@
 import React from 'react';
 
-import type { Element as ProjectElement } from '../../types/project';
 import type { Transform } from '../../types/editor';
 import { css } from '@emotion/css';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Element } from './element';
 import { setSelectionId } from '../../lib/selection/actions';
 import { createProjectElement } from '../../lib/project/actions';
+import { projectSelector } from '../../lib/project/selectors';
 
 type Svg = SVGGraphicsElement & HTMLElement;
-
-interface Props {
-  elements: ProjectElement[];
-}
 
 declare global {
   interface Window {
@@ -34,8 +30,9 @@ const styles = css`
   }
 `;
 
-export function SVG(props: Props): JSX.Element {
+export function SVG(): JSX.Element {
   const dispatch = useDispatch();
+  const { elements } = useSelector(projectSelector);
 
   function handleMouseDown(event: React.MouseEvent<SVGElement>) {
     const element = event.target as HTMLElement;
@@ -90,7 +87,7 @@ export function SVG(props: Props): JSX.Element {
   return (
     <div className={styles}>
       <svg id='canvas' viewBox='0 0 500 800' onMouseDown={handleMouseDown} onDrop={handleDrop} onDragOver={handleDragOver}>
-        {props.elements.map(element => (
+        {elements.map(element => (
           <Element key={element.id} element={element} />
         ))}
       </svg>

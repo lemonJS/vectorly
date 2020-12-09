@@ -5,6 +5,15 @@ import { v4 as uuid } from 'uuid';
 
 const dynamo = new DynamoDB.DocumentClient({ region: 'eu-west-1' });
 
+async function get(_req: NextApiRequest, res: NextApiResponse) {
+  const params = {
+    TableName: 'projects'
+  };
+
+  const { Items } = await dynamo.scan(params).promise();
+  return res.json(Items);
+}
+
 async function post(_req: NextApiRequest, res: NextApiResponse) {
   const now = new Date().toISOString();
 
@@ -30,6 +39,8 @@ async function post(_req: NextApiRequest, res: NextApiResponse) {
 
 export default function router(req: NextApiRequest, res: NextApiResponse) {
   switch(req.method) {
+    case 'GET':
+      return get(req, res);
     case 'POST':
       return post(req, res);
     default:

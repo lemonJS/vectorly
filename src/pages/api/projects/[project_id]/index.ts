@@ -6,7 +6,7 @@ const dynamo = new DynamoDB.DocumentClient({ region: 'eu-west-1' });
 
 async function get(req: NextApiRequest, res: NextApiResponse) {
   const params = {
-    TableName: 'dev-projects',
+    TableName: 'projects',
     Key: { id: req.query.project_id }
   };
 
@@ -24,7 +24,7 @@ async function update(req: NextApiRequest, res: NextApiResponse) {
   };
 
   const params = {
-    TableName: 'dev-projects',
+    TableName: 'projects',
     Key: { id: req.query.project_id },
     UpdateExpression: 'set ',
     ExpressionAttributeNames: {},

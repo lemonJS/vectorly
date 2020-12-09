@@ -16,7 +16,7 @@ async function deleteImage(projectId: string, imageId: string) {
 
 async function getProject(projectId: string): Promise<Project> {
   const params = {
-    TableName: 'dev-projects',
+    TableName: 'projects',
     Key: { id: projectId }
   };
 
@@ -31,7 +31,7 @@ async function updateProject(projectId: string, imageId: string) {
   const images = project.images.filter(image => image.id !== imageId);
 
   const params = {
-    TableName: 'dev-projects',
+    TableName: 'projects',
     Key: { id: projectId },
     UpdateExpression: 'SET #images = :list, #updatedAt = :updatedAt',
     ExpressionAttributeNames: {

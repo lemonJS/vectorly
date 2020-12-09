@@ -10,13 +10,13 @@ export function Create(): JSX.Element {
   const { images } = useSelector(projectSelector);
 
   return (
-    <div>
+    <React.Fragment>
       <ImageUpload />
 
       {images.length > 0
         ? <Images images={images} />
         : <ImageDnd />
       }
-    </div>
+    </React.Fragment>
   );
 }

@@ -27,7 +27,7 @@ export function Header(): JSX.Element {
   return (
     <header className={styles}>
       <div className='title'>
-        <a href='#' className='logo'>
+        <a href='/' className='logo'>
           <Image src='/logo.svg' alt='logo' height='48' width='48' />
         </a>
         <Title />
