@@ -1,6 +1,6 @@
-import type { NextApiRequest, NextApiResponse } from 'next';
-import type { Project } from '../../../../../../types/project';
 import { S3, DynamoDB } from 'aws-sdk';
+import { NextApiRequest, NextApiResponse } from 'next';
+import { Project } from '@type/project';
 
 const s3 = new S3({ region: 'eu-west-1' });
 const dynamo = new DynamoDB.DocumentClient({ region: 'eu-west-1' });

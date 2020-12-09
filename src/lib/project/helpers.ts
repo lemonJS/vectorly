@@ -1,4 +1,4 @@
-import type { Project } from '../../types/project';
+import { Project } from '@type/project';
 
 export function saveProject(project: Project) {
   const params = {

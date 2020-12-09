@@ -1,10 +1,10 @@
-import type { State } from '../types/redux';
 import thunk from 'redux-thunk';
 import { createStore, applyMiddleware, combineReducers } from 'redux';
+import { State } from '@type/redux';
 
-import { layout, initialState as initialLayoutState } from '../lib/layout/reducers';
-import { project, initialState as initialProjectState } from '../lib/project/reducers';
-import { selection, initialState as initialSelectionState } from '../lib/selection/reducers';
+import { layout, initialState as initialLayoutState } from '@lib/layout/reducers';
+import { project, initialState as initialProjectState } from '@lib/project/reducers';
+import { selection, initialState as initialSelectionState } from '@lib/selection/reducers';
 
 const isServer = typeof window === 'undefined';
 

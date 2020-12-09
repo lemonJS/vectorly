@@ -1,9 +1,9 @@
-import type { NextApiRequest, NextApiResponse } from 'next';
-import type { Image } from '../../../../../types/project';
 import sharp from 'sharp';
 import { S3, DynamoDB } from 'aws-sdk';
 import { v4 as uuid } from 'uuid';
-import { Fields, Files, File, IncomingForm } from 'formidable';
+import { Fields, Files, File, IncomingForm } from 'formidable'
+import { NextApiRequest, NextApiResponse } from 'next';
+import { Image } from '@type/project';
 
 const s3 = new S3({ region: 'eu-west-1' });
 const dynamo = new DynamoDB.DocumentClient({ region: 'eu-west-1' });

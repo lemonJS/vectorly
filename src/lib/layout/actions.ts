@@ -1,5 +1,5 @@
-import type { Dispatch } from 'redux';
-import type { LayoutAction } from './reducers';
+import { Dispatch } from 'redux';
+import { LayoutAction } from '@lib/layout/reducers';
 
 export function setMenuOpen(open: boolean) {
   return async function(dispatch: Dispatch<LayoutAction>) {

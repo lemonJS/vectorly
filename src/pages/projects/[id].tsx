@@ -1,14 +1,14 @@
 import React from 'react';
 
-import type { NextPageContext } from 'next';
-import type { State } from '../../types/redux';
 import Head from 'next/head';
+import { NextPageContext } from 'next';
 import { Provider } from 'react-redux';
-import { SVG } from '../../components/svg/svg';
-import { Save } from '../../components/layout/save';
-import { Wrapper } from '../../components/layout/wrapper';
-import { getOrCreateStore } from '../../lib/store';
-import { setProject } from '../../lib/project/actions';
+import { State } from '@type/redux';
+import { SVG } from '@components/builder/svg/svg';
+import { Save } from '@components/builder/layout/save';
+import { Wrapper } from '@components/builder/layout/wrapper';
+import { getOrCreateStore } from '@lib/store';
+import { setProject } from '@lib/project/actions';
 
 interface Props {
   state: State;

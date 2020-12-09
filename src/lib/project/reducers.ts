@@ -1,4 +1,4 @@
-import type { Project } from '../../types/project';
+import { Project } from '@type/project';
 
 export type ProjectState = Project | null;
 

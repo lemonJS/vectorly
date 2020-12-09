@@ -1,7 +1,7 @@
-import type { SelectionState } from './reducers';
-import type { Element } from '../../types/project';
-import type { State } from '../../types/redux';
 import { clone } from 'lodash';
+import { Element } from '@type/project';
+import { State } from '@type/redux';
+import { SelectionState } from '@lib/selection/reducers';
 
 export function selectionSelector(state: State): SelectionState {
   return state.selection;

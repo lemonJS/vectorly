@@ -1,5 +1,5 @@
-import type { LayoutState } from './reducers';
-import type { State } from '../../types/redux';
+import { State } from '@type/redux';
+import { LayoutState } from '@lib/layout/reducers';
 
 export function layoutSelector(state: State): LayoutState {
   return state.layout;

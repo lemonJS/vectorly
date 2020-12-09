@@ -1,7 +1,7 @@
-import type { Dispatch } from 'redux';
-import type { GetState } from '../../types/redux';
-import { setMenuSelected } from '../layout/actions';
-import { getLayoutForElementType } from '../layout/helpers';
+import { Dispatch } from 'redux';
+import { GetState } from '@type/redux';
+import { setMenuSelected } from '@lib/layout/actions';
+import { getLayoutForElementType } from '@lib/layout/helpers';
 
 export function setSelectionId(id: string | null) {
   return async function(dispatch: Dispatch<any>, getState: GetState) {

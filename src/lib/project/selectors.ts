@@ -1,5 +1,5 @@
-import type { ProjectState } from './reducers';
-import type { State } from '../../types/redux';
+import { State } from '@type/redux';
+import { ProjectState } from '@lib/project/reducers';
 
 export function projectSelector(state: State): ProjectState {
   return state.project;

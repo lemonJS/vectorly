@@ -1,6 +1,6 @@
-import type { NextApiRequest, NextApiResponse } from 'next';
-import { DynamoDB } from 'aws-sdk';
 import { pick } from 'lodash';
+import { DynamoDB } from 'aws-sdk';
+import { NextApiRequest, NextApiResponse } from 'next';
 
 const dynamo = new DynamoDB.DocumentClient({ region: 'eu-west-1' });
 

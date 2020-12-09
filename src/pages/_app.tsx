@@ -2,7 +2,7 @@ import React from 'react';
 
 import type { AppProps } from 'next/app';
 import { injectGlobal } from '@emotion/css';
-import { cssVariables } from '../lib/config';
+import { cssVariables } from '@lib/config';
 
 injectGlobal`  
   :root {

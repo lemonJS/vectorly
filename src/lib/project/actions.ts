@@ -1,9 +1,9 @@
-import type { Dispatch } from 'redux';
-import type { Project, Element } from '../../types/project';
-import type { GetState } from '../../types/redux';
 import { v4 as uuid } from 'uuid';
 import { merge } from 'lodash';
-import { setSelectionId } from '../selection/actions';
+import { Dispatch } from 'redux';
+import { Project, Element } from '@type/project';
+import { GetState } from '@type/redux';
+import { setSelectionId } from '@lib/selection/actions';
 
 export function setProject(project: Project) {
   return async function(dispatch: Dispatch<any>) {
