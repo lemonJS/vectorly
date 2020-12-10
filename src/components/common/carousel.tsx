@@ -9,15 +9,11 @@ interface Props {
 
 const styles = css`
   display: flex;
-  
-  .arrows {
-    align-items: center;
-    display: flex;
-  }
+  position: relative;
   
   .arrow {
     align-items: center;
-    background: none;
+    background: var(--secondary-button-border-color);
     border: none;
     border-radius: 50%;
     color: var(--secondary-text-color);
@@ -26,6 +22,8 @@ const styles = css`
     font-size: 1.5rem;
     height: 3rem;
     justify-content: center;
+    position: absolute;
+    top: calc(50% - 1.5rem);
     width: 3rem;
     
     &:hover {
@@ -36,12 +34,19 @@ const styles = css`
     &.disabled {
       pointer-events: none;
     }
+    
+    &.left {
+      left: -1.5rem;
+    }
+    
+    &.right {
+      right: -1.5rem;
+    }
   }
   
   .body {
-    border-radius: .5rem;
+    border-radius: .25rem;
     flex: 1;
-    margin: 0 1.5rem;
     overflow: hidden;
   }
   
@@ -74,11 +79,9 @@ export function Carousel(props: Props): JSX.Element {
 
   return (
     <div className={styles} style={{ height: props.height || 500 }}>
-      <div className='arrows'>
-        <button className={`arrow ${page === 0 ? 'disabled' : ''}`} onClick={handleBack}>
-          <i className='ri-arrow-left-line' />
-        </button>
-      </div>
+      <button className={`arrow left ${page === 0 ? 'disabled' : ''}`} onClick={handleBack}>
+        <i className='ri-arrow-left-line' />
+      </button>
 
       <div className='body'>
         <div className='slider' style={{ width: `${props.slides.length}00%`, marginLeft: `-${page}00%` }}>
@@ -90,11 +93,9 @@ export function Carousel(props: Props): JSX.Element {
         </div>
       </div>
 
-      <div className='arrows'>
-        <button className={`arrow ${page === props.slides.length - 1 ? 'disabled' : ''}`} onClick={handleForward}>
-          <i className='arrow ri-arrow-right-line' />
-        </button>
-      </div>
+      <button className={`arrow right ${page === props.slides.length - 1 ? 'disabled' : ''}`} onClick={handleForward}>
+        <i className='arrow ri-arrow-right-line' />
+      </button>
     </div>
   );
 }

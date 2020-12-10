@@ -3,6 +3,7 @@ import React from 'react';
 import { AppProps } from 'next/app';
 import { injectGlobal } from '@emotion/css';
 import { cssVariables } from '@lib/config';
+import { Wrapper } from '@components/wrapper';
 
 injectGlobal`  
   :root {
@@ -24,9 +25,12 @@ injectGlobal`
   }
 `;
 
-const App = (props: AppProps) => {
-  const { Component, pageProps } = props;
-  return <Component {...pageProps} />;
-}
+export default function App(props: AppProps): JSX.Element {
+  const { Component, pageProps, router } = props;
 
-export default App;
+  return (
+    <Wrapper path={router.asPath}>
+      <Component {...pageProps} />
+    </Wrapper>
+  );
+}
