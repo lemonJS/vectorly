@@ -3,6 +3,10 @@ import React from 'react';
 import { NextPageContext } from 'next';
 import { Project } from '@type/project';
 import { Button } from '@components/common/button';
+import { Carousel } from '@components/common/carousel';
+import { Container } from '@components/common/container';
+import { Wrapper } from '@components/shelf/layout/wrapper';
+import { Designs } from '@components/shelf/designs/designs';
 
 interface Props {
   projects: Project[];
@@ -16,7 +20,11 @@ export default function Home(props: Props): JSX.Element {
   }
 
   return (
-    <div>
+    <Wrapper>
+      <Container>
+        <Carousel slides={[<p>Slide 1</p>, <p>Slide 2</p>, <p>Slide 3</p>]} />
+        <Designs />
+      </Container>
       <h1>Projects</h1>
       <ul>
         {props.projects.map(project => (
@@ -27,7 +35,7 @@ export default function Home(props: Props): JSX.Element {
       </ul>
 
       <Button onClick={handleCreate}>Create Project</Button>
-    </div>
+    </Wrapper>
   );
 }
 
