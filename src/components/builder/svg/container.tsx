@@ -7,6 +7,7 @@ import { Transform } from '@type/editor';
 import { Selection } from '@components/builder/svg/selection/selection';
 import { setSelectionId } from '@lib/selection/actions';
 import { updateProjectElement } from '@lib/project/actions';
+import { getBox } from '@lib/builder/helpers';
 
 interface Props extends React.SVGProps<SVGGElement> {
   id: string;
@@ -15,16 +16,16 @@ interface Props extends React.SVGProps<SVGGElement> {
 }
 
 const styles = css`
-  transform-box: fill-box;
-  transform-origin: center;
+
 `;
 
 export function Container(props: Props): JSX.Element {
   const dispatch = useDispatch();
-  const ref = React.useRef(null);
+  const ref = React.useRef<SVGGElement>(null);
+  const box = getBox(ref.current);
 
   const { x, y, r, s } = props.element.transform;
-  const transform = `translate(${x}, ${y}), rotate(${r}) scale(${s[0]}, ${s[1]})`;
+  const transform = `translate(${x} ${y}) rotate(${r} ${(box.width * s[0]) / 2} ${(box.height * s[1]) / 2}) scale(${s[0]} ${s[1]})`;
 
   function handleClick() {
     dispatch(setSelectionId(props.id));
@@ -41,7 +42,7 @@ export function Container(props: Props): JSX.Element {
         {props.children}
         {props.selected && (
           <Selection
-            box={ref.current.getBBox()}
+            box={box}
             transform={props.element.transform}
             parent={props.id}
             handleTransform={handleTransform}

@@ -1,5 +1,6 @@
 import React from 'react';
 
+import { clamp } from 'lodash';
 import { SVG, Transform } from '@type/editor';
 
 interface Props {
@@ -104,6 +105,11 @@ export class Scale extends React.Component<Props, State> {
     this.setState({ pressed: false });
   };
 
+  private clampScale = (scale: number) => {
+    // This can probably be calculated one day
+    return clamp(scale, 1, 5);
+  };
+
   private handleMouseMove = (event: MouseEvent) => {
     if (this.state.pressed) {
       const { x, y } = this.parent.getBoundingClientRect();
@@ -117,9 +123,8 @@ export class Scale extends React.Component<Props, State> {
       const scaleX = Number(((this.box.width + position.x) / this.box.width).toFixed(2));
       const scaleY = Number(((this.box.height + position.y) / this.box.height).toFixed(2));
 
-      const scale = [scaleX, scaleY] as [number, number];
-
-      this.props.handleTransform({ s: scale });
+      const scale = [this.clampScale(scaleX), this.clampScale(scaleY)];
+      this.props.handleTransform({ s: scale as [number, number] });
     }
   }
 

@@ -33,29 +33,29 @@ export class Selection extends React.Component<Props> {
   }
 
   private get height() {
-    return (this.props.box.height) + (this.padding * 2);
+    return this.props.box.height + ((this.padding * 2) / this.scaleY);
   }
 
   private get left() {
-    const scale = ((this.width * this.scaleX) - this.width) / 2;
-    return this.props.transform.x - this.padding - scale;
+    return this.props.transform.x - this.padding;
   }
 
   private get rotate() {
-    return this.props.transform.r;
+    const x = this.props.transform.x + ((this.props.box.width / 2) * this.scaleX);
+    const y = this.props.transform.y + ((this.props.box.height / 2) * this.scaleY);
+    return `${this.props.transform.r} ${x} ${y}`;
   }
 
   private get top() {
-    const scale = ((this.height * this.scaleY) - this.height) / 2;
-    return this.props.transform.y - this.padding - scale;
+    return this.props.transform.y - this.padding;
   }
 
   private get width() {
-    return (this.props.box.width) + (this.padding * 2);
+    return this.props.box.width + ((this.padding * 2) / this.scaleX);
   }
 
   private get transform() {
-    return `translate(${this.left}, ${this.top}) rotate(${this.rotate}, ${this.width / 2}, ${this.height / 2}) scale(${this.scaleX}, ${this.scaleY})`;
+    return `rotate(${this.rotate}) translate(${this.left} ${this.top}) scale(${this.scaleX} ${this.scaleY})`;
   }
 
   public render() {
