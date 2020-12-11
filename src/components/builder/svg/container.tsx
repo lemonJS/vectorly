@@ -36,16 +36,18 @@ export function Container(props: Props): JSX.Element {
   }
 
   return (
-    <g id={props.id} className={`${styles} container`} onClick={handleClick} ref={ref} transform={transform}>
-      {props.children}
-      {props.selected && (
-        <Selection
-          box={ref.current.getBBox()}
-          transform={props.element.transform}
-          parent={props.id}
-          handleTransform={handleTransform}
-        />
-      )}
+    <g>
+      <g id={props.id} className={`${styles} container`} onClick={handleClick} ref={ref} transform={transform}>
+        {props.children}
+        {props.selected && (
+          <Selection
+            box={ref.current.getBBox()}
+            transform={props.element.transform}
+            parent={props.id}
+            handleTransform={handleTransform}
+          />
+        )}
+      </g>
     </g>
   );
 }

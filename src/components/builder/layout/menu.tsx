@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { css } from '@emotion/css';
-import { User } from '@components/builder/layout/user';
+import { User } from '@components/common/user';
 import { Price } from '@components/builder/layout/price';
 
 const styles = css`

@@ -37,7 +37,8 @@ export class Selection extends React.Component<Props> {
   }
 
   private get left() {
-    return this.props.transform.x - this.padding;
+    const scale = ((this.width * this.scaleX) - this.width) / 2;
+    return this.props.transform.x - this.padding - scale;
   }
 
   private get rotate() {
@@ -45,7 +46,8 @@ export class Selection extends React.Component<Props> {
   }
 
   private get top() {
-    return this.props.transform.y - this.padding;
+    const scale = ((this.height * this.scaleY) - this.height) / 2;
+    return this.props.transform.y - this.padding - scale;
   }
 
   private get width() {

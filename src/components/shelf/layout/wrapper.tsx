@@ -15,8 +15,6 @@ const styles = css`
     'content';
   grid-template-columns: 1fr;
   grid-template-rows: 64px minmax(0, 1fr);
-  height: 100vh;
-  width: 100vw;
 `;
 
 export function Wrapper(props: Props): JSX.Element {

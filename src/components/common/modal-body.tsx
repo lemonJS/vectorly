@@ -20,7 +20,7 @@ const styles = css`
   width: 100%;
   
   .modal-body {
-    background: var(--sidebar-navigation-background-color);
+    background: var(--foreground-color);
     border-radius: .25rem;
     max-width: 600px;
     padding: 1.5rem;

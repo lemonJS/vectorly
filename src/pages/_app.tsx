@@ -3,7 +3,7 @@ import React from 'react';
 import { AppProps } from 'next/app';
 import { injectGlobal } from '@emotion/css';
 import { cssVariables } from '@lib/config';
-import { Wrapper } from '@components/wrapper';
+import { Wrapper } from '@components/common/wrapper';
 
 injectGlobal`  
   :root {

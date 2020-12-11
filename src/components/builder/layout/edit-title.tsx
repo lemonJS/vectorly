@@ -6,7 +6,12 @@ import { Input } from '@components/common/input';
 import { Button } from '@components/common/button';
 
 const styles = css`
+  label {
+    color: var(--primary-font-color);
+  }
+  
   input {
+    color: var(--primary-font-color);
     margin: 1.5rem 0;
   }
 `;

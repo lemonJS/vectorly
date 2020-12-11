@@ -2,6 +2,7 @@ import React from 'react';
 
 import Image from 'next/image';
 import { css } from '@emotion/css';
+import { User } from '@components/common/user';
 
 const styles = css`
   background: var(--header-background-color);
@@ -29,6 +30,8 @@ export function Header(): JSX.Element {
           <Image src='/logo.svg' alt='logo' height='48' width='48' />
         </a>
       </div>
+
+      <User />
     </header>
   );
 }
