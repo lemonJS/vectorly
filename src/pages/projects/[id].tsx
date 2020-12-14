@@ -22,7 +22,7 @@ export default function Project(props: Props): JSX.Element {
       <Save>
         <Wrapper>
           <Head>
-            <title>SVG Editor</title>
+            <title>Vectorly</title>
           </Head>
           <SVG />
         </Wrapper>

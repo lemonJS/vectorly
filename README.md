@@ -1,6 +1,6 @@
-# SVG Editor
+# Vectorly App
 
-An SVG based photo gift editor build with Next.js, TypeScript and Redux
+The front end web app for Vectorly. Built with Typescript and React!
 
 ### Requirements
 
@@ -9,7 +9,7 @@ An SVG based photo gift editor build with Next.js, TypeScript and Redux
 
 ### Installation
 ```
-$ git clone git@github.com:lemonJS/svg-editor.git
+$ git clone git@github.com:vectorly-app/vectorly-app.git
 $ yarn install
 $ yarn dev
 ``` 
