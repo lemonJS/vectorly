@@ -2,9 +2,10 @@ import React from 'react';
 
 import Link from 'next/link';
 import { css } from '@emotion/css';
+import { Design as DesignType } from '@type/design';
 
 interface Props {
-  id: string;
+  design: DesignType;
 }
 
 const styles = css`
@@ -21,7 +22,7 @@ const styles = css`
 
 export function Design(props: Props): JSX.Element {
   return (
-    <Link href={`/products/${props.id}`}>
+    <Link href={`/designs/${props.design.id}`}>
       <a className={styles}>
 
       </a>

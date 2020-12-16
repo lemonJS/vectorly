@@ -1,25 +1,21 @@
 import React from 'react';
 
-import { css } from '@emotion/css';
-import { range } from 'lodash';
-import { v4 as uuid } from 'uuid';
-import { Design } from '@components/shelf/designs/design';
+import { Design as DesignType } from '@type/design';
+import { Spinner } from '@components/common/spinner';
+import { DesignList } from '@components/shelf/designs/design-list';
 
-const styles = css`
-  display: grid;
-  grid-gap: 1.5rem;
-  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-  margin-top: 1.5rem;
-`;
+interface Props {
+  loading: boolean;
+  designs: DesignType[];
+}
 
-export function Designs(): JSX.Element {
-  const ids = range(32).map(() => uuid());
-
+export function Designs(props: Props): JSX.Element {
   return (
-    <div className={styles}>
-      {ids.map(id => (
-        <Design key={id} id={id} />
-      ))}
-    </div>
+    <React.Fragment>
+      {props.loading
+        ? <Spinner />
+        : <DesignList designs={props.designs} />
+      }
+    </React.Fragment>
   );
 }

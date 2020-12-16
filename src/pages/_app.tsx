@@ -2,7 +2,9 @@ import React from 'react';
 
 import { AppProps } from 'next/app';
 import { injectGlobal } from '@emotion/css';
+import { ApolloProvider } from '@apollo/client';
 import { cssVariables } from '@lib/config';
+import { client } from '@lib/client';
 import { Wrapper } from '@components/common/wrapper';
 
 injectGlobal`  
@@ -29,8 +31,10 @@ export default function App(props: AppProps): JSX.Element {
   const { Component, pageProps, router } = props;
 
   return (
-    <Wrapper path={router.asPath}>
-      <Component {...pageProps} />
-    </Wrapper>
+    <ApolloProvider client={client}>
+      <Wrapper path={router.asPath}>
+        <Component {...pageProps} />
+      </Wrapper>
+    </ApolloProvider>
   );
 }
