@@ -1,8 +1,6 @@
 import React from 'react';
 
 import { css } from '@emotion/css';
-import { useDispatch } from 'react-redux';
-import { setSelectionId } from '@lib/selection/actions';
 import { Divider } from '@components/common/divider';
 
 interface Props {
@@ -38,10 +36,9 @@ const styles = css`
 `;
 
 export function Close(props: Props): JSX.Element {
-  const dispatch = useDispatch();
-
   function handleClick() {
-    dispatch(setSelectionId(null));
+    // dispatch(setSelectionId(null));
+    // TODO
   }
 
   return (

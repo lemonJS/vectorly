@@ -12,3 +12,9 @@ export function getLayoutForElementType(type: string): string | null {
       return null;
   }
 }
+
+export function getBox(group: SVGGElement | null): DOMRect {
+  return group
+    ? group.getBBox()
+    : { x: 0, y: 0, width: 0, height: 0 } as DOMRect;
+}

@@ -1,12 +1,7 @@
 import React from 'react';
 
 import { css } from '@emotion/css';
-import { useDispatch } from 'react-redux';
-import { setMenuOpen } from '@lib/layout/actions';
-
-interface Props {
-  open: boolean;
-}
+import { useContext } from '@components/builder/store';
 
 const styles = css`
   align-items: center;
@@ -35,15 +30,15 @@ const styles = css`
   }
 `;
 
-export function NavigationToggle(props: Props): JSX.Element {
-  const dispatch = useDispatch();
+export function NavigationToggle(): JSX.Element {
+  const [state, setState] = useContext();
 
-  const status = props.open ? 'open' : '';
-  const icon = props.open ? 'ri-menu-fold-line' : 'ri-menu-unfold-line';
-  const text = props.open ? 'Collapse' : 'Show';
+  const status = state.menuOpen ? 'open' : '';
+  const icon = state.menuOpen ? 'ri-menu-fold-line' : 'ri-menu-unfold-line';
+  const text = state.menuOpen ? 'Collapse' : 'Show';
 
   function handleClick() {
-    dispatch(setMenuOpen(!props.open));
+    setState({ menuOpen: !state.menuOpen });
   }
 
   return (

@@ -1,8 +1,6 @@
 import React from 'react';
 
 import { css } from '@emotion/css';
-import { useDispatch } from 'react-redux';
-import { uploadImages } from '@lib/project/actions';
 
 const styles = css`
   align-items: center;
@@ -32,7 +30,6 @@ const styles = css`
 `;
 
 export function ImageDnd(): JSX.Element {
-  const dispatch = useDispatch();
   const [dragging, setDragging] = React.useState(false);
   const status = dragging ? 'dragging' : '';
 
@@ -49,12 +46,13 @@ export function ImageDnd(): JSX.Element {
     event.preventDefault();
 
     if (event.dataTransfer.items) {
-      const files = Array
-        .from(event.dataTransfer.items)
-        .filter(item => item.kind === 'file')
-        .map(item => item.getAsFile());
+      // const files = Array
+      //   .from(event.dataTransfer.items)
+      //   .filter(item => item.kind === 'file')
+      //   .map(item => item.getAsFile());
 
-      dispatch(uploadImages(files));
+      // dispatch(uploadImages(files));
+      // TODO
     }
 
     setDragging(false);

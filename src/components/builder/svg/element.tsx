@@ -1,17 +1,17 @@
 import React from 'react';
 
-import { useSelector } from 'react-redux';
 import { Element as ProjectElement } from '@type/project';
 import { Container } from '@components/builder/svg/container';
 import { Text } from '@components/builder/svg/text';
-import { selectionSelector } from '@lib/selection/selectors';
+import { useContext } from '@components/builder/store';
 
 interface Props {
   element: ProjectElement;
 }
 
 export function Element(props: Props): JSX.Element {
-  const { id } = useSelector(selectionSelector);
+  const [state] = useContext();
+  const { id } = state.selectedElement;
 
   const element = React.createElement(
     props.element.element,

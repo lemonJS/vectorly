@@ -1,11 +1,10 @@
 import React from 'react';
 
-import { useSelector } from 'react-redux';
 import { css } from '@emotion/css';
-import { layoutSelector } from '@lib/layout/selectors'
 import { Content } from '@components/builder/layout/content';
 import { Header } from '@components/builder/layout/header';
 import { Sidebar } from '@components/builder/layout/sidebar';
+import { useContext } from '@components/builder/store';
 
 interface Props {
   children: React.ReactNode;
@@ -27,13 +26,13 @@ const styles = css`
 `;
 
 export function Wrapper(props: Props): JSX.Element {
-  const { menuOpen } = useSelector(layoutSelector);
-  const status = menuOpen ? 'menu-open' : '';
+  const [state] = useContext();
+  const status = state.menuOpen ? 'menu-open' : '';
 
   return (
     <div className={`${styles} ${status}`}>
       <Header />
-      <Sidebar open={menuOpen} />
+      <Sidebar open={state.menuOpen} />
       <Content>
         {props.children}
       </Content>

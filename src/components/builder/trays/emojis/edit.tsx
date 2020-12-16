@@ -1,27 +1,25 @@
 import React from 'react';
 
-import { useDispatch } from 'react-redux';
 import { Element } from '@type/project';
 import { Close } from '@components/builder/trays/close';
 import { Size } from '@components/builder/trays/emojis/size';
 import { Actions } from '@components/builder/trays/actions';
 import { Colors } from '@components/builder/trays/emojis/colors';
 import { Positioning } from '@components/builder/trays/positioning';
-import { updateProjectElement } from '@lib/project/actions';
 
 interface Props {
   element: Element;
 }
 
 export function Edit(props: Props): JSX.Element {
-  const dispatch = useDispatch();
-
-  function handlePropsUpdate(update: Partial<React.SVGProps<SVGElement>>) {
-    dispatch(updateProjectElement(props.element.id, { props: update }));
+  function handlePropsUpdate(_update: Partial<React.SVGProps<SVGElement>>) {
+    // dispatch(updateProjectElement(props.element.id, { props: update }));
+    // TODO
   }
 
-  function handleUpdate(update: Partial<Element>) {
-    dispatch(updateProjectElement(props.element.id, update));
+  function handleUpdate(_update: Partial<Element>) {
+    // dispatch(updateProjectElement(props.element.id, update));
+    // TODO
   }
 
   return (

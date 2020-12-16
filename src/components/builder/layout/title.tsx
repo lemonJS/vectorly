@@ -1,12 +1,10 @@
 import React from 'react';
 
-import { useDispatch, useSelector } from 'react-redux';
 import { css } from '@emotion/css';
 import { Button } from '@components/common/button';
 import { Modal } from '@components/common/modal';
 import { EditTitle } from '@components/builder/layout/edit-title';
-import { projectSelector } from '@lib/project/selectors';
-import { updateProject } from '@lib/project/actions';
+import { useContext } from '@components/builder/store';
 
 const styles = css`
   align-items: center;
@@ -20,9 +18,8 @@ const styles = css`
 `;
 
 export function Title(): JSX.Element {
-  const dispatch = useDispatch();
   const ref = React.useRef(null);
-  const { title } = useSelector(projectSelector);
+  const [state] = useContext();
 
   function handleModalOpen() {
     ref.current.open();
@@ -32,28 +29,33 @@ export function Title(): JSX.Element {
     ref.current.close();
   }
 
-  function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
-    event.preventDefault();
-    const form = event.target as HTMLFormElement;
-    const data = new FormData(form);
-    dispatch(updateProject({ title: data.get('title').toString() }));
-    handleModalClose();
+  function handleSubmit(_event: React.FormEvent<HTMLFormElement>) {
+    // event.preventDefault();
+    // const form = event.target as HTMLFormElement;
+    // const data = new FormData(form);
+    // dispatch(updateProject({ title: data.get('title').toString() }));
+    // handleModalClose();
+    // TODO
   }
 
   return (
     <div className={styles}>
-      <Button onClick={handleModalOpen}>
-        {title}
-        <i className='ri-pencil-line' />
-      </Button>
+      {state.project && (
+        <React.Fragment>
+          <Button onClick={handleModalOpen}>
+            {state.project.title}
+            <i className='ri-pencil-line' />
+          </Button>
 
-      <Modal ref={ref}>
-        <EditTitle
-          title={title}
-          handleCancel={handleModalClose}
-          handleSubmit={handleSubmit}
-        />
-      </Modal>
+          <Modal ref={ref}>
+            <EditTitle
+              title={state.project.title}
+              handleCancel={handleModalClose}
+              handleSubmit={handleSubmit}
+            />
+          </Modal>
+        </React.Fragment>
+      )}
     </div>
   );
 }

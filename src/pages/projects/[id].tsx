@@ -1,46 +1,57 @@
 import React from 'react';
 
 import Head from 'next/head';
-import { NextPageContext } from 'next';
-import { Provider } from 'react-redux';
-import { State } from '@type/redux';
+import { gql, useQuery } from '@apollo/client';
 import { SVG } from '@components/builder/svg/svg';
-import { Save } from '@components/builder/layout/save';
+import { ContextProvider } from '@components/builder/store';
 import { Wrapper } from '@components/builder/layout/wrapper';
-import { getOrCreateStore } from '@lib/store';
-import { setProject } from '@lib/project/actions';
+import { useRouter } from 'next/router';
 
-interface Props {
-  state: State;
-}
+const QUERY = gql`
+  query Project($where: ProjectWhereInput!) {
+    project(where: $where) {
+      id,
+      title
+      images {
+        id
+        height
+        name
+        url
+        width
+      }
+      elements {
+        id
+        type
+        element
+        transform {
+          x
+          y
+          r
+          s
+        }
+        props 
+        text
+      }
+    }
+  }
+`;
 
-export default function Project(props: Props): JSX.Element {
-  const store = getOrCreateStore(props.state);
+export default function Project(): JSX.Element {
+  const router = useRouter();
+  const where = { id: router.query.id };
+  const { loading, data } = useQuery(QUERY, { variables: { where } });
+
+  console.log(loading, data);
 
   return (
-    <Provider store={store}>
-      <Save>
-        <Wrapper>
-          <Head>
-            <title>Vectorly</title>
-          </Head>
-          <SVG />
-        </Wrapper>
-      </Save>
-    </Provider>
+    <ContextProvider>
+      <Wrapper>
+        <Head>
+          <title>Vectorly</title>
+        </Head>
+        <SVG />
+      </Wrapper>
+    </ContextProvider>
   );
 }
 
-Project.getInitialProps = async (ctx: NextPageContext) => {
-  const { id } = ctx.query;
-  const store = getOrCreateStore(undefined);
-  const res = await fetch(`http://localhost:3000/api/projects/${id}`);
-  const project = await res.json();
-
-  if (res.status !== 200) {
-    throw new Error(project.error || 'Unknown error');
-  }
-
-  store.dispatch(setProject(project));
-  return { state: store.getState() };
-};

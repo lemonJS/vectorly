@@ -1,10 +1,9 @@
 import React from 'react';
 
-import { useSelector } from 'react-redux';
 import { css } from '@emotion/css';
-import { selectedElementSelector } from '@lib/selection/selectors';
 import { Create } from '@components/builder/trays/emojis/create';
 import { Edit } from '@components/builder/trays/emojis/edit';
+import { useContext } from '@components/builder/store';
 
 const styles = css`
   display: flex;
@@ -15,11 +14,12 @@ const styles = css`
 `;
 
 export function Emojis(): JSX.Element {
-  const element = useSelector(selectedElementSelector);
+  const [state] = useContext();
+  const element = state.selectedElement;
 
   return (
     <div className={styles}>
-      {element && element.type === 'emoji'
+      {element?.type === 'emoji'
         ? <Edit element={element} />
         : <Create />
       }

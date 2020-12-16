@@ -1,13 +1,10 @@
 import React from 'react';
 
 import { css } from '@emotion/css';
-import { useDispatch } from 'react-redux';
 import { Element } from '@type/project';
 import { Transform } from '@type/editor';
 import { Selection } from '@components/builder/svg/selection/selection';
-import { setSelectionId } from '@lib/selection/actions';
-import { updateProjectElement } from '@lib/project/actions';
-import { getBox } from '@lib/builder/helpers';
+import { getBox } from '@lib/helpers';
 
 interface Props extends React.SVGProps<SVGGElement> {
   id: string;
@@ -20,7 +17,6 @@ const styles = css`
 `;
 
 export function Container(props: Props): JSX.Element {
-  const dispatch = useDispatch();
   const ref = React.useRef<SVGGElement>(null);
   const box = getBox(ref.current);
 
@@ -28,12 +24,14 @@ export function Container(props: Props): JSX.Element {
   const transform = `translate(${x} ${y}) rotate(${r} ${(box.width * s[0]) / 2} ${(box.height * s[1]) / 2}) scale(${s[0]} ${s[1]})`;
 
   function handleClick() {
-    dispatch(setSelectionId(props.id));
+    // dispatch(setSelectionId(props.id));
+    // TODO
   }
 
-  function handleTransform(update: Partial<Transform>) {
-    const data = { ...props.element.transform, ...update };
-    dispatch(updateProjectElement(props.element.id, { transform: data }));
+  function handleTransform(_update: Partial<Transform>) {
+    // const data = { ...props.element.transform, ...update };
+    // dispatch(updateProjectElement(props.element.id, { transform: data }));
+    // TODO
   }
 
   return (

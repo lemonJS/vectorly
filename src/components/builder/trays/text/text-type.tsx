@@ -1,9 +1,7 @@
 import React from 'react';
 
-import { useDispatch } from 'react-redux';
 import { css } from '@emotion/css';
 import { Element } from '@type/project';
-import { createProjectElement } from '@lib/project/actions';
 
 interface Props {
   children: React.ReactNode;
@@ -44,8 +42,6 @@ const styles = css`
 `;
 
 export function TextType(props: Props): JSX.Element {
-  const dispatch = useDispatch();
-
   function getFontSize() {
     switch (props.textType) {
       case 'heading':
@@ -90,8 +86,9 @@ export function TextType(props: Props): JSX.Element {
   }
 
   function handleClick() {
-    const text = formatTextForCreation();
-    dispatch(createProjectElement(text));
+    // const text = formatTextForCreation();
+    // dispatch(createProjectElement(text));
+    // TODO
   }
 
   return (

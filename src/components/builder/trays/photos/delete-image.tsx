@@ -1,9 +1,7 @@
 import React from 'react';
 
 import { css } from '@emotion/css';
-import { useDispatch } from 'react-redux';
 import { Image } from '@type/project';
-import { deleteImage } from '@lib/project/actions';
 
 interface Props {
   image: Image
@@ -34,12 +32,11 @@ const styles = css`
   }
 `;
 
-export function DeleteImage(props: Props): JSX.Element {
-  const dispatch = useDispatch();
-
-  function handleClick(event: React.MouseEvent<HTMLButtonElement>) {
-    event.stopPropagation();
-    dispatch(deleteImage(props.image.id));
+export function DeleteImage(_props: Props): JSX.Element {
+  function handleClick(_event: React.MouseEvent<HTMLButtonElement>) {
+    // event.stopPropagation();
+    // dispatch(deleteImage(props.image.id));
+    // TODO
   }
 
   return (

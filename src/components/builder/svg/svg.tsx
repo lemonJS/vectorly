@@ -1,12 +1,9 @@
 import React from 'react';
 
 import { css } from '@emotion/css';
-import { useDispatch, useSelector } from 'react-redux';
 import { Transform } from '@type/editor';
 import { Element } from '@components/builder/svg/element';
-import { setSelectionId } from '@lib/selection/actions';
-import { createProjectElement } from '@lib/project/actions';
-import { projectSelector } from '@lib/project/selectors';
+import { useContext } from '@components/builder/store';
 
 type Svg = SVGGraphicsElement & HTMLElement;
 
@@ -31,15 +28,16 @@ const styles = css`
 `;
 
 export function SVG(): JSX.Element {
-  const dispatch = useDispatch();
-  const { elements } = useSelector(projectSelector);
+  const [state] = useContext();
+  const elements = state.project?.elements || [];
 
   function handleMouseDown(event: React.MouseEvent<SVGElement>) {
     const element = event.target as HTMLElement;
 
     if (element.tagName === 'svg') {
       event.stopPropagation();
-      dispatch(setSelectionId(null));
+      // dispatch(setSelectionId(null));
+      // TODO
     }
   }
 
@@ -70,7 +68,9 @@ export function SVG(): JSX.Element {
 
     if (payload) {
       const transform = getDropTransform(event);
-      dispatch(createProjectElement({ ...payload, transform }));
+      transform;
+      // dispatch(createProjectElement({ ...payload, transform }));
+      // TODO
     }
   }
 

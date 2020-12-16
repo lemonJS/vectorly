@@ -1,10 +1,9 @@
 import React from 'react';
 
 import { css } from '@emotion/css';
-import { useSelector } from 'react-redux';
 import { Create } from '@components/builder/trays/photos/create';
 import { Edit } from '@components/builder/trays/photos/edit';
-import { selectedElementSelector } from '@lib/selection/selectors';
+import { useContext } from '@components/builder/store';
 
 const styles = css`
   display: flex;
@@ -15,11 +14,12 @@ const styles = css`
 `;
 
 export function Photos(): JSX.Element {
-  const element = useSelector(selectedElementSelector);
+  const [state] = useContext();
+  const element = state.selectedElement;
 
   return (
     <div className={styles}>
-      {element && element.type === 'photo'
+      {element?.type === 'photo'
         ? <Edit element={element} />
         : <Create />
       }
