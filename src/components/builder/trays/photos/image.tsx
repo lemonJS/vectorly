@@ -3,6 +3,7 @@ import React from 'react';
 import { css } from '@emotion/css';
 import { Image as ProjectImage } from '@type/project';
 import { DeleteImage } from '@components/builder/trays/photos/delete-image';
+import { useContext } from '@components/builder/store';
 
 interface Props {
   image: ProjectImage;
@@ -30,6 +31,8 @@ const styles = css`
 `;
 
 export function Image(props: Props): JSX.Element {
+  const { createProjectElement } = useContext();
+
   function formatImageForCreation() {
     const ratio = props.image.height / props.image.width;
     const width = props.image.width > 300 ? 300 : props.image.width;
@@ -59,9 +62,8 @@ export function Image(props: Props): JSX.Element {
   }
 
   function handleClick() {
-    // const image = formatImageForCreation();
-    // dispatch(createProjectElement(image));
-    // TODO
+    const image = formatImageForCreation();
+    createProjectElement(image);
   }
 
   return (

@@ -2,6 +2,7 @@ import React from 'react';
 
 import { css } from '@emotion/css';
 import { Image } from '@type/project';
+import { useContext } from '@components/builder/store';
 
 interface Props {
   image: Image
@@ -32,11 +33,12 @@ const styles = css`
   }
 `;
 
-export function DeleteImage(_props: Props): JSX.Element {
-  function handleClick(_event: React.MouseEvent<HTMLButtonElement>) {
-    // event.stopPropagation();
-    // dispatch(deleteImage(props.image.id));
-    // TODO
+export function DeleteImage(props: Props): JSX.Element {
+  const { removeImage } = useContext();
+
+  function handleClick(event: React.MouseEvent<HTMLButtonElement>) {
+    event.stopPropagation();
+    removeImage(props.image);
   }
 
   return (

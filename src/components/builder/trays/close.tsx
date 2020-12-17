@@ -2,6 +2,7 @@ import React from 'react';
 
 import { css } from '@emotion/css';
 import { Divider } from '@components/common/divider';
+import { useContext } from '@components/builder/store';
 
 interface Props {
   title: String;
@@ -36,9 +37,10 @@ const styles = css`
 `;
 
 export function Close(props: Props): JSX.Element {
+  const { setState } = useContext();
+
   function handleClick() {
-    // dispatch(setSelectionId(null));
-    // TODO
+    setState({ selectedElement: null });
   }
 
   return (

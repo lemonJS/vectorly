@@ -10,8 +10,7 @@ interface Props {
 }
 
 export function Element(props: Props): JSX.Element {
-  const [state] = useContext();
-  const { id } = state.selectedElement;
+  const { state } = useContext();
 
   const element = React.createElement(
     props.element.element,
@@ -20,7 +19,7 @@ export function Element(props: Props): JSX.Element {
   );
 
   return (
-    <Container id={props.element.id} selected={props.element.id === id} element={props.element}>
+    <Container id={props.element.id} selected={props.element.id === state.selectedElement?.id} element={props.element}>
       {element}
     </Container>
   );

@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { css } from '@emotion/css';
+import { useContext } from '@components/builder/store';
 
 const styles = css`
   display: flex;
@@ -33,10 +34,11 @@ const styles = css`
 `;
 
 export function ImageUpload(): JSX.Element {
-  function handleChange(_event: React.ChangeEvent<HTMLInputElement>) {
-    // const files = Array.from(event.target.files);
-    // dispatch(uploadImages(files));
-    // TODO
+  const { createImages } = useContext();
+
+  function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
+    const files = Array.from(event.target.files);
+    createImages(files);
   }
 
   return (

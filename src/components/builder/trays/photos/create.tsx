@@ -6,7 +6,7 @@ import { ImageDnd } from '@components/builder/trays/photos/image-dnd';
 import { useContext } from '@components/builder/store';
 
 export function Create(): JSX.Element {
-  const [state] = useContext();
+  const { state } = useContext();
 
   return (
     <React.Fragment>

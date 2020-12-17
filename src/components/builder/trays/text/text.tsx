@@ -14,7 +14,7 @@ const styles = css`
 `;
 
 export function Text(): JSX.Element {
-  const [state] = useContext();
+  const { state } = useContext();
   const element = state.selectedElement;
 
   return (

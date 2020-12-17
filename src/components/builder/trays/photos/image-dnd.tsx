@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { css } from '@emotion/css';
+import { useContext } from '@components/builder/store';
 
 const styles = css`
   align-items: center;
@@ -30,6 +31,7 @@ const styles = css`
 `;
 
 export function ImageDnd(): JSX.Element {
+  const { createImages } = useContext();
   const [dragging, setDragging] = React.useState(false);
   const status = dragging ? 'dragging' : '';
 
@@ -46,13 +48,12 @@ export function ImageDnd(): JSX.Element {
     event.preventDefault();
 
     if (event.dataTransfer.items) {
-      // const files = Array
-      //   .from(event.dataTransfer.items)
-      //   .filter(item => item.kind === 'file')
-      //   .map(item => item.getAsFile());
+      const files = Array
+        .from(event.dataTransfer.items)
+        .filter(item => item.kind === 'file')
+        .map(item => item.getAsFile());
 
-      // dispatch(uploadImages(files));
-      // TODO
+      createImages(files);
     }
 
     setDragging(false);

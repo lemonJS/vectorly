@@ -3,9 +3,9 @@ import React from 'react';
 import Head from 'next/head';
 import { gql, useQuery } from '@apollo/client';
 import { SVG } from '@components/builder/svg/svg';
-import { ContextProvider } from '@components/builder/store';
 import { Wrapper } from '@components/builder/layout/wrapper';
 import { useRouter } from 'next/router';
+import { useContext } from '@components/builder/store';
 
 const QUERY = gql`
   query Project($where: ProjectWhereInput!) {
@@ -29,9 +29,14 @@ const QUERY = gql`
           r
           s
         }
-        props 
+        props
         text
       }
+    }
+    user {
+      id
+      firstName
+      lastName
     }
   }
 `;
@@ -39,19 +44,23 @@ const QUERY = gql`
 export default function Project(): JSX.Element {
   const router = useRouter();
   const where = { id: router.query.id };
-  const { loading, data } = useQuery(QUERY, { variables: { where } });
 
-  console.log(loading, data);
+  const { setState } = useContext();
+  const { data } = useQuery(QUERY, { variables: { where } });
+
+  console.log(data);
+
+  React.useEffect(() => {
+    if (data) setState(data);
+  }, [data]);
 
   return (
-    <ContextProvider>
-      <Wrapper>
-        <Head>
-          <title>Vectorly</title>
-        </Head>
-        <SVG />
-      </Wrapper>
-    </ContextProvider>
+    <Wrapper>
+      <Head>
+        <title>Vectorly</title>
+      </Head>
+      <SVG />
+    </Wrapper>
   );
 }
 

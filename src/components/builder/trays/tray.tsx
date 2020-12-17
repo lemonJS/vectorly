@@ -8,7 +8,7 @@ import { Text } from '@components/builder/trays/text/text';
 import { useContext } from '@components/builder/store';
 
 export function Tray(): JSX.Element {
-  const [state] = useContext();
+  const { state } = useContext();
 
   if (!state.project) {
     return null;

@@ -31,7 +31,7 @@ const styles = css`
 `;
 
 export function NavigationToggle(): JSX.Element {
-  const [state, setState] = useContext();
+  const { state, setState } = useContext();
 
   const status = state.menuOpen ? 'open' : '';
   const icon = state.menuOpen ? 'ri-menu-fold-line' : 'ri-menu-unfold-line';

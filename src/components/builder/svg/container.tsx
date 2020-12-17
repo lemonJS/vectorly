@@ -1,10 +1,10 @@
 import React from 'react';
 
-import { css } from '@emotion/css';
 import { Element } from '@type/project';
 import { Transform } from '@type/editor';
 import { Selection } from '@components/builder/svg/selection/selection';
 import { getBox } from '@lib/helpers';
+import { useContext } from '@components/builder/store';
 
 interface Props extends React.SVGProps<SVGGElement> {
   id: string;
@@ -12,11 +12,8 @@ interface Props extends React.SVGProps<SVGGElement> {
   element: Element;
 }
 
-const styles = css`
-
-`;
-
 export function Container(props: Props): JSX.Element {
+  const { setState, updateProjectElement } = useContext();
   const ref = React.useRef<SVGGElement>(null);
   const box = getBox(ref.current);
 
@@ -24,19 +21,17 @@ export function Container(props: Props): JSX.Element {
   const transform = `translate(${x} ${y}) rotate(${r} ${(box.width * s[0]) / 2} ${(box.height * s[1]) / 2}) scale(${s[0]} ${s[1]})`;
 
   function handleClick() {
-    // dispatch(setSelectionId(props.id));
-    // TODO
+    setState({ selectedElement: props.element });
   }
 
-  function handleTransform(_update: Partial<Transform>) {
-    // const data = { ...props.element.transform, ...update };
-    // dispatch(updateProjectElement(props.element.id, { transform: data }));
-    // TODO
+  function handleTransform(update: Partial<Transform>) {
+    const data = { ...props.element.transform, ...update };
+    updateProjectElement(props.element.id, { transform: data });
   }
 
   return (
     <g>
-      <g id={props.id} className={`${styles} container`} onClick={handleClick} ref={ref} transform={transform}>
+      <g id={props.id} className='container' onClick={handleClick} ref={ref} transform={transform}>
         {props.children}
         {props.selected && (
           <Selection

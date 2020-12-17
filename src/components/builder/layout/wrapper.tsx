@@ -26,7 +26,7 @@ const styles = css`
 `;
 
 export function Wrapper(props: Props): JSX.Element {
-  const [state] = useContext();
+  const { state } = useContext();
   const status = state.menuOpen ? 'menu-open' : '';
 
   return (

@@ -34,7 +34,7 @@ const styles = css`
 `;
 
 export function NavigationItem(props: Props): JSX.Element {
-  const [state, setState] = useContext();
+  const { state, setState } = useContext();
   const status = state.menuSelected === props.name ? 'selected' : '';
 
   function handleClick() {

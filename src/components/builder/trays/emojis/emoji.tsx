@@ -3,6 +3,7 @@ import React from 'react';
 import { css } from '@emotion/css';
 import { EmojiData } from '@type/emoji';
 import { Element } from '@type/project';
+import { useContext } from '@components/builder/store';
 
 interface Props {
   emoji: EmojiData;
@@ -26,6 +27,8 @@ const styles = css`
 `;
 
 export function Emoji(props: Props): JSX.Element {
+  const { createProjectElement } = useContext();
+
   function formatEmojiForCreation(): Omit<Element, 'id'>  {
     return {
       element: 'text',
@@ -52,9 +55,8 @@ export function Emoji(props: Props): JSX.Element {
   }
 
   function handleClick() {
-    // const emoji = formatEmojiForCreation();
-    // dispatch(createProjectElement(emoji));
-    // TODO
+    const emoji = formatEmojiForCreation();
+    createProjectElement(emoji);
   }
 
   return (

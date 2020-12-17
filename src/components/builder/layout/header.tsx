@@ -1,5 +1,6 @@
 import React from 'react';
 
+import Link from 'next/link';
 import Image from 'next/image';
 import { css } from '@emotion/css';
 import { Menu } from '@components/builder/layout/menu';
@@ -27,9 +28,11 @@ export function Header(): JSX.Element {
   return (
     <header className={styles}>
       <div className='title'>
-        <a href='/' className='logo'>
-          <Image src='/logo.svg' alt='logo' height='48' width='48' />
-        </a>
+        <Link href='/'>
+          <a className='logo'>
+            <Image src='/logo.svg' alt='logo' height='48' width='48' />
+          </a>
+        </Link>
         <Title />
       </div>
       <Menu />

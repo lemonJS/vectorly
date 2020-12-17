@@ -9,20 +9,21 @@ import { Style } from '@components/builder/trays/text/style';
 import { Alignment } from '@components/builder/trays/text/alignment';
 import { Colors } from '@components/builder/trays/text/colors';
 import { Positioning } from '@components/builder/trays/positioning';
+import { useContext } from '@components/builder/store';
 
 interface Props {
   element: Element;
 }
 
 export function Edit(props: Props): JSX.Element {
-  function handlePropsUpdate(_update: Partial<React.SVGProps<SVGElement>>) {
-    // dispatch(updateProjectElement(props.element.id, { props: update }));
-    // TODO
+  const { updateProjectElement } = useContext();
+
+  function handlePropsUpdate(update: Partial<React.SVGProps<SVGElement>>) {
+    updateProjectElement(props.element.id, { props: update });
   }
 
-  function handleUpdate(_update: Partial<Element>) {
-    // dispatch(updateProjectElement(props.element.id, update));
-    // TODO
+  function handleUpdate(update: Partial<Element>) {
+    updateProjectElement(props.element.id, update);
   }
 
   return (

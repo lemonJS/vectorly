@@ -19,7 +19,7 @@ const styles = css`
 
 export function Title(): JSX.Element {
   const ref = React.useRef(null);
-  const [state] = useContext();
+  const { state, setState } = useContext();
 
   function handleModalOpen() {
     ref.current.open();
@@ -29,13 +29,13 @@ export function Title(): JSX.Element {
     ref.current.close();
   }
 
-  function handleSubmit(_event: React.FormEvent<HTMLFormElement>) {
-    // event.preventDefault();
-    // const form = event.target as HTMLFormElement;
-    // const data = new FormData(form);
-    // dispatch(updateProject({ title: data.get('title').toString() }));
-    // handleModalClose();
-    // TODO
+  function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    const element = event.target as HTMLFormElement;
+    const form = new FormData(element);
+    const data = { title: form.get('title').toString() };
+    setState({ project: {...state.project, ...data } });
+    handleModalClose();
   }
 
   return (

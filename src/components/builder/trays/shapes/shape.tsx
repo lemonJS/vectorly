@@ -3,6 +3,7 @@ import React from 'react';
 import { cloneDeep } from 'lodash';
 import { css } from '@emotion/css';
 import { ShapeListItem } from '@components/builder/trays/data/shapes';
+import { useContext } from '@components/builder/store';
 
 interface Props {
   shape: ShapeListItem;
@@ -26,6 +27,7 @@ const styles = css`
  `;
 
 export function Shape(props: Props): JSX.Element {
+  const { createProjectElement } = useContext();
   const element = React.createElement(props.shape.shape.element, props.shape.shape.props);
 
   function formatShapeForCreation() {
@@ -43,9 +45,8 @@ export function Shape(props: Props): JSX.Element {
   }
 
   function handleClick() {
-    // const shape = formatShapeForCreation();
-    // dispatch(createProjectElement(shape));
-    // TODO
+    const shape = formatShapeForCreation();
+    createProjectElement(shape);
   }
 
   return (

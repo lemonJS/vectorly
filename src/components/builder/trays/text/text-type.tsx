@@ -2,6 +2,7 @@ import React from 'react';
 
 import { css } from '@emotion/css';
 import { Element } from '@type/project';
+import { useContext } from '@components/builder/store';
 
 interface Props {
   children: React.ReactNode;
@@ -42,6 +43,8 @@ const styles = css`
 `;
 
 export function TextType(props: Props): JSX.Element {
+  const { createProjectElement } = useContext();
+
   function getFontSize() {
     switch (props.textType) {
       case 'heading':
@@ -86,9 +89,8 @@ export function TextType(props: Props): JSX.Element {
   }
 
   function handleClick() {
-    // const text = formatTextForCreation();
-    // dispatch(createProjectElement(text));
-    // TODO
+    const text = formatTextForCreation();
+    createProjectElement(text);
   }
 
   return (

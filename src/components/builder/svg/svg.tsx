@@ -28,7 +28,7 @@ const styles = css`
 `;
 
 export function SVG(): JSX.Element {
-  const [state] = useContext();
+  const { state, setState, createProjectElement } = useContext();
   const elements = state.project?.elements || [];
 
   function handleMouseDown(event: React.MouseEvent<SVGElement>) {
@@ -36,8 +36,7 @@ export function SVG(): JSX.Element {
 
     if (element.tagName === 'svg') {
       event.stopPropagation();
-      // dispatch(setSelectionId(null));
-      // TODO
+      setState({ selectedElement: null });
     }
   }
 
@@ -68,9 +67,8 @@ export function SVG(): JSX.Element {
 
     if (payload) {
       const transform = getDropTransform(event);
-      transform;
-      // dispatch(createProjectElement({ ...payload, transform }));
-      // TODO
+      const element = { ...payload, transform };
+      createProjectElement(element);
     }
   }
 
