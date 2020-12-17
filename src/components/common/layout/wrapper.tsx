@@ -1,8 +1,8 @@
 import React from 'react';
 
 import { css } from '@emotion/css';
-import { Content } from '@components/shelf/layout/content';
-import { Header } from '@components/shelf/layout/header';
+import { Content } from '@components/common/layout/content';
+import { Header } from '@components/common/layout/header';
 
 interface Props {
   children: React.ReactNode;

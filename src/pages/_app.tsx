@@ -32,7 +32,7 @@ export default function App(props: AppProps): JSX.Element {
 
   return (
     <ApolloProvider client={client}>
-      <Wrapper path={router.asPath}>
+      <Wrapper route={router.route}>
         <Component {...pageProps} />
       </Wrapper>
     </ApolloProvider>
