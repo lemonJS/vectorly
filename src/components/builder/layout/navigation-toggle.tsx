@@ -1,7 +1,9 @@
 import React from 'react';
 
 import { css } from '@emotion/css';
-import { useContext } from '@components/builder/store';
+import { useDispatch, useSelector } from 'react-redux';
+import { layoutSelector } from '@lib/layout/selectors';
+import { setMenuOpen } from '@lib/layout/actions';
 
 const styles = css`
   align-items: center;
@@ -31,14 +33,15 @@ const styles = css`
 `;
 
 export function NavigationToggle(): JSX.Element {
-  const { state, setState } = useContext();
+  const dispatch = useDispatch();
+  const { menuOpen } = useSelector(layoutSelector);
 
-  const status = state.menuOpen ? 'open' : '';
-  const icon = state.menuOpen ? 'ri-menu-fold-line' : 'ri-menu-unfold-line';
-  const text = state.menuOpen ? 'Collapse' : 'Show';
+  const status = menuOpen ? 'open' : '';
+  const icon = menuOpen ? 'ri-menu-fold-line' : 'ri-menu-unfold-line';
+  const text = menuOpen ? 'Collapse' : 'Show';
 
   function handleClick() {
-    setState({ menuOpen: !state.menuOpen });
+    dispatch(setMenuOpen(false));
   }
 
   return (

@@ -3,7 +3,8 @@ import React from 'react';
 import { css } from '@emotion/css';
 import { Edit } from '@components/builder/trays/text/edit';
 import { Create } from '@components/builder/trays/text/create';
-import { useContext } from '@components/builder/store';
+import { useSelector } from 'react-redux';
+import { selectedElementSelector } from '@lib/selection/selectors';
 
 const styles = css`
   display: flex;
@@ -14,12 +15,11 @@ const styles = css`
 `;
 
 export function Text(): JSX.Element {
-  const { state } = useContext();
-  const element = state.selectedElement;
+  const element = useSelector(selectedElementSelector);
 
   return (
     <div className={styles}>
-      {element?.type === 'text'
+      {element.type === 'text'
         ? <Edit element={element} />
         : <Create />
       }

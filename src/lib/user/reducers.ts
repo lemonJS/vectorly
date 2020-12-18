@@ -1,10 +1,10 @@
 import { User } from '@type/user';
 
-export type UserState = User | null;
+export interface UserState extends User {}
 
 export interface UserAction {
   type: string;
-  payload: Partial<UserState>;
+  payload: UserState;
 }
 
 export const initialState: UserState = null;

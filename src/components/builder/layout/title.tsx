@@ -4,7 +4,9 @@ import { css } from '@emotion/css';
 import { Button } from '@components/common/button';
 import { Modal } from '@components/common/modal';
 import { EditTitle } from '@components/builder/layout/edit-title';
-import { useContext } from '@components/builder/store';
+import { useDispatch, useSelector } from 'react-redux';
+import { projectSelector } from '@lib/projects/selectors';
+import { updateProject } from '@lib/projects/actions';
 
 const styles = css`
   align-items: center;
@@ -18,8 +20,10 @@ const styles = css`
 `;
 
 export function Title(): JSX.Element {
+  const dispatch = useDispatch();
+
   const ref = React.useRef(null);
-  const { state, setState } = useContext();
+  const project = useSelector(projectSelector());
 
   function handleModalOpen() {
     ref.current.open();
@@ -33,23 +37,22 @@ export function Title(): JSX.Element {
     event.preventDefault();
     const element = event.target as HTMLFormElement;
     const form = new FormData(element);
-    const data = { title: form.get('title').toString() };
-    setState({ project: {...state.project, ...data } });
+    dispatch(updateProject({ title: form.get('title').toString() }))
     handleModalClose();
   }
 
   return (
     <div className={styles}>
-      {state.project && (
+      {project && (
         <React.Fragment>
           <Button onClick={handleModalOpen}>
-            {state.project.title}
+            {project.title}
             <i className='ri-pencil-line' />
           </Button>
 
           <Modal ref={ref}>
             <EditTitle
-              title={state.project.title}
+              title={project.title}
               handleCancel={handleModalClose}
               handleSubmit={handleSubmit}
             />

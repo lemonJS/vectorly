@@ -1,11 +1,12 @@
 import React from 'react';
 
 import { cloneDeep } from 'lodash';
+import { useDispatch } from 'react-redux';
 import { Element } from '@type/project';
 import { css } from '@emotion/css';
 import { Button } from '@components/common/button';
 import { Divider } from '@components/common/divider';
-import { useContext } from '@components/builder/store';
+import { createProjectElement, deleteProjectElement } from '@lib/projects/actions';
 
 interface Props {
   element: Element;
@@ -27,17 +28,17 @@ const styles = css`
 `;
 
 export function Actions(props: Props): JSX.Element {
-  const { createProjectElement, removeProjectElement } = useContext();
+  const dispatch = useDispatch();
 
   function handleDelete() {
-    removeProjectElement(props.element);
+    dispatch(deleteProjectElement(props.element.id));
   }
 
   function handleDuplicate() {
     const element = cloneDeep(props.element);
     element.transform.x += 20;
     element.transform.y += 20;
-    createProjectElement(element);
+    dispatch(createProjectElement(element));
   }
 
   return (

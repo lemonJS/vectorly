@@ -31,7 +31,7 @@ const userLinks = [
     icon: 'ri-settings-4-line'
   },
   {
-    link: '/#',
+    link: '/account/projects',
     name: 'Projects',
     icon: 'ri-draft-line'
   },
@@ -54,7 +54,7 @@ const guestLinks = [
     icon: 'ri-user-shared-line'
   },
   {
-    link: '',
+    link: '/account/projects',
     name: 'Projects',
     icon: 'ri-draft-line'
   }

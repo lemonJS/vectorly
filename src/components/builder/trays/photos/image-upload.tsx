@@ -1,7 +1,8 @@
 import React from 'react';
 
 import { css } from '@emotion/css';
-import { useContext } from '@components/builder/store';
+import { useDispatch } from 'react-redux';
+import { uploadImages } from '@lib/projects/actions';
 
 const styles = css`
   display: flex;
@@ -34,11 +35,11 @@ const styles = css`
 `;
 
 export function ImageUpload(): JSX.Element {
-  const { createImages } = useContext();
+  const dispatch = useDispatch();
 
   function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
     const files = Array.from(event.target.files);
-    createImages(files);
+    dispatch(uploadImages(files));
   }
 
   return (

@@ -1,7 +1,8 @@
 import React from 'react';
 
 import { css } from '@emotion/css';
-import { useContext } from '@components/builder/store';
+import { useDispatch } from 'react-redux';
+import { uploadImages } from '@lib/projects/actions';
 
 const styles = css`
   align-items: center;
@@ -31,7 +32,8 @@ const styles = css`
 `;
 
 export function ImageDnd(): JSX.Element {
-  const { createImages } = useContext();
+  const dispatch = useDispatch();
+
   const [dragging, setDragging] = React.useState(false);
   const status = dragging ? 'dragging' : '';
 
@@ -53,7 +55,7 @@ export function ImageDnd(): JSX.Element {
         .filter(item => item.kind === 'file')
         .map(item => item.getAsFile());
 
-      createImages(files);
+      dispatch(uploadImages(files));
     }
 
     setDragging(false);

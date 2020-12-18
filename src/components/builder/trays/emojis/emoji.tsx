@@ -1,9 +1,10 @@
 import React from 'react';
 
+import { useDispatch } from 'react-redux';
 import { css } from '@emotion/css';
 import { EmojiData } from '@type/emoji';
 import { Element } from '@type/project';
-import { useContext } from '@components/builder/store';
+import { createProjectElement } from '@lib/projects/actions';
 
 interface Props {
   emoji: EmojiData;
@@ -27,7 +28,7 @@ const styles = css`
 `;
 
 export function Emoji(props: Props): JSX.Element {
-  const { createProjectElement } = useContext();
+  const dispatch = useDispatch();
 
   function formatEmojiForCreation(): Omit<Element, 'id'>  {
     return {
@@ -56,7 +57,7 @@ export function Emoji(props: Props): JSX.Element {
 
   function handleClick() {
     const emoji = formatEmojiForCreation();
-    createProjectElement(emoji);
+    dispatch(createProjectElement(emoji));
   }
 
   return (

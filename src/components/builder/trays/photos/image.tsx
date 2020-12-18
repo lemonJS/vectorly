@@ -1,9 +1,10 @@
 import React from 'react';
 
+import { useDispatch } from 'react-redux';
 import { css } from '@emotion/css';
 import { Image as ProjectImage } from '@type/project';
 import { DeleteImage } from '@components/builder/trays/photos/delete-image';
-import { useContext } from '@components/builder/store';
+import { createProjectElement } from '@lib/projects/actions';
 
 interface Props {
   image: ProjectImage;
@@ -31,7 +32,7 @@ const styles = css`
 `;
 
 export function Image(props: Props): JSX.Element {
-  const { createProjectElement } = useContext();
+  const dispatch = useDispatch();
 
   function formatImageForCreation() {
     const ratio = props.image.height / props.image.width;
@@ -63,7 +64,7 @@ export function Image(props: Props): JSX.Element {
 
   function handleClick() {
     const image = formatImageForCreation();
-    createProjectElement(image);
+    dispatch(createProjectElement(image));
   }
 
   return (

@@ -3,14 +3,15 @@ import React from 'react';
 import { Element as ProjectElement } from '@type/project';
 import { Container } from '@components/builder/svg/container';
 import { Text } from '@components/builder/svg/text';
-import { useContext } from '@components/builder/store';
+import { useSelector } from 'react-redux';
+import { selectedElementSelector } from '@lib/selection/selectors';
 
 interface Props {
   element: ProjectElement;
 }
 
 export function Element(props: Props): JSX.Element {
-  const { state } = useContext();
+  const { id } = useSelector(selectedElementSelector);
 
   const element = React.createElement(
     props.element.element,
@@ -19,7 +20,7 @@ export function Element(props: Props): JSX.Element {
   );
 
   return (
-    <Container id={props.element.id} selected={props.element.id === state.selectedElement?.id} element={props.element}>
+    <Container id={props.element.id} selected={props.element.id === id} element={props.element}>
       {element}
     </Container>
   );

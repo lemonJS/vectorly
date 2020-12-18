@@ -1,8 +1,9 @@
 import React from 'react';
 
+import { useDispatch } from 'react-redux';
 import { css } from '@emotion/css';
 import { Divider } from '@components/common/divider';
-import { useContext } from '@components/builder/store';
+import { setSelectionId } from '@lib/selection/actions';
 
 interface Props {
   title: String;
@@ -37,10 +38,10 @@ const styles = css`
 `;
 
 export function Close(props: Props): JSX.Element {
-  const { setState } = useContext();
+  const dispatch = useDispatch();
 
   function handleClick() {
-    setState({ selectedElement: null });
+    dispatch(setSelectionId(null));
   }
 
   return (

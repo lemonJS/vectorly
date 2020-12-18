@@ -1,9 +1,10 @@
 import React from 'react';
 
+import { useSelector } from 'react-redux';
 import { css } from '@emotion/css';
 import { Create } from '@components/builder/trays/shapes/create';
 import { Edit } from '@components/builder/trays/shapes/edit';
-import { useContext } from '@components/builder/store';
+import { selectedElementSelector } from '@lib/selection/selectors';
 
 const styles = css`
   display: flex;
@@ -14,12 +15,11 @@ const styles = css`
 `;
 
 export function Shapes(): JSX.Element {
-  const { state } = useContext();
-  const element = state.selectedElement;
+  const element = useSelector(selectedElementSelector);
 
   return (
     <div className={styles}>
-      {element?.type === 'shape'
+      {element.type === 'shape'
         ? <Edit element={element} />
         : <Create />
       }

@@ -1,8 +1,10 @@
 import React from 'react';
 
 import { css } from '@emotion/css';
+import { useDispatch, useSelector } from 'react-redux';
 import { NavigationData } from '@type/navigation';
-import { useContext } from '@components/builder/store';
+import { layoutSelector } from '@lib/layout/selectors';
+import { setMenuSelected } from '@lib/layout/actions';
 
 interface Props extends NavigationData {}
 
@@ -34,11 +36,13 @@ const styles = css`
 `;
 
 export function NavigationItem(props: Props): JSX.Element {
-  const { state, setState } = useContext();
-  const status = state.menuSelected === props.name ? 'selected' : '';
+  const dispatch = useDispatch();
+
+  const { menuSelected } = useSelector(layoutSelector);
+  const status = menuSelected === props.name ? 'selected' : '';
 
   function handleClick() {
-    setState({ menuSelected: props.name });
+    dispatch(setMenuSelected(props.name));
   }
 
   return (

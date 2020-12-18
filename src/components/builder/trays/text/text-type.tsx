@@ -1,8 +1,9 @@
 import React from 'react';
 
+import { useDispatch } from 'react-redux';
 import { css } from '@emotion/css';
 import { Element } from '@type/project';
-import { useContext } from '@components/builder/store';
+import { createProjectElement } from '@lib/projects/actions';
 
 interface Props {
   children: React.ReactNode;
@@ -43,7 +44,7 @@ const styles = css`
 `;
 
 export function TextType(props: Props): JSX.Element {
-  const { createProjectElement } = useContext();
+  const dispatch = useDispatch();
 
   function getFontSize() {
     switch (props.textType) {
@@ -90,7 +91,7 @@ export function TextType(props: Props): JSX.Element {
 
   function handleClick() {
     const text = formatTextForCreation();
-    createProjectElement(text);
+    dispatch(createProjectElement(text));
   }
 
   return (

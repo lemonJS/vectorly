@@ -1,20 +1,23 @@
 import React from 'react';
 
+import { useSelector } from 'react-redux';
 import { Designs } from '@components/builder/trays/designs/designs';
 import { Photos } from '@components/builder/trays/photos/photos';
 import { Shapes } from '@components/builder/trays/shapes/shapes';
 import { Emojis } from '@components/builder/trays/emojis/emojis';
 import { Text } from '@components/builder/trays/text/text';
-import { useContext } from '@components/builder/store';
+import { layoutSelector } from '@lib/layout/selectors';
+import { projectSelector } from '@lib/projects/selectors';
 
 export function Tray(): JSX.Element {
-  const { state } = useContext();
+  const project = useSelector(projectSelector);
+  const { menuSelected } = useSelector(layoutSelector);
 
-  if (!state.project) {
+  if (!project) {
     return null;
   }
 
-  switch(state.menuSelected) {
+  switch(menuSelected) {
     case 'designs':
       return <Designs />;
     case 'photos':

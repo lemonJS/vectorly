@@ -1,6 +1,5 @@
 import React from 'react';
 
-import { ContextProvider } from '@components/builder/store';
 import { Wrapper as CommonWrapper } from '@components/common/layout/wrapper';
 
 interface Props {
@@ -40,8 +39,8 @@ export function Common(props: Props): JSX.Element {
 
 export function Builder(props: Props): JSX.Element {
   return (
-    <ContextProvider>
+    <React.Fragment>
       {props.children}
-    </ContextProvider>
+    </React.Fragment>
   );
 }
