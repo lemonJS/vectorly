@@ -1,7 +1,9 @@
 import React from 'react';
 
-import Link from 'next/link';
 import { css } from '@emotion/css';
+import { UserLinks } from '@components/common/user-links';
+import { useSelector } from 'react-redux';
+import { userSelector } from '@lib/user/selectors';
 
 const styles = css`
   align-items: center;
@@ -12,7 +14,7 @@ const styles = css`
   button {
     align-items: center;
     background: none;
-    border: none;
+    border: 2px solid transparent;
     border-radius: .25rem;
     color: var(--primary-text-color);
     cursor: pointer;
@@ -25,50 +27,15 @@ const styles = css`
     i {
       margin-left: .5rem;
     }
-  }
-  
-  .dropdown {
-    background: var(--foreground-color);
-    border-radius: .25rem;
-    box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.2);
-    position: absolute;
-    right: 1.5rem;
-    top: 3.5rem;
-    width: 200px;
-    z-index: 2;
     
-    ul {
-      margin: 0;
-      padding: 0;
-    }
-    
-    li {
-      align-items: center;
-      border-bottom: 1px solid var(--background-color);
-      display: flex;
-      justify-content: space-between;
-      list-style: none;
-      padding: 1rem;
-      
-      &:last-of-type {
-        margin-bottom: 0;
-      }
-      
-      &:hover {
-        background: var(--background-color);
-      }
-    }
-    
-    a {
-      color: var(--primary-text-color);
-      font-size: 14px;
-      display: block;
-      text-decoration: none;
+    &:hover {
+      border-color: var(--primary-accent-color);
     }
   }
 `;
 
 export function User(): JSX.Element {
+  const user = useSelector(userSelector);
   const [open, setOpen] = React.useState(false);
 
   function handleOpen() {
@@ -94,33 +61,11 @@ export function User(): JSX.Element {
   return (
     <div className={styles}>
       <button className={`dropdown-button ${styles}`} onClick={handleOpen}>
-        <span>Guest</span>
+        <span>{user ? `${user.firstName} ${user.lastName}` : 'Guest'}</span>
         <i className='ri-arrow-down-s-line' />
       </button>
-      {open && (
-        <div className='dropdown'>
-          <ul>
-            <li>
-              <Link href='/auth/signup'>
-                <a>Sign up</a>
-              </Link>
-              <i className='ri-user-add-line' />
-            </li>
-            <li>
-              <Link href='/auth/login'>
-                <a>Log in</a>
-              </Link>
-              <i className='ri-user-shared-line' />
-            </li>
-            <li>
-              <Link href='#'>
-                <a>Projects</a>
-              </Link>
-              <i className='ri-draft-line' />
-            </li>
-          </ul>
-        </div>
-      )}
+
+      {open && <UserLinks user={user} />}
     </div>
   );
 }

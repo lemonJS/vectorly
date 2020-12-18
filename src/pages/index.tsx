@@ -1,30 +1,27 @@
 import React from 'react';
 
-import { gql, useQuery } from '@apollo/client';
-import { Carousel } from '@components/common/carousel';
+import { useDispatch, useSelector } from 'react-redux';
 import { Container } from '@components/common/container';
 import { Designs } from '@components/shelf/designs/designs';
-
-const QUERY = gql`
-  query Designs($select: PaginationInput!) {
-    designs(select: $select) {
-      body {
-        id
-        title
-      }
-    }
-  }
-`;
+import { Featured } from '@components/shelf/designs/featured';
+import { designsSelector } from '@lib/designs/selectors';
+import { getDesigns } from '@lib/designs/actions';
+import { getUser } from '@lib/user/actions';
 
 export default function Home(): JSX.Element {
-  const select = { limit: 32, offset: 0 };
-  const { loading, data } = useQuery(QUERY, { variables: { select } });
+  const dispatch = useDispatch();
+  const designs = useSelector(designsSelector);
+
+  React.useEffect(() => {
+    dispatch(getUser());
+    dispatch(getDesigns());
+  }, []);
 
   return (
     <React.Fragment>
       <Container>
-        <Carousel slides={[<p>Slide 1</p>, <p>Slide 2</p>, <p>Slide 3</p>]} />
-        <Designs loading={loading} designs={data?.designs?.body} />
+        <Featured />
+        <Designs designs={designs} />
       </Container>
     </React.Fragment>
   );

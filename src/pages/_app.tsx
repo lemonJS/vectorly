@@ -2,9 +2,9 @@ import React from 'react';
 
 import { AppProps } from 'next/app';
 import { injectGlobal } from '@emotion/css';
-import { ApolloProvider } from '@apollo/client';
+import { Provider } from 'react-redux';
 import { cssVariables } from '@lib/config';
-import { client } from '@lib/client';
+import { store } from '@lib/store';
 import { Wrapper } from '@components/common/wrapper';
 
 injectGlobal`  
@@ -31,10 +31,10 @@ export default function App(props: AppProps): JSX.Element {
   const { Component, pageProps, router } = props;
 
   return (
-    <ApolloProvider client={client}>
+    <Provider store={store}>
       <Wrapper route={router.route}>
         <Component {...pageProps} />
       </Wrapper>
-    </ApolloProvider>
+    </Provider>
   );
 }

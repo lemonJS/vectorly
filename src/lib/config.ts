@@ -2,6 +2,7 @@ export const config = {
   styles: {
     // Accent Colors:
     'primary-accent-color': '#4aacd9',
+    'tertiary-accent-color': '#e66767',
 
     // Backgrounds:
     'background-color': '#ebeff2',
