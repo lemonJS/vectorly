@@ -11,7 +11,7 @@ export const initialState: ProjectsState = [];
 
 export function projects(state = initialState, action: ProjectsAction) {
   switch (action.type) {
-    case 'PROJECT':
+    case 'PROJECTS':
       return action.payload;
     default:
       return state;

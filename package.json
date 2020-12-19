@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@emotion/css": "^11.0.0",
+    "date-fns": "^2.16.1",
     "emojilib": "^2.4.0",
     "lodash": "^4.17.20",
     "next": "^10.0.3",

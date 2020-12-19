@@ -9,6 +9,10 @@ const styles = css`
   display: flex;
   margin: 0;
   padding: 0 1.5rem 0 0;
+  
+  div {
+    padding-right: 0;
+  }
 `;
 
 export function Menu(): JSX.Element {

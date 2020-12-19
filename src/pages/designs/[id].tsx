@@ -1,5 +1,6 @@
 import React from 'react';
 
+import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { useDispatch, useSelector } from 'react-redux';
 import { Container } from '@components/common/container';
@@ -21,6 +22,9 @@ export default function Products(): JSX.Element {
 
   return (
     <React.Fragment>
+      <Head>
+        <title>Vectorly - {design?.title || 'Design'}</title>
+      </Head>
       <Container>
         <Title />
         {design && <Details design={design} />}

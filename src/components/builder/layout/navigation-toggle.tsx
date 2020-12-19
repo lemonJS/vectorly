@@ -41,7 +41,7 @@ export function NavigationToggle(): JSX.Element {
   const text = menuOpen ? 'Collapse' : 'Show';
 
   function handleClick() {
-    dispatch(setMenuOpen(false));
+    dispatch(setMenuOpen(!menuOpen));
   }
 
   return (

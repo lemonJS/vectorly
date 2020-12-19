@@ -1,11 +1,12 @@
 import React from 'react';
 
+import Head from 'next/head';
 import { useDispatch, useSelector } from 'react-redux';
 import { Container } from '@components/common/container';
 import { getUser } from '@lib/user/actions';
 import { getProjects } from '@lib/projects/actions';
 import { projectsSelector } from '@lib/projects/selectors';
-import { ProjectRow } from '@components/account/project-row';
+import { ProjectList } from '@components/account/project-list';
 
 export default function Projects(): JSX.Element {
   const dispatch = useDispatch();
@@ -18,13 +19,10 @@ export default function Projects(): JSX.Element {
 
   return (
     <Container>
-      {projects.map(project => (
-        <ProjectRow key={project.projectId} project={project} />
-      ))}
-
-      {projects.length === 0 && (
-        <p>There's nothing here!</p>
-      )}
+      <Head>
+        <title>Vectorly - Projects</title>
+      </Head>
+      <ProjectList projects={projects} />
     </Container>
   );
 }

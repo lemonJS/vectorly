@@ -19,7 +19,7 @@ export function Photos(): JSX.Element {
 
   return (
     <div className={styles}>
-      {element.type === 'photo'
+      {element?.type === 'photo'
         ? <Edit element={element} />
         : <Create />
       }

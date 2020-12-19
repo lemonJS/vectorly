@@ -1,5 +1,6 @@
 import React from 'react';
 
+import Head from 'next/head';
 import Link from 'next/link';
 import { useDispatch } from 'react-redux';
 import { css } from '@emotion/css';
@@ -48,6 +49,9 @@ export default function Login(): JSX.Element {
 
   return (
     <Container>
+      <Head>
+        <title>Vectorly - Login</title>
+      </Head>
       <div className={styles}>
         <h2>Log in</h2>
         <AuthForm handleSubmit={handleSubmit} error={error}>

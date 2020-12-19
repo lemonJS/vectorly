@@ -5,20 +5,22 @@ import { api } from '@lib/api';
 import { Project, Element } from '@type/project';
 import { GetState } from '@type/redux';
 import { setSelectionId } from '@lib/selection/actions';
-import { projectSelector } from '@lib/projects/selectors';
+import { projectSelector, projectsSelector } from '@lib/projects/selectors';
 
 export function getProjects() {
   return async function(dispatch: Dispatch<any>) {
     const projects = await api.get('/projects');
-    dispatch({ type: 'PROJECT', payload: projects });
+    dispatch({ type: 'PROJECTS', payload: projects });
   };
 }
 
 export function updateProject(payload: Partial<Project>) {
   return async function(dispatch: Dispatch<any>, getState: GetState) {
     const project = projectSelector()(getState());
-    const update = { ...project, ...payload };
-    dispatch({ type: 'PROJECT', payload: update });
+    const projects = projectsSelector(getState());
+
+    const update = merge({}, project, payload);
+    dispatch({ type: 'PROJECTS', payload: projects.map(p => p.projectId === project.projectId ? update : p) });
   }
 }
 

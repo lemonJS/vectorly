@@ -1,5 +1,6 @@
 import React from 'react';
 
+import Head from 'next/head';
 import Link from 'next/link';
 import { useDispatch } from 'react-redux';
 import { useRouter } from 'next/router';
@@ -48,6 +49,9 @@ export default function Signup(): JSX.Element {
 
   return (
     <Container>
+      <Head>
+        <title>Vectorly - Login</title>
+      </Head>
       <div className={styles}>
         <h2>Sign up</h2>
         <AuthForm handleSubmit={handleSubmit} error={error}>

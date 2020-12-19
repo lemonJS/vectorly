@@ -1,5 +1,6 @@
 import React from 'react';
 
+import Head from 'next/head';
 import { useDispatch, useSelector } from 'react-redux';
 import { Container } from '@components/common/container';
 import { Designs } from '@components/shelf/designs/designs';
@@ -19,6 +20,9 @@ export default function Home(): JSX.Element {
 
   return (
     <React.Fragment>
+      <Head>
+        <title>Vectorly</title>
+      </Head>
       <Container>
         <Featured />
         <Designs designs={designs} />
