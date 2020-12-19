@@ -1,6 +1,6 @@
 
 export interface SelectionState {
-  id: string | null;
+  elementId: string | null;
 }
 
 export interface SelectionAction {
@@ -9,7 +9,7 @@ export interface SelectionAction {
 }
 
 export const initialState: SelectionState = {
-  id: null
+  elementId: null
 };
 
 export function selection(state = initialState, action: SelectionAction) {

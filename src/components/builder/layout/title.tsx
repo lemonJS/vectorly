@@ -1,10 +1,10 @@
 import React from 'react';
 
 import { css } from '@emotion/css';
+import { useDispatch, useSelector } from 'react-redux';
 import { Button } from '@components/common/button';
 import { Modal } from '@components/common/modal';
 import { EditTitle } from '@components/builder/layout/edit-title';
-import { useDispatch, useSelector } from 'react-redux';
 import { projectSelector } from '@lib/projects/selectors';
 import { updateProject } from '@lib/projects/actions';
 

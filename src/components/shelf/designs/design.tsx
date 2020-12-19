@@ -22,7 +22,7 @@ const styles = css`
 
 export function Design(props: Props): JSX.Element {
   return (
-    <Link href={`/designs/${props.design.id}`}>
+    <Link href={`/designs/${props.design.designId}`}>
       <a className={styles}>
 
       </a>

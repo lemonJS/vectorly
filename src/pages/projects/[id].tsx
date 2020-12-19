@@ -1,17 +1,19 @@
 import React from 'react';
 
 import Head from 'next/head';
+import { useDispatch } from 'react-redux';
 import { SVG } from '@components/builder/svg/svg';
 import { Wrapper } from '@components/builder/layout/wrapper';
-import { useRouter } from 'next/router';
-import { useSelector } from 'react-redux';
-import { projectSelector } from '@lib/projects/selectors';
+import { getUser } from '@lib/user/actions';
+import { getProjects } from '@lib/projects/actions';
 
 export default function Project(): JSX.Element {
-  const router = useRouter();
-  const project = useSelector(projectSelector(router.query.id));
+  const dispatch = useDispatch();
 
-  console.log(project);
+  React.useEffect(() => {
+    dispatch(getUser());
+    dispatch(getProjects());
+  }, []);
 
   return (
     <Wrapper>

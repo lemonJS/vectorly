@@ -59,7 +59,7 @@ export function TextType(props: Props): JSX.Element {
     }
   }
 
-  function formatTextForCreation(): Omit<Element, 'id'> {
+  function formatTextForCreation(): Omit<Element, 'elementId'> {
     return {
       element: 'text',
       type: 'text',

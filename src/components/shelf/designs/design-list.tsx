@@ -19,7 +19,7 @@ export function DesignList(props: Props): JSX.Element {
   return (
     <div className={styles}>
       {props.designs.map((design: DesignType) => (
-        <Design key={design.id} design={design} />
+        <Design key={design.designId} design={design} />
       ))}
     </div>
   );

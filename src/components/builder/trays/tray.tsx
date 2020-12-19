@@ -10,7 +10,7 @@ import { layoutSelector } from '@lib/layout/selectors';
 import { projectSelector } from '@lib/projects/selectors';
 
 export function Tray(): JSX.Element {
-  const project = useSelector(projectSelector);
+  const project = useSelector(projectSelector());
   const { menuSelected } = useSelector(layoutSelector);
 
   if (!project) {

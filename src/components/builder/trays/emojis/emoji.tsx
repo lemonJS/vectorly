@@ -30,7 +30,7 @@ const styles = css`
 export function Emoji(props: Props): JSX.Element {
   const dispatch = useDispatch();
 
-  function formatEmojiForCreation(): Omit<Element, 'id'>  {
+  function formatEmojiForCreation(): Omit<Element, 'elementId'>  {
     return {
       element: 'text',
       type: 'emoji',

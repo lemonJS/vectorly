@@ -24,12 +24,12 @@ export function Container(props: Props): JSX.Element {
   const transform = `translate(${x} ${y}) rotate(${r} ${(box.width * s[0]) / 2} ${(box.height * s[1]) / 2}) scale(${s[0]} ${s[1]})`;
 
   function handleClick() {
-    dispatch(setSelectionId(props.element.id));
+    dispatch(setSelectionId(props.element.elementId));
   }
 
   function handleTransform(update: Partial<Transform>) {
     const data = { ...props.element.transform, ...update };
-    dispatch(updateProjectElement(props.element.id, { transform: data }));
+    dispatch(updateProjectElement(props.element.elementId, { transform: data }));
   }
 
   return (

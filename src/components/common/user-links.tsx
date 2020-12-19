@@ -26,7 +26,7 @@ const styles = css`
 
 const userLinks = [
   {
-    link: '/#',
+    link: '/account',
     name: 'Account',
     icon: 'ri-settings-4-line'
   },

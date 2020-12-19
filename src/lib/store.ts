@@ -4,14 +4,14 @@ import { State } from '@type/redux';
 
 import { designs, initialState as initialDesignsState } from '@lib/designs/reducers';
 import { layout, initialState as initialLayoutState } from '@lib/layout/reducers';
-import { project, initialState as initialProjectState } from '@lib/projects/reducers';
+import { projects, initialState as initialProjectsState } from '@lib/projects/reducers';
 import { selection, initialState as initialSelectionState } from '@lib/selection/reducers';
 import { user, initialState as initialUserState } from '@lib/user/reducers';
 
 const initialState: State = {
   designs: initialDesignsState,
   layout: initialLayoutState,
-  project: initialProjectState,
+  projects: initialProjectsState,
   selection: initialSelectionState,
   user: initialUserState
 };
@@ -20,7 +20,7 @@ export const store = createStore(
   combineReducers({
     designs,
     layout,
-    project,
+    projects,
     selection,
     user
   }),

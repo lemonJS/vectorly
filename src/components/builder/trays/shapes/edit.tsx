@@ -17,11 +17,11 @@ export function Edit(props: Props): JSX.Element {
   const dispatch = useDispatch();
 
   function handlePropsUpdate(update: Partial<React.SVGProps<SVGElement>>) {
-    dispatch(updateProjectElement(props.element.id, { props: update }));
+    dispatch(updateProjectElement(props.element.elementId, { props: update }));
   }
 
   function handleUpdate(update: Partial<Element>) {
-    dispatch(updateProjectElement(props.element.id, update));
+    dispatch(updateProjectElement(props.element.elementId, update));
   }
 
   return (

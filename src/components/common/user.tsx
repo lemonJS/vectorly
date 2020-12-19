@@ -1,8 +1,8 @@
 import React from 'react';
 
 import { css } from '@emotion/css';
-import { UserLinks } from '@components/common/user-links';
 import { useSelector } from 'react-redux';
+import { UserLinks } from '@components/common/user-links';
 import { userSelector } from '@lib/user/selectors';
 
 const styles = css`

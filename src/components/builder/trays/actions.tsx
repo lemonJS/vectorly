@@ -31,7 +31,7 @@ export function Actions(props: Props): JSX.Element {
   const dispatch = useDispatch();
 
   function handleDelete() {
-    dispatch(deleteProjectElement(props.element.id));
+    dispatch(deleteProjectElement(props.element.elementId));
   }
 
   function handleDuplicate() {

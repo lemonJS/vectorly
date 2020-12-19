@@ -1,6 +1,6 @@
 import { DesignsState } from '@lib/designs/reducers';
 import { LayoutState } from '@lib/layout/reducers';
-import { ProjectState } from '@lib/projects/reducers';
+import { ProjectsState } from '@lib/projects/reducers';
 import { SelectionState } from '@lib/selection/reducers';
 import { UserState } from '@lib/user/reducers';
 
@@ -13,7 +13,7 @@ declare global {
 export interface State {
   designs: DesignsState,
   layout: LayoutState,
-  project: ProjectState,
+  projects: ProjectsState,
   selection: SelectionState,
   user: UserState
 }

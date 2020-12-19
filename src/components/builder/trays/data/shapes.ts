@@ -1,14 +1,14 @@
 import { Element } from '@type/project';
 
 export interface ShapeListItem {
-  id: string,
+  shapeId: string,
   keywords: string[],
-  shape: Omit<Element, 'id'>
+  shape: Omit<Element, 'elementId'>
 }
 
 export const shapes: ShapeListItem[] = [
   {
-    id: '979b0b3d-7216-425d-a1b2-b3f11a1cf95f',
+    shapeId: '979b0b3d-7216-425d-a1b2-b3f11a1cf95f',
     keywords: ['circle'],
     shape: {
       type: 'shape',
@@ -33,7 +33,7 @@ export const shapes: ShapeListItem[] = [
     }
   },
   {
-    id: '4d8244d0-6aed-4ac7-9fe4-b2ee939243e6',
+    shapeId: '4d8244d0-6aed-4ac7-9fe4-b2ee939243e6',
     keywords: ['square', 'rectangle', 'box'],
     shape: {
       type: 'shape',
@@ -57,7 +57,7 @@ export const shapes: ShapeListItem[] = [
     }
   },
   {
-    id: '6a5c4abc-bc36-4d06-8338-ecdcfc09e13f',
+    shapeId: '6a5c4abc-bc36-4d06-8338-ecdcfc09e13f',
     keywords: ['triangle'],
     shape: {
       type: 'shape',
@@ -80,7 +80,7 @@ export const shapes: ShapeListItem[] = [
     }
   },
   {
-    id: '4f59ea51-d9fc-413c-b5fa-0978e50913ed',
+    shapeId: '4f59ea51-d9fc-413c-b5fa-0978e50913ed',
     keywords: ['hexagon'],
     shape: {
       type: 'shape',
@@ -103,7 +103,7 @@ export const shapes: ShapeListItem[] = [
     }
   },
   {
-    id: '9e3fd3fd-f8fd-402b-8e1c-6d2101e18773',
+    shapeId: '9e3fd3fd-f8fd-402b-8e1c-6d2101e18773',
     keywords: ['star'],
     shape: {
       type: 'shape',
@@ -126,7 +126,7 @@ export const shapes: ShapeListItem[] = [
     }
   },
   {
-    id: '8b8fd7aa-8f2c-4142-8cc0-ce800569c7ce',
+    shapeId: '8b8fd7aa-8f2c-4142-8cc0-ce800569c7ce',
     keywords: ['pentagon'],
     shape: {
       type: 'shape',
@@ -149,7 +149,7 @@ export const shapes: ShapeListItem[] = [
     }
   },
   {
-    id: 'bf7ff284-71ce-4c3b-89f6-290b1adf95c3',
+    shapeId: 'bf7ff284-71ce-4c3b-89f6-290b1adf95c3',
     keywords: ['octagon'],
     shape: {
       type: 'shape',

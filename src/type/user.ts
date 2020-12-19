@@ -1,7 +1,7 @@
 import { Image } from '@type/project';
 
 export interface User {
-  id: string;
+  userId: string;
   firstName: string;
   lastName: string;
   email: string;

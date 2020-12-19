@@ -5,7 +5,7 @@ interface Headers {
 }
 
 class Api {
-  private readonly host = 'https://g5cckh9ljb.execute-api.eu-west-2.amazonaws.com/dev';
+  private readonly host = 'https://klkarr6i0c.execute-api.eu-west-2.amazonaws.com/dev';
 
   private readonly headers = {
     'Content-Type': 'application/json'

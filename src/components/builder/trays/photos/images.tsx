@@ -17,7 +17,7 @@ export function Images(props: Props): JSX.Element {
   return (
     <div className={styles}>
       {props.images.map(image => (
-        <Image key={image.id} image={image} />
+        <Image key={image.imageId} image={image} />
       ))}
     </div>
   );

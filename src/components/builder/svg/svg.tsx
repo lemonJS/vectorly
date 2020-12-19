@@ -33,7 +33,8 @@ const styles = css`
 export function SVG(): JSX.Element {
   const dispatch = useDispatch();
 
-  const { elements } = useSelector(projectSelector());
+  const project = useSelector(projectSelector());
+  const elements = project?.elements || [];
 
   function handleMouseDown(event: React.MouseEvent<SVGElement>) {
     const element = event.target as HTMLElement;
@@ -90,7 +91,7 @@ export function SVG(): JSX.Element {
     <div className={styles}>
       <svg id='canvas' viewBox='0 0 500 800' onMouseDown={handleMouseDown} onDrop={handleDrop} onDragOver={handleDragOver}>
         {elements.map(element => (
-          <Element key={element.id} element={element} />
+          <Element key={element.elementId} element={element} />
         ))}
       </svg>
     </div>

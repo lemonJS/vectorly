@@ -49,7 +49,7 @@ export function Image(props: Props): JSX.Element {
         s: [1, 1] as [number, number] // it kicks off with number[]
       },
       props: {
-        'data-id': props.image.id,
+        'data-id': props.image.imageId,
         height: height,
         href: props.image.url,
         width: width
@@ -71,7 +71,7 @@ export function Image(props: Props): JSX.Element {
     <div
       draggable
       className={styles}
-      key={props.image.id}
+      key={props.image.imageId}
       style={{ backgroundImage: `url(${props.image.url})` }}
       onClick={handleClick}
       onDragStart={handleDragStart}

@@ -33,8 +33,8 @@ const styles = css`
 
 export default function Login(): JSX.Element {
   const error = null;
-  const dispatch = useDispatch();
   const router = useRouter();
+  const dispatch = useDispatch();
 
   async function handleSubmit(input: AuthFormData) {
     try {

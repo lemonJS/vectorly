@@ -38,8 +38,8 @@ const styles = css`
 `;
 
 export function Positioning(props: Props): JSX.Element {
-  const { id, transform } = props.element;
-  const element = document.getElementById(id);
+  const { elementId, transform } = props.element;
+  const element = document.getElementById(elementId);
   const bounds = element.getBoundingClientRect();
 
   function handleTransform(property: string) {

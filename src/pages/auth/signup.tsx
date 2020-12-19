@@ -1,6 +1,8 @@
 import React from 'react';
 
 import Link from 'next/link';
+import { useDispatch } from 'react-redux';
+import { useRouter } from 'next/router';
 import { css } from '@emotion/css';
 import { AuthFormData } from '@type/auth';
 import { Container } from '@components/common/container';
@@ -8,6 +10,8 @@ import { AuthForm } from '@components/auth/auth-form';
 import { Label } from '@components/common/label';
 import { Input } from '@components/common/input';
 import { Button } from '@components/common/button';
+import { setUser } from '@lib/user/actions';
+import { api } from '@lib/api';
 
 const styles = css`
   h2 {
@@ -29,10 +33,14 @@ const styles = css`
 
 export default function Signup(): JSX.Element {
   const error = null;
+  const router = useRouter();
+  const dispatch = useDispatch();
 
   async function handleSubmit(input: AuthFormData) {
     try {
-      console.log(input);
+      const user = await api.post('/auth/signup', input);
+      dispatch(setUser(user));
+      await router.push('/');
     } catch(error) {
       console.error(error);
     }

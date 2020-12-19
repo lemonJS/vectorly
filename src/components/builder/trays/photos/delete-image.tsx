@@ -39,7 +39,7 @@ export function DeleteImage(props: Props): JSX.Element {
 
   function handleClick(event: React.MouseEvent<HTMLButtonElement>) {
     event.stopPropagation();
-    dispatch(deleteImage(props.image.id));
+    dispatch(deleteImage(props.image.imageId));
   }
 
   return (

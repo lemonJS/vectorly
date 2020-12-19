@@ -1,7 +1,7 @@
 import { Image } from '@type/project';
 
 export interface Design {
-  id: string;
+  designId: string;
   title: string;
   description: string;
   image: Image;

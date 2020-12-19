@@ -3,7 +3,7 @@ import React from 'react';
 import { Transform } from '@type/editor';
 
 export interface Image {
-  id: string;
+  imageId: string;
   name: string;
   height: number;
   url: string;
@@ -11,7 +11,7 @@ export interface Image {
 }
 
 export interface Element {
-  id: string;
+  elementId: string;
   type: string;
   element: string;
   transform: Transform;
@@ -20,7 +20,8 @@ export interface Element {
 }
 
 export interface Project {
-  id: string;
+  userId: string;
+  projectId: string;
   title: string;
   elements: Element[];
   images: Image[];

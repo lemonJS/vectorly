@@ -6,9 +6,9 @@ export function designsSelector(state: State): DesignsState {
   return state.designs;
 }
 
-export function designSelector(id?: string | string[]) {
+export function designSelector(designId?: string | string[]) {
   // TODO: consider reselect
   return function (state: State): Design {
-    return state.designs.find(design => design.id === id);
+    return state.designs.find(design => design.designId === designId);
   }
 }

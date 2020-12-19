@@ -34,7 +34,7 @@ export function Create(): JSX.Element {
 
       <div className='shapes'>
         {results.map(shape => (
-          <Shape key={shape.id} shape={shape} />
+          <Shape key={shape.shapeId} shape={shape} />
         ))}
       </div>
     </div>

@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { css } from '@emotion/css';
+import { api } from '@lib/api';
 import { Button } from '@components/common/button';
 
 const styles = css`
@@ -10,9 +11,8 @@ const styles = css`
 export function Create(): JSX.Element {
 
   async function handleCreate() {
-    // const response = await createProject();
-    // location.href = `/projects/${response.data.createProject.id}`;
-    // TODO
+    const response = await api.post('/projects');
+    location.href = `/projects/${response.projectId}`;
   }
 
   return (
