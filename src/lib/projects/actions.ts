@@ -27,7 +27,7 @@ export function updateProject(payload: Partial<Project>) {
     const project = projectSelector()(getState());
     const projects = projectsSelector(getState());
 
-    const update = merge({}, project, payload);
+    const update = { ...project, ...payload };
     syncWithServer(update);
     dispatch({ type: 'PROJECTS', payload: projects.map(p => p.projectId === project.projectId ? update : p) });
   }

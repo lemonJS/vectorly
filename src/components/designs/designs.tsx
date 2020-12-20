@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { Design as DesignType } from '@type/design';
-import { DesignList } from '@components/shelf/designs/design-list';
+import { DesignList } from '@components/designs/design-list';
 
 interface Props {
   designs: DesignType[];

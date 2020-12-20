@@ -64,8 +64,8 @@ export function TextType(props: Props): JSX.Element {
       element: 'text',
       type: 'text',
       transform: {
-        x: 0,
-        y: 0,
+        x: 50,
+        y: 50,
         r: 0,
         s: [1, 1]
       },

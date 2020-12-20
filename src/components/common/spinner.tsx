@@ -5,25 +5,23 @@ import { css } from '@emotion/css';
 const styles = css`
   display: flex;
   justify-content: center;
-  padding: 1.5rem 0;
   width: 100%;
   
   .spinner {
     display: inline-block;
-    height: 5rem;
+    height: 1.25rem;
     position: relative;
-    width: 5rem;
+    width: 1.25rem;
     
     div {
-      animation: spinner 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
-      border: .5rem solid var(--primary-accent-color);
-      border-color: var(--primary-accent-color) transparent transparent transparent;
+      animation: spinner 1.2s cubic-bezier(.5, 0, .5, 1) infinite;
+      border: 3px solid white;
+      border-color: white transparent transparent transparent;
       border-radius: 50%;
       display: block;
-      height: 4rem;
-      margin: .5rem;
+      height: 1.25rem;
       position: absolute;
-      width: 4rem;
+      width: 1.25rem;
       
       &:nth-child(1) {
         animation-delay: -0.45s;

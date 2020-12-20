@@ -43,8 +43,8 @@ export function Image(props: Props): JSX.Element {
       element: 'image',
       type: 'photo',
       transform: {
-        x: 0,
-        y: 0,
+        x: 50,
+        y: 50,
         r: 0,
         s: [1, 1] as [number, number] // it kicks off with number[]
       },

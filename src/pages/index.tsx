@@ -3,12 +3,12 @@ import React from 'react';
 import Head from 'next/head';
 import { useDispatch, useSelector } from 'react-redux';
 import { Container } from '@components/common/container';
-import { Designs } from '@components/shelf/designs/designs';
-import { Featured } from '@components/shelf/designs/featured';
+import { Designs } from '@components/designs/designs';
+import { Featured } from '@components/designs/featured';
 import { designsSelector } from '@lib/designs/selectors';
 import { getDesigns } from '@lib/designs/actions';
 import { getUser } from '@lib/user/actions';
-import { Paginate } from '@components/shelf/designs/paginate';
+import { Paginate } from '@components/designs/paginate';
 
 const RESULTS_PER_PAGE = 16;
 
@@ -37,7 +37,7 @@ export default function Home(): JSX.Element {
       <Container>
         <Featured />
         <Designs designs={designs} />
-        <Paginate handleClick={handleClick} hasNext={true} />
+        <Paginate count={designs.length} handleClick={handleClick} hasNext={true} />
       </Container>
     </React.Fragment>
   );

@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { Design as DesignType } from '@type/design';
-import { Design } from '@components/shelf/designs/design';
+import { Design } from '@components/designs/design';
 import { css } from '@emotion/css';
 
 interface Props {

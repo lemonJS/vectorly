@@ -1,8 +1,11 @@
 import React from 'react';
 
 import { css } from '@emotion/css';
+import { Spinner } from '@components/common/spinner';
 
-interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {}
+interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  loading?: boolean;
+}
 
 const styles = css`
   background: var(--primary-button-background-color);
@@ -45,14 +48,19 @@ const styles = css`
       color: var(--tertiary-button-background-color);
     }
   }
+  
+  &:disabled {
+    opacity: .8;
+    pointer-events: none;
+  }
 `;
 
 export function Button(props: Props): JSX.Element {
-  const { children, className, ...rest } = props;
+  const { children, className, loading, ...rest } = props;
 
   return (
     <button className={`${styles} ${className}`} {...rest}>
-      {children}
+      {loading ? <Spinner /> : children}
     </button>
   );
 }
