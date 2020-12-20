@@ -52,13 +52,8 @@ const guestLinks = [
     link: '/auth/login',
     name: 'Log in',
     icon: 'ri-user-shared-line'
-  },
-  {
-    link: '/account/projects',
-    name: 'Projects',
-    icon: 'ri-draft-line'
   }
-]
+];
 
 export function UserLinks(props: Props): JSX.Element {
   const links = props.user ? userLinks : guestLinks;
