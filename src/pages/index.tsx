@@ -8,15 +8,26 @@ import { Featured } from '@components/shelf/designs/featured';
 import { designsSelector } from '@lib/designs/selectors';
 import { getDesigns } from '@lib/designs/actions';
 import { getUser } from '@lib/user/actions';
+import { Paginate } from '@components/shelf/designs/paginate';
+
+const RESULTS_PER_PAGE = 16;
 
 export default function Home(): JSX.Element {
   const dispatch = useDispatch();
   const designs = useSelector(designsSelector);
 
+  const [page, setPage] = React.useState(1);
+
   React.useEffect(() => {
     dispatch(getUser());
     dispatch(getDesigns());
   }, []);
+
+  function handleClick() {
+    const nextPage = page + 1;
+    dispatch(getDesigns(nextPage * RESULTS_PER_PAGE));
+    setPage(nextPage);
+  }
 
   return (
     <React.Fragment>
@@ -26,6 +37,7 @@ export default function Home(): JSX.Element {
       <Container>
         <Featured />
         <Designs designs={designs} />
+        <Paginate handleClick={handleClick} hasNext={true} />
       </Container>
     </React.Fragment>
   );
