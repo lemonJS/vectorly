@@ -16,5 +16,5 @@ phases:
 
   post_build:
     commands:
-      - aws s3 ./out s3://vectorly.app --delete
+      - aws s3 sync ./out s3://vectorly.app --delete
       - aws cloudfront create-invalidation --distribution-id E3CARKB1J1X10G --paths "/*"
