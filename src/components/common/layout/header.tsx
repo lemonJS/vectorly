@@ -1,6 +1,5 @@
 import React from 'react';
 
-import Image from 'next/image';
 import { css } from '@emotion/css';
 import { User } from '@components/common/user';
 import Link from 'next/link';
@@ -29,7 +28,7 @@ export function Header(): JSX.Element {
       <div className='title'>
         <Link href='/'>
           <a className='logo'>
-            <Image src='/logo.svg' alt='logo' height='48' width='48' />
+            <img src='/logo.svg' alt='logo' height='48' width='48' />
           </a>
         </Link>
       </div>

@@ -19,7 +19,7 @@ export function Shapes(): JSX.Element {
 
   return (
     <div className={styles}>
-      {element.type === 'shape'
+      {element?.type === 'shape'
         ? <Edit element={element} />
         : <Create />
       }

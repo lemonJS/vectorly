@@ -1,3 +1,7 @@
+import getConfig from 'next/config';
+
+const { publicRuntimeConfig } = getConfig();
+
 type Body = any;
 
 interface Headers {
@@ -5,7 +9,7 @@ interface Headers {
 }
 
 class Api {
-  private readonly host = 'https://klkarr6i0c.execute-api.eu-west-2.amazonaws.com/dev';
+  private readonly host = publicRuntimeConfig.apiHostUrl;
 
   private readonly headers = {
     'Content-Type': 'application/json'

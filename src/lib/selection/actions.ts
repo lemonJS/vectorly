@@ -12,11 +12,13 @@ export function setSelectionId(elementId: string | null) {
     dispatch({ type: 'SELECTION', payload: { elementId } });
 
     // Switch the tray over to the matching one
-    const element = project.elements.find(e => e.elementId === elementId);
+    if (project) {
+      const element = project.elements.find(e => e.elementId === elementId);
 
-    if (element) {
-      const menu = getLayoutForElementType(element.type);
-      dispatch(setMenuSelected(menu));
+      if (element) {
+        const menu = getLayoutForElementType(element.type);
+        dispatch(setMenuSelected(menu));
+      }
     }
   };
 }

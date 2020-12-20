@@ -10,7 +10,6 @@ interface Props {
 
 const styles = css`
   background: var(--foreground-color);
-  box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.2);
   display: flex;
   width: 100%;
   

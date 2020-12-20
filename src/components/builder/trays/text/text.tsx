@@ -19,7 +19,7 @@ export function Text(): JSX.Element {
 
   return (
     <div className={styles}>
-      {element.type === 'text'
+      {element?.type === 'text'
         ? <Edit element={element} />
         : <Create />
       }

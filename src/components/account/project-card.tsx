@@ -15,7 +15,10 @@ const styles = css`
   border: 2px solid transparent;
   border-radius: .25rem;
   list-style: none;
-  padding: 1.5rem;
+  
+  .details {
+    padding: 1rem;
+  }
   
   a {
     text-decoration: none;
@@ -25,7 +28,7 @@ const styles = css`
     color: var(--primary-text-color);
     font-size: 16px;
     font-weight: 600;
-    margin: 1.5rem 0 .5rem 0;
+    margin: 0 0 .5rem 0;
   }
   
   p {
@@ -36,6 +39,11 @@ const styles = css`
   
   &:hover {
     border-color: var(--primary-accent-color);
+  }
+  
+  button {
+    margin: 0 1rem 1rem;
+    width: calc(100% - 2rem);
   }
 `;
 
@@ -48,8 +56,10 @@ export function ProjectCard(props: Props): JSX.Element {
       <Link href={`/projects/${props.project.projectId}`}>
         <a>
           <Preview project={props.project} />
-          <h3>{props.project.title}</h3>
-          <p>Created: {createdDate}</p>
+          <div className='details'>
+            <h3>{props.project.title}</h3>
+            <p>Created: {createdDate}</p>
+          </div>
         </a>
       </Link>
     </li>

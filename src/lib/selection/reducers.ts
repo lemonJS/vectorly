@@ -1,16 +1,13 @@
+import { Element } from '@type/project';
 
-export interface SelectionState {
-  elementId: string | null;
-}
+export type SelectionState = Element | null;
 
 export interface SelectionAction {
   type: string;
   payload: Partial<SelectionState>;
 }
 
-export const initialState: SelectionState = {
-  elementId: null
-};
+export const initialState: SelectionState = null;
 
 export function selection(state = initialState, action: SelectionAction) {
   switch (action.type) {

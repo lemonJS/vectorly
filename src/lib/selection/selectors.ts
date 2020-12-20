@@ -9,11 +9,11 @@ export function selectionSelector(state: State): SelectionState {
 }
 
 export function selectedElementSelector(state: State): Element | null {
-  const { elementId } = state.selection;
+  const element = state.selection;
   const project = projectSelector()(state);
 
-  if (!elementId || !project) return null;
+  if (!element || !project) return null;
 
   // Clone here to force React to redraw
-  return clone(project.elements.find(e => e.elementId === elementId) || null);
+  return clone(project.elements.find(e => e.elementId === element.elementId) || null);
 }

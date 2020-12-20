@@ -1,11 +1,19 @@
 import { v4 as uuid } from 'uuid';
-import { merge } from 'lodash';
+import { merge, debounce } from 'lodash';
 import { Dispatch } from 'redux';
 import { api } from '@lib/api';
 import { Project, Element } from '@type/project';
 import { GetState } from '@type/redux';
 import { setSelectionId } from '@lib/selection/actions';
 import { projectSelector, projectsSelector } from '@lib/projects/selectors';
+
+const syncWithServer = debounce(async (project: Project) => {
+  // To make the UI as fast as possible, we optimistically update
+  // the store on the client. We then debounce the sync and hope all
+  // is well
+  const { projectId, title, elements } = project;
+  await api.put(`/projects/${projectId}`, { title, elements });
+}, 1000);
 
 export function getProjects() {
   return async function(dispatch: Dispatch<any>) {
@@ -20,6 +28,7 @@ export function updateProject(payload: Partial<Project>) {
     const projects = projectsSelector(getState());
 
     const update = merge({}, project, payload);
+    syncWithServer(update);
     dispatch({ type: 'PROJECTS', payload: projects.map(p => p.projectId === project.projectId ? update : p) });
   }
 }
@@ -27,7 +36,7 @@ export function updateProject(payload: Partial<Project>) {
 export function createProjectElement(payload: Partial<Element>) {
   return async function(dispatch: Dispatch<any>, getState: GetState) {
     const project = projectSelector()(getState());
-    const element = { ...payload, id: uuid() } as Element;
+    const element = { ...payload, elementId: uuid() } as Element;
 
     dispatch(updateProject({ elements: [...project.elements, element] }));
 

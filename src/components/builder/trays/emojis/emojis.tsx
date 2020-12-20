@@ -19,7 +19,7 @@ export function Emojis(): JSX.Element {
 
   return (
     <div className={styles}>
-      {element.type === 'emoji'
+      {element?.type === 'emoji'
         ? <Edit element={element} />
         : <Create />
       }
