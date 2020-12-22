@@ -59,7 +59,6 @@ export class Selection extends React.Component<Props> {
   }
 
   public render() {
-    console.log(this.props.box);
     const props = {
       height: this.height,
       transform: this.props.transform,

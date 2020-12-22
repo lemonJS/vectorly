@@ -1,6 +1,5 @@
 import React from 'react';
 
-import { clamp } from 'lodash';
 import { SVG, Transform } from '@type/editor';
 
 interface Props {
@@ -18,6 +17,7 @@ interface State {
 }
 
 export class Scale extends React.Component<Props, State> {
+  private svg: SVG;
   private parent: SVG;
   private offset: { x: number, y: number };
   private box: { width: number, height: number };
@@ -29,7 +29,9 @@ export class Scale extends React.Component<Props, State> {
   }
 
   public componentDidMount() {
+    this.svg = document.getElementById('canvas') as SVG;
     this.parent = document.getElementById(this.props.parent) as SVG;
+
     this.offset = { x: 0, y: 0 };
     this.box = { width: 0, height: 0 };
 
@@ -86,16 +88,9 @@ export class Scale extends React.Component<Props, State> {
   }
 
   private handleMouseDown = (event: React.MouseEvent<SVGEllipseElement>) => {
-    const element = event.target as HTMLDivElement;
     const box = this.parent.getBBox();
-    const { x: x1, y: y1 } = element.getBoundingClientRect();
-    const { x: x2, y: y2 } = this.parent.getBoundingClientRect();
 
-    // Store where exactly the user grabbed the handle
-    // so it can be subtracted later. Otherwise it will
-    // jump around all over the place
-    this.offset = { x: x1 - x2, y: y1 - y2 };
-
+    this.offset = { x: event.clientX, y: event.clientY };
     this.box = { width: box.width, height: box.height };
 
     this.setState({ pressed: true });
@@ -105,26 +100,51 @@ export class Scale extends React.Component<Props, State> {
     this.setState({ pressed: false });
   };
 
-  private clampScale = (scale: number) => {
-    // This can probably be calculated one day
-    return clamp(scale, 1, 5);
-  };
+  private calculateTransform(clientX: number, clientY: number): Partial<Transform> {
+    const svgBoundingRect = this.svg.getBoundingClientRect();
+
+    switch (this.props.position) {
+      case 'top-left':
+        return {
+          s: [
+            (this.box.width  - (clientX - this.offset.x)) / this.box.width,
+            (this.box.height - (clientY - this.offset.y)) / this.box.height
+          ],
+          x: this.offset.x + clientX - this.offset.x - svgBoundingRect.x,
+          y: this.offset.y + clientY - this.offset.y - svgBoundingRect.y
+        };
+      case 'top-right':
+        return {
+          s: [
+            (this.box.width  + (clientX - this.offset.x)) / this.box.width,
+            (this.box.height - (clientY - this.offset.y)) / this.box.height
+          ],
+          y: this.offset.y + clientY - this.offset.y - svgBoundingRect.y
+        };
+      case 'bottom-right':
+        return {
+          s: [
+            (this.box.width  + (clientX - this.offset.x)) / this.box.width,
+            (this.box.height + (clientY - this.offset.y)) / this.box.height
+          ]
+        };
+      case 'bottom-left':
+        return {
+          s: [
+            (this.box.width  - (clientX - this.offset.x)) / this.box.width,
+            (this.box.height + (clientY - this.offset.y)) / this.box.height
+          ],
+          x: this.offset.x + clientX - this.offset.x - svgBoundingRect.x
+        };
+      default:
+        return null;
+    }
+  }
 
   private handleMouseMove = (event: MouseEvent) => {
     if (this.state.pressed) {
-      const { x, y } = this.parent.getBoundingClientRect();
-
-      const position = {
-        x: Math.ceil(event.clientX - x - this.offset.x - this.props.padding),
-        y: Math.ceil(event.clientY - y - this.offset.y - this.props.padding)
-      };
-
-      // I know JS has poor rounding, but why does toFixed have to return a string?!
-      const scaleX = Number(((this.box.width + position.x) / this.box.width).toFixed(2));
-      const scaleY = Number(((this.box.height + position.y) / this.box.height).toFixed(2));
-
-      const scale = [this.clampScale(scaleX), this.clampScale(scaleY)];
-      this.props.handleTransform({ s: scale as [number, number] });
+      const transform = this.calculateTransform(event.clientX, event.clientY);
+      this.props.handleTransform(transform);
     }
   }
 
