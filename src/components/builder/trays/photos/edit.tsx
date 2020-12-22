@@ -1,12 +1,13 @@
 import React from 'react';
 
 import { useDispatch } from 'react-redux';
-import { Element } from '@type/project';
+import { Element, Project } from '@type/project';
 import { Close } from '@components/builder/trays/close';
 import { Actions } from '@components/builder/trays/actions';
 import { Colors } from '@components/builder/trays/photos/colors';
 import { Positioning } from '@components/builder/trays/positioning';
-import { updateProjectElement } from '@lib/projects/actions';
+import { updateProject, updateProjectElement } from '@lib/projects/actions';
+import { Stacking } from '@components/builder/trays/stacking';
 
 interface Props {
   element: Element;
@@ -19,6 +20,10 @@ export function Edit(props: Props): JSX.Element {
     dispatch(updateProjectElement(props.element.elementId, { props: update }));
   }
 
+  function handleProjectUpdate(update: Partial<Project>) {
+    dispatch(updateProject(update));
+  }
+
   function handleUpdate(update: Partial<Element>) {
     dispatch(updateProjectElement(props.element.elementId, update));
   }
@@ -28,6 +33,7 @@ export function Edit(props: Props): JSX.Element {
       <Close title='Edit Photo' />
       <Colors element={props.element} handleUpdate={handlePropsUpdate} />
       <Positioning element={props.element} handleUpdate={handleUpdate} />
+      <Stacking element={props.element} handleUpdate={handleProjectUpdate} />
       <Actions element={props.element} />
     </div>
   );

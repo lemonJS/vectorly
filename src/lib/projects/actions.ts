@@ -6,6 +6,7 @@ import { Project, Element } from '@type/project';
 import { GetState } from '@type/redux';
 import { setSelectionId } from '@lib/selection/actions';
 import { projectSelector, projectsSelector } from '@lib/projects/selectors';
+import { getImageUploadPayload, uploadImagesToS3 } from '@lib/images';
 
 const syncWithServer = debounce(async (project: Project) => {
   // To make the UI as fast as possible, we optimistically update
@@ -63,16 +64,13 @@ export function deleteProjectElement(elementId: string) {
 }
 
 export function uploadImages(files: File[]) {
-  return async function (_dispatch: Dispatch<any>, _getState: GetState) {
-    // const form = new FormData();
+  return async function (dispatch: Dispatch<any>, getState: GetState) {
+    const project = projectSelector()(getState());
+    const payload = await getImageUploadPayload(files);
+    const urls = await api.post(`/projects/${project.projectId}/images`, payload);
 
-    console.log(files);
-
-    // const project = projectSelector()(getState());
-    // files.forEach(file => form.append('file', file));
-    //
-    // const { images } = await api.post(`/projects/${project.projectId}/images`, form);
-    // dispatch(updateProject({ images }));
+    await uploadImagesToS3(files, urls);
+    dispatch(getProjects());
   }
 }
 
@@ -80,7 +78,7 @@ export function deleteImage(imageId: string) {
   return async function (dispatch: Dispatch<any>, getState: GetState) {
     const project = projectSelector()(getState());
 
-    const { images  } = await api.delete(`/projects/${project.projectId}/images/${imageId}`);
+    const { images } = await api.delete(`/projects/${project.projectId}/images/${imageId}`);
     dispatch(updateProject({ images }));
   }
 }

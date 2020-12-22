@@ -5,7 +5,6 @@ import { Element } from '@type/project';
 import { Divider } from '@components/common/divider';
 import { Label } from '@components/common/label';
 import { Input } from '@components/common/input';
-import { Scale } from '@components/common/scale';
 import { Slider } from '@components/common/slider';
 
 interface Props {
@@ -88,9 +87,6 @@ export function Positioning(props: Props): JSX.Element {
 
       <Label>Rotation</Label>
       <Slider min={-270} max={90} value={transform.r - 90} step={1} onChange={handleRotate} />
-
-      <Label>Stacking</Label>
-      <Scale max={10} min={0} value={0} handleChange={console.log} />
     </div>
   );
 }

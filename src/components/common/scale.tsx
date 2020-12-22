@@ -43,11 +43,19 @@ const styles = css`
 
 export function Scale(props: Props): JSX.Element {
   function handleDown() {
-    props.handleChange(props.value - 1);
+    const value = props.value - 1;
+
+    if (value > props.min) {
+      props.handleChange(value);
+    }
   }
 
   function handleUp() {
-    props.handleChange(props.value + 1);
+    const value = props.value + 1;
+
+    if (value < props.max) {
+      props.handleChange(value);
+    }
   }
 
   return (
