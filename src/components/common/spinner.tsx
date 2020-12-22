@@ -2,6 +2,10 @@ import React from 'react';
 
 import { css } from '@emotion/css';
 
+interface Props {
+  className?: string;
+}
+
 const styles = css`
   display: flex;
   justify-content: center;
@@ -47,9 +51,9 @@ const styles = css`
   }
 `;
 
-export function Spinner(): JSX.Element {
+export function Spinner(props: Props): JSX.Element {
   return (
-    <div className={styles}>
+    <div className={`${styles} ${props.className}`}>
       <div className='spinner'>
         <div />
         <div />

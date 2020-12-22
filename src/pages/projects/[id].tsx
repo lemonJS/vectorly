@@ -7,6 +7,8 @@ import { Wrapper } from '@components/builder/layout/wrapper';
 import { getUser } from '@lib/user/actions';
 import { getProjects } from '@lib/projects/actions';
 import { projectSelector } from '@lib/projects/selectors';
+import { setSelectionId } from '@lib/selection/actions';
+import { setMenuSelected } from '@lib/layout/actions';
 
 export default function Project(): JSX.Element {
   const dispatch = useDispatch();
@@ -15,6 +17,9 @@ export default function Project(): JSX.Element {
   React.useEffect(() => {
     dispatch(getUser());
     dispatch(getProjects());
+    // Clean up from the last project
+    dispatch(setSelectionId(null));
+    dispatch(setMenuSelected('photos'));
   }, []);
 
   return (

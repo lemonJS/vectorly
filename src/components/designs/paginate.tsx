@@ -33,7 +33,9 @@ export function Paginate(props: Props): JSX.Element {
 
   return (
     <div className={styles}>
-      <Button loading={loading} onClick={handleClick}>Load more</Button>
+      {props.count > 0 && (
+        <Button loading={loading} onClick={handleClick}>Load more</Button>
+      )}
     </div>
   );
 }

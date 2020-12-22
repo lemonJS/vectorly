@@ -8,6 +8,7 @@ interface Props {
 
 const styles = css`
   grid-area: content;
+  min-height: calc(100vh - 128px);
   padding: 1.5rem;
 `;
 
