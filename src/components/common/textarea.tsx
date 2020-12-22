@@ -17,6 +17,12 @@ export const styles = css`
   padding: .5rem;
   position: relative;
   width: 100%;
+  
+  &:hover,
+  &:focus {
+    border-color: var(--primary-accent-color);
+    outline: none;
+  }
 `;
 
 export function TextArea(props: Props): JSX.Element {

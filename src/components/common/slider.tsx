@@ -2,9 +2,7 @@ import React from 'react';
 
 import { css } from '@emotion/css';
 
-interface Props extends React.InputHTMLAttributes<HTMLInputElement> {
-
-}
+interface Props extends React.InputHTMLAttributes<HTMLInputElement> {}
 
 const styles = css`
   align-items: center;
@@ -41,14 +39,23 @@ const styles = css`
       height: 1.5rem;
       margin-top: -10px;
       width: 1.5rem;
+      
+      &:hover {
+        background: var(--primary-accent-color);
+      }
     }
     
     &::-moz-range-thumb {
       background: var(--sidebar-navigation-background-color);
       border: 2px solid var(--secondary-button-border-color);
       border-radius: 50%;
+      cursor: pointer;
       height: 1.5rem;
       width: 1.5rem;
+      
+      &:hover {
+        background: var(--primary-accent-color);
+      }
     }
     
     &::-webkit-slider-runnable-track {

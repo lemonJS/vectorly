@@ -30,7 +30,7 @@ const styles = css`
     width: 3rem;
     
     &:hover {
-      color: white;
+      color: var(--primary-accent-color);
       font-size: 1.2rem;
     }
   }
@@ -38,6 +38,10 @@ const styles = css`
   .value {
     flex: 1;
     text-align: center;
+  }
+  
+  &:hover {
+    border-color: var(--primary-accent-color);
   }
 `;
 

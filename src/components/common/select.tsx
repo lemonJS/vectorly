@@ -34,6 +34,10 @@ const styles = css`
     right: .5rem;
     top: .5rem;
   }
+  
+  &:hover {
+    border-color: var(--primary-accent-color);
+  }
 `;
 
 export function Select(props: Props): JSX.Element {

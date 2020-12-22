@@ -18,7 +18,7 @@ const styles = css`
   height: 88px;
   
   &:hover {
-    border-color: white;
+    border-color: var(--primary-accent-color);
   }
   
   svg {

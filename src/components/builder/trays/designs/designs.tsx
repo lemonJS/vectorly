@@ -23,7 +23,7 @@ const styles = css`
     margin-bottom: 1.5rem;
     
     &:hover {
-      border-color: white;
+      border-color: var(--primary-accent-color);
     }
 `;
 

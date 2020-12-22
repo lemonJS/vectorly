@@ -23,7 +23,7 @@ const styles = css`
   width: 100%;
   
   &:hover {
-    border-color: white;
+    border-color: var(--primary-accent-color);
     
     button {
       display: flex;

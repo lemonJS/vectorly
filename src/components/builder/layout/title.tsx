@@ -14,8 +14,12 @@ const styles = css`
   
   button {
     background: none;
-    border: none;
+    border-color: transparent;
     color: var(--secondary-text-color);
+    
+    &:hover {
+      border-color: var(--primary-accent-color);
+    }
   }
 `;
 

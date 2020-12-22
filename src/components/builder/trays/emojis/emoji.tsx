@@ -23,7 +23,7 @@ const styles = css`
   justify-content: center;
   
   &:hover {
-    border-color: white;
+    border-color: var(--primary-accent-color);
   }
 `;
 
