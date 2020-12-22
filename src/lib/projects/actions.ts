@@ -39,7 +39,6 @@ export function createProjectElement(payload: Partial<Element>) {
     const element = { ...payload, elementId: uuid() } as Element;
 
     dispatch(updateProject({ elements: [...project.elements, element] }));
-
     // Set the newly created element as selected
     setTimeout(() => dispatch(setSelectionId(element.elementId)), 10);
   }
@@ -64,19 +63,16 @@ export function deleteProjectElement(elementId: string) {
 }
 
 export function uploadImages(files: File[]) {
-  return async function (dispatch: Dispatch<any>, getState: GetState) {
-    const form = new FormData();
-    const project = projectSelector()(getState());
+  return async function (_dispatch: Dispatch<any>, _getState: GetState) {
+    // const form = new FormData();
 
-    files.forEach(file => form.append('image', file));
+    console.log(files);
 
-    const req = await fetch(`/api/projects/${project.projectId}/images`, {
-      body: form,
-      method: 'POST'
-    });
-
-    const res = await req.json();
-    dispatch(updateProject({ images: res.images }));
+    // const project = projectSelector()(getState());
+    // files.forEach(file => form.append('file', file));
+    //
+    // const { images } = await api.post(`/projects/${project.projectId}/images`, form);
+    // dispatch(updateProject({ images }));
   }
 }
 
@@ -84,11 +80,7 @@ export function deleteImage(imageId: string) {
   return async function (dispatch: Dispatch<any>, getState: GetState) {
     const project = projectSelector()(getState());
 
-    const req = await fetch(`/api/projects/${project.projectId}/images/${imageId}`, {
-      method: 'DELETE'
-    });
-
-    const res = await req.json();
-    dispatch(updateProject({ images: res.images }));
+    const { images  } = await api.delete(`/projects/${project.projectId}/images/${imageId}`);
+    dispatch(updateProject({ images }));
   }
 }

@@ -1,7 +1,3 @@
-import getConfig from 'next/config';
-
-const { publicRuntimeConfig } = getConfig();
-
 type Body = any;
 
 interface Headers {
@@ -9,7 +5,7 @@ interface Headers {
 }
 
 class Api {
-  private readonly host = publicRuntimeConfig.apiHostUrl;
+  private readonly host = 'https://api.vectorly.app';
 
   private readonly headers = {
     'Content-Type': 'application/json'
