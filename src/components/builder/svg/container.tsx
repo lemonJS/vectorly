@@ -1,14 +1,14 @@
 import React from 'react';
 
 import { useDispatch } from 'react-redux';
-import { Element } from '@type/project';
+import { Element, ElementProps } from '@type/project';
 import { Transform } from '@type/editor';
 import { Selection } from '@components/builder/svg/selection/selection';
 import { getBox } from '@lib/helpers';
 import { setSelectionId } from '@lib/selection/actions';
 import { updateProjectElement } from '@lib/projects/actions';
 
-interface Props extends React.SVGProps<SVGGElement> {
+interface Props extends ElementProps {
   id: string;
   selected: boolean;
   element: Element;

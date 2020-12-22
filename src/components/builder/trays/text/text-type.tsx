@@ -76,6 +76,7 @@ export function TextType(props: Props): JSX.Element {
         fontWeight: 'normal',
         fontStyle: 'normal',
         letterSpacing: 1,
+        textAnchor: 'start',
         textDecoration: 'none'
       },
       text: 'Enter your text'

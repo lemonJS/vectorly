@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { useDispatch } from 'react-redux';
-import { Project, Element } from '@type/project';
+import { Project, Element, ElementProps } from '@type/project';
 import { Close } from '@components/builder/trays/close';
 import { Background } from '@components/builder/trays/shapes/background';
 import { Border } from '@components/builder/trays/shapes/border';
@@ -17,7 +17,7 @@ interface Props {
 export function Edit(props: Props): JSX.Element {
   const dispatch = useDispatch();
 
-  function handlePropsUpdate(update: Partial<React.SVGProps<SVGElement>>) {
+  function handlePropsUpdate(update: Partial<ElementProps>) {
     dispatch(updateProjectElement(props.element.elementId, { props: update }));
   }
 

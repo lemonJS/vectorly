@@ -46,6 +46,7 @@ export function Emoji(props: Props): JSX.Element {
         fontWeight: 'normal',
         fontStyle: 'normal',
         letterSpacing: 1,
+        textAnchor: 'start',
         textDecoration: 'none'
       },
       text: props.emoji.char

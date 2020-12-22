@@ -1,14 +1,14 @@
 import React from 'react';
 
 import { css } from '@emotion/css';
-import { Element } from '@type/project';
+import { Element, ElementProps } from '@type/project';
 import { ColorPicker } from '@components/builder/trays/color-picker';
 import { Label } from '@components/common/label';
 import { Opacity } from '@components/builder/trays/opacity';
 
 interface Props {
   element: Element;
-  handleUpdate: (update: Partial<React.SVGProps<SVGElement>>) => void;
+  handleUpdate: (update: Partial<ElementProps>) => void;
 }
 
 const styles = css`

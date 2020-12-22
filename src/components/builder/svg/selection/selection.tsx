@@ -37,7 +37,7 @@ export class Selection extends React.Component<Props> {
   }
 
   private get left() {
-    return this.props.transform.x - this.padding + (this.props.box.x * this.scaleX);
+    return this.props.transform.x - this.padding;
   }
 
   private get rotate() {
@@ -47,7 +47,7 @@ export class Selection extends React.Component<Props> {
   }
 
   private get top() {
-    return this.props.transform.y - this.padding + (this.props.box.y * this.scaleY);
+    return this.props.transform.y - this.padding;
   }
 
   private get width() {

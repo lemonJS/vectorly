@@ -1,11 +1,11 @@
 import React from 'react';
 
-import { Element } from '@type/project';
+import { Element, ElementProps } from '@type/project';
 import { Opacity } from '@components/builder/trays/opacity';
 
 interface Props {
   element: Element;
-  handleUpdate: (update: Partial<React.SVGProps<SVGElement>>) => void;
+  handleUpdate: (update: Partial<ElementProps>) => void;
 }
 
 export function Colors(props: Props): JSX.Element {

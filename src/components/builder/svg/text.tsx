@@ -1,24 +1,58 @@
 import React from 'react';
 
+import { SVG } from "@type/editor";
 import { Element } from '@type/project';
+import { getBox } from "@lib/helpers";
 
 interface Props {
   element: Element;
 }
 
-export function Text(props: Props): JSX.Element {
-  const { text } = props.element;
+export class Text extends React.Component<Props> {
+  public constructor(props: Props) {
+    super(props);
+  }
 
-  if (!text) return null;
+  private get box() {
+    const node = document.getElementById(this.props.element.elementId) as SVG;
+    return getBox(node);
+  }
 
-  const height = Number(props.element.props.fontSize) + 4;
-  const lines = text.split('\n');
+  private get x() {
+    switch(this.textAnchor) {
+      case 'start':
+        return 0;
+      case 'middle':
+        return this.box.width / 2;
+      case 'end':
+        return this.box.width;
+      default:
+        return 0;
+    }
+  }
 
-  return (
-    <React.Fragment>
-      {lines.map((line, index) => (
-        <tspan key={line} y={index * height} x={0}>{line}</tspan>
-      ))}
-    </React.Fragment>
-  );
+  private y(lineNumber: number) {
+    const height = Number(this.props.element.props.fontSize) + 4;
+    return height * lineNumber;
+  }
+
+  private get textAnchor() {
+    return this.props.element.props.textAnchor;
+  }
+
+  private get lines() {
+    return this.props.element.text.split('\n');
+  }
+
+  public render(): JSX.Element {
+    if (!this.props.element.text) return null;
+
+    return (
+      <React.Fragment>
+        {this.lines.map((line, index) => (
+          <tspan textAnchor={this.textAnchor} key={line} y={this.y(index)} x={this.x}>{line}</tspan>
+        ))}
+      </React.Fragment>
+    );
+  }
 }
