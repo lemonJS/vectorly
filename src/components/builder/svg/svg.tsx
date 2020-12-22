@@ -25,6 +25,7 @@ const styles = css`
   
   svg {
     height: 100%;
+    outline: none;
     user-select: none;
     width: 100%;
   }

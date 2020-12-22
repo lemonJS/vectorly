@@ -45,7 +45,7 @@ export function FontAndSize(props: Props): JSX.Element {
       </Select>
 
       <Scale
-        max={40}
+        max={100}
         min={12}
         value={Number(fontSize)}
         handleChange={handleFontSize}

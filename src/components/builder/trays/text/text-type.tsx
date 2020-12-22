@@ -70,8 +70,6 @@ export function TextType(props: Props): JSX.Element {
         s: [1, 1]
       },
       props: {
-        alignmentBaseline: 'hanging',
-        dominantBaseline: 'hanging',
         fill: '#283037',
         fontSize: getFontSize(),
         fontFamily: 'Arial',

@@ -41,10 +41,12 @@ export function Emoji(props: Props): JSX.Element {
         s: [1, 1]
       },
       props: {
-        alignmentBaseline: 'hanging',
         color: '#283037',
-        dominantBaseline: 'hanging',
-        fontSize: 80
+        fontSize: 80,
+        fontWeight: 'normal',
+        fontStyle: 'normal',
+        letterSpacing: 1,
+        textDecoration: 'none'
       },
       text: props.emoji.char
     };

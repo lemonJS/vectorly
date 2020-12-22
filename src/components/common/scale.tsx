@@ -49,7 +49,7 @@ export function Scale(props: Props): JSX.Element {
   function handleDown() {
     const value = props.value - 1;
 
-    if (value > props.min) {
+    if (value >= props.min) {
       props.handleChange(value);
     }
   }
