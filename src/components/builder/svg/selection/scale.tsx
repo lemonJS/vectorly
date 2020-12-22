@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { SVG, Transform } from '@type/editor';
+import { calculateTransform } from '@lib/scaling';
 
 interface Props {
   height: number;
@@ -100,50 +101,18 @@ export class Scale extends React.Component<Props, State> {
     this.setState({ pressed: false });
   };
 
-  private calculateTransform(clientX: number, clientY: number): Partial<Transform> {
-    const svgBoundingRect = this.svg.getBoundingClientRect();
-
-    switch (this.props.position) {
-      case 'top-left':
-        return {
-          s: [
-            (this.box.width  - (clientX - this.offset.x)) / this.box.width,
-            (this.box.height - (clientY - this.offset.y)) / this.box.height
-          ],
-          x: this.offset.x + clientX - this.offset.x - svgBoundingRect.x,
-          y: this.offset.y + clientY - this.offset.y - svgBoundingRect.y
-        };
-      case 'top-right':
-        return {
-          s: [
-            (this.box.width  + (clientX - this.offset.x)) / this.box.width,
-            (this.box.height - (clientY - this.offset.y)) / this.box.height
-          ],
-          y: this.offset.y + clientY - this.offset.y - svgBoundingRect.y
-        };
-      case 'bottom-right':
-        return {
-          s: [
-            (this.box.width  + (clientX - this.offset.x)) / this.box.width,
-            (this.box.height + (clientY - this.offset.y)) / this.box.height
-          ]
-        };
-      case 'bottom-left':
-        return {
-          s: [
-            (this.box.width  - (clientX - this.offset.x)) / this.box.width,
-            (this.box.height + (clientY - this.offset.y)) / this.box.height
-          ],
-          x: this.offset.x + clientX - this.offset.x - svgBoundingRect.x
-        };
-      default:
-        return null;
-    }
-  }
-
   private handleMouseMove = (event: MouseEvent) => {
     if (this.state.pressed) {
-      const transform = this.calculateTransform(event.clientX, event.clientY);
+      const transform = calculateTransform({
+        svg: this.svg,
+        clientX: event.clientX,
+        clientY: event.clientY,
+        height: this.box.height,
+        offsetX: this.offset.x,
+        offsetY: this.offset.y,
+        position: this.props.position,
+        width: this.box.width
+      });
       this.props.handleTransform(transform);
     }
   }
