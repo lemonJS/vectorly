@@ -1,6 +1,5 @@
 import React from 'react';
 
-import { clamp } from 'lodash';
 import { SVG, Transform } from '@type/editor';
 
 interface Props {
@@ -57,14 +56,6 @@ export class Move extends React.Component<Props, State> {
     return this.props.padding / this.props.transform.s[1];
   }
 
-  private clampMoveX = (scale: number) => {
-    return clamp(Math.ceil(scale), 0, this.svg.clientWidth);
-  };
-
-  private clampMoveY = (scale: number) => {
-    return clamp(Math.ceil(scale), 0, this.svg.clientHeight);
-  };
-
   private handleMouseUp = () => {
     this.setState({ pressed: false });
   };
@@ -87,8 +78,8 @@ export class Move extends React.Component<Props, State> {
       const { x, y } = this.svg.getBoundingClientRect();
 
       this.props.handleTransform({
-        x: this.clampMoveX(event.clientX - x - this.offset.x),
-        y: this.clampMoveY(event.clientY - y - this.offset.y)
+        x: event.clientX - x - this.offset.x,
+        y: event.clientY - y - this.offset.y
       });
     }
   };

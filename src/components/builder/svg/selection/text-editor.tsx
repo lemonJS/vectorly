@@ -17,6 +17,7 @@ const styles = css`
     border: none;
     color: red;
     height: 100%;
+    margin: -1px 0 0 .5px;
     padding: .5rem;
     resize: none;
     scrollbar-width: none;
@@ -43,6 +44,7 @@ export function TextEditor(props: Props): JSX.Element {
     fontSize: props.element.props.fontSize + 'px',
     fontStyle: props.element.props.fontStyle as string,
     fontWeight: props.element.props.fontWeight as any,
+    lineHeight: (props.element.props.fontSize as number) + 4 + 'px',
     letterSpacing: props.element.props.letterSpacing,
     textDecoration: props.element.props.textDecoration
     // TODO

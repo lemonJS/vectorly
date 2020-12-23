@@ -46,7 +46,7 @@ export function Positioning(props: Props): JSX.Element {
       const element = event.target as HTMLInputElement;
       const value = Number(element.value);
 
-      const update = { ...transform, [property]: Math.ceil(value) }
+      const update = { ...transform, [property]: value }
       props.handleUpdate({ transform: update });
     }
   }
@@ -55,7 +55,7 @@ export function Positioning(props: Props): JSX.Element {
     const element = event.target as HTMLInputElement;
     const value = Number(element.value);
 
-    const update = { ...transform, r: Math.ceil(value) + 90 }
+    const update = { ...transform, r: value + 90 }
     props.handleUpdate({ transform: update });
   }
 

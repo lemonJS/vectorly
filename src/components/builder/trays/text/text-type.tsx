@@ -70,6 +70,7 @@ export function TextType(props: Props): JSX.Element {
         s: [1, 1]
       },
       props: {
+        dominantBaseline: 'text-before-edge',
         fill: '#283037',
         fontSize: getFontSize(),
         fontFamily: 'Arial',

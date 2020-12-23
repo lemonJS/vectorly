@@ -42,6 +42,7 @@ export function Emoji(props: Props): JSX.Element {
       },
       props: {
         color: '#283037',
+        dominantBaseline: 'text-before-edge',
         fontSize: 80,
         fontWeight: 'normal',
         fontStyle: 'normal',

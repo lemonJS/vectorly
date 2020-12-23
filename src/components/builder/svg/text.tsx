@@ -57,7 +57,7 @@ export class Text extends React.Component<Props> {
     return (
       <React.Fragment>
         {this.lines.map((line, index) => (
-          <tspan fillOpacity={this.fillOpacity} textAnchor={this.textAnchor} key={line} y={this.y(index)} x={this.x}>{line}</tspan>
+          <tspan alignmentBaseline='text-before-edge' fillOpacity={this.fillOpacity} textAnchor={this.textAnchor} key={line} y={this.y(index)} x={this.x}>{line}</tspan>
         ))}
       </React.Fragment>
     );
