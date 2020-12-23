@@ -4,23 +4,25 @@ import { useSelector } from 'react-redux';
 import { Element as ProjectElement } from '@type/project';
 import { Container } from '@components/builder/svg/container';
 import { Text } from '@components/builder/svg/text';
-import { selectedElementSelector } from '@lib/selection/selectors';
+import { selectionSelector } from '@lib/selection/selectors';
 
 interface Props {
   element: ProjectElement;
 }
 
 export function Element(props: Props): JSX.Element {
-  const selected = useSelector(selectedElementSelector);
+  const selectedElement = useSelector(selectionSelector);
+
+  const selected = selectedElement?.elementId === props.element.elementId;
 
   const element = React.createElement(
     props.element.element,
     props.element.props,
-    <Text element={props.element} />
+    <Text element={props.element} selected={selected} />
   );
 
   return (
-    <Container id={props.element.elementId} selected={props.element.elementId === selected?.elementId} element={props.element}>
+    <Container id={props.element.elementId} element={props.element} selected={selected}>
       {element}
     </Container>
   );

@@ -1,16 +1,19 @@
 import React from 'react';
 
 import ReactDOM from 'react-dom';
+import { Element } from '@type/project';
 import { SVG, Transform } from '@type/editor';
 import { Outline } from '@components/builder/svg/selection/outline';
 import { Move } from '@components/builder/svg/selection/move';
 import { Rotate } from '@components/builder/svg/selection/rotate';
 import { Scale } from '@components/builder/svg/selection/scale';
+import { TextEditor } from '@components/builder/svg/selection/text-editor';
 
 interface Props {
   box: SVGRect;
   transform: Transform;
   parent: string;
+  element: Element;
   handleTransform: (transform: Partial<Transform>) => void;
 }
 
@@ -65,18 +68,20 @@ export class Selection extends React.Component<Props> {
       padding: this.padding,
       parent: this.props.parent,
       handleTransform: this.props.handleTransform,
+      element: this.props.element,
       width: this.width
     };
 
     const Element = (
       <g transform={this.transform}>
         <Outline {...props} />
+        <Move {...props} />
+        <Rotate {...props} />
+        <TextEditor {...props} />
         <Scale position='top-left' {...props} />
         <Scale position='top-right' {...props} />
         <Scale position='bottom-right' {...props} />
         <Scale position='bottom-left' {...props} />
-        <Move {...props} />
-        <Rotate {...props} />
       </g>
     );
 

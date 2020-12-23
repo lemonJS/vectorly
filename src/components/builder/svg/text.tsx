@@ -6,6 +6,7 @@ import { getBox } from "@lib/helpers";
 
 interface Props {
   element: Element;
+  selected: boolean;
 }
 
 export class Text extends React.Component<Props> {
@@ -44,13 +45,19 @@ export class Text extends React.Component<Props> {
     return this.props.element.text.split('\n');
   }
 
+  private get fillOpacity() {
+    return this.props.selected && this.props.element.type === 'text'
+      ? 0
+      : undefined;
+  }
+
   public render(): JSX.Element {
     if (!this.props.element.text) return null;
 
     return (
       <React.Fragment>
         {this.lines.map((line, index) => (
-          <tspan textAnchor={this.textAnchor} key={line} y={this.y(index)} x={this.x}>{line}</tspan>
+          <tspan fillOpacity={this.fillOpacity} textAnchor={this.textAnchor} key={line} y={this.y(index)} x={this.x}>{line}</tspan>
         ))}
       </React.Fragment>
     );

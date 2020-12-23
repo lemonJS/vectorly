@@ -10,8 +10,8 @@ import { updateProjectElement } from '@lib/projects/actions';
 
 interface Props extends ElementProps {
   id: string;
-  selected: boolean;
   element: Element;
+  selected: boolean;
 }
 
 export function Container(props: Props): JSX.Element {
@@ -24,7 +24,9 @@ export function Container(props: Props): JSX.Element {
   const transform = `translate(${x} ${y}) rotate(${r} ${(box.width * s[0]) / 2} ${(box.height * s[1]) / 2}) scale(${s[0]} ${s[1]})`;
 
   function handleClick() {
-    dispatch(setSelectionId(props.element.elementId));
+    if (!props.selected) {
+      dispatch(setSelectionId(props.element.elementId));
+    }
   }
 
   function handleTransform(update: Partial<Transform>) {
@@ -41,6 +43,7 @@ export function Container(props: Props): JSX.Element {
             box={box}
             transform={props.element.transform}
             parent={props.id}
+            element={props.element}
             handleTransform={handleTransform}
           />
         )}

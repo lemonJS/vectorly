@@ -13,7 +13,7 @@ export function setSelectionId(elementId: string | null) {
 
     // Switch the tray over to the matching one
     if (project) {
-      const element = project.elements.find(e => e.elementId === elementId);
+      const element = project.elements.find(e => e.elementId === elementId) || null;
 
       if (element) {
         const menu = getLayoutForElementType(element.type);
@@ -22,3 +22,4 @@ export function setSelectionId(elementId: string | null) {
     }
   };
 }
+
