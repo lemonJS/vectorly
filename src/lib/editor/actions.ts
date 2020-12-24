@@ -54,6 +54,12 @@ export function redo() {
   }
 }
 
+export function setRulers(rulers: boolean) {
+  return async function(dispatch: Dispatch<any>) {
+    dispatch({ type: 'EDITOR', payload: { rulers }});
+  }
+}
+
 export function setZoom(direction: 'up' | 'down') {
   return async function(dispatch: Dispatch<any>, getState: GetState) {
     const step = 10;

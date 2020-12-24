@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { css } from '@emotion/css';
 import { Button } from '@components/common/button';
 import { editorSelector } from '@lib/editor/selectors';
-import { redo, undo } from "@lib/editor/actions";
+import { redo, setRulers, undo } from '@lib/editor/actions';
 
 const styles = css`
   align-items: center;
@@ -39,6 +39,10 @@ const styles = css`
       pointer-events: none;
     }
     
+    &.active {
+      color: var(--primary-accent-color);
+    }
+    
     &:hover {
       i {
         color: var(--primary-accent-color);
@@ -50,7 +54,7 @@ const styles = css`
 export function UndoRedo(): JSX.Element {
   const dispatch = useDispatch();
 
-  const { undoStack, undoStackIndex } = useSelector(editorSelector);
+  const { undoStack, undoStackIndex, rulers } = useSelector(editorSelector);
 
   const canUndo = undoStack.length > 0 && undoStackIndex >= 0;
 
@@ -64,6 +68,10 @@ export function UndoRedo(): JSX.Element {
     dispatch(redo());
   }
 
+  function handleRulers() {
+    dispatch(setRulers(!rulers));
+  }
+
   return (
     <div className={styles}>
       <Button className={canUndo ? '' : 'disabled'} onClick={handleUndo}>
@@ -72,6 +80,10 @@ export function UndoRedo(): JSX.Element {
       <span className='divider' />
       <Button className={canRedo ? '' : 'disabled'} onClick={handleRedo}>
         <i className='ri-arrow-go-forward-line' />
+      </Button>
+      <span className='divider' />
+      <Button className={rulers ? 'active' : ''} onClick={handleRulers}>
+        <i className='ri-ruler-2-line' />
       </Button>
     </div>
   );
