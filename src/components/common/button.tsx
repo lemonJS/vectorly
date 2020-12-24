@@ -60,7 +60,7 @@ export function Button(props: Props): JSX.Element {
   const { children, className, loading, ...rest } = props;
 
   return (
-    <button className={`${styles} ${className}`} {...rest}>
+    <button className={`${styles} ${className || ''}`} {...rest}>
       {loading ? <Spinner /> : children}
     </button>
   );

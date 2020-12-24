@@ -4,14 +4,14 @@ import { useSelector } from 'react-redux';
 import { Element as ProjectElement } from '@type/project';
 import { Container } from '@components/builder/svg/container';
 import { Text } from '@components/builder/svg/text';
-import { selectionSelector } from '@lib/selection/selectors';
+import { editorSelector } from '@lib/editor/selectors';
 
 interface Props {
   element: ProjectElement;
 }
 
 export function Element(props: Props): JSX.Element {
-  const selectedElement = useSelector(selectionSelector);
+  const { selectedElement } = useSelector(editorSelector);
 
   const selected = selectedElement?.elementId === props.element.elementId;
 

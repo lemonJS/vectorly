@@ -3,7 +3,7 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { css } from '@emotion/css';
 import { Divider } from '@components/common/divider';
-import { setSelectionId } from '@lib/selection/actions';
+import { setSelectionId } from '@lib/editor/actions';
 
 interface Props {
   title: String;

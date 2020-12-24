@@ -18,13 +18,11 @@ const styles = css`
     border: none;
     color: red;
     height: 100%;
-    margin: -1px 0 0 .5px;
     outline: none;
-    padding: .5rem;
+    padding: calc(.5rem - 2px) calc(.5rem - 1px);
     resize: none;
     scrollbar-width: none;
     width: 100%;
-    white-space: nowrap;
   }
 `;
 

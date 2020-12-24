@@ -7,7 +7,7 @@ import { Wrapper } from '@components/builder/layout/wrapper';
 import { getUser } from '@lib/user/actions';
 import { getProjects } from '@lib/projects/actions';
 import { projectSelector } from '@lib/projects/selectors';
-import { setSelectionId } from '@lib/selection/actions';
+import { setSelectionId } from '@lib/editor/actions';
 import { setMenuSelected } from '@lib/layout/actions';
 
 export default function Project(): JSX.Element {

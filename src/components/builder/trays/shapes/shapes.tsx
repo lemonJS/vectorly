@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 import { css } from '@emotion/css';
 import { Create } from '@components/builder/trays/shapes/create';
 import { Edit } from '@components/builder/trays/shapes/edit';
-import { selectedElementSelector } from '@lib/selection/selectors';
+import { selectedElementSelector } from '@lib/editor/selectors';
 
 const styles = css`
   display: flex;

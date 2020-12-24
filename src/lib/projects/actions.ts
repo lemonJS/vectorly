@@ -4,16 +4,24 @@ import { Dispatch } from 'redux';
 import { api } from '@lib/api';
 import { Project, Element } from '@type/project';
 import { GetState } from '@type/redux';
-import { setSelectionId } from '@lib/selection/actions';
+import { setSaving, setSelectionId } from '@lib/editor/actions';
 import { projectSelector, projectsSelector } from '@lib/projects/selectors';
 import { getImageUploadPayload, uploadImagesToS3 } from '@lib/images';
 
-const syncWithServer = debounce(async (project: Project) => {
+const syncWithServer = debounce(async (dispatch: Dispatch<any>, project: Project) => {
+  dispatch(setSaving(true));
+
   // To make the UI as fast as possible, we optimistically update
   // the store on the client. We then debounce the sync and hope all
   // is well
   const { projectId, title, elements } = project;
   await api.put(`/projects/${projectId}`, { title, elements });
+
+  // The actual save is too fast so make it look like something is
+  // really happening
+  setTimeout(() => {
+    dispatch(setSaving(false));
+  }, 2000);
 }, 1000);
 
 export function getProjects() {
@@ -29,7 +37,7 @@ export function updateProject(payload: Partial<Project>) {
     const projects = projectsSelector(getState());
 
     const update = { ...project, ...payload };
-    syncWithServer(update);
+    syncWithServer(dispatch, update);
     dispatch({ type: 'PROJECTS', payload: projects.map(p => p.projectId === project.projectId ? update : p) });
   }
 }

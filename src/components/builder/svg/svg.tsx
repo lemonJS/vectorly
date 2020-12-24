@@ -5,7 +5,7 @@ import { css } from '@emotion/css';
 import { Transform } from '@type/editor';
 import { Element } from '@components/builder/svg/element';
 import { projectSelector } from '@lib/projects/selectors';
-import { setSelectionId } from '@lib/selection/actions';
+import { setSelectionId } from '@lib/editor/actions';
 import { createProjectElement } from '@lib/projects/actions';
 
 type Svg = SVGGraphicsElement & HTMLElement;

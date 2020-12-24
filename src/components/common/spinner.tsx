@@ -53,7 +53,7 @@ const styles = css`
 
 export function Spinner(props: Props): JSX.Element {
   return (
-    <div className={`${styles} ${props.className}`}>
+    <div className={`${styles} ${props.className || ''}`}>
       <div className='spinner'>
         <div />
         <div />

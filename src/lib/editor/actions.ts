@@ -9,7 +9,7 @@ export function setSelectionId(elementId: string | null) {
     const project = projectSelector()(getState());
 
     // Set the currently selected item
-    dispatch({ type: 'SELECTION', payload: { elementId } });
+    dispatch({ type: 'EDITOR', payload: { selectedElement: { elementId } } });
 
     // Switch the tray over to the matching one
     if (project) {
@@ -23,3 +23,23 @@ export function setSelectionId(elementId: string | null) {
   };
 }
 
+export function setSaving(saving: boolean) {
+  return async function(dispatch: Dispatch<any>) {
+    dispatch({ type: 'EDITOR', payload: { saving } });
+  }
+}
+
+export function setZoom(direction: 'up' | 'down') {
+  return async function(dispatch: Dispatch<any>, getState: GetState) {
+    const step = 10;
+    const { editor } = getState();
+
+    const zoom = direction === 'up'
+      ? editor.zoom + step
+      : editor.zoom - step;
+
+    if (zoom > 10 && zoom <= 200) {
+      dispatch({ type: 'EDITOR', payload: { zoom } });
+    }
+  }
+}
