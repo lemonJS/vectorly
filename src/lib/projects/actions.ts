@@ -4,20 +4,21 @@ import { Dispatch } from 'redux';
 import { api } from '@lib/api';
 import { Project, Element } from '@type/project';
 import { GetState } from '@type/redux';
+import { ProjectsAction } from '@lib/projects/reducers';
 import { setSelectionId } from '@lib/editor/actions';
 import { projectSelector, projectsSelector } from '@lib/projects/selectors';
 import { getImageUploadPayload, uploadImagesToS3 } from '@lib/images';
 import { syncWithServer } from '@lib/projects/sync';
 
 export function getProjects() {
-  return async function(dispatch: Dispatch<any>) {
+  return async function(dispatch: Dispatch<ProjectsAction>) {
     const projects = await api.get('/projects');
     dispatch({ type: 'PROJECTS', payload: projects });
   };
 }
 
 export function updateProject(payload: Partial<Project>) {
-  return async function(dispatch: Dispatch<any>, getState: GetState) {
+  return async function(dispatch: Dispatch<ProjectsAction>, getState: GetState) {
     const project = projectSelector()(getState());
     const projects = projectsSelector(getState());
 

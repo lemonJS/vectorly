@@ -1,7 +1,6 @@
 import { Element } from '@type/project';
 
 export type EditorState = {
-  rulers: boolean;
   saving: boolean;
   selectedElement: Element | null;
   undoStack: string[];
@@ -15,7 +14,6 @@ export interface EditorAction {
 }
 
 export const initialState: EditorState = {
-  rulers: false,
   saving: false,
   selectedElement: null,
   undoStack: [],

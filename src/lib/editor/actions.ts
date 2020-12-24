@@ -4,9 +4,10 @@ import { Project } from '@type/project';
 import { setMenuSelected } from '@lib/layout/actions';
 import { getLayoutForElementType } from '@lib/helpers';
 import { projectSelector } from '@lib/projects/selectors';
+import { EditorAction } from '@lib/editor/reducers';
 
 export function setSelectionId(elementId: string | null) {
-  return async function(dispatch: Dispatch<any>, getState: GetState) {
+  return async function(dispatch: Dispatch<EditorAction | any>, getState: GetState) {
     const project = projectSelector()(getState());
 
     // Set the currently selected item
@@ -25,19 +26,19 @@ export function setSelectionId(elementId: string | null) {
 }
 
 export function setSaving(saving: boolean) {
-  return async function(dispatch: Dispatch<any>) {
+  return async function(dispatch: Dispatch<EditorAction>) {
     dispatch({ type: 'EDITOR', payload: { saving } });
   }
 }
 
 export function updateUndoStack(_update: Partial<Project>) {
-  return async function(dispatch: Dispatch<any>) {
+  return async function(dispatch: Dispatch<EditorAction>) {
     dispatch({ type: 'EDITOR', payload: { undoStack: [], undoStackIndex: 0 } });
   }
 }
 
 export function undo() {
-  return async function(dispatch: Dispatch<any>, getState: GetState) {
+  return async function(dispatch: Dispatch<EditorAction>, getState: GetState) {
     const { editor } = getState();
     const { undoStackIndex } = editor;
 
@@ -46,7 +47,7 @@ export function undo() {
 }
 
 export function redo() {
-  return async function(dispatch: Dispatch<any>, getState: GetState) {
+  return async function(dispatch: Dispatch<EditorAction>, getState: GetState) {
     const { editor } = getState();
     const { undoStackIndex } = editor;
 
@@ -54,14 +55,8 @@ export function redo() {
   }
 }
 
-export function setRulers(rulers: boolean) {
-  return async function(dispatch: Dispatch<any>) {
-    dispatch({ type: 'EDITOR', payload: { rulers }});
-  }
-}
-
 export function setZoom(direction: 'up' | 'down') {
-  return async function(dispatch: Dispatch<any>, getState: GetState) {
+  return async function(dispatch: Dispatch<EditorAction>, getState: GetState) {
     const step = 10;
     const { editor } = getState();
 
