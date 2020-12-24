@@ -17,6 +17,7 @@ const styles = css`
   font-size: 14px;
   height: 42px;
   line-height: 20px;
+  outline: none;
   padding: .5rem;
   
   i {

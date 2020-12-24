@@ -19,10 +19,12 @@ const styles = css`
     color: red;
     height: 100%;
     margin: -1px 0 0 .5px;
+    outline: none;
     padding: .5rem;
     resize: none;
     scrollbar-width: none;
     width: 100%;
+    white-space: nowrap;
   }
 `;
 
