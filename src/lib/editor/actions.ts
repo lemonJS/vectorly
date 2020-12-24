@@ -1,5 +1,6 @@
 import { Dispatch } from 'redux';
 import { GetState } from '@type/redux';
+import { Project } from '@type/project';
 import { setMenuSelected } from '@lib/layout/actions';
 import { getLayoutForElementType } from '@lib/helpers';
 import { projectSelector } from '@lib/projects/selectors';
@@ -26,6 +27,30 @@ export function setSelectionId(elementId: string | null) {
 export function setSaving(saving: boolean) {
   return async function(dispatch: Dispatch<any>) {
     dispatch({ type: 'EDITOR', payload: { saving } });
+  }
+}
+
+export function updateUndoStack(_update: Partial<Project>) {
+  return async function(dispatch: Dispatch<any>) {
+    dispatch({ type: 'EDITOR', payload: { undoStack: [], undoStackIndex: 0 } });
+  }
+}
+
+export function undo() {
+  return async function(dispatch: Dispatch<any>, getState: GetState) {
+    const { editor } = getState();
+    const { undoStackIndex } = editor;
+
+    dispatch({ type: 'EDITOR', payload: { undoStackIndex: undoStackIndex - 1 } });
+  }
+}
+
+export function redo() {
+  return async function(dispatch: Dispatch<any>, getState: GetState) {
+    const { editor } = getState();
+    const { undoStackIndex } = editor;
+
+    dispatch({ type: 'EDITOR', payload: { undoStackIndex: undoStackIndex + 1 } });
   }
 }
 

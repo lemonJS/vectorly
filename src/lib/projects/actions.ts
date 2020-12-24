@@ -1,28 +1,13 @@
 import { v4 as uuid } from 'uuid';
-import { merge, debounce } from 'lodash';
+import { merge } from 'lodash';
 import { Dispatch } from 'redux';
 import { api } from '@lib/api';
 import { Project, Element } from '@type/project';
 import { GetState } from '@type/redux';
-import { setSaving, setSelectionId } from '@lib/editor/actions';
+import { setSelectionId } from '@lib/editor/actions';
 import { projectSelector, projectsSelector } from '@lib/projects/selectors';
 import { getImageUploadPayload, uploadImagesToS3 } from '@lib/images';
-
-const syncWithServer = debounce(async (dispatch: Dispatch<any>, project: Project) => {
-  dispatch(setSaving(true));
-
-  // To make the UI as fast as possible, we optimistically update
-  // the store on the client. We then debounce the sync and hope all
-  // is well
-  const { projectId, title, elements } = project;
-  await api.put(`/projects/${projectId}`, { title, elements });
-
-  // The actual save is too fast so make it look like something is
-  // really happening
-  setTimeout(() => {
-    dispatch(setSaving(false));
-  }, 2000);
-}, 1000);
+import { syncWithServer } from '@lib/projects/sync';
 
 export function getProjects() {
   return async function(dispatch: Dispatch<any>) {

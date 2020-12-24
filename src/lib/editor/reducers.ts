@@ -3,6 +3,8 @@ import { Element } from '@type/project';
 export type EditorState = {
   saving: boolean;
   selectedElement: Element | null;
+  undoStack: string[];
+  undoStackIndex: number,
   zoom: number;
 };
 
@@ -14,6 +16,8 @@ export interface EditorAction {
 export const initialState: EditorState = {
   saving: false,
   selectedElement: null,
+  undoStack: [],
+  undoStackIndex: 0,
   zoom: 100
 };
 
