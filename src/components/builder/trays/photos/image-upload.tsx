@@ -26,6 +26,12 @@ const styles = css`
     text-align: center;
     width: 100%;
     
+    &:hover {
+      background: var(--secondary-button-border-color);
+      border-color: var(--secondary-button-border-color);
+      color: var(--secondary-button-background-color);
+    }
+    
     i {
       font-size: 1rem;
       margin-left: .5rem;

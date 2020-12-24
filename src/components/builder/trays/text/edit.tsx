@@ -3,7 +3,6 @@ import React from 'react'
 import { useDispatch } from 'react-redux';
 import { Element, Project, ElementProps } from '@type/project';
 import { Close } from '@components/builder/trays/close';
-import { Contents } from '@components/builder/trays/text/contents';
 import { Actions } from '@components/builder/trays/actions';
 import { FontAndSize } from '@components/builder/trays/text/font-and-size';
 import { Style } from '@components/builder/trays/text/style';
@@ -35,7 +34,6 @@ export function Edit(props: Props): JSX.Element {
   return (
     <div>
       <Close title='Edit Text' />
-      <Contents element={props.element} handleUpdate={handleUpdate} />
       <FontAndSize element={props.element} handleUpdate={handlePropsUpdate} />
       <Style element={props.element} handleUpdate={handlePropsUpdate} />
       <Alignment element={props.element} handleUpdate={handlePropsUpdate} />

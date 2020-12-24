@@ -77,11 +77,11 @@ export function Positioning(props: Props): JSX.Element {
       <Label>Position</Label>
       <div className='input-group'>
         <div className='inputs input-x'>
-          <Input value={transform.x} onChange={handleTransform('x')} />
+          <Input value={Math.ceil(transform.x)} onChange={handleTransform('x')} />
         </div>
         <i className='ri-close-line' />
         <div className='inputs input-y'>
-          <Input value={transform.y} onChange={handleTransform('y')} />
+          <Input value={Math.ceil(transform.y)} onChange={handleTransform('y')} />
         </div>
       </div>
 
