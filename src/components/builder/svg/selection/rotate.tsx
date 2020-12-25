@@ -18,7 +18,7 @@ interface State {
 export class Rotate extends React.Component<Props, State> {
   private readonly parent: SVG;
 
-  public constructor(props) {
+  public constructor(props: Props) {
     super(props);
 
     this.state = { pressed: false };

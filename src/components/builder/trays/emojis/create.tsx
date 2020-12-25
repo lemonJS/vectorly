@@ -2,7 +2,6 @@ import React from 'react';
 
 import emojis from 'emojilib';
 import { css } from '@emotion/css';
-import { EmojiData } from '@type/emoji';
 import { Button } from '@components/common/button';
 import { Input } from '@components/common/input';
 import { Label } from '@components/common/label';
@@ -48,7 +47,7 @@ export function Create(): JSX.Element {
     .map(e => emojis.lib[e]);
 
   const all = Object
-    .values(emojis.lib as EmojiData[])
+    .values(emojis.lib)
     .filter(emoji => {
       return search
         ? emoji.keywords.some(k => k.includes(search.toLowerCase()))

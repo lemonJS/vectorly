@@ -1,13 +1,13 @@
 import React from 'react';
 
+import { EmojiLib } from 'emojilib';
 import { useDispatch } from 'react-redux';
 import { css } from '@emotion/css';
-import { EmojiData } from '@type/emoji';
 import { Element } from '@type/project';
 import { createProjectElement } from '@lib/projects/actions';
 
 interface Props {
-  emoji: EmojiData;
+  emoji: EmojiLib;
 }
 
 const styles = css`

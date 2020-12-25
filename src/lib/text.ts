@@ -1,20 +1,25 @@
 import React from 'react'
 
+import { Property } from 'csstype';
 import { ElementProps } from '@type/project';
 
-const textAlignMap = {
+interface TextAlignMap {
+  [key: string]: string;
+}
+
+const textAlignMap: TextAlignMap = {
   start: 'left',
   middle: 'center',
   end: 'right'
 };
 
-const getFontStyle = (fontStyle: string | number) => fontStyle as string;
+const getFontStyle = (fontStyle: string | number) => fontStyle as Property.FontStyle;
 
-const getFontWeight = (fontWeight: string | number) => fontWeight as any;
+const getFontWeight = (fontWeight: string | number) => fontWeight as Property.FontWeight;
 
 const getLineHeight = (fontSize: string | number) => (fontSize as number) + 4 + 'px';
 
-const getTextAlign = (textAnchor: string) => textAlignMap[textAnchor];
+const getTextAlign = (textAnchor: keyof TextAlignMap) => textAlignMap[textAnchor] as Property.TextAlign;
 
 export function convertTextPropertiesToCss(properties: ElementProps): React.CSSProperties {
   return {

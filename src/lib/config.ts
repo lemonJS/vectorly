@@ -1,4 +1,10 @@
-export const config = {
+interface Config {
+  styles: {
+    [key: string]: string | null;
+  }
+}
+
+export const config: Config = {
   styles: {
     // Accent Colors:
     'primary-accent-color': '#4aacd9',

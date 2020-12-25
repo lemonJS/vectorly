@@ -33,9 +33,10 @@ const styles = css`
 `;
 
 export default function Signup(): JSX.Element {
-  const error = null;
   const router = useRouter();
   const dispatch = useDispatch();
+
+  const [error, setError] = React.useState(null);
 
   async function handleSubmit(input: AuthFormData) {
     try {
@@ -43,7 +44,7 @@ export default function Signup(): JSX.Element {
       dispatch(setUser(user));
       await router.push('/');
     } catch(error) {
-      console.error(error);
+      setError(error);
     }
   }
 
