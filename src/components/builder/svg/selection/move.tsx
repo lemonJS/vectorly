@@ -62,13 +62,22 @@ export class Move extends React.Component<Props, State> {
 
   private handleMouseDown = (event: React.MouseEvent<SVGEllipseElement>) => {
     const element = event.target as HTMLDivElement;
+
+    // The bounds of the the drag handle
     const { x: x1, y: y1 } = element.getBoundingClientRect();
+    // The bounds of the element that is being moved
     const { x: x2, y: y2 } = this.parent.getBoundingClientRect();
+
+    // The offset between where the mouse was clicked,
+    // and the drag handle (0,0 of the drag handle can't
+    // be used or it will jump by a few pixels)
+    const diffX = event.clientX - x1;
+    const diffY = event.clientY - y1;
 
     // Store where exactly the user grabbed the handle
     // so it can be subtracted later. Otherwise it will
     // jump around all over the place
-    this.offset = { x: x1 - x2, y: y1 - y2 };
+    this.offset = { x: x1 - x2 + diffX, y: y1 - y2 + diffY };
 
     this.setState({ pressed: true });
   };

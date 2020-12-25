@@ -30,6 +30,7 @@ export function convertTextPropertiesToCss(properties: ElementProps): React.CSSP
     fontWeight: getFontWeight(properties.fontWeight),
     lineHeight: getLineHeight(properties.fontSize),
     letterSpacing: properties.letterSpacing,
+    opacity: properties.opacity,
     textAlign: getTextAlign(properties.textAnchor),
     textDecoration: properties.textDecoration
   };
