@@ -25,6 +25,14 @@ const styles = css`
   .paginate {
     padding: 1.5rem 0;
   }
+
+  @media only screen and (max-width: 1024px) {
+    width: 100%;
+    
+    .search {
+      display: none;
+    }
+  }
 `;
 
 export function Create(): JSX.Element {
@@ -56,7 +64,7 @@ export function Create(): JSX.Element {
 
   return (
     <div className={styles}>
-      <Input value={search} onChange={handleSearch} placeholder='Search...' />
+      <Input className='search' value={search} onChange={handleSearch} placeholder='Search...' />
 
       {!search && (
         <>

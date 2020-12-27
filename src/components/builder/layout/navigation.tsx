@@ -15,6 +15,15 @@ const styles = css`
   .navigation {
     flex: 1;
   }
+
+  @media only screen and (max-width: 1024px) {
+    flex-direction: row;
+    width: 100%;
+    
+    .navigation {
+      display: flex;
+    }
+  }
 `;
 
 export function Navigation(): JSX.Element {

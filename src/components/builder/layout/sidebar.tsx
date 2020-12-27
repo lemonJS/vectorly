@@ -18,6 +18,10 @@ const styles = css`
   &.menu-open {
     overflow: visible;
   }
+
+  @media only screen and (max-width: 1024px) {
+    flex-direction: column;
+  }
 `;
 
 export function Sidebar(props: Props) {

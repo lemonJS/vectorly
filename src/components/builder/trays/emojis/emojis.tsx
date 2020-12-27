@@ -12,6 +12,10 @@ const styles = css`
   overflow-y: scroll;
   padding: 1.5rem;
   width: 100%;
+
+  @media only screen and (max-width: 1024px) {
+    flex-direction: row;
+  }
 `;
 
 export function Emojis(): JSX.Element {

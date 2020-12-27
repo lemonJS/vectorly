@@ -24,6 +24,20 @@ const styles = css`
   &.menu-open {
     grid-template-columns: 360px 1fr;
   }
+
+  @media only screen and (max-width: 1024px) {
+    grid-template-areas:
+      'header'
+      'content'
+      'sidebar';
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: 64px minmax(0, 1fr) 5rem;
+    
+    &.menu-open {
+      grid-template-columns: minmax(0, 1fr);
+      grid-template-rows: 64px minmax(0, 1fr) 274px;
+    }
+  }
 `;
 
 export function Wrapper(props: Props): JSX.Element {

@@ -12,6 +12,11 @@ const styles = css`
   overflow-y: scroll;
   padding: 1.5rem;
   width: 100%;
+
+  @media only screen and (max-width: 1024px) {
+    flex-direction: row;  
+    overflow: auto hidden;
+  }
 `;
 
 export function Shapes(): JSX.Element {

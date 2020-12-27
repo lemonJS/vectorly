@@ -9,6 +9,8 @@ import { Text } from '@components/builder/trays/text/text';
 import { layoutSelector } from '@lib/layout/selectors';
 import { projectSelector } from '@lib/projects/selectors';
 
+// TODO: performance will be better if these are all rendered but hidden with CSS
+
 export function Tray(): JSX.Element {
   const project = useSelector(projectSelector());
   const { menuSelected } = useSelector(layoutSelector);
