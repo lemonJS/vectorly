@@ -111,6 +111,7 @@ export class Scale extends React.Component<Props, State> {
         offsetX: this.offset.x,
         offsetY: this.offset.y,
         position: this.props.position,
+        transform: this.props.transform,
         width: this.box.width
       });
       this.props.handleTransform(transform);

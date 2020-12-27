@@ -23,6 +23,7 @@ const styles = css`
     resize: none;
     scrollbar-width: none;
     width: 100%;
+    white-space: pre;
   }
 `;
 
