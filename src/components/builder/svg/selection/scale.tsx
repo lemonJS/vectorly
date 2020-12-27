@@ -42,11 +42,17 @@ export class Scale extends React.Component<Props, State> {
 
     document.addEventListener('mouseup', this.handleMouseUp);
     document.addEventListener('mousemove', this.handleMouseMove);
+
+    document.addEventListener('touchend', this.handleTouchEnd);
+    document.addEventListener('touchmove', this.handleTouchMove);
   }
 
   public componentWillUnmount() {
     document.removeEventListener('mouseup', this.handleMouseUp, false);
     document.removeEventListener('mousemove', this.handleMouseMove, false);
+
+    document.removeEventListener('touchend', this.handleTouchEnd, false);
+    document.removeEventListener('touchmove', this.handleTouchMove, false);
   }
 
   private get cx() {
@@ -92,34 +98,58 @@ export class Scale extends React.Component<Props, State> {
     }
   }
 
-  private handleMouseDown = (event: React.MouseEvent<SVGEllipseElement>) => {
+  private beginDrag = (clientX: number, clientY: number) => {
     const box = this.parent.getBBox();
 
     this.setState({
       box: [box.width, box.height],
-      offset: [event.clientX, event.clientY],
+      offset: [clientX, clientY],
       pressed: true,
       scale: clone(this.props.transform.s)
     });
-  }
-
-  private handleMouseUp = () => {
-    this.setState({ pressed: false });
   };
 
-  private handleMouseMove = (event: MouseEvent) => {
+  private duringDrag = (clientX: number, clientY: number) => {
     if (this.state.pressed) {
       const transform = calculateTransform({
         svg: this.svg,
         box: this.state.box,
-        client: [event.clientX, event.clientY],
+        client: [clientX, clientY],
         offset: this.state.offset,
         position: this.props.position,
         scale: this.state.scale,
       });
       this.props.handleTransform(transform);
     }
-  }
+  };
+
+  private endDrag = () => {
+    this.setState({ pressed: false });
+  };
+
+  private handleMouseDown = (event: React.MouseEvent<SVGEllipseElement>) => {
+    this.beginDrag(event.clientX, event.clientY);
+  };
+
+  private handleTouchStart = (event: React.TouchEvent<SVGEllipseElement>) => {
+    this.beginDrag(event.touches[0].clientX, event.touches[0].clientY);
+  };
+
+  private handleMouseMove = (event: MouseEvent) => {
+    this.duringDrag(event.clientX, event.clientY);
+  };
+
+  private handleTouchMove = (event: TouchEvent) => {
+    this.duringDrag(event.touches[0].clientX, event.touches[0].clientY);
+  };
+
+  private handleMouseUp = () => {
+    this.endDrag();
+  };
+
+  private handleTouchEnd = () => {
+    this.endDrag();
+  };
 
   public render(): JSX.Element {
     return (
@@ -128,9 +158,10 @@ export class Scale extends React.Component<Props, State> {
         cy={this.cy}
         cursor={this.cursor}
         fill='var(--primary-accent-color)'
-        onMouseDown={this.handleMouseDown}
         rx={this.rx}
         ry={this.ry}
+        onMouseDown={this.handleMouseDown}
+        onTouchStart={this.handleTouchStart}
       />
     );
   }

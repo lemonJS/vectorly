@@ -28,11 +28,17 @@ export class Rotate extends React.Component<Props, State> {
   public componentDidMount() {
     document.addEventListener('mouseup', this.handleMouseUp);
     document.addEventListener('mousemove', this.handleMouseMove);
+
+    document.addEventListener('touchend', this.handleTouchEnd);
+    document.addEventListener('touchmove', this.handleTouchMove);
   }
 
   public componentWillUnmount() {
     document.removeEventListener('mouseup', this.handleMouseUp, false);
     document.removeEventListener('mousemove', this.handleMouseMove, false);
+
+    document.removeEventListener('touchend', this.handleTouchEnd, false);
+    document.removeEventListener('touchmove', this.handleTouchMove, false);
   }
 
   private get cx() {
@@ -51,28 +57,51 @@ export class Rotate extends React.Component<Props, State> {
     return this.props.padding / this.props.transform.s[1];
   }
 
-  private handleMouseMove = (event: MouseEvent) => {
+  private beginDrag = () => {
+    this.setState({ pressed: true });
+  };
+
+  private duringDrag = (clientX: number, clientY: number) => {
     if (this.state.pressed) {
       const bound = this.parent.getBoundingClientRect();
       const x = bound.left + bound.width / 2;
       const y = bound.top + bound.height / 2;
 
-      const radians = Math.atan2(event.clientY - y, event.clientX - x);
+      const radians = Math.atan2(clientY - y, clientX - x);
       // Because we're dragging, it needs to be inverted to feel natural
       const inverted = radians > 0 ? -Math.abs(radians) : Math.abs(radians);
       const degrees = (inverted * (180 / Math.PI) * -1) - 90;
 
-      // TODO snap to within x of 0, 45, 90 etc
       this.props.handleTransform({ r: degrees });
     }
   };
 
-  private handleMouseUp = () => {
+  private endDrag = () => {
     this.setState({ pressed: false });
   };
 
   private handleMouseDown = () => {
-    this.setState({ pressed: true });
+    this.beginDrag();
+  };
+
+  private handleTouchStart = () => {
+    this.beginDrag();
+  }
+
+  private handleMouseMove = (event: MouseEvent) => {
+    this.duringDrag(event.clientX, event.clientY);
+  };
+
+  private handleTouchMove = (event: TouchEvent) => {
+    this.duringDrag(event.touches[0].clientX, event.touches[0].clientY);
+  };
+
+  private handleMouseUp = () => {
+    this.endDrag();
+  };
+
+  private handleTouchEnd = () => {
+    this.endDrag();
   };
 
   public render(): JSX.Element {
@@ -85,6 +114,7 @@ export class Rotate extends React.Component<Props, State> {
         cursor='all-scroll'
         fill='var(--primary-accent-color)'
         onMouseDown={this.handleMouseDown}
+        onTouchStart={this.handleTouchStart}
       />
     );
   }

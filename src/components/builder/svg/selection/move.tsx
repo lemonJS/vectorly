@@ -33,11 +33,17 @@ export class Move extends React.Component<Props, State> {
 
     document.addEventListener('mouseup', this.handleMouseUp);
     document.addEventListener('mousemove', this.handleMouseMove);
+
+    document.addEventListener('touchend', this.handleTouchEnd);
+    document.addEventListener('touchmove', this.handleTouchMove);
   }
 
   public componentWillUnmount() {
     document.removeEventListener('mouseup', this.handleMouseUp, false);
     document.removeEventListener('mousemove', this.handleMouseMove, false);
+
+    document.removeEventListener('touchend', this.handleTouchEnd, false);
+    document.removeEventListener('touchmove', this.handleTouchMove, false);
   }
 
   private get cx() {
@@ -56,13 +62,7 @@ export class Move extends React.Component<Props, State> {
     return this.props.padding / this.props.transform.s[1];
   }
 
-  private handleMouseUp = () => {
-    this.setState({ pressed: false });
-  };
-
-  private handleMouseDown = (event: React.MouseEvent<SVGEllipseElement>) => {
-    const element = event.target as HTMLDivElement;
-
+  private beginDrag = (element: HTMLDivElement, clientX: number, clientY: number) => {
     // The bounds of the the drag handle
     const { x: x1, y: y1 } = element.getBoundingClientRect();
     // The bounds of the element that is being moved
@@ -71,8 +71,8 @@ export class Move extends React.Component<Props, State> {
     // The offset between where the mouse was clicked,
     // and the drag handle (0,0 of the drag handle can't
     // be used or it will jump by a few pixels)
-    const diffX = event.clientX - x1;
-    const diffY = event.clientY - y1;
+    const diffX = clientX - x1;
+    const diffY = clientY - y1;
 
     // Store where exactly the user grabbed the handle
     // so it can be subtracted later. Otherwise it will
@@ -82,15 +82,41 @@ export class Move extends React.Component<Props, State> {
     this.setState({ pressed: true });
   };
 
-  private handleMouseMove = (event: MouseEvent) => {
+  private duringDrag = (clientX: number, clientY: number) => {
     if (this.state.pressed) {
       const { x, y } = this.svg.getBoundingClientRect();
 
       this.props.handleTransform({
-        x: event.clientX - x - this.offset.x,
-        y: event.clientY - y - this.offset.y
+        x: clientX - x - this.offset.x,
+        y: clientY - y - this.offset.y
       });
     }
+  };
+
+  private handleMouseUp = () => {
+    this.setState({ pressed: false });
+  };
+
+  private handleTouchEnd = () => {
+    this.setState({ pressed: false });
+  };
+
+  private handleMouseDown = (event: React.MouseEvent<SVGEllipseElement>) => {
+    const element = event.target as HTMLDivElement;
+    this.beginDrag(element, event.clientX, event.clientY);
+  };
+
+  private handleTouchStart = (event: React.TouchEvent<SVGEllipseElement>) => {
+    const element = event.target as HTMLDivElement;
+    this.beginDrag(element, event.touches[0].clientX, event.touches[0].clientY);
+  };
+
+  private handleMouseMove = (event: MouseEvent) => {
+    this.duringDrag(event.clientX, event.clientY);
+  };
+
+  private handleTouchMove = (event: TouchEvent) => {
+    this.duringDrag(event.touches[0].clientX, event.touches[0].clientY);
   };
 
   public render(): JSX.Element {
@@ -103,6 +129,7 @@ export class Move extends React.Component<Props, State> {
         cursor='move'
         fill='var(--primary-accent-color)'
         onMouseDown={this.handleMouseDown}
+        onTouchStart={this.handleTouchStart}
       />
     );
   }
