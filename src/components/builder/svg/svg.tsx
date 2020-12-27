@@ -7,6 +7,7 @@ import { Element } from '@components/builder/svg/element';
 import { projectSelector } from '@lib/projects/selectors';
 import { setSelectionId } from '@lib/editor/actions';
 import { createProjectElement } from '@lib/projects/actions';
+import { zoomSelector } from '@lib/editor/selectors';
 
 type Svg = SVGGraphicsElement & HTMLElement;
 
@@ -35,6 +36,7 @@ const styles = css`
 export function SVG(): JSX.Element {
   const dispatch = useDispatch();
 
+  const zoom = useSelector(zoomSelector);
   const project = useSelector(projectSelector());
   const elements = project?.elements || [];
 
@@ -90,7 +92,7 @@ export function SVG(): JSX.Element {
   }, []);
 
   return (
-    <div className={styles}>
+    <div className={styles} style={{ transform: `scale(${zoom / 100})` }}>
       <svg id='canvas' viewBox='0 0 500 800' onMouseDown={handleMouseDown} onDrop={handleDrop} onDragOver={handleDragOver}>
         {elements.map(element => (
           <Element key={element.elementId} element={element} />

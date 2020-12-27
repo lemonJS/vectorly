@@ -13,6 +13,7 @@ const styles = css`
   display: flex;
   grid-area: sidebar;
   overflow: hidden;
+  z-index: 1;
   
   &.menu-open {
     overflow: visible;

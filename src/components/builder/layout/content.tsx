@@ -14,6 +14,7 @@ const styles = css`
   display: flex;
   justify-content: center;
   grid-area: content;
+  overflow: hidden;
   padding: 1.5rem;
   position: relative;
 `;

@@ -18,6 +18,7 @@ const styles = css`
   position: absolute;
   top: 0;
   width: 100%;
+  z-index: 2;
   
   .modal-body {
     background: var(--foreground-color);

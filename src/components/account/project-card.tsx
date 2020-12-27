@@ -49,7 +49,7 @@ const styles = css`
 
 export function ProjectCard(props: Props): JSX.Element {
   const createdAt = new Date(props.project.createdAt);
-  const createdDate = format(createdAt, 'eo MMMM yyyy');
+  const createdDate = format(createdAt, 'do MMMM yyyy');
 
   return (
     <li className={styles}>

@@ -10,6 +10,7 @@ const styles = css`
   display: flex;
   grid-area: header;
   justify-content: space-between;
+  z-index: 1;
   
   .title {
     display: flex;
