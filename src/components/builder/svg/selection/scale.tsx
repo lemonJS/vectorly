@@ -1,5 +1,6 @@
 import React from 'react';
 
+import { clone } from 'lodash';
 import { SVG, Transform } from '@type/editor';
 import { calculateTransform } from '@lib/scaling';
 
@@ -14,27 +15,30 @@ interface Props {
 }
 
 interface State {
+  box: [number, number];
+  offset: [number, number];
   pressed: boolean;
+  scale: [number, number];
 }
 
 export class Scale extends React.Component<Props, State> {
   private svg: SVG;
   private parent: SVG;
-  private offset: { x: number, y: number };
-  private box: { width: number, height: number };
 
   public constructor(props: Props) {
     super(props);
 
-    this.state = { pressed: false };
+    this.state = {
+      box: [0, 0],
+      offset: [0, 0],
+      pressed: false,
+      scale: [1, 1]
+    };
   }
 
   public componentDidMount() {
     this.svg = document.getElementById('canvas') as SVG;
     this.parent = document.getElementById(this.props.parent) as SVG;
-
-    this.offset = { x: 0, y: 0 };
-    this.box = { width: 0, height: 0 };
 
     document.addEventListener('mouseup', this.handleMouseUp);
     document.addEventListener('mousemove', this.handleMouseMove);
@@ -91,10 +95,12 @@ export class Scale extends React.Component<Props, State> {
   private handleMouseDown = (event: React.MouseEvent<SVGEllipseElement>) => {
     const box = this.parent.getBBox();
 
-    this.offset = { x: event.clientX, y: event.clientY };
-    this.box = { width: box.width, height: box.height };
-
-    this.setState({ pressed: true });
+    this.setState({
+      box: [box.width, box.height],
+      offset: [event.clientX, event.clientY],
+      pressed: true,
+      scale: clone(this.props.transform.s)
+    });
   }
 
   private handleMouseUp = () => {
@@ -105,14 +111,11 @@ export class Scale extends React.Component<Props, State> {
     if (this.state.pressed) {
       const transform = calculateTransform({
         svg: this.svg,
-        clientX: event.clientX,
-        clientY: event.clientY,
-        height: this.box.height,
-        offsetX: this.offset.x,
-        offsetY: this.offset.y,
+        box: this.state.box,
+        client: [event.clientX, event.clientY],
+        offset: this.state.offset,
         position: this.props.position,
-        transform: this.props.transform,
-        width: this.box.width
+        scale: this.state.scale,
       });
       this.props.handleTransform(transform);
     }
