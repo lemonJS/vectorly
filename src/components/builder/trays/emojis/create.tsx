@@ -12,6 +12,7 @@ const styles = css`
     display: grid;
     grid-gap: 1.5rem;
     grid-template-columns: repeat(auto-fill, minmax(50px, 1fr));
+    width: 100%;
   }
   
   label {
@@ -24,14 +25,6 @@ const styles = css`
   
   .paginate {
     padding: 1.5rem 0;
-  }
-
-  @media only screen and (max-width: 1024px) {
-    width: 100%;
-    
-    .search {
-      display: none;
-    }
   }
 `;
 

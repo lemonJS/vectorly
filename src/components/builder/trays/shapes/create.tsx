@@ -6,24 +6,13 @@ import { Input } from '@components/common/input';
 import { Shape } from '@components/builder/trays/shapes/shape';
 
 const styles = css` 
+  width: 100%;
+  
   .shapes {
     display: grid;
     grid-gap: 1.5rem;
     grid-template-columns: repeat(auto-fill, minmax(88px, 1fr));
     padding-top: 1.5rem;
-  }
-
-  @media only screen and (max-width: 1024px) {
-    width: 100%;
-    
-    .search {
-      display: none;
-    }
-    
-    .shapes {
-      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-      padding: 0;
-    }
   }
 `;
 

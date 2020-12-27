@@ -24,6 +24,12 @@ const styles = css`
       display: flex;
     }
   }
+
+  @media only screen and (max-width: 768px) {
+    .navigation {
+      justify-content: space-evenly;
+    }
+  }
 `;
 
 export function Navigation(): JSX.Element {

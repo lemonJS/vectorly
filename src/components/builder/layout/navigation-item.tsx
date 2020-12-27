@@ -33,6 +33,16 @@ const styles = css`
     font-size: 24px;
     margin-bottom: .5rem;
   }
+  
+  @media only screen and (max-width: 768px) {
+    flex: 1;
+    height: 3rem;
+    width: auto;
+    
+    i {
+      display: none;
+    }
+  }
 `;
 
 export function NavigationItem(props: Props): JSX.Element {
@@ -42,7 +52,8 @@ export function NavigationItem(props: Props): JSX.Element {
   const status = menuSelected === props.name ? 'selected' : '';
 
   function handleClick() {
-    dispatch(setMenuSelected(props.name));
+    const selected = props.name === menuSelected ? null : props.name;
+    dispatch(setMenuSelected(selected));
   }
 
   return (

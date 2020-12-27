@@ -30,7 +30,7 @@ export function Sidebar(props: Props) {
   return (
     <aside className={`${styles} ${status}`}>
       <Navigation />
-      <Tray />
+      <Tray open={props.open} />
     </aside>
   );
 }

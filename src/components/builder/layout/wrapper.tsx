@@ -35,8 +35,11 @@ const styles = css`
     
     &.menu-open {
       grid-template-columns: minmax(0, 1fr);
-      grid-template-rows: 64px minmax(0, 1fr) 274px;
     }
+  }
+
+  @media only screen and (max-width: 768px) {
+    grid-template-rows: 64px minmax(0, 1fr) 48px;
   }
 `;
 

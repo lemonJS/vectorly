@@ -9,6 +9,6 @@ export function setMenuOpen(open: boolean) {
 
 export function setMenuSelected(name: string | null) {
   return async function(dispatch: Dispatch<LayoutAction>) {
-    dispatch({ type: 'LAYOUT', payload: { menuSelected: name } });
+    dispatch({ type: 'LAYOUT', payload: { menuSelected: name, menuOpen: true } });
   }
 }
