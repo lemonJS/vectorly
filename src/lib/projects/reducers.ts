@@ -9,11 +9,11 @@ export interface ProjectsAction {
 
 export const initialState: ProjectsState = null;
 
-export function project(state = initialState, action: ProjectsAction) {
+export const project = (state = initialState, action: ProjectsAction) => {
   switch (action.type) {
     case 'PROJECT':
       return action.payload;
     default:
       return state;
   }
-}
+};

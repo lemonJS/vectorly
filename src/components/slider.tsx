@@ -72,7 +72,7 @@ const styles = css`
   }
 `;
 
-export function Slider(props: Props): JSX.Element {
+export const Slider = (props: Props): JSX.Element => {
   const { className } = props;
 
   return (
@@ -80,4 +80,4 @@ export function Slider(props: Props): JSX.Element {
       <input type='range' {...props} />
     </div>
   );
-}
+};

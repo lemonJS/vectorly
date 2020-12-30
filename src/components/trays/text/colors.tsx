@@ -17,16 +17,16 @@ const styles = css`
   }
 `;
 
-export function Colors(props: Props): JSX.Element {
+export const Colors = (props: Props): JSX.Element => {
   const { fill, opacity } = props.element.props;
 
-  function handleColor(hex: string) {
+  const handleColor = (hex: string) => {
     props.handleUpdate({ fill: hex });
-  }
+  };
 
-  function handleOpacity(value: number) {
+  const handleOpacity = (value: number) => {
     props.handleUpdate({ opacity: value });
-  }
+  };
 
   return (
     <div className={styles}>
@@ -35,4 +35,4 @@ export function Colors(props: Props): JSX.Element {
       <Opacity selected={opacity} handleUpdate={handleOpacity} />
     </div>
   );
-}
+};

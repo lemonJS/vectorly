@@ -12,16 +12,16 @@ interface Props {
   handleUpdate: (value: Partial<Project>) => void;
 }
 
-export function Stacking(props: Props): JSX.Element {
+export const Stacking = (props: Props): JSX.Element => {
   const { elements } = useSelector(projectSelector);
 
   const index = elements.findIndex(element => element.id === props.element.id);
 
-  function handleClick(value: number) {
+  const handleClick = (value: number) => {
     const array = clone(elements);
     [array[index], array[value]] = [array[value], array[index]]
     props.handleUpdate({ elements: array });
-  }
+  };
 
   return (
     <React.Fragment>
@@ -29,4 +29,4 @@ export function Stacking(props: Props): JSX.Element {
       <Scale max={elements.length} min={0} value={index} handleChange={handleClick} />
     </React.Fragment>
   );
-}
+};

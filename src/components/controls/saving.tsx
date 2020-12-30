@@ -37,7 +37,7 @@ const styles = css`
   }
 `;
 
-export function Saving(): JSX.Element {
+export const Saving = (): JSX.Element => {
   const saving = useSelector(savingSelector);
 
   return (
@@ -46,4 +46,4 @@ export function Saving(): JSX.Element {
       Saving...
     </div>
   );
-}
+};

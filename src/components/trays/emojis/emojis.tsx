@@ -5,7 +5,7 @@ import { Create } from '@components/trays/emojis/create';
 import { Edit } from '@components/trays/emojis/edit';
 import { selectedElementSelector } from '@lib/editor/selectors';
 
-export function Emojis(): JSX.Element {
+export const Emojis = (): JSX.Element => {
   const element = useSelector(selectedElementSelector);
 
   return (
@@ -16,4 +16,4 @@ export function Emojis(): JSX.Element {
       }
     </React.Fragment>
   );
-}
+};

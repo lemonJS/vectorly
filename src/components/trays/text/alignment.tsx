@@ -54,14 +54,12 @@ const styles = css`
   }
 `;
 
-export function Alignment(props: Props): JSX.Element {
+export const Alignment = (props: Props): JSX.Element => {
   const { textAnchor } = props.element.props;
 
-  function handleTextAnchor(direction: string) {
-    return function() {
-      props.handleUpdate({ textAnchor: direction });
-    }
-  }
+  const handleTextAnchor = (direction: string) => () => {
+    props.handleUpdate({ textAnchor: direction });
+  };
 
   return (
     <div className={styles}>
@@ -80,4 +78,4 @@ export function Alignment(props: Props): JSX.Element {
       </div>
     </div>
   );
-}
+};

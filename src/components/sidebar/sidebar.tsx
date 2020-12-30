@@ -24,7 +24,7 @@ const styles = css`
   }
 `;
 
-export function Sidebar(props: Props) {
+export const Sidebar = (props: Props) => {
   const status = props.open ? 'menu-open' : '';
 
   return (
@@ -33,4 +33,4 @@ export function Sidebar(props: Props) {
       <Tray open={props.open} />
     </aside>
   );
-}
+};

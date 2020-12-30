@@ -29,17 +29,16 @@ const styles = css`
   }
 `;
 
-export function ColorPicker(props: Props): JSX.Element {
-  return (
-    <div className={styles}>
-      {colors.map(color => (
-        <div
-          key={color.hex}
-          className={`color ${color.hex === props.selected ? 'selected' : ''}`}
-          style={{ backgroundColor: color.hex }}
-          onClick={() => props.handleChange(color.hex)}
-        />
-      ))}
-    </div>
-  );
-}
+export const ColorPicker = (props: Props): JSX.Element => (
+  <div className={styles}>
+    {colors.map(color => (
+      <div
+        key={color.hex}
+        className={`color ${color.hex === props.selected ? 'selected' : ''}`}
+        style={{ backgroundColor: color.hex }}
+        onClick={() => props.handleChange(color.hex)}
+      />
+    ))}
+  </div>
+);
+

@@ -16,19 +16,18 @@ const styles = css`
   }
 `;
 
-export function Create(): JSX.Element {
+export const Create = (): JSX.Element => {
   const [search, setSearch] = React.useState('');
 
-  function handleSearch(event: React.ChangeEvent<HTMLInputElement>) {
+  const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
     const element = event.target as HTMLInputElement;
     setSearch(element.value);
-  }
+  };
 
-  const results = shapes.filter(shape => {
-    return search
-      ? shape.keywords.some(keyword => keyword.includes(search))
-      : true;
-  });
+  const results = shapes.filter(shape => search
+    ? shape.keywords.some(keyword => keyword.includes(search))
+    : true
+  );
 
   return (
     <div className={styles}>
@@ -41,4 +40,4 @@ export function Create(): JSX.Element {
       </div>
     </div>
   );
-}
+};

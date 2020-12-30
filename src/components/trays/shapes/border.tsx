@@ -39,32 +39,32 @@ const styles = css`
   }
 `;
 
-export function Border(props: Props): JSX.Element {
+export const Border = (props: Props): JSX.Element => {
   const { strokeWidth, strokeDasharray, stroke, strokeOpacity } = props.element.props;
 
-  function handleBorderWidth(value: number) {
+  const handleBorderWidth = (value: number) => {
     props.handleUpdate({ strokeWidth: value });
-  }
+  };
 
-  function handleBorderSolid() {
+  const handleBorderSolid = () => {
     props.handleUpdate({ strokeDasharray: 'none' });
-  }
+  };
 
-  function handleBorderDashed() {
+  const handleBorderDashed = () => {
     props.handleUpdate({ strokeDasharray: '5' });
-  }
+  };
 
-  function handleBorderHidden() {
+  const handleBorderHidden = () => {
     props.handleUpdate({ stroke: stroke === 'transparent' ? '#000' : 'transparent' });
-  }
+  };
 
-  function handleBorderColor(hex: string) {
+  const handleBorderColor = (hex: string) => {
     props.handleUpdate({ stroke: hex });
-  }
+  };
 
-  function handleStrokeOpacity(value: number) {
+  const handleStrokeOpacity = (value: number) => {
     props.handleUpdate({ strokeOpacity: value });
-  }
+  };
 
   return (
     <div className={styles}>
@@ -89,4 +89,4 @@ export function Border(props: Props): JSX.Element {
       <Opacity title='Border Opacity' selected={strokeOpacity} handleUpdate={handleStrokeOpacity} />
     </div>
   );
-}
+};

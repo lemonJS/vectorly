@@ -43,7 +43,7 @@ const styles = css`
   }
 `;
 
-export function Wrapper(props: Props): JSX.Element {
+export const Wrapper = (props: Props): JSX.Element => {
   const { menuOpen } = useSelector(editorSelector);
   const status = menuOpen ? 'menu-open' : '';
 
@@ -56,4 +56,4 @@ export function Wrapper(props: Props): JSX.Element {
       </Content>
     </div>
   );
-}
+};

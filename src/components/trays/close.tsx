@@ -37,12 +37,10 @@ const styles = css`
   }
 `;
 
-export function Close(props: Props): JSX.Element {
+export const Close = (props: Props): JSX.Element => {
   const dispatch = useDispatch();
 
-  function handleClick() {
-    dispatch(setSelectionId(null));
-  }
+  const handleClick = () => dispatch(setSelectionId(null));
 
   return (
     <div className={styles}>
@@ -55,4 +53,4 @@ export function Close(props: Props): JSX.Element {
       <Divider />
     </div>
   );
-}
+};

@@ -51,7 +51,7 @@ const styles = css`
   }
 `;
 
-export function Undo(): JSX.Element {
+export const Undo = (): JSX.Element => {
   const dispatch = useDispatch();
 
   const { undoStack, undoStackIndex } = useSelector(editorSelector);
@@ -60,13 +60,9 @@ export function Undo(): JSX.Element {
 
   const canRedo = undoStack.length > 0 && undoStackIndex < undoStack.length;
 
-  function handleUndo() {
-    dispatch(undo());
-  }
+  const handleUndo = () => dispatch(undo());
 
-  function handleRedo() {
-    dispatch(redo());
-  }
+  const handleRedo = () => dispatch(redo());
 
   return (
     <div className={styles}>
@@ -79,4 +75,4 @@ export function Undo(): JSX.Element {
       </Button>
     </div>
   );
-}
+};

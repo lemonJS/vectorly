@@ -36,7 +36,7 @@ const styles = css`
   }
 `;
 
-export function NavigationToggle(): JSX.Element {
+export const NavigationToggle = (): JSX.Element => {
   const dispatch = useDispatch();
   const { menuOpen } = useSelector(editorSelector);
 
@@ -44,9 +44,7 @@ export function NavigationToggle(): JSX.Element {
   const icon = menuOpen ? 'ri-menu-fold-line' : 'ri-menu-unfold-line';
   const text = menuOpen ? 'Collapse' : 'Show';
 
-  function handleClick() {
-    dispatch(setMenuOpen(!menuOpen));
-  }
+  const handleClick = () => dispatch(setMenuOpen(!menuOpen));
 
   return (
     <button className={`${styles} ${status}`} onClick={handleClick}>
@@ -54,4 +52,4 @@ export function NavigationToggle(): JSX.Element {
       <span>{text}</span>
     </button>
   );
-}
+};

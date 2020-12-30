@@ -4,7 +4,7 @@ import { cloneDeep } from 'lodash';
 import { useDispatch } from 'react-redux';
 import { css } from '@emotion/css';
 import { ShapeListItem } from '@components/trays/data/shapes';
-import { createProjectElement } from '@lib/projects/actions';
+import { createElement } from '@lib/projects/actions';
 
 interface Props {
   shape: ShapeListItem;
@@ -31,29 +31,29 @@ const styles = css`
   }
 `;
 
-export function Shape(props: Props): JSX.Element {
+export const Shape = (props: Props): JSX.Element => {
   const dispatch = useDispatch();
 
   const element = React.createElement(props.shape.shape.element, props.shape.shape.props);
 
-  function formatShapeForCreation() {
+  const formatShapeForCreation = () => {
     const shape = cloneDeep(props.shape.shape);
     delete shape.props.x;
     delete shape.props.y;
     delete shape.props.transform;
     shape.props.stroke = '#283037';
     return shape;
-  }
+  };
 
-  function handleDragStart(event: React.DragEvent<HTMLDivElement>) {
+  const handleDragStart = (event: React.DragEvent<HTMLDivElement>) => {
     const shape = formatShapeForCreation();
     event.dataTransfer.setData('element', JSON.stringify(shape));
-  }
+  };
 
-  function handleClick() {
+  const handleClick = () => {
     const shape = formatShapeForCreation();
-    dispatch(createProjectElement(shape));
-  }
+    dispatch(createElement(shape));
+  };
 
   return (
     <div className={styles} draggable onClick={handleClick} onDragStart={handleDragStart}>
@@ -62,4 +62,4 @@ export function Shape(props: Props): JSX.Element {
       </svg>
     </div>
   );
-}
+};

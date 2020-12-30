@@ -37,7 +37,7 @@ const styles = css`
   }
 `;
 
-export function Tray(props: Props): JSX.Element {
+export const Tray = (props: Props): JSX.Element => {
   const project = useSelector(projectSelector);
   const { menuSelected } = useSelector(editorSelector);
 
@@ -77,4 +77,4 @@ export function Tray(props: Props): JSX.Element {
       ))}
     </React.Fragment>
   );
-}
+};

@@ -3,7 +3,7 @@ import { Dispatch } from 'redux';
 import { Project } from '@type/project';
 import { setSaving } from '@lib/editor/actions';
 
-export const syncWithServer = debounce((dispatch: Dispatch<any>, project: Project) => {
+export const sync = debounce((dispatch: Dispatch<any>, project: Project) => {
   dispatch(setSaving(true));
 
   localStorage.setItem('project', JSON.stringify(project));

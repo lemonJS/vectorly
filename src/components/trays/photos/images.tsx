@@ -13,12 +13,10 @@ const styles = css`
   padding-top: 1.5rem;
 `;
 
-export function Images(props: Props): JSX.Element {
-  return (
-    <div className={styles}>
-      {props.images.map(image => (
-        <Image key={image.id} image={image} />
-      ))}
-    </div>
-  );
-}
+export const Images = (props: Props): JSX.Element => (
+  <div className={styles}>
+    {props.images.map(image => (
+      <Image key={image.id} image={image} />
+    ))}
+  </div>
+);

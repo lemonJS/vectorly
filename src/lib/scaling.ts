@@ -17,7 +17,7 @@ interface TransformPayload {
 
 const MIN_SIZE = 32;
 
-export function calculateTransform(payload: TransformPayload): Partial<Transform> {
+export const calculateTransform = (payload: TransformPayload): Partial<Transform> => {
   const { svg, position } = payload;
 
   const [clientX, clientY] = payload.client;
@@ -64,4 +64,4 @@ export function calculateTransform(payload: TransformPayload): Partial<Transform
   if (y && h >= MIN_SIZE) out.y = y;
 
   return out;
-}
+};

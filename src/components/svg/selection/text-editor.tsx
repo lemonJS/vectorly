@@ -3,7 +3,7 @@ import React from 'react';
 import { css } from '@emotion/css';
 import { Element } from '@type/project';
 import { useDispatch } from 'react-redux';
-import { updateProjectElement } from '@lib/projects/actions';
+import { updateElement } from '@lib/projects/actions';
 import { convertTextPropertiesToCss } from '@lib/text';
 
 interface Props {
@@ -27,18 +27,18 @@ const styles = css`
   }
 `;
 
-export function TextEditor(props: Props): JSX.Element {
+export const TextEditor = (props: Props): JSX.Element => {
   const dispatch = useDispatch();
 
-  function handleChange(event: React.ChangeEvent<HTMLTextAreaElement>) {
+  const handleChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     const element = event.target as HTMLTextAreaElement;
-    dispatch(updateProjectElement(props.element.id, { text: element.value }));
-  }
+    dispatch(updateElement(props.element.id, { text: element.value }));
+  };
 
-  function handleFocus(event: React.FocusEvent<HTMLTextAreaElement>) {
+  const handleFocus = (event: React.FocusEvent<HTMLTextAreaElement>) => {
     const element = event.target as HTMLTextAreaElement;
     element.setSelectionRange(999999, 999999);
-  }
+  };
 
   if (props.element.type !== 'text') return null;
 
@@ -53,4 +53,4 @@ export function TextEditor(props: Props): JSX.Element {
       />
     </foreignObject>
   );
-}
+};

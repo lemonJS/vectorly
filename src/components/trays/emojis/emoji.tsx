@@ -4,7 +4,7 @@ import { EmojiLib } from 'emojilib';
 import { useDispatch } from 'react-redux';
 import { css } from '@emotion/css';
 import { Element } from '@type/project';
-import { createProjectElement } from '@lib/projects/actions';
+import { createElement } from '@lib/projects/actions';
 
 interface Props {
   emoji: EmojiLib;
@@ -27,46 +27,44 @@ const styles = css`
   }
 `;
 
-export function Emoji(props: Props): JSX.Element {
+export const Emoji = (props: Props): JSX.Element => {
   const dispatch = useDispatch();
 
-  function formatEmojiForCreation(): Omit<Element, 'id'>  {
-    return {
-      element: 'text',
-      type: 'emoji',
-      transform: {
-        x: 50,
-        y: 50,
-        r: 0,
-        s: [1, 1]
-      },
-      props: {
-        color: '#283037',
-        dominantBaseline: 'text-before-edge',
-        fontSize: 80,
-        fontWeight: 'normal',
-        fontStyle: 'normal',
-        letterSpacing: 1,
-        textAnchor: 'start',
-        textDecoration: 'none'
-      },
-      text: props.emoji.char
-    };
-  }
+  const formatEmojiForCreation = (): Omit<Element, 'id'> => ({
+    element: 'text',
+    type: 'emoji',
+    transform: {
+      x: 50,
+      y: 50,
+      r: 0,
+      s: [1, 1]
+    },
+    props: {
+      color: '#283037',
+      dominantBaseline: 'text-before-edge',
+      fontSize: 80,
+      fontWeight: 'normal',
+      fontStyle: 'normal',
+      letterSpacing: 1,
+      textAnchor: 'start',
+      textDecoration: 'none'
+    },
+    text: props.emoji.char
+  });
 
-  function handleDragStart(event: React.DragEvent<HTMLDivElement>) {
+  const handleDragStart = (event: React.DragEvent<HTMLDivElement>) => {
     const emoji = formatEmojiForCreation();
     event.dataTransfer.setData('element', JSON.stringify(emoji));
-  }
+  };
 
-  function handleClick() {
+  const handleClick = () => {
     const emoji = formatEmojiForCreation();
-    dispatch(createProjectElement(emoji));
-  }
+    dispatch(createElement(emoji));
+  };
 
   return (
     <div className={styles} draggable key={props.emoji.char} onClick={handleClick} onDragStart={handleDragStart}>
       {props.emoji.char}
     </div>
   );
-}
+};

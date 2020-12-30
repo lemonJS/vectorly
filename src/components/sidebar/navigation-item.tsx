@@ -48,16 +48,16 @@ const styles = css`
   }
 `;
 
-export function NavigationItem(props: Props): JSX.Element {
+export const NavigationItem = (props: Props): JSX.Element => {
   const dispatch = useDispatch();
 
   const { menuSelected } = useSelector(editorSelector);
   const status = menuSelected === props.name ? 'selected' : '';
 
-  function handleClick() {
+  const handleClick = () => {
     const selected = props.name === menuSelected ? null : props.name;
     dispatch(setMenuSelected(selected));
-  }
+  };
 
   return (
     <button className={`${styles} ${status}`} onClick={handleClick}>
@@ -65,4 +65,4 @@ export function NavigationItem(props: Props): JSX.Element {
       <span>{props.title}</span>
     </button>
   );
-}
+};

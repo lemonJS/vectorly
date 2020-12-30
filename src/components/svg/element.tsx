@@ -10,7 +10,7 @@ interface Props {
   element: ProjectElement;
 }
 
-export function Element(props: Props): JSX.Element {
+export const Element = (props: Props): JSX.Element => {
   const { selectedElement } = useSelector(editorSelector);
 
   const selected = selectedElement?.id === props.element.id;

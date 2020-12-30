@@ -9,27 +9,27 @@ import { Style } from '@components/trays/text/style';
 import { Alignment } from '@components/trays/text/alignment';
 import { Colors } from '@components/trays/text/colors';
 import { Positioning } from '@components/trays/positioning';
-import { updateProject, updateProjectElement } from '@lib/projects/actions';
+import { updateProject, updateElement } from '@lib/projects/actions';
 import { Stacking } from '@components/trays/stacking';
 
 interface Props {
   element: Element;
 }
 
-export function Edit(props: Props): JSX.Element {
+export const Edit = (props: Props): JSX.Element => {
   const dispatch = useDispatch();
 
-  function handlePropsUpdate(update: Partial<ElementProps>) {
-    dispatch(updateProjectElement(props.element.id, { props: update }));
-  }
+  const handlePropsUpdate = (update: Partial<ElementProps>) => {
+    dispatch(updateElement(props.element.id, { props: update }));
+  };
 
-  function handleProjectUpdate(update: Partial<Project>) {
+  const handleProjectUpdate = (update: Partial<Project>) => {
     dispatch(updateProject(update));
-  }
+  };
 
-  function handleUpdate(update: Partial<Element>) {
-    dispatch(updateProjectElement(props.element.id, update));
-  }
+  const handleUpdate = (update: Partial<Element>) => {
+    dispatch(updateElement(props.element.id, update));
+  };
 
   return (
     <div>
@@ -43,4 +43,4 @@ export function Edit(props: Props): JSX.Element {
       <Actions element={props.element} />
     </div>
   );
-}
+};

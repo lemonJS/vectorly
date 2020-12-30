@@ -26,7 +26,7 @@ injectGlobal`
   }
 `;
 
-export default function App(props: AppProps): JSX.Element {
+export default (props: AppProps): JSX.Element => {
   const { Component, pageProps } = props;
 
   return (
@@ -34,4 +34,4 @@ export default function App(props: AppProps): JSX.Element {
       <Component {...pageProps} />
     </Provider>
   );
-}
+};

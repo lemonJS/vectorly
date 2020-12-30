@@ -6,7 +6,7 @@ import { Element } from '@type/project';
 import { css } from '@emotion/css';
 import { Button } from '@components/button';
 import { Divider } from '@components/divider';
-import { createProjectElement, deleteProjectElement } from '@lib/projects/actions';
+import { createElement, deleteElement } from '@lib/projects/actions';
 
 interface Props {
   element: Element;
@@ -27,19 +27,17 @@ const styles = css`
   }
 `;
 
-export function Actions(props: Props): JSX.Element {
+export const Actions = (props: Props): JSX.Element => {
   const dispatch = useDispatch();
 
-  function handleDelete() {
-    dispatch(deleteProjectElement(props.element.id));
-  }
+  const handleDelete = () => dispatch(deleteElement(props.element.id));
 
-  function handleDuplicate() {
+  const handleDuplicate = () => {
     const element = cloneDeep(props.element);
     element.transform.x += 20;
     element.transform.y += 20;
-    dispatch(createProjectElement(element));
-  }
+    dispatch(createElement(element));
+  };
 
   return (
     <div className={styles}>
@@ -56,4 +54,4 @@ export function Actions(props: Props): JSX.Element {
       </Button>
     </div>
   );
-}
+};

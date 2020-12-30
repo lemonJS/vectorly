@@ -40,13 +40,13 @@ const styles = css`
   }
 `;
 
-export function ImageUpload(): JSX.Element {
+export const ImageUpload = (): JSX.Element => {
   const dispatch = useDispatch();
 
-  function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const files = Array.from(event.target.files);
     dispatch(uploadImages(files));
-  }
+  };
 
   return (
     <div className={styles}>
@@ -57,4 +57,4 @@ export function ImageUpload(): JSX.Element {
       </label>
     </div>
   );
-}
+};

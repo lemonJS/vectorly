@@ -7,8 +7,6 @@ const styles = css`
   height: 1px;
 `;
 
-export function Divider() {
-  return (
-    <hr className={styles} />
-  );
-}
+export const Divider = () => (
+  <hr className={styles} />
+);

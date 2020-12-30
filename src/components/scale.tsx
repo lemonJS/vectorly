@@ -45,22 +45,22 @@ const styles = css`
   }
 `;
 
-export function Scale(props: Props): JSX.Element {
-  function handleDown() {
+export const Scale = (props: Props): JSX.Element => {
+  const handleDown = () => {
     const value = props.value - 1;
 
     if (value >= props.min) {
       props.handleChange(value);
     }
-  }
+  };
 
-  function handleUp() {
+  const handleUp = () => {
     const value = props.value + 1;
 
     if (value < props.max) {
       props.handleChange(value);
     }
-  }
+  };
 
   return (
     <div className={styles}>
@@ -77,4 +77,4 @@ export function Scale(props: Props): JSX.Element {
       </button>
     </div>
   );
-}
+};

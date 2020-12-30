@@ -17,16 +17,16 @@ const styles = css`
   }
 `;
 
-export function Background(props: Props): JSX.Element {
+export const Background = (props: Props): JSX.Element => {
   const { fill, fillOpacity } = props.element.props;
 
-  function handleFill(color: string) {
+  const handleFill = (color: string) => {
     props.handleUpdate({ fill: color });
-  }
+  };
 
-  function handleFillOpacity(value: number) {
+  const handleFillOpacity = (value: number) => {
     props.handleUpdate({ fillOpacity: value });
-  }
+  };
 
   return (
     <div className={styles}>
@@ -35,4 +35,4 @@ export function Background(props: Props): JSX.Element {
       <Opacity title='Background Opacity' selected={fillOpacity} handleUpdate={handleFillOpacity} />
     </div>
   );
-}
+};

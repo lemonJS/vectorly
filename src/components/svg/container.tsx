@@ -5,7 +5,7 @@ import { Element, ElementProps, Transform } from '@type/project';
 import { Selection } from '@components/svg/selection/selection';
 import { getBox } from '@lib/helpers';
 import { setSelectionId } from '@lib/editor/actions';
-import { updateProjectElement } from '@lib/projects/actions';
+import { updateElement } from '@lib/projects/actions';
 
 interface Props extends ElementProps {
   id: string;
@@ -13,7 +13,7 @@ interface Props extends ElementProps {
   selected: boolean;
 }
 
-export function Container(props: Props): JSX.Element {
+export const Container = (props: Props): JSX.Element => {
   const dispatch = useDispatch();
 
   const ref = React.useRef<SVGGElement>(null);
@@ -22,16 +22,16 @@ export function Container(props: Props): JSX.Element {
   const { x, y, r, s } = props.element.transform;
   const transform = `translate(${x} ${y}) rotate(${r} ${(box.width * s[0]) / 2} ${(box.height * s[1]) / 2}) scale(${s[0]} ${s[1]})`;
 
-  function handleClick() {
+  const handleClick = () => {
     if (!props.selected) {
       dispatch(setSelectionId(props.element.id));
     }
-  }
+  };
 
-  function handleTransform(update: Partial<Transform>) {
+  const handleTransform = (update: Partial<Transform>) => {
     const data = { ...props.element.transform, ...update };
-    dispatch(updateProjectElement(props.element.id, { transform: data }));
-  }
+    dispatch(updateElement(props.element.id, { transform: data }));
+  };
 
   return (
     <g>
@@ -49,4 +49,4 @@ export function Container(props: Props): JSX.Element {
       </g>
     </g>
   );
-}
+};

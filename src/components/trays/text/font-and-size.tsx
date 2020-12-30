@@ -22,17 +22,17 @@ const styles = css`
   }
 `;
 
-export function FontAndSize(props: Props): JSX.Element {
+export const FontAndSize = (props: Props): JSX.Element => {
   const { fontFamily, fontSize } = props.element.props;
 
-  function handleFontSize(value: number) {
+  const handleFontSize = (value: number) => {
     props.handleUpdate({ fontSize: value });
-  }
+  };
 
-  function handleFontFamily(event: React.ChangeEvent<HTMLSelectElement>) {
+  const handleFontFamily = (event: React.ChangeEvent<HTMLSelectElement>) => {
     const element = event.target as HTMLSelectElement;
     props.handleUpdate({ fontFamily: element.value });
-  }
+  };
 
   return (
     <div className={styles}>
@@ -52,4 +52,4 @@ export function FontAndSize(props: Props): JSX.Element {
       />
     </div>
   );
-}
+};

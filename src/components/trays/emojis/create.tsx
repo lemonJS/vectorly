@@ -28,19 +28,17 @@ const styles = css`
   }
 `;
 
-export function Create(): JSX.Element {
+export const Create = (): JSX.Element => {
   const perPage = 99;
   const [page, setPage] = React.useState(1);
   const [search, setSearch] = React.useState('');
 
-  function handlePaginate() {
-    setPage(page + 1);
-  }
+  const handlePaginate = () => setPage(page + 1);
 
-  function handleSearch(event: React.ChangeEvent<HTMLInputElement>) {
+  const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
     const element = event.target as HTMLInputElement;
     setSearch(element.value);
-  }
+  };
 
   const popular = emojis
     .ordered
@@ -82,4 +80,4 @@ export function Create(): JSX.Element {
       )}
     </div>
   );
-}
+};

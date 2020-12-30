@@ -16,21 +16,20 @@ const styles = css`
   }
 `;
 
-export function Create(): JSX.Element {
-  return (
-    <div className={styles}>
-      <Button className='secondary'>
-        Add Text
-        <i className='ri-add-line' />
-      </Button>
+export const Create = (): JSX.Element => (
+  <div className={styles}>
+    <Button className='secondary'>
+      Add Text
+      <i className='ri-add-line' />
+    </Button>
 
-      <div className='text-types'>
-        {texts.map(type => (
-          <TextType key={type.type} textType={type.type}>
-            {type.title}
-          </TextType>
-        ))}
-      </div>
+    <div className='text-types'>
+      {texts.map(type => (
+        <TextType key={type.type} textType={type.type}>
+          {type.title}
+        </TextType>
+      ))}
     </div>
-  );
-}
+  </div>
+);
+

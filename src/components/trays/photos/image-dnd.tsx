@@ -31,22 +31,22 @@ const styles = css`
   }
 `;
 
-export function ImageDnd(): JSX.Element {
+export const ImageDnd = (): JSX.Element => {
   const dispatch = useDispatch();
 
   const [dragging, setDragging] = React.useState(false);
   const status = dragging ? 'dragging' : '';
 
-  function handleDragOver(event: React.DragEvent<HTMLDivElement>) {
+  const handleDragOver = (event: React.DragEvent<HTMLDivElement>) => {
     event.preventDefault();
     setDragging(true);
-  }
+  };
 
-  function handleDragLeave() {
+  const handleDragLeave = () => {
     setDragging(false);
-  }
+  };
 
-  function handleDrop(event: React.DragEvent<HTMLDivElement>) {
+  const handleDrop = (event: React.DragEvent<HTMLDivElement>) => {
     event.preventDefault();
 
     if (event.dataTransfer.items) {
@@ -59,7 +59,7 @@ export function ImageDnd(): JSX.Element {
     }
 
     setDragging(false);
-  }
+  };
 
   return (
     <div className={`${styles} ${status}`} onDrop={handleDrop} onDragOver={handleDragOver} onDragLeave={handleDragLeave}>
@@ -70,4 +70,4 @@ export function ImageDnd(): JSX.Element {
       }
     </div>
   );
-}
+};

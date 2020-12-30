@@ -6,7 +6,7 @@ import { Transform } from '@type/project';
 import { Element } from '@components/svg/element';
 import { projectSelector } from '@lib/projects/selectors';
 import { setSelectionId } from '@lib/editor/actions';
-import { createProjectElement } from '@lib/projects/actions';
+import { createElement } from '@lib/projects/actions';
 import { zoomSelector } from '@lib/editor/selectors';
 
 type Svg = SVGGraphicsElement & HTMLElement;
@@ -19,7 +19,7 @@ declare global {
 
 const styles = css`
   background: var(--foreground-color);
-  box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 3px 15px rgba(0, 0, 0, 0.2);
   display: flex;
   height: 800px;
   width: 500px;
@@ -33,23 +33,23 @@ const styles = css`
   }
 `;
 
-export function SVG(): JSX.Element {
+export const SVG = (): JSX.Element => {
   const dispatch = useDispatch();
 
   const zoom = useSelector(zoomSelector);
   const project = useSelector(projectSelector);
   const elements = project?.elements || [];
 
-  function handleMouseDown(event: React.MouseEvent<SVGElement>) {
+  const handleMouseDown = (event: React.MouseEvent<SVGElement>) => {
     const element = event.target as HTMLElement;
 
     if (element.tagName === 'svg') {
       event.stopPropagation();
       dispatch(setSelectionId(null));
     }
-  }
+  };
 
-  function getDropTransform(event: React.DragEvent<SVGGElement>): Transform {
+  const getDropTransform = (event: React.DragEvent<SVGGElement>): Transform => {
     const bounds = window.canvas.getBoundingClientRect();
 
     return {
@@ -58,17 +58,17 @@ export function SVG(): JSX.Element {
       r: 0,
       s: [1, 1]
     };
-  }
+  };
 
-  function getElementFromDataTransfer(data: string) {
+  const getElementFromDataTransfer = (data: string) => {
     try {
       return JSON.parse(data);
     } catch {
       return null;
     }
-  }
+  };
 
-  function handleDrop(event: React.DragEvent<SVGGElement>) {
+  const handleDrop = (event: React.DragEvent<SVGGElement>) => {
     event.preventDefault();
 
     const data = event.dataTransfer.getData('element');
@@ -77,13 +77,13 @@ export function SVG(): JSX.Element {
     if (payload) {
       const transform = getDropTransform(event);
       const element = { ...payload, transform };
-      dispatch(createProjectElement(element));
+      dispatch(createElement(element));
     }
-  }
+  };
 
-  function handleDragOver(event: React.DragEvent<SVGGElement>) {
+  const handleDragOver = (event: React.DragEvent<SVGGElement>) => {
     event.preventDefault();
-  }
+  };
 
   React.useEffect(() => {
     // Store this against the window as a cache for the
@@ -100,4 +100,4 @@ export function SVG(): JSX.Element {
       </svg>
     </div>
   );
-}
+};

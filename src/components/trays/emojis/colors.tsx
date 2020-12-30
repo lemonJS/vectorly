@@ -8,16 +8,16 @@ interface Props {
   handleUpdate: (update: Partial<ElementProps>) => void;
 }
 
-export function Colors(props: Props): JSX.Element {
+export const Colors = (props: Props): JSX.Element => {
   const { opacity } = props.element.props;
 
-  function handleOpacity(value: number) {
+  const handleOpacity = (value: number) => {
     props.handleUpdate({ opacity: value });
-  }
+  };
 
   return (
     <div>
       <Opacity selected={opacity} handleUpdate={handleOpacity} />
     </div>
   );
-}
+};

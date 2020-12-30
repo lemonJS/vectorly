@@ -55,7 +55,7 @@ const styles = css`
   }
 `;
 
-export function Button(props: Props): JSX.Element {
+export const Button = (props: Props): JSX.Element => {
   const { children, className, ...rest } = props;
 
   return (
@@ -63,4 +63,4 @@ export function Button(props: Props): JSX.Element {
       {children}
     </button>
   );
-}
+};

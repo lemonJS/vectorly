@@ -3,11 +3,11 @@ import React from 'react';
 import Document, { DocumentContext, Html, Head, Main, NextScript } from 'next/document';
 
 export default class extends Document {
-  static async getInitialProps(ctx: DocumentContext) {
+  public static async getInitialProps(ctx: DocumentContext) {
     return await Document.getInitialProps(ctx);
   }
 
-  render(): JSX.Element {
+  public render(): JSX.Element {
     return (
       <Html lang='en'>
         <Head>

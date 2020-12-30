@@ -8,7 +8,7 @@ import { getProject } from '@lib/projects/actions';
 import { setSelectionId } from '@lib/editor/actions';
 import { setMenuSelected } from '@lib/editor/actions';
 
-export default function Index(): JSX.Element {
+const Home = (): JSX.Element => {
   const dispatch = useDispatch();
 
   React.useEffect(() => {
@@ -28,3 +28,4 @@ export default function Index(): JSX.Element {
   );
 }
 
+export default Home;

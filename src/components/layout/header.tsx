@@ -22,16 +22,14 @@ const styles = css`
   }
 `;
 
-export function Header(): JSX.Element {
-  return (
-    <header className={styles}>
-      <div className='title'>
-        <Link href='/'>
-          <a className='logo'>
-            <img src='/logo.svg' alt='logo' height='48' width='48' />
-          </a>
-        </Link>
-      </div>
-    </header>
-  );
-}
+export const Header = (): JSX.Element => (
+  <header className={styles}>
+    <div className='title'>
+      <Link href='/'>
+        <a className='logo'>
+          <img src='/logo.svg' alt='logo' height='48' width='48' />
+        </a>
+      </Link>
+    </div>
+  </header>
+);

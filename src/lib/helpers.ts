@@ -1,4 +1,4 @@
-export function getLayoutForElementType(type: string): string | null {
+export const getLayoutForElementType = (type: string): string | null => {
   switch(type) {
     case 'photo':
       return 'photos';
@@ -13,8 +13,6 @@ export function getLayoutForElementType(type: string): string | null {
   }
 }
 
-export function getBox(group: SVGGElement | null): DOMRect {
-  return group
-    ? group.getBBox()
-    : { x: 0, y: 0, width: 0, height: 0 } as DOMRect;
-}
+export const getBox = (group: SVGGElement | null): DOMRect => group
+  ? group.getBBox()
+  : { x: 0, y: 0, width: 0, height: 0 } as DOMRect;

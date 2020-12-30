@@ -15,8 +15,6 @@ const styles = css`
   }
 `;
 
-export function Design() {
-  return (
-    <div className={styles} />
-  );
-}
+export const Design = () => (
+  <div className={styles} />
+);

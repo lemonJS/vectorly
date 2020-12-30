@@ -5,7 +5,7 @@ import { Create } from '@components/trays/photos/create';
 import { Edit } from '@components/trays/photos/edit';
 import { selectedElementSelector } from '@lib/editor/selectors';
 
-export function Photos(): JSX.Element {
+export const Photos = (): JSX.Element => {
   const element = useSelector(selectedElementSelector);
 
   return (
@@ -16,4 +16,4 @@ export function Photos(): JSX.Element {
       }
     </React.Fragment>
   );
-}
+};

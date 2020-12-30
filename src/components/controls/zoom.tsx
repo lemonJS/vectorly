@@ -39,15 +39,11 @@ const styles = css`
   }
 `;
 
-export function Zoom(): JSX.Element {
+export const Zoom = (): JSX.Element => {
   const dispatch = useDispatch();
   const zoom = useSelector(zoomSelector);
 
-  function handleZoom(direction: 'up' | 'down') {
-    return function() {
-      dispatch(setZoom(direction));
-    }
-  }
+  const handleZoom = (direction: 'up' | 'down') => () => dispatch(setZoom(direction));
 
   return (
     <div className={styles}>
@@ -60,4 +56,4 @@ export function Zoom(): JSX.Element {
       </Button>
     </div>
   );
-}
+};

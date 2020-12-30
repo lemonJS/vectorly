@@ -11,9 +11,9 @@ export type Transform = {
 
 export interface Image {
   id: string;
-  name: string;
+  data: string;
   height: number;
-  url: string;
+  name: string;
   width: number;
 }
 

@@ -40,7 +40,7 @@ const styles = css`
   }
 `;
 
-export function Select(props: Props): JSX.Element {
+export const Select = (props: Props): JSX.Element => {
   const { className, children, ...rest } = props;
 
   return (
@@ -51,4 +51,4 @@ export function Select(props: Props): JSX.Element {
       <i className='ri-arrow-drop-down-line' />
     </div>
   );
-}
+};

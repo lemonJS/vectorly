@@ -12,7 +12,7 @@ const styles = css`
   margin-bottom: .75rem;
 `;
 
-export function Label(props: Props): JSX.Element {
+export const Label = (props: Props): JSX.Element => {
   const { className, children, ...rest } = props;
 
   return (
@@ -20,4 +20,4 @@ export function Label(props: Props): JSX.Element {
       {children}
     </label>
   );
-}
+};

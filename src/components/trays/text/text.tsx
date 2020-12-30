@@ -5,7 +5,7 @@ import { Edit } from '@components/trays/text/edit';
 import { Create } from '@components/trays/text/create';
 import { selectedElementSelector } from '@lib/editor/selectors';
 
-export function Text(): JSX.Element {
+export const Text = (): JSX.Element => {
   const element = useSelector(selectedElementSelector);
 
   return (
@@ -16,4 +16,4 @@ export function Text(): JSX.Element {
       }
     </React.Fragment>
   );
-}
+};

@@ -19,13 +19,11 @@ const styles = css`
   position: relative;
 `;
 
-export function Content(props: Props): JSX.Element {
-  return (
-    <main id='editor-content' className={styles}>
-      {props.children}
-      <Saving />
-      <Undo />
-      <Zoom />
-    </main>
-  );
-}
+export const Content = (props: Props): JSX.Element => (
+  <main id='editor-content' className={styles}>
+    {props.children}
+    <Saving />
+    <Undo />
+    <Zoom />
+  </main>
+);

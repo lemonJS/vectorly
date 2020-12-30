@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 import { css } from '@emotion/css';
 import { Image as ProjectImage } from '@type/project';
 import { DeleteImage } from '@components/trays/photos/delete-image';
-import { createProjectElement } from '@lib/projects/actions';
+import { createElement } from '@lib/projects/actions';
 
 interface Props {
   image: ProjectImage;
@@ -31,10 +31,10 @@ const styles = css`
   }
 `;
 
-export function Image(props: Props): JSX.Element {
+export const Image = (props: Props): JSX.Element => {
   const dispatch = useDispatch();
 
-  function formatImageForCreation() {
+  const formatImageForCreation = () => {
     const ratio = props.image.height / props.image.width;
     const width = props.image.width > 300 ? 300 : props.image.width;
     const height = width * ratio;
@@ -51,32 +51,32 @@ export function Image(props: Props): JSX.Element {
       props: {
         'data-id': props.image.id,
         height: height,
-        href: props.image.url,
+        href: props.image.data,
         width: width
       }
     };
-  }
+  };
 
-  function handleDragStart(event: React.DragEvent<HTMLDivElement>) {
+  const handleDragStart = (event: React.DragEvent<HTMLDivElement>) => {
     const text = formatImageForCreation();
     event.dataTransfer.setData('element', JSON.stringify(text));
-  }
+  };
 
-  function handleClick() {
+  const handleClick = () => {
     const image = formatImageForCreation();
-    dispatch(createProjectElement(image));
-  }
+    dispatch(createElement(image));
+  };
 
   return (
     <div
       draggable
       className={styles}
       key={props.image.id}
-      style={{ backgroundImage: `url(${props.image.url})` }}
+      style={{ backgroundImage: `url(${props.image.data})` }}
       onClick={handleClick}
       onDragStart={handleDragStart}
     >
       <DeleteImage image={props.image} />
     </div>
   );
-}
+};

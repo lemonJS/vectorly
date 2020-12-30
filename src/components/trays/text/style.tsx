@@ -40,39 +40,37 @@ const styles = css`
   } 
 `;
 
-export function Style(props: Props): JSX.Element {
+export const Style = (props: Props): JSX.Element => {
   const { fontWeight, fontStyle, textDecoration, letterSpacing } = props.element.props;
 
-  function handleBold() {
+  const handleBold = () => {
     props.handleUpdate({ fontWeight: fontWeight === 'bold' ? 'normal' : 'bold' });
-  }
+  };
 
-  function handleItalic() {
+  const handleItalic = () => {
     props.handleUpdate({ fontStyle: fontStyle === 'italic' ? 'normal' : 'italic' });
-  }
+  };
 
-  function handleDecoration(type: string) {
-    return function() {
-      const decoration = textDecoration
-        .toString()
-        .split(' ')
-        .filter(d => d !== 'none');
-
-      const list = decoration.includes(type)
-        ? decoration.filter(d => d !== type)
-        : [...decoration, type];
-
-      if (list.length === 0) {
-        list.push('none');
-      }
-
-      props.handleUpdate({ textDecoration: list.join(' ') });
-    }
-  }
-
-  function handleLetterSpacing(value: number) {
+  const handleLetterSpacing = (value: number) => {
     props.handleUpdate({ letterSpacing: value });
-  }
+  };
+
+  const handleDecoration = (type: string) => () => {
+    const decoration = textDecoration
+      .toString()
+      .split(' ')
+      .filter(d => d !== 'none');
+
+    const list = decoration.includes(type)
+      ? decoration.filter(d => d !== type)
+      : [...decoration, type];
+
+    if (list.length === 0) {
+      list.push('none');
+    }
+
+    props.handleUpdate({ textDecoration: list.join(' ') });
+  };
 
   return (
     <div className={styles}>
@@ -97,4 +95,4 @@ export function Style(props: Props): JSX.Element {
       <Scale max={10} min={-10} value={Number(letterSpacing ?? 1)} handleChange={handleLetterSpacing} />
     </div>
   );
-}
+};

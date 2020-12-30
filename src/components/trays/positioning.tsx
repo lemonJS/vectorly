@@ -36,28 +36,26 @@ const styles = css`
   }
 `;
 
-export function Positioning(props: Props): JSX.Element {
+export const Positioning = (props: Props): JSX.Element => {
   const { id, transform } = props.element;
   const element = document.getElementById(id);
   const bounds = element.getBoundingClientRect();
 
-  function handleTransform(property: string) {
-    return function(event: React.ChangeEvent<HTMLInputElement>) {
-      const element = event.target as HTMLInputElement;
-      const value = Number(element.value);
+  const handleTransform = (property: string) => (event: React.ChangeEvent<HTMLInputElement>) => {
+    const element = event.target as HTMLInputElement;
+    const value = Number(element.value);
 
-      const update = { ...transform, [property]: value }
-      props.handleUpdate({ transform: update });
-    }
-  }
+    const update = { ...transform, [property]: value }
+    props.handleUpdate({ transform: update });
+  };
 
-  function handleRotate(event: React.ChangeEvent<HTMLInputElement>) {
+  const handleRotate = (event: React.ChangeEvent<HTMLInputElement>) => {
     const element = event.target as HTMLInputElement;
     const value = Number(element.value);
 
     const update = { ...transform, r: value + 90 }
     props.handleUpdate({ transform: update });
-  }
+  };
 
   return (
     <div className={styles}>
@@ -89,4 +87,4 @@ export function Positioning(props: Props): JSX.Element {
       <Slider min={-270} max={90} value={transform.r - 90} step={1} onChange={handleRotate} />
     </div>
   );
-}
+};

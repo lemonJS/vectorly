@@ -31,7 +31,7 @@ const styles = css`
   }
 `;
 
-export function Navigation(): JSX.Element {
+export const Navigation = (): JSX.Element => {
   const navigation = [
     {
       title: 'Photos',
@@ -68,4 +68,4 @@ export function Navigation(): JSX.Element {
       <NavigationToggle />
     </nav>
   );
-}
+};

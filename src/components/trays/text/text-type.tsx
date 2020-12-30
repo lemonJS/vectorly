@@ -3,7 +3,7 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { css } from '@emotion/css';
 import { Element } from '@type/project';
-import { createProjectElement } from '@lib/projects/actions';
+import { createElement } from '@lib/projects/actions';
 
 interface Props {
   children: React.ReactNode;
@@ -43,10 +43,10 @@ const styles = css`
   }
 `;
 
-export function TextType(props: Props): JSX.Element {
+export const TextType = (props: Props): JSX.Element => {
   const dispatch = useDispatch();
 
-  function getFontSize() {
+  const getFontSize = () => {
     switch (props.textType) {
       case 'heading':
         return 32;
@@ -57,46 +57,44 @@ export function TextType(props: Props): JSX.Element {
       default:
         return 14;
     }
-  }
+  };
 
-  function formatTextForCreation(): Omit<Element, 'id'> {
-    return {
-      element: 'text',
-      type: 'text',
-      transform: {
-        x: 50,
-        y: 50,
-        r: 0,
-        s: [1, 1]
-      },
-      props: {
-        dominantBaseline: 'text-before-edge',
-        fill: '#283037',
-        fontSize: getFontSize(),
-        fontFamily: 'Arial',
-        fontWeight: 'normal',
-        fontStyle: 'normal',
-        letterSpacing: 1,
-        textAnchor: 'start',
-        textDecoration: 'none'
-      },
-      text: 'Enter your text'
-    };
-  }
+  const formatTextForCreation = (): Omit<Element, 'id'> => ({
+    element: 'text',
+    type: 'text',
+    transform: {
+      x: 50,
+      y: 50,
+      r: 0,
+      s: [1, 1]
+    },
+    props: {
+      dominantBaseline: 'text-before-edge',
+      fill: '#283037',
+      fontSize: getFontSize(),
+      fontFamily: 'Arial',
+      fontWeight: 'normal',
+      fontStyle: 'normal',
+      letterSpacing: 1,
+      textAnchor: 'start',
+      textDecoration: 'none'
+    },
+    text: 'Enter your text'
+  });
 
-  function handleDragStart(event: React.DragEvent<HTMLDivElement>) {
+  const handleDragStart = (event: React.DragEvent<HTMLDivElement>) => {
     const text = formatTextForCreation();
     event.dataTransfer.setData('element', JSON.stringify(text));
-  }
+  };
 
-  function handleClick() {
+  const handleClick = () => {
     const text = formatTextForCreation();
-    dispatch(createProjectElement(text));
-  }
+    dispatch(createElement(text));
+  };
 
   return (
     <div className={`${styles} ${props.textType}`} draggable onClick={handleClick} onDragStart={handleDragStart}>
       {props.children}
     </div>
   );
-}
+};

@@ -11,12 +11,11 @@ const styles = css`
   padding-top: 1.5rem;
 `;
 
-export function DesignsList() {
-  return (
-    <div className={styles}>
-      {range(30).map(i => (
-        <Design key={i} />
-      ))}
-    </div>
-  );
-}
+export const DesignsList = () => (
+  <div className={styles}>
+    {range(30).map(i => (
+      <Design key={i} />
+    ))}
+  </div>
+);
+

@@ -16,11 +16,11 @@ const styles = css`
   }
 `;
 
-export function Opacity(props: Props): JSX.Element {
-  function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
+export const Opacity = (props: Props): JSX.Element => {
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const element = event.target as HTMLInputElement;
     props.handleUpdate(Number(element.value));
-  }
+  };
 
   return (
     <div className={styles}>
@@ -28,4 +28,4 @@ export function Opacity(props: Props): JSX.Element {
       <Slider min={0} max={1} step={0.1} value={props.selected ?? 1} onChange={handleChange} />
     </div>
   );
-}
+};

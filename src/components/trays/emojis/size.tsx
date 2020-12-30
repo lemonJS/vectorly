@@ -9,12 +9,12 @@ interface Props {
   handleUpdate: (update: Partial<ElementProps>) => void;
 }
 
-export function Size(props: Props): JSX.Element {
+export const Size = (props: Props): JSX.Element => {
   const { fontSize } = props.element.props;
 
-  function handleSize(value: number) {
+  const handleSize = (value: number) => {
     props.handleUpdate({ fontSize: value });
-  }
+  };
 
   return (
     <div>
@@ -22,4 +22,4 @@ export function Size(props: Props): JSX.Element {
       <Scale max={12} min={100} value={Number(fontSize)} handleChange={handleSize} />
     </div>
   );
-}
+};

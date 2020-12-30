@@ -34,17 +34,17 @@ const styles = css`
   }
 `;
 
-export function DeleteImage(props: Props): JSX.Element {
+export const DeleteImage = (props: Props): JSX.Element => {
   const dispatch = useDispatch();
 
-  function handleClick(event: React.MouseEvent<HTMLButtonElement>) {
+  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.stopPropagation();
     dispatch(deleteImage(props.image.id));
-  }
+  };
 
   return (
     <button className={styles} onClick={handleClick}>
       <i className='ri-delete-bin-2-line' />
     </button>
   );
-}
+};

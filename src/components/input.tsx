@@ -25,10 +25,10 @@ export const styles = css`
   }
 `;
 
-export function Input(props: Props): JSX.Element {
+export const Input = (props: Props): JSX.Element => {
   const { className, ...rest } = props;
 
   return (
     <input className={`${styles} ${className}`} {...rest} />
   );
-}
+};

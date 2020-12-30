@@ -6,7 +6,7 @@ import { Images } from '@components/trays/photos/images';
 import { ImageDnd } from '@components/trays/photos/image-dnd';
 import { projectSelector } from '@lib/projects/selectors';
 
-export function Create(): JSX.Element {
+export const Create = (): JSX.Element => {
   const { images } = useSelector(projectSelector);
 
   return (
@@ -19,4 +19,4 @@ export function Create(): JSX.Element {
       }
     </React.Fragment>
   );
-}
+};
