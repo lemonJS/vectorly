@@ -1,78 +1,60 @@
 import { v4 as uuid } from 'uuid';
 import { merge } from 'lodash';
 import { Dispatch } from 'redux';
-import { api } from '@lib/api';
 import { Project, Element } from '@type/project';
 import { GetState } from '@type/redux';
 import { ProjectsAction } from '@lib/projects/reducers';
 import { setSelectionId } from '@lib/editor/actions';
-import { projectSelector, projectsSelector } from '@lib/projects/selectors';
-import { getImageUploadPayload, uploadImagesToS3 } from '@lib/images';
+import { projectSelector } from '@lib/projects/selectors';
 import { syncWithServer } from '@lib/projects/sync';
 
-export function getProjects() {
-  return async function(dispatch: Dispatch<ProjectsAction>) {
-    const projects = await api.get('/projects');
-    dispatch({ type: 'PROJECTS', payload: projects });
-  };
-}
+export const getProject = () => (dispatch: Dispatch<any>) => {
+  const project = localStorage.getItem('project');
 
-export function updateProject(payload: Partial<Project>) {
-  return async function(dispatch: Dispatch<ProjectsAction>, getState: GetState) {
-    const project = projectSelector()(getState());
-    const projects = projectsSelector(getState());
+  return project
+    ? dispatch({ type: 'PROJECT', payload: JSON.parse(project) })
+    : dispatch(createProject());
+};
 
-    const update = { ...project, ...payload };
-    syncWithServer(dispatch, update);
-    dispatch({ type: 'PROJECTS', payload: projects.map(p => p.projectId === project.projectId ? update : p) });
-  }
-}
+export const createProject = () => (dispatch: Dispatch<ProjectsAction>) => {
+  dispatch({ type: 'PROJECT', payload: { elements: [], images: [] } });
+};
 
-export function createProjectElement(payload: Partial<Element>) {
-  return async function(dispatch: Dispatch<any>, getState: GetState) {
-    const project = projectSelector()(getState());
-    const element = { ...payload, elementId: uuid() } as Element;
+export const updateProject = (payload: Partial<Project>) => (dispatch: Dispatch<ProjectsAction>, getState: GetState) => {
+  const project = projectSelector(getState());
+  const update: Project = { ...project, ...payload };
 
-    dispatch(updateProject({ elements: [...project.elements, element] }));
-    // Set the newly created element as selected
-    setTimeout(() => dispatch(setSelectionId(element.elementId)), 10);
-  }
-}
+  syncWithServer(dispatch, update);
+  dispatch({ type: 'PROJECT', payload: update });
+};
 
-export function updateProjectElement(elementId: string, payload: Partial<Element>) {
-  return async function (dispatch: Dispatch<any>, getState: GetState) {
-    const project = projectSelector()(getState());
-    const elements = project.elements.map(el => el.elementId === elementId ? merge(el, payload) : el);
+export const createProjectElement = (payload: Partial<Element>) => (dispatch: Dispatch<any>, getState: GetState) => {
+  const project = projectSelector(getState());
+  const element = { ...payload, id: uuid() } as Element;
 
-    dispatch(updateProject({ elements }));
-  }
-}
+  dispatch(updateProject({ elements: [...project.elements, element] }));
+  // Set the newly created element as selected
+  setTimeout(() => dispatch(setSelectionId(element.id)), 10);
+};
 
-export function deleteProjectElement(elementId: string) {
-  return async function (dispatch: Dispatch<any>, getState: GetState) {
-    const project = projectSelector()(getState());
-    const elements = project.elements.filter(el => el.elementId !== elementId);
+export const updateProjectElement = (id: string, payload: Partial<Element>) => (dispatch: Dispatch<any>, getState: GetState) => {
+  const project = projectSelector(getState());
+  const elements = project.elements.map(el => el.id === id ? merge(el, payload) : el);
 
-    dispatch(updateProject({ elements }));
-  }
-}
+  dispatch(updateProject({ elements }));
+};
 
-export function uploadImages(files: File[]) {
-  return async function (dispatch: Dispatch<any>, getState: GetState) {
-    const project = projectSelector()(getState());
-    const payload = await getImageUploadPayload(files);
-    const urls = await api.post(`/projects/${project.projectId}/images`, payload);
+export const deleteProjectElement = (id: string) => (dispatch: Dispatch<any>, getState: GetState) => {
+  const project = projectSelector(getState());
+  const elements = project.elements.filter(el => el.id !== id);
 
-    await uploadImagesToS3(files, urls);
-    dispatch(getProjects());
-  }
-}
+  dispatch(updateProject({ elements }));
+};
 
-export function deleteImage(imageId: string) {
-  return async function (dispatch: Dispatch<any>, getState: GetState) {
-    const project = projectSelector()(getState());
+export const uploadImages = (_files: File[]) => (_dispatch: Dispatch<any>, _getState: GetState) => {
+  // TODO
+};
 
-    const { images } = await api.delete(`/projects/${project.projectId}/images/${imageId}`);
-    dispatch(updateProject({ images }));
-  }
-}
+export const deleteImage = (_imageId: string) => (_dispatch: Dispatch<any>, _getState: GetState) => {
+  // TODO
+};

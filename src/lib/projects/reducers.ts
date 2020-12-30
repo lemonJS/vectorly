@@ -1,17 +1,17 @@
 import { Project } from '@type/project';
 
-export type ProjectsState = Project[];
+export type ProjectsState = Project | null;
 
 export interface ProjectsAction {
   type: string;
-  payload: Partial<ProjectsState>;
+  payload: ProjectsState;
 }
 
-export const initialState: ProjectsState = [];
+export const initialState: ProjectsState = null;
 
-export function projects(state = initialState, action: ProjectsAction) {
+export function project(state = initialState, action: ProjectsAction) {
   switch (action.type) {
-    case 'PROJECTS':
+    case 'PROJECT':
       return action.payload;
     default:
       return state;

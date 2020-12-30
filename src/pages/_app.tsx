@@ -5,7 +5,6 @@ import { injectGlobal } from '@emotion/css';
 import { Provider } from 'react-redux';
 import { cssVariables } from '@lib/config';
 import { store } from '@lib/store';
-import { Wrapper } from '@components/common/wrapper';
 
 injectGlobal`  
   :root {
@@ -28,13 +27,11 @@ injectGlobal`
 `;
 
 export default function App(props: AppProps): JSX.Element {
-  const { Component, pageProps, router } = props;
+  const { Component, pageProps } = props;
 
   return (
     <Provider store={store}>
-      <Wrapper route={router.route}>
-        <Component {...pageProps} />
-      </Wrapper>
+      <Component {...pageProps} />
     </Provider>
   );
 }

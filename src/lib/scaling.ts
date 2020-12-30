@@ -1,7 +1,7 @@
-import { SVG, Transform } from '@type/editor';
+import { Transform } from '@type/project';
 
 interface TransformPayload {
-  svg: SVG;
+  svg: HTMLElement & SVGSVGElement;
   box: [number, number];
   client: [number, number];
   offset: [number, number];

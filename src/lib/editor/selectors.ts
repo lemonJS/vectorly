@@ -18,10 +18,10 @@ export function savingSelector(state: State): boolean {
 
 export function selectedElementSelector(state: State): Element | null {
   const { selectedElement } = state.editor;
-  const project = projectSelector()(state);
+  const project = projectSelector(state);
 
   if (!selectedElement || !project) return null;
 
   // Clone here to force React to redraw
-  return clone(project.elements.find(e => e.elementId === selectedElement.elementId) || null);
+  return clone(project.elements.find(e => e.id === selectedElement.id) || null);
 }

@@ -1,6 +1,8 @@
 import { Element } from '@type/project';
 
 export type EditorState = {
+  menuOpen: boolean;
+  menuSelected: string;
   saving: boolean;
   selectedElement: Element | null;
   undoStack: string[];
@@ -14,6 +16,8 @@ export interface EditorAction {
 }
 
 export const initialState: EditorState = {
+  menuOpen: true,
+  menuSelected: 'photos',
   saving: false,
   selectedElement: null,
   undoStack: [],
@@ -21,11 +25,11 @@ export const initialState: EditorState = {
   zoom: 100
 };
 
-export function editor(state = initialState, action: EditorAction) {
+export const editor = (state = initialState, action: EditorAction) => {
   switch (action.type) {
     case 'EDITOR':
       return { ...state, ...action.payload };
     default:
       return state;
   }
-}
+};

@@ -2,7 +2,7 @@
   "name": "svg-editor",
   "version": "1.0.0",
   "description": "Vectorly App",
-  "main": "src/pages/projects/[id].tsx",
+  "main": "src/pages/index.tsx",
   "author": "Lewis Monteith <lemon@hackerstash.com>",
   "license": "MIT",
   "scripts": {

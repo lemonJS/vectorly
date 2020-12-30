@@ -21,17 +21,15 @@ const getLineHeight = (fontSize: string | number) => (fontSize as number) + 4 + 
 
 const getTextAlign = (textAnchor: keyof TextAlignMap) => textAlignMap[textAnchor] as Property.TextAlign;
 
-export function convertTextPropertiesToCss(properties: ElementProps): React.CSSProperties {
-  return {
-    color: properties.fill,
-    fontFamily: properties.fontFamily,
-    fontSize: properties.fontSize + 'px',
-    fontStyle: getFontStyle(properties.fontStyle),
-    fontWeight: getFontWeight(properties.fontWeight),
-    lineHeight: getLineHeight(properties.fontSize),
-    letterSpacing: properties.letterSpacing,
-    opacity: properties.opacity,
-    textAlign: getTextAlign(properties.textAnchor),
-    textDecoration: properties.textDecoration
-  };
-}
+export const convertTextPropertiesToCss = (properties: ElementProps): React.CSSProperties => ({
+  color: properties.fill,
+  fontFamily: properties.fontFamily,
+  fontSize: properties.fontSize + 'px',
+  fontStyle: getFontStyle(properties.fontStyle),
+  fontWeight: getFontWeight(properties.fontWeight),
+  lineHeight: getLineHeight(properties.fontSize),
+  letterSpacing: properties.letterSpacing,
+  opacity: properties.opacity,
+  textAlign: getTextAlign(properties.textAnchor),
+  textDecoration: properties.textDecoration
+});

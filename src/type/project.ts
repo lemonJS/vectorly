@@ -1,11 +1,16 @@
 import React from 'react';
 
-import { Transform } from '@type/editor';
-
 export interface ElementProps extends React.SVGProps<SVGElement> {}
 
+export type Transform = {
+  x: number,
+  y: number,
+  r: number,
+  s: [number, number]
+};
+
 export interface Image {
-  imageId: string;
+  id: string;
   name: string;
   height: number;
   url: string;
@@ -13,7 +18,7 @@ export interface Image {
 }
 
 export interface Element {
-  elementId: string;
+  id: string;
   type: string;
   element: string;
   transform: Transform;
@@ -22,11 +27,6 @@ export interface Element {
 }
 
 export interface Project {
-  userId: string;
-  projectId: string;
-  title: string;
   elements: Element[];
   images: Image[];
-  createdAt: string;
-  updatedAt: string;
 }
