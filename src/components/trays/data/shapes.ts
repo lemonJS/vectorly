@@ -177,6 +177,102 @@ export const shapes: ShapeListItem[] = [
         vectorEffect: 'non-scaling-stroke'
       }
     }
+  },
+  {
+    shapeId: 'b2ac4521-b9ae-45a9-8390-26bd0dbe4b72',
+    keywords: ['heart', 'love'],
+    shape: {
+      type: 'shape',
+      element: 'path',
+      transform: {
+        x: 0,
+        y: 0,
+        r: 0,
+        s: [1, 1]
+      },
+      props: {
+        d: 'M 39.027746,63.052555 37.702592,62.148996 C 37.408113,61.940483 6.3406077,40.533096 1.7761878,29.968412 -3.009091,19.056206 2.2179058,6.4063868 13.334478,1.7495848 c 9.12884,-3.822747 19.656455,-1.18157602 25.619649,5.977387 6.036814,-7.15896302 16.490808,-9.73063 25.619647,-5.977387 11.116574,4.656802 16.343571,17.3066212 11.631912,28.2188272 v 0 c -4.269942,9.73063 -30.625788,28.496846 -35.926405,32.11108 z M 22.0216,4.1822428',
+        fill: 'transparent',
+        paintOrder: 'stroke',
+        stroke: 'white',
+        strokeDasharray: 'none',
+        strokeWidth: 2,
+        transform: 'translate(5, 14)',
+        vectorEffect: 'non-scaling-stroke'
+      }
+    }
+  },
+  {
+    shapeId: 'c6475cd6-29cf-4425-a0c4-c11dd5c9b9e3',
+    keywords: ['drop', 'water'],
+    shape: {
+      type: 'shape',
+      element: 'path',
+      transform: {
+        x: 0,
+        y: 0,
+        r: 0,
+        s: [1, 1]
+      },
+      props: {
+        d: 'M 26,68.170732 C 11.668293,68.170732 0,56.692683 0,42.678049 0,29.043902 23.590244,2.726829 24.604878,1.585366 L 26,0 27.395122,1.585366 C 28.409756,2.726829 52,29.043902 52,42.678049 52,56.692683 40.331707,68.170732 26,68.170732 Z M 26,5.7707314 C',
+        fill: 'transparent',
+        paintOrder: 'stroke',
+        stroke: 'white',
+        strokeDasharray: 'none',
+        strokeWidth: 2,
+        transform: 'translate(19, 12)',
+        vectorEffect: 'non-scaling-stroke'
+      }
+    }
+  },
+  {
+    shapeId: 'a45b9e79-6969-49d7-9b82-ccbacc25c570',
+    keywords: ['diamond'],
+    shape: {
+      type: 'shape',
+      element: 'path',
+      transform: {
+        x: 0,
+        y: 0,
+        r: 0,
+        s: [1, 1]
+      },
+      props: {
+        d: 'M 22.433334,67.3 0,33.650001 22.433334,0 44.866669,33.650001 Z',
+        fill: 'transparent',
+        paintOrder: 'stroke',
+        stroke: 'white',
+        strokeDasharray: 'none',
+        strokeWidth: 2,
+        transform: 'translate(20, 12)',
+        vectorEffect: 'non-scaling-stroke'
+      }
+    }
+  },
+  {
+    shapeId: 'e3665123-0205-4a7b-baaa-f398e72d7fa2',
+    keywords: ['moon'],
+    shape: {
+      type: 'shape',
+      element: 'path',
+      transform: {
+        x: 0,
+        y: 0,
+        r: 0,
+        s: [1, 1]
+      },
+      props: {
+        d: 'M 34.93396,69.990083 C 21.660376,69.990083 8.9150935,62.461782 2.9056602,49.7165 L 0,43.508953 5.7452826,47.207066 c 1.2547167,0.792453 2.5754713,1.518868 3.9622637,2.04717 C 21.924527,54.008952 35.79245,47.999519 40.679242,35.848576 42.990563,30.037256 42.858487,23.499521 40.283016,17.622162 37.641507,11.612729 32.88679,6.9900873 26.943394,4.6787667 L 20.867923,2.3014084 27.207545,0.84857844 c 6.801886,-1.5188679 13.867924,-0.990566 20.339621,1.51886776 18.094338,6.9999995 27.075472,27.3396208 20.075469,45.4339598 -3.367923,8.386791 -9.641507,15.056602 -17.764148,18.886791 -4.820755,2.245282 -9.90566,3.301886 -14.924527,3.301886 z',
+        fill: 'transparent',
+        paintOrder: 'stroke',
+        stroke: 'white',
+        strokeDasharray: 'none',
+        strokeWidth: 2,
+        transform: 'translate(10, 10)',
+        vectorEffect: 'non-scaling-stroke'
+      }
+    }
   }
 ];
 

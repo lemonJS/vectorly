@@ -46,7 +46,9 @@ export const setSaving = (saving: boolean) => (dispatch: Dispatch<EditorAction>)
   });
 };
 
-export const updateUndoStack = (_update: Partial<Project>) => (dispatch: Dispatch<EditorAction>) => {
+export const updateUndoStack = (update: Partial<Project>) => (dispatch: Dispatch<EditorAction>) => {
+  console.log(update);
+
   dispatch({
     type: 'EDITOR',
     payload: { undoStack: [], undoStackIndex: 0 }

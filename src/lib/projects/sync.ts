@@ -1,10 +1,11 @@
 import { debounce } from 'lodash';
 import { Dispatch } from 'redux';
 import { Project } from '@type/project';
-import { setSaving } from '@lib/editor/actions';
+import { setSaving, updateUndoStack } from '@lib/editor/actions';
 
 export const sync = debounce((dispatch: Dispatch<any>, project: Project) => {
   dispatch(setSaving(true));
+  dispatch(updateUndoStack(project));
 
   localStorage.setItem('project', JSON.stringify(project));
 
