@@ -41,18 +41,36 @@ export const calculateTransform = (payload: TransformPayload): Partial<Transform
       w = (width * scaleX) - (clientX - offsetX);
       h = (height * scaleY) - (clientY - offsetY);
       break;
+    case 'top-center':
+      y = offsetY + clientY - offsetY - svgBoundingRect.y;
+      w = width * scaleX;
+      h = (height * scaleY) - (clientY - offsetY);
+      break;
     case 'top-right':
       w = width + (clientX - offsetX);
       h = (height * scaleY) - (clientY - offsetY);
       y = offsetY + clientY - offsetY - svgBoundingRect.y
       break;
+    case 'center-right':
+      w = (width * scaleX) + (clientX - offsetX);
+      h = height * scaleY;
+      break;
     case 'bottom-right':
       w = (width * scaleX) + (clientX - offsetX);
+      h = (height * scaleY) + (clientY - offsetY);
+      break;
+    case 'bottom-center':
+      w = width * scaleX;
       h = (height * scaleY) + (clientY - offsetY);
       break;
     case 'bottom-left':
       w = (width * scaleX) - (clientX - offsetX);
       h = (height * scaleY) + (clientY - offsetY);
+      x = offsetX + clientX - offsetX - svgBoundingRect.x;
+      break;
+    case 'center-left':
+      w = (width * scaleX) - (clientX - offsetX);
+      h = height * scaleY;
       x = offsetX + clientX - offsetX - svgBoundingRect.x;
       break;
   }

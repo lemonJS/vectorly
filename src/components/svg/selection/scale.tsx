@@ -8,7 +8,7 @@ interface Props {
   height: number;
   parent: string;
   padding: number;
-  position: 'top-left' | 'top-right' | 'bottom-right' | 'bottom-left';
+  position: 'top-left' | 'top-center' | 'top-right' | 'center-right' | 'bottom-right' | 'bottom-center' | 'bottom-left' | 'center-left';
   transform: Transform;
   handleTransform: (transform: Partial<Transform>) => void;
   width: number;
@@ -59,7 +59,11 @@ export class Scale extends React.Component<Props, State> {
     switch(this.props.position) {
       case 'top-right':
       case 'bottom-right':
+      case 'center-right':
         return this.props.width;
+      case 'top-center':
+      case 'bottom-center':
+        return this.props.width / 2;
       default:
         return 0;
     }
@@ -69,30 +73,42 @@ export class Scale extends React.Component<Props, State> {
     switch(this.props.position) {
       case 'bottom-right':
       case 'bottom-left':
+      case 'bottom-center':
         return this.props.height;
+      case 'center-left':
+      case 'center-right':
+        return this.props.height / 2;
       default:
         return 0;
     }
   }
 
   private get rx() {
-    return 8 / this.props.transform.s[0];
+    return 6 / this.props.transform.s[0];
   }
 
   private get ry() {
-    return 8 / this.props.transform.s[1];
+    return 6 / this.props.transform.s[1];
   }
 
   private get cursor() {
     switch (this.props.position) {
       case 'top-left':
         return 'nw-resize';
+      case 'top-center':
+        return 'n-resize';
       case 'top-right':
         return 'ne-resize';
+      case 'center-right':
+        return 'e-resize';
       case 'bottom-right':
         return 'se-resize';
+      case 'bottom-center':
+        return 's-resize';
       case 'bottom-left':
         return 'sw-resize';
+      case 'center-left':
+        return 'w-resize';
       default:
         return 'default';
     }

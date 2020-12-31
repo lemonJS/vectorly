@@ -78,9 +78,13 @@ export class Selection extends React.Component<Props> {
         <Rotate {...props} />
         <TextEditor {...props} />
         <Scale position='top-left' {...props} />
+        <Scale position='top-center' {...props} />
         <Scale position='top-right' {...props} />
+        <Scale position='center-right' {...props} />
         <Scale position='bottom-right' {...props} />
+        <Scale position='bottom-center' {...props} />
         <Scale position='bottom-left' {...props} />
+        <Scale position='center-left' {...props} />
       </g>
     );
 
