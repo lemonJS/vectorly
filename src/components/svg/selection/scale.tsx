@@ -76,11 +76,11 @@ export class Scale extends React.Component<Props, State> {
   }
 
   private get rx() {
-    return this.props.padding / this.props.transform.s[0];
+    return 8 / this.props.transform.s[0];
   }
 
   private get ry() {
-    return this.props.padding / this.props.transform.s[1];
+    return 8 / this.props.transform.s[1];
   }
 
   private get cursor() {

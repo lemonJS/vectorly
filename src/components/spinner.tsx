@@ -19,8 +19,9 @@ const styles = css`
     
     div {
       animation: spinner 1.2s cubic-bezier(.5, 0, .5, 1) infinite;
-      border: 3px solid white;
       border-color: white transparent transparent transparent;
+      border-style: solid;
+      border-width: 3px;
       border-radius: 50%;
       display: block;
       height: 1.25rem;

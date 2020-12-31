@@ -1,6 +1,8 @@
 import React from 'react';
 
-export interface ElementProps extends React.SVGProps<SVGElement> {}
+export interface ElementProps extends React.SVGProps<SVGElement> {
+  'data-id'?: string;
+}
 
 export type Transform = {
   x: number,
@@ -22,6 +24,7 @@ export interface Element {
   type: string;
   element: string;
   transform: Transform;
+  readonly?: boolean;
   props: ElementProps;
   text?: string;
 }

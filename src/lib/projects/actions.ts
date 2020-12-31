@@ -54,11 +54,14 @@ export const deleteElement = (id: string) => (dispatch: Dispatch<any>, getState:
 export const uploadImages = (files: File[]) => async (dispatch: Dispatch<any>, getState: GetState) => {
   const { project } = getState();
   const images = await loadImages(files);
+
   dispatch(updateProject({ images: [...project.images, ...images] }));
 };
 
 export const deleteImage = (id: string) => (dispatch: Dispatch<any>, getState: GetState) => {
   const { project } = getState();
   const images = project.images.filter(image => image.id !== id);
-  dispatch(updateProject({ images }));
+  const elements = project.elements.filter(element => element.props['data-id'] !== id);
+
+  dispatch(updateProject({ images, elements }));
 };

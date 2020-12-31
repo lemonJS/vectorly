@@ -46,20 +46,20 @@ export class Move extends React.Component<Props, State> {
     document.removeEventListener('touchmove', this.handleTouchMove, false);
   }
 
-  private get cx() {
+  private get x() {
     return (this.props.width / 2);
   }
 
-  private get cy() {
-    return - (this.props.padding * 3) / this.props.transform.s[1];
+  private get y() {
+    return - 24 / this.props.transform.s[1];
   }
 
   private get rx() {
-    return this.props.padding / this.props.transform.s[0];
+    return 12 / this.props.transform.s[0];
   }
 
   private get ry() {
-    return this.props.padding / this.props.transform.s[1];
+    return 12 / this.props.transform.s[1];
   }
 
   private beginDrag = (element: HTMLDivElement, clientX: number, clientY: number) => {
@@ -121,16 +121,22 @@ export class Move extends React.Component<Props, State> {
 
   public render(): JSX.Element {
     return (
-      <ellipse
-        cx={this.cx}
-        cy={this.cy}
-        rx={this.rx}
-        ry={this.ry}
-        cursor='move'
-        fill='var(--primary-accent-color)'
-        onMouseDown={this.handleMouseDown}
-        onTouchStart={this.handleTouchStart}
-      />
+      <g transform={`translate(${this.x} ${this.y})`}>
+        <ellipse
+          rx={this.rx}
+          ry={this.ry}
+          cursor='move'
+          fill='var(--primary-accent-color)'
+          onMouseDown={this.handleMouseDown}
+          onTouchStart={this.handleTouchStart}
+        />
+        <path
+          fill='white'
+          transform={`scale(${1 / this.props.transform.s[0]} ${1 / this.props.transform.s[1]}) translate(-8 -8)`}
+          d='M 12.8,7.2 V 4.8 L 16,7.9999999 12.8,11.2 V 8.8 h -4 v 4 h 2.4 L 7.9999999,16 4.8,12.8 h 2.4 v -4 h -4 v 2.4 L 0,7.9999999 3.2,4.8 v 2.4 h 4 v -4 H 4.8 L 7.9999999,0 11.2,3.2 H 8.8 v 4 z'
+          pointerEvents='none'
+        />
+      </g>
     );
   }
 }

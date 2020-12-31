@@ -23,7 +23,7 @@ export const Container = (props: Props): JSX.Element => {
   const transform = `translate(${x} ${y}) rotate(${r} ${(box.width * s[0]) / 2} ${(box.height * s[1]) / 2}) scale(${s[0]} ${s[1]})`;
 
   const handleClick = () => {
-    if (!props.selected) {
+    if (!props.selected && !props.element.readonly) {
       dispatch(setSelectionId(props.element.id));
     }
   };
@@ -37,7 +37,7 @@ export const Container = (props: Props): JSX.Element => {
     <g>
       <g id={props.id} className='container' onClick={handleClick} ref={ref} transform={transform}>
         {props.children}
-        {props.selected && (
+        {props.selected && !props.element.readonly && (
           <Selection
             box={box}
             transform={props.element.transform}
