@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { css } from '@emotion/css';
 import { Transform } from '@type/project';
 import { Element } from '@components/svg/element';
+import { Filters } from '@components/svg/filters/filters';
 import { projectSelector } from '@lib/projects/selectors';
 import { setSelectionId } from '@lib/editor/actions';
 import { createElement } from '@lib/projects/actions';
@@ -24,7 +25,7 @@ const styles = css`
   height: 800px;
   width: 500px;
   
-  svg {
+  #canvas {
     height: 100%;
     outline: none;
     overflow: visible;
@@ -98,6 +99,8 @@ export const SVG = (): JSX.Element => {
           <Element key={element.id} element={element} />
         ))}
       </svg>
+
+      <Filters />
     </div>
   );
 };

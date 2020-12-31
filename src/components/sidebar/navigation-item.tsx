@@ -3,7 +3,7 @@ import React from 'react';
 import { css } from '@emotion/css';
 import { useDispatch, useSelector } from 'react-redux';
 import { editorSelector } from '@lib/editor/selectors';
-import { setMenuSelected } from '@lib/editor/actions';
+import { setMenuOpen, setMenuSelected } from '@lib/editor/actions';
 
 interface Props {
   name: string;
@@ -23,6 +23,7 @@ const styles = css`
   flex-direction: column;
   height: 5rem;
   justify-content: center;
+  outline-offset: -2px;
   text-transform: uppercase;
   width: 6rem;
   
@@ -51,12 +52,13 @@ const styles = css`
 export const NavigationItem = (props: Props): JSX.Element => {
   const dispatch = useDispatch();
 
-  const { menuSelected } = useSelector(editorSelector);
+  const { menuSelected, menuOpen } = useSelector(editorSelector);
   const status = menuSelected === props.name ? 'selected' : '';
 
   const handleClick = () => {
-    const selected = props.name === menuSelected ? null : props.name;
-    dispatch(setMenuSelected(selected));
+    props.name === menuSelected
+      ? dispatch(setMenuOpen(!menuOpen))
+      : dispatch(setMenuSelected(props.name));
   };
 
   return (

@@ -25,6 +25,10 @@ const styles = css`
     vertical-align: sub;
   }
   
+  &:focus {
+    outline: 1px solid var(--primary-accent-color);
+  }
+  
   &.secondary {
     background: var(--secondary-button-background-color);
     border: 2px solid var(--secondary-button-border-color);

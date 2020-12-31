@@ -8,6 +8,7 @@ import { Colors } from '@components/trays/photos/colors';
 import { Positioning } from '@components/trays/positioning';
 import { updateProject, updateElement } from '@lib/projects/actions';
 import { Stacking } from '@components/trays/stacking';
+import { Filters } from '@components/trays/photos/filters/filters';
 
 interface Props {
   element: Element;
@@ -31,6 +32,7 @@ export const Edit = (props: Props): JSX.Element => {
   return (
     <div>
       <Close title='Edit Photo' />
+      <Filters element={props.element} handleUpdate={handlePropsUpdate} />
       <Colors element={props.element} handleUpdate={handlePropsUpdate} />
       <Positioning element={props.element} handleUpdate={handleUpdate} />
       <Stacking element={props.element} handleUpdate={handleProjectUpdate} />
