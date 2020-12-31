@@ -273,6 +273,30 @@ export const shapes: ShapeListItem[] = [
         vectorEffect: 'non-scaling-stroke'
       }
     }
+  },
+  {
+    shapeId: 'c188c557-f0fb-47a2-b38e-b344e32921c3',
+    keywords: ['shield'],
+    shape: {
+      type: 'shape',
+      element: 'path',
+      transform: {
+        x: 0,
+        y: 0,
+        r: 0,
+        s: [1, 1]
+      },
+      props: {
+        d: 'M 34.901223,70 34.374412,69.868296 C 21.533396,66.378173 11.58984,57.158984 5.6632174,43.066792 1.1853245,32.464722 0,21.401693 0,16.528692 0,14.816557 0.1317027,13.104421 0.39510815,11.392286 L 0.59266224,10.14111 34.967075,0 l 34.374412,10.14111 0.197554,1.251176 c 0.263405,1.712135 0.329257,3.424271 0.395108,5.070555 0,4.873001 -1.185325,15.93603 -5.663217,26.5381 -5.926623,14.02634 -15.870179,23.311381 -28.711195,26.801503 z',
+        fill: 'transparent',
+        paintOrder: 'stroke',
+        stroke: 'white',
+        strokeDasharray: 'none',
+        strokeWidth: 2,
+        transform: 'translate(9, 9)',
+        vectorEffect: 'non-scaling-stroke'
+      }
+    }
   }
 ];
 
