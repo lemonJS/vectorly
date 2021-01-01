@@ -56,9 +56,9 @@ export const Undo = (): JSX.Element => {
 
   const { undoStack, undoStackIndex } = useSelector(editorSelector);
 
-  const canUndo = undoStack.length > 0 && undoStackIndex >= 0;
+  const canUndo = undoStack.length > 0 && undoStackIndex > 0;
 
-  const canRedo = undoStack.length > 0 && undoStackIndex < undoStack.length;
+  const canRedo = undoStack.length > 0 && undoStackIndex < undoStack.length - 1;
 
   const handleUndo = () => dispatch(undo());
 

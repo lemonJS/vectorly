@@ -8,16 +8,18 @@ import { setSelectionId } from '@lib/editor/actions';
 import { sync } from '@lib/projects/sync';
 import { loadImages } from '@lib/images';
 
+
 export const getProject = () => (dispatch: Dispatch<any>) => {
-  const project = localStorage.getItem('project');
+  const data = localStorage.getItem('project');
 
-  return project
-    ? dispatch({ type: 'PROJECT', payload: JSON.parse(project) })
-    : dispatch(createProject());
-};
+  const project = data
+    ? JSON.parse(data)
+    : { elements: [], images: [] };
 
-export const createProject = () => (dispatch: Dispatch<ProjectsAction>) => {
-  dispatch({ type: 'PROJECT', payload: { elements: [], images: [] } });
+  dispatch({ type: 'PROJECT', payload: project });
+  // The undo stack needs a base line so that the user can
+  // roll back to the very start
+  dispatch({ type: 'EDITOR', payload: { undoStack: [JSON.stringify(project)] } });
 };
 
 export const updateProject = (payload: Partial<Project>) => (dispatch: Dispatch<ProjectsAction>, getState: GetState) => {
