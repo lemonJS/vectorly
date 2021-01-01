@@ -19,6 +19,7 @@ interface State {
   offset: [number, number];
   pressed: boolean;
   scale: [number, number];
+  shift: boolean;
 }
 
 export class Scale extends React.Component<Props, State> {
@@ -32,13 +33,17 @@ export class Scale extends React.Component<Props, State> {
       box: [0, 0],
       offset: [0, 0],
       pressed: false,
-      scale: [1, 1]
+      scale: [1, 1],
+      shift: false
     };
   }
 
   public componentDidMount() {
     this.svg = document.getElementById('canvas') as HTMLElement & SVGSVGElement;
     this.parent = document.getElementById(this.props.parent) as HTMLElement & SVGSVGElement;
+
+    document.addEventListener('keyup', this.handleKeyUp);
+    document.addEventListener('keydown', this.handleKeyDown);
 
     document.addEventListener('mouseup', this.handleMouseUp);
     document.addEventListener('mousemove', this.handleMouseMove);
@@ -48,6 +53,9 @@ export class Scale extends React.Component<Props, State> {
   }
 
   public componentWillUnmount() {
+    document.removeEventListener('keyup', this.handleKeyUp, false);
+    document.removeEventListener('keydown', this.handleKeyDown, false);
+
     document.removeEventListener('mouseup', this.handleMouseUp, false);
     document.removeEventListener('mousemove', this.handleMouseMove, false);
 
@@ -134,6 +142,7 @@ export class Scale extends React.Component<Props, State> {
         offset: this.state.offset,
         position: this.props.position,
         scale: this.state.scale,
+        shift: this.state.shift
       });
       this.props.handleTransform(transform);
     }
@@ -165,6 +174,14 @@ export class Scale extends React.Component<Props, State> {
 
   private handleTouchEnd = () => {
     this.endDrag();
+  };
+
+  private handleKeyUp = () => {
+    this.setState({ shift: false });
+  };
+
+  private handleKeyDown = (event: KeyboardEvent) => {
+    this.setState({ shift: event.shiftKey });
   };
 
   public render(): JSX.Element {

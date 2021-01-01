@@ -7,6 +7,7 @@ interface TransformPayload {
   offset: [number, number];
   position: string;
   scale: [number, number];
+  shift: boolean;
 }
 
 // Mother of fuck, this would be so much easier if it wasn't for
@@ -18,7 +19,10 @@ interface TransformPayload {
 const MIN_SIZE = 32;
 
 export const calculateTransform = (payload: TransformPayload): Partial<Transform> => {
-  const { svg, position } = payload;
+  const { svg, position, shift } = payload;
+
+  // TODO
+  console.log(shift);
 
   const [clientX, clientY] = payload.client;
   const [width, height] = payload.box;

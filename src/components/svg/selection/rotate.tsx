@@ -13,6 +13,7 @@ interface Props {
 
 interface State {
   pressed: boolean;
+  shift: boolean;
 }
 
 export class Rotate extends React.Component<Props, State> {
@@ -21,11 +22,18 @@ export class Rotate extends React.Component<Props, State> {
   public constructor(props: Props) {
     super(props);
 
-    this.state = { pressed: false };
     this.parent = document.getElementById(this.props.parent) as HTMLElement & SVGSVGElement;
+
+    this.state = {
+      pressed: false,
+      shift: false
+    };
   }
 
   public componentDidMount() {
+    document.addEventListener('keyup', this.handleKeyUp);
+    document.addEventListener('keydown', this.handleKeyDown);
+
     document.addEventListener('mouseup', this.handleMouseUp);
     document.addEventListener('mousemove', this.handleMouseMove);
 
@@ -34,6 +42,9 @@ export class Rotate extends React.Component<Props, State> {
   }
 
   public componentWillUnmount() {
+    document.removeEventListener('keyup', this.handleKeyUp, false);
+    document.removeEventListener('keydown', this.handleKeyDown, false);
+
     document.removeEventListener('mouseup', this.handleMouseUp, false);
     document.removeEventListener('mousemove', this.handleMouseMove, false);
 
@@ -70,7 +81,10 @@ export class Rotate extends React.Component<Props, State> {
       const radians = Math.atan2(clientY - y, clientX - x);
       // Because we're dragging, it needs to be inverted to feel natural
       const inverted = radians > 0 ? -Math.abs(radians) : Math.abs(radians);
-      const degrees = (inverted * (180 / Math.PI) * -1) - 90;
+      // Calculate the degrees
+      const value = (inverted * (180 / Math.PI) * -1) - 90;
+      // Round to nearest 45 when the shift key is pressed
+      const degrees = this.state.shift ? Math.ceil(value / 45) * 45 : value;
 
       this.props.handleTransform({ r: degrees });
     }
@@ -102,6 +116,14 @@ export class Rotate extends React.Component<Props, State> {
 
   private handleTouchEnd = () => {
     this.endDrag();
+  };
+
+  private handleKeyUp = () => {
+    this.setState({ shift: false });
+  };
+
+  private handleKeyDown = (event: KeyboardEvent) => {
+    this.setState({ shift: event.shiftKey });
   };
 
   public render(): JSX.Element {
