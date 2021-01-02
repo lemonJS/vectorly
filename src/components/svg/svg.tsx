@@ -19,7 +19,6 @@ declare global {
 }
 
 const styles = css`
-  background: var(--foreground-color);
   box-shadow: 0 3px 15px rgba(0, 0, 0, 0.2);
   display: flex;
   height: 800px;
@@ -94,7 +93,7 @@ export const SVG = (): JSX.Element => {
 
   return (
     <div className={styles} style={{ transform: `scale(${zoom / 100})` }}>
-      <svg id='canvas' viewBox='0 0 500 800' onMouseDown={handleMouseDown} onDrop={handleDrop} onDragOver={handleDragOver}>
+      <svg id='canvas' height='800' width='500' onMouseDown={handleMouseDown} onDrop={handleDrop} onDragOver={handleDragOver}>
         {elements.map(element => (
           <Element key={element.id} element={element} />
         ))}

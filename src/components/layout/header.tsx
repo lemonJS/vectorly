@@ -2,34 +2,32 @@ import React from 'react';
 
 import Link from 'next/link';
 import { css } from '@emotion/css';
+import { Download } from '@components/layout/download';
 
 const styles = css`
+  align-items: center;
   background: var(--header-background-color);
   display: flex;
   grid-area: header;
   justify-content: space-between;
   z-index: 1;
   
-  .title {
+  .logo {
+    align-items: center;
     display: flex;
-    
-    .logo {
-      align-items: center;
-      display: flex;
-      justify-content: center;
-      width: 6rem;    
-    }
+    justify-content: center;
+    width: 6rem;
   }
 `;
 
 export const Header = (): JSX.Element => (
   <header className={styles}>
-    <div className='title'>
-      <Link href='/'>
-        <a className='logo'>
-          <img src='/logo.svg' alt='logo' height='48' width='48' />
-        </a>
-      </Link>
-    </div>
+    <Link href='/'>
+      <a className='logo'>
+        <img src='/logo.svg' alt='logo' height='48' width='48' />
+      </a>
+    </Link>
+
+    <Download />
   </header>
 );

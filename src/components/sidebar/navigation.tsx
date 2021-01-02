@@ -54,6 +54,11 @@ export const Navigation = (): JSX.Element => {
       icon: 'ri-shape-2-line',
     },
     {
+      title: 'Background',
+      name: 'background',
+      icon: 'ri-paint-line'
+    },
+    {
       title: 'Designs',
       name: 'designs',
       icon: 'ri-paint-brush-line',

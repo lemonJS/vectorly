@@ -1,7 +1,7 @@
 import { Dispatch } from 'redux';
 import { GetState } from '@type/redux';
 import { Project } from '@type/project';
-import { getLayoutForElementType } from '@lib/helpers';
+import { getLayoutForElementType } from '@lib/editor/helpers';
 import { projectSelector } from '@lib/projects/selectors';
 import { EditorAction } from '@lib/editor/reducers';
 

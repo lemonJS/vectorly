@@ -3,7 +3,7 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { Element, ElementProps, Transform } from '@type/project';
 import { Selection } from '@components/svg/selection/selection';
-import { getBox } from '@lib/helpers';
+import { getBox } from '@lib/editor/helpers';
 import { setSelectionId } from '@lib/editor/actions';
 import { updateElement } from '@lib/projects/actions';
 

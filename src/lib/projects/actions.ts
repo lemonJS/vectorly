@@ -7,14 +7,14 @@ import { ProjectsAction } from '@lib/projects/reducers';
 import { setSelectionId } from '@lib/editor/actions';
 import { sync } from '@lib/projects/sync';
 import { loadImages } from '@lib/images';
-
+import { newProject } from '@lib/projects/helpers';
 
 export const getProject = () => (dispatch: Dispatch<any>) => {
   const data = localStorage.getItem('project');
 
   const project = data
     ? JSON.parse(data)
-    : { elements: [], images: [] };
+    : newProject();
 
   dispatch({ type: 'PROJECT', payload: project });
   // The undo stack needs a base line so that the user can
