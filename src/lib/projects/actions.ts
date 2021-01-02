@@ -22,6 +22,11 @@ export const getProject = () => (dispatch: Dispatch<any>) => {
   dispatch({ type: 'EDITOR', payload: { undoStack: [JSON.stringify(project)] } });
 };
 
+export const clearProject = () => (dispatch: Dispatch<any>) => {
+  localStorage.removeItem('project');
+  dispatch(getProject());
+};
+
 export const updateProject = (payload: Partial<Project>) => (dispatch: Dispatch<ProjectsAction>, getState: GetState) => {
   const { project } = getState();
   const update: Project = { ...project, ...payload };

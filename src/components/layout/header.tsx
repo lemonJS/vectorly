@@ -2,7 +2,7 @@ import React from 'react';
 
 import Link from 'next/link';
 import { css } from '@emotion/css';
-import { Download } from '@components/layout/download';
+import { Options } from '@components/controls/options';
 
 const styles = css`
   align-items: center;
@@ -28,6 +28,6 @@ export const Header = (): JSX.Element => (
       </a>
     </Link>
 
-    <Download />
+    <Options />
   </header>
 );
