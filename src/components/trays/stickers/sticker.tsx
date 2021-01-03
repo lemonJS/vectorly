@@ -3,11 +3,11 @@ import React from 'react';
 import { cloneDeep } from 'lodash';
 import { useDispatch } from 'react-redux';
 import { css } from '@emotion/css';
-import { ClipArtListItem } from '@components/trays/data/clipart';
+import { StickerListItem } from '@components/trays/data/stickers';
 import { createElement } from '@lib/projects/actions';
 
 interface Props {
-  clipart: ClipArtListItem;
+  sticker: StickerListItem;
 }
 
 const styles = css`
@@ -31,15 +31,15 @@ const styles = css`
   }
 `;
 
-export const Clipart = (props: Props): JSX.Element => {
+export const Sticker = (props: Props): JSX.Element => {
   const dispatch = useDispatch();
 
-  const element = React.createElement(props.clipart.shape.element, props.clipart.shape.props);
+  const element = React.createElement(props.sticker.shape.element, props.sticker.shape.props);
 
   const formatShapeForCreation = () => {
-    const clipart = cloneDeep(props.clipart.shape);
-    delete clipart.props.transform;
-    return clipart;
+    const sticker = cloneDeep(props.sticker.shape);
+    delete sticker.props.transform;
+    return sticker;
   };
 
   const handleDragStart = (event: React.DragEvent<HTMLDivElement>) => {

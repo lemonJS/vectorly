@@ -10,6 +10,7 @@ import { Background } from '@components/trays/background/background';
 import { Text } from '@components/trays/text/text';
 import { editorSelector } from '@lib/editor/selectors';
 import { projectSelector } from '@lib/projects/selectors';
+import { Stickers } from '@components/trays/stickers/stickers';
 
 interface Props {
   open: boolean;
@@ -28,7 +29,7 @@ const styles = css`
   
   @media only screen and (max-width: 1024px) {
     background: var(--sidebar-background-color);
-    bottom: 80px;
+    bottom: 72px;
     height: 360px;
     position: absolute;
   }
@@ -58,6 +59,10 @@ export const Tray = (props: Props): JSX.Element => {
     {
       Component: Shapes,
       name: 'shapes'
+    },
+    {
+      Component: Stickers,
+      name: 'stickers'
     },
     {
       Component: Emojis,

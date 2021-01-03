@@ -1,16 +1,16 @@
 import React from 'react';
 
 import { useSelector } from 'react-redux';
-import { Create } from '@components/trays/shapes/create';
-import { Edit } from '@components/trays/shapes/edit';
+import { Create } from '@components/trays/stickers/create';
+import { Edit } from '@components/trays/stickers/edit';
 import { selectedElementSelector } from '@lib/editor/selectors';
 
-export const Shapes = (): JSX.Element => {
+export const Stickers = (): JSX.Element => {
   const element = useSelector(selectedElementSelector);
 
   return (
     <React.Fragment>
-      {element?.type === 'shape'
+      {element?.type === 'sticker'
         ? <Edit element={element} />
         : <Create />
       }

@@ -32,6 +32,9 @@ const styles = css`
       'sidebar';
     grid-template-columns: minmax(0, 1fr);
     grid-template-rows: 64px minmax(0, 1fr) 5rem;
+    height: 100%;
+    overflow: hidden;
+    width: 100%;
     
     &.menu-open {
       grid-template-columns: minmax(0, 1fr);

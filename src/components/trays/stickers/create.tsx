@@ -1,14 +1,14 @@
 import React from 'react';
 
 import { css } from '@emotion/css';
-import { shapes } from '@components/trays/data/shapes';
+import { stickers } from '@components/trays/data/stickers';
 import { Input } from '@components/input';
-import { Shape } from '@components/trays/shapes/shape';
+import { Sticker } from '@components/trays/stickers/sticker';
 
 const styles = css` 
   width: 100%;
   
-  .shapes {
+  .stickers {
     display: grid;
     grid-gap: 1.5rem;
     grid-template-columns: repeat(auto-fill, minmax(88px, 1fr));
@@ -24,8 +24,8 @@ export const Create = (): JSX.Element => {
     setSearch(element.value);
   };
 
-  const results = shapes.filter(shape => search
-    ? shape.keywords.some(keyword => keyword.includes(search))
+  const results = stickers.filter(sticker => search
+    ? sticker.keywords.some(keyword => keyword.includes(search))
     : true
   );
 
@@ -33,9 +33,9 @@ export const Create = (): JSX.Element => {
     <div className={styles}>
       <Input className='search' placeholder='Search...' value={search} onChange={handleSearch} />
 
-      <div className='shapes'>
-        {results.map(shape => (
-          <Shape key={shape.shapeId} shape={shape} />
+      <div className='stickers'>
+        {results.map(sticker => (
+          <Sticker key={sticker.stickerId} sticker={sticker} />
         ))}
       </div>
     </div>
