@@ -21,9 +21,6 @@ const MIN_SIZE = 32;
 export const calculateTransform = (payload: TransformPayload): Partial<Transform> => {
   const { svg, position, shift } = payload;
 
-  // TODO
-  console.log(shift);
-
   const [clientX, clientY] = payload.client;
   const [width, height] = payload.box;
   const [offsetX, offsetY] = payload.offset;
@@ -84,6 +81,11 @@ export const calculateTransform = (payload: TransformPayload): Partial<Transform
 
   if (x && w >= MIN_SIZE) out.x = x;
   if (y && h >= MIN_SIZE) out.y = y;
+
+  if (shift) {
+    const aspect = width / height;
+    out.s[1] = (Math.max(w, MIN_SIZE) / aspect) / height;
+  }
 
   return out;
 };
