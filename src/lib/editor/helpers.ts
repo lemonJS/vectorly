@@ -5,6 +5,7 @@ export const getLayoutForElementType = (type: string): string | null => {
     case 'text':
       return 'text';
     case 'shape':
+    case 'clipart':
       return 'shapes';
     case 'emoji':
       return 'emojis';

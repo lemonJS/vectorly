@@ -9,6 +9,7 @@ import { Actions } from '@components/trays/actions';
 import { Positioning } from '@components/trays/positioning';
 import { updateProject, updateElement } from '@lib/projects/actions';
 import { Stacking } from '@components/trays/stacking';
+import { Opacity } from '@components/trays/shapes/opacity';
 
 interface Props {
   element: Element;
@@ -32,8 +33,18 @@ export const Edit = (props: Props): JSX.Element => {
   return (
     <div>
       <Close title='Edit Shape' />
-      <Border element={props.element} handleUpdate={handlePropsUpdate} />
-      <Background element={props.element} handleUpdate={handlePropsUpdate} />
+
+      {props.element.type === 'shape' && (
+        <React.Fragment>
+          <Border element={props.element} handleUpdate={handlePropsUpdate} />
+          <Background element={props.element} handleUpdate={handlePropsUpdate} />
+        </React.Fragment>
+      )}
+
+      {props.element.type === 'clipart' && (
+        <Opacity element={props.element} handleUpdate={handlePropsUpdate} />
+      )}
+
       <Positioning element={props.element} handleUpdate={handleUpdate} />
       <Stacking element={props.element} handleUpdate={handleProjectUpdate} />
       <Actions element={props.element} />

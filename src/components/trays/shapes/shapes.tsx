@@ -10,7 +10,7 @@ export const Shapes = (): JSX.Element => {
 
   return (
     <React.Fragment>
-      {element?.type === 'shape'
+      {['shape', 'clipart'].includes(element?.type)
         ? <Edit element={element} />
         : <Create />
       }
