@@ -166,5 +166,145 @@ export const stickers: StickerListItem[] = [
         width: 82
       }
     }
+  },
+  {
+    stickerId: 'ed834426-e1d2-457f-a0f6-653c11807f54',
+    keywords: ['bank', 'money', 'card', 'credit'],
+    shape: {
+      type: 'sticker',
+      element: 'image',
+      transform: {
+        x: 0,
+        y: 0,
+        r: 0,
+        s: [1, 1]
+      },
+      props: {
+        height: 45,
+        href: `/stickers/ed834426-e1d2-457f-a0f6-653c11807f54.svg`,
+        transform: 'translate(8, 22)',
+        width: 72
+      }
+    }
+  },
+  {
+    stickerId: 'acb65866-a297-45d2-9996-54d93a19168a',
+    keywords: ['foot', 'ball'],
+    shape: {
+      type: 'sticker',
+      element: 'image',
+      transform: {
+        x: 0,
+        y: 0,
+        r: 0,
+        s: [1, 1]
+      },
+      props: {
+        height: 70,
+        href: `/stickers/acb65866-a297-45d2-9996-54d93a19168a.svg`,
+        transform: 'translate(8, 8)',
+        width: 72
+      }
+    }
+  },
+  {
+    stickerId: '619e682d-b0a7-4d28-99b6-0ee14e7d9614',
+    keywords: ['drink', 'cocktail'],
+    shape: {
+      type: 'sticker',
+      element: 'image',
+      transform: {
+        x: 0,
+        y: 0,
+        r: 0,
+        s: [1, 1]
+      },
+      props: {
+        height: 72,
+        href: `/stickers/619e682d-b0a7-4d28-99b6-0ee14e7d9614.svg`,
+        transform: 'translate(20, 6)',
+        width: 49
+      }
+    }
+  },
+  {
+    stickerId: 'd38b0121-f443-4e12-871f-01150c1bba5b',
+    keywords: ['guitar', 'music'],
+    shape: {
+      type: 'sticker',
+      element: 'image',
+      transform: {
+        x: 0,
+        y: 0,
+        r: 0,
+        s: [1, 1]
+      },
+      props: {
+        height: 72,
+        href: `/stickers/d38b0121-f443-4e12-871f-01150c1bba5b.svg`,
+        transform: 'translate(18, 8)',
+        width: 49
+      }
+    }
+  },
+  {
+    stickerId: '7127a4b4-6a6e-414e-bd4c-0a41004169fe',
+    keywords: ['tag', 'label'],
+    shape: {
+      type: 'sticker',
+      element: 'image',
+      transform: {
+        x: 0,
+        y: 0,
+        r: 0,
+        s: [1, 1]
+      },
+      props: {
+        height: 72,
+        href: `/stickers/7127a4b4-6a6e-414e-bd4c-0a41004169fe.svg`,
+        transform: 'translate(14, 6)',
+        width: 56
+      }
+    }
+  },
+  {
+    stickerId: '120e0628-bfbc-441c-bd1a-06a1aa1132dc',
+    keywords: ['pizza', 'food'],
+    shape: {
+      type: 'sticker',
+      element: 'image',
+      transform: {
+        x: 0,
+        y: 0,
+        r: 0,
+        s: [1, 1]
+      },
+      props: {
+        height: 72,
+        href: `/stickers/120e0628-bfbc-441c-bd1a-06a1aa1132dc.svg`,
+        transform: 'translate(8, 6)',
+        width: 72
+      }
+    }
+  },
+  {
+    stickerId: '72a70b32-0265-4747-bd07-f02a9fa86ca0',
+    keywords: ['plane', 'aeroplane', 'airplane'],
+    shape: {
+      type: 'sticker',
+      element: 'image',
+      transform: {
+        x: 0,
+        y: 0,
+        r: 0,
+        s: [1, 1]
+      },
+      props: {
+        height: 44,
+        href: `/stickers/72a70b32-0265-4747-bd07-f02a9fa86ca0.svg`,
+        transform: 'translate(9, 18)',
+        width: 72
+      }
+    }
   }
 ];

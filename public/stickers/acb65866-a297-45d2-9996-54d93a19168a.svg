@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   id="svg2"
+   viewBox="0 0 72.000001 70.646811"
+   version="1.0"
+   sodipodi:docname="acb65866-a297-45d2-9996-54d93a19168a.svg"
+   width="72"
+   height="70.646812"
+   inkscape:version="1.0.1 (c497b03c, 2020-09-10)">
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1875"
+     inkscape:window-height="1305"
+     id="namedview866"
+     showgrid="false"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0"
+     inkscape:zoom="1.1342604"
+     inkscape:cx="294.6698"
+     inkscape:cy="289.16452"
+     inkscape:window-x="715"
+     inkscape:window-y="161"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="svg2" />
+  <defs
+     id="defs4">
+    <linearGradient
+       id="linearGradient4110">
+      <stop
+         id="stop4112"
+         stop-color="#6e6e6e"
+         offset="0" />
+      <stop
+         id="stop4114"
+         stop-color="#280b0b"
+         offset="1" />
+    </linearGradient>
+    <radialGradient
+       id="radialGradient4119"
+       xlink:href="#linearGradient4110"
+       gradientUnits="userSpaceOnUse"
+       cy="537.83002"
+       cx="202.35001"
+       gradientTransform="matrix(0.30103,1.7058,-1.1092,0.19574,725.56,94.307)"
+       r="90.601997" />
+    <radialGradient
+       id="radialGradient4121"
+       xlink:href="#linearGradient4110"
+       gradientUnits="userSpaceOnUse"
+       cy="347.98999"
+       cx="386.64001"
+       gradientTransform="matrix(1,0,0,0.58886,0,165.29)"
+       r="95.707001" />
+    <radialGradient
+       id="radialGradient9949"
+       xlink:href="#linearGradient4110"
+       gradientUnits="userSpaceOnUse"
+       cy="555.87"
+       cx="623.70001"
+       gradientTransform="matrix(1,0,0,4.1834,0,-1790.2)"
+       r="16.34" />
+    <radialGradient
+       id="radialGradient10926"
+       gradientUnits="userSpaceOnUse"
+       cy="686.89001"
+       cx="596.62"
+       gradientTransform="matrix(1.1268,1.6741,-0.96485,0.64941,472.65,-821.06)"
+       r="86.213997">
+      <stop
+         id="stop11899"
+         stop-color="#6e6e6e"
+         offset="0" />
+      <stop
+         id="stop11901"
+         offset="1" />
+    </radialGradient>
+    <radialGradient
+       id="radialGradient12874"
+       xlink:href="#linearGradient4110"
+       gradientUnits="userSpaceOnUse"
+       cy="815.95001"
+       cx="549.02002"
+       gradientTransform="matrix(1,0,0,0.70161,0,252.71)"
+       r="54.542999" />
+    <radialGradient
+       id="radialGradient12888"
+       xlink:href="#linearGradient4110"
+       gradientUnits="userSpaceOnUse"
+       cy="819.39001"
+       cx="232.34"
+       gradientTransform="matrix(0.26908,0.77821,-0.79142,0.27366,818.3,428.63)"
+       r="91.918999" />
+    <radialGradient
+       id="radialGradient12902"
+       xlink:href="#linearGradient4110"
+       gradientUnits="userSpaceOnUse"
+       cy="694.38"
+       cx="77.142998"
+       gradientTransform="matrix(0.93631,1.1465,-2.7479,2.2441,1913,-967.2)"
+       r="11.214" />
+  </defs>
+  <g
+     id="layer2"
+     stroke="#000000"
+     transform="matrix(0.12233949,0,0,0.12233949,-7.2932936,-40.938522)">
+    <path
+       id="path4099"
+       d="m 155.71,505.22 c 13.77,-9.31 94.25,-25.09 106.4,-12.94 31.01,31.01 48.34,58.71 36.13,108.55 -8.57,35 -73.11,88.92 -96.81,90.1 -26.41,1.32 -72.52,-44.62 -78.99,-74.8 -3.92,-18.28 17.68,-102.3 33.27,-110.91 z"
+       stroke-width="1px"
+       fill="url(#radialGradient4119)"
+       fill-rule="evenodd"
+       style="fill:url(#radialGradient4119)" />
+    <path
+       id="path4101"
+       d="m 262.44,492.61 c 8.94,-34.18 72.95,-71.82 84.7,-73.1 20.3,-2.22 111.1,24.45 120,34.28 13.68,15.11 37.55,94.5 34.29,114.29 -36.6,16.75 -76.59,66.8 -87.23,82.02 -53.07,-25.69 -102.67,-38.92 -117.48,-41.85 -3.34,-29.4 -22.01,-89.04 -34.28,-115.64 z"
+       stroke-width="1px"
+       fill="#ffffff"
+       fill-rule="evenodd" />
+    <path
+       id="path4106"
+       d="m 349.51,419 c -10.1,-27.66 -10.1,-39.65 -14.64,-65.66 65.66,-16.42 133.34,-8.46 190.41,64.65 -11.62,14.01 -17.17,21.97 -53.03,39.9 C 442.95,436.93 384.36,425.94 349.51,419 Z"
+       stroke-width="1px"
+       fill="url(#radialGradient4121)"
+       fill-rule="evenodd"
+       style="fill:url(#radialGradient4121)" />
+    <path
+       id="path4108"
+       d="m 149,451.32 c 0.12,-13.64 57.2,-55.3 63.13,-68.18 60.48,-30.56 124.25,-29.8 124.25,-29.8 l 13.13,65.15 -88.89,73.24 -103.54,12.62 c 0,0 -13.76,-21.21 -8.08,-53.03 z"
+       stroke-width="1px"
+       fill="#ffffff"
+       fill-rule="evenodd" />
+    <path
+       id="path4123"
+       stroke-linejoin="round"
+       d="m 375.21,755.82 a 301.43,290.36 0 1 1 0.19,0.37"
+       transform="matrix(0.96693,0,0,0.98412,-270.08,6.0403)"
+       stroke-width="6.0871"
+       fill="none" />
+    <path
+       id="path5094"
+       d="m 147.86,451.65 c 0,0 -8.93,-0.72 -19.29,-11.43 14.64,-18.57 44.11,-42.5 77.86,-62.86 5.18,8.22 7.14,3.57 7.14,3.57 z"
+       stroke-width="1px"
+       fill-rule="evenodd" />
+    <path
+       id="path6065"
+       d="m 470,458.08 c 45,-20.54 39.64,-21.61 54.29,-40.72 27.5,10.18 35.71,7.15 35.71,7.15 0,0 36.96,30 52.86,74.28 15.89,44.29 10.71,102.86 10.71,102.86 L 585,633.08 c 0,0 -26.25,-40.54 -83.57,-65 -3.75,-32.32 -10,-69.47 -31.43,-110 z"
+       stroke-width="1px"
+       fill="#ffffff"
+       fill-rule="evenodd" />
+    <path
+       id="path6067"
+       d="m 501.43,568.08 c 0,0 -44.64,20.18 -87.86,84.28 9.64,55.54 16.07,79.29 20.72,115 57.5,1.43 99.46,-3.03 116.42,-15 26.97,-49.1 31.61,-62.5 34.29,-118.57 -29.46,-40.36 -83.57,-65.71 -83.57,-65.71 z"
+       stroke-width="1px"
+       fill="url(#radialGradient10926)"
+       fill-rule="evenodd"
+       style="fill:url(#radialGradient10926)" />
+    <path
+       id="path8007"
+       d="m 549.29,753.79 c 0,0 9.28,20.18 6.42,65 7.86,-12.32 15.36,-9.11 22.15,-11.43 76.78,-96.6 65,-177.85 65,-177.85 l -18.57,-26.43 c 0,0 -15.54,13.75 -39.29,31.43 4.11,46.96 -35.71,119.28 -35.71,119.28 z"
+       fill="#ffffff"
+       fill-rule="evenodd" />
+    <path
+       id="path9947"
+       d="m 612.14,494.51 c 36.61,60.35 31.43,135.71 31.43,135.71 l -20.71,-30 c 0,0 6.25,-56.07 -10.72,-105.71 z"
+       stroke-width="1px"
+       fill="url(#radialGradient9949)"
+       fill-rule="evenodd"
+       style="fill:url(#radialGradient9949)" />
+    <path
+       id="path12872"
+       d="m 554.57,817 c 0,0 -38.38,22.73 -87.88,67.68 65.66,-26.77 92.18,-53.29 108.09,-73.74 -5.81,-6.32 -20.21,6.06 -20.21,6.06 z"
+       stroke-width="1px"
+       fill="url(#radialGradient12874)"
+       fill-rule="evenodd"
+       style="fill:url(#radialGradient12874)" />
+    <path
+       id="path12876"
+       d="m 548.51,753.86 c 10.61,25.13 7.58,63.64 7.58,63.64 0,0 -53.67,30.43 -89.9,67.18 -38.26,21.59 -39.53,17.04 -63.14,19.19 -23.61,-4.92 -17.17,-3.16 -31.31,-10.61 -9.6,-18.05 -16.8,-31.69 -21.22,-53.53 55.18,-39.53 75.26,-54.81 84.35,-72.23 44.45,1.77 79.8,1.64 113.64,-13.64 z"
+       stroke-width="1px"
+       fill="#ffffff"
+       fill-rule="evenodd" />
+    <path
+       id="path12878"
+       d="m 233.85,800.83 c 57.07,25.76 79.42,25.64 115.66,38.9 7.96,35.98 23.24,54.54 23.24,54.54 0,0 -41.49,17.14 -101.02,2.02 -44.52,-11.3 -65.28,-33.21 -81.82,-54.54 20.83,-16.8 35.35,-29.8 43.94,-40.92 z"
+       stroke-width="1px"
+       fill="url(#radialGradient12888)"
+       fill-rule="evenodd"
+       style="fill:url(#radialGradient12888)" />
+    <path
+       id="path12890"
+       d="m 295.71,606.65 c 64.29,12.14 117.15,42.18 117.15,42.18 0,0 13.3,70.47 22.94,116.89 -23.21,37.86 -30,41.31 -85.71,74.88 -50,-15 -115.8,-38.24 -115.8,-38.24 0,0 -32.5,-40.78 -41.1,-111.84 43.93,-28.93 82.52,-43.16 102.52,-83.87 z"
+       stroke-width="1px"
+       fill="#ffffff"
+       fill-rule="evenodd" />
+    <path
+       id="path12892"
+       d="m 192.86,690.93 c -37.5,-18.21 -68.57,-64.28 -68.57,-64.28 0,0 -32.504,11.78 -38.576,35.71 1.317,46.35 0.332,67.74 0.332,67.74 0,0 8.536,29.63 46.234,73.19 26.43,13.57 30.25,14.31 58.82,38.24 37.14,-24.65 43.03,-39.67 43.03,-39.67 0,0 -26.63,-41.28 -41.27,-110.93 z"
+       stroke-width="1px"
+       fill="#ffffff"
+       fill-rule="evenodd" />
+    <path
+       id="path12894"
+       d="m 84.286,660.93 -14.531,12.18 17.388,66.4 z"
+       stroke-width="1px"
+       fill="url(#radialGradient12902)"
+       fill-rule="evenodd"
+       style="fill:url(#radialGradient12902)" />
+  </g>
+  <metadata
+     id="metadata863">
+    <rdf:RDF>
+      <cc:Work>
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <cc:license
+           rdf:resource="http://creativecommons.org/publicdomain/zero/1.0/" />
+        <dc:publisher>
+          <cc:Agent
+             rdf:about="http://openclipart.org/">
+            <dc:title>Openclipart</dc:title>
+          </cc:Agent>
+        </dc:publisher>
+        <dc:title>Soccer Ball</dc:title>
+        <dc:date>2007-09-11T16:22:44</dc:date>
+        <dc:description>A soccer ball as said in American English, or a Football nearly everwhere in English :)</dc:description>
+        <dc:source>http://openclipart.org/detail/5372/soccer-ball-by-gioppino</dc:source>
+        <dc:creator>
+          <cc:Agent>
+            <dc:title>Gioppino</dc:title>
+          </cc:Agent>
+        </dc:creator>
+        <dc:subject>
+          <rdf:Bag>
+            <rdf:li>ball</rdf:li>
+            <rdf:li>clip art</rdf:li>
+            <rdf:li>clipart</rdf:li>
+            <rdf:li>football</rdf:li>
+            <rdf:li>image</rdf:li>
+            <rdf:li>media</rdf:li>
+            <rdf:li>png</rdf:li>
+            <rdf:li>public domain</rdf:li>
+            <rdf:li>soccer</rdf:li>
+            <rdf:li>sport</rdf:li>
+            <rdf:li>spring2013</rdf:li>
+            <rdf:li>svg</rdf:li>
+          </rdf:Bag>
+        </dc:subject>
+      </cc:Work>
+      <cc:License
+         rdf:about="http://creativecommons.org/publicdomain/zero/1.0/">
+        <cc:permits
+           rdf:resource="http://creativecommons.org/ns#Reproduction" />
+        <cc:permits
+           rdf:resource="http://creativecommons.org/ns#Distribution" />
+        <cc:permits
+           rdf:resource="http://creativecommons.org/ns#DerivativeWorks" />
+      </cc:License>
+    </rdf:RDF>
+  </metadata>
+</svg>

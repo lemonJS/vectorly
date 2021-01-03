@@ -8,7 +8,6 @@ const styles = css`
   border-radius: .25rem;
   cursor: pointer;
   height: 200px;
-  margin-bottom: 1.5rem;
 
   &:hover {
     border-color: var(--primary-accent-color);

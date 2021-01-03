@@ -37,6 +37,12 @@ export const ImageDnd = (): JSX.Element => {
   const [dragging, setDragging] = React.useState(false);
   const status = dragging ? 'dragging' : '';
 
+  const handleClick = () => {
+    // Awful
+    const element = document.querySelector('label[for="image-upload"]') as HTMLLabelElement;
+    element.click();
+  };
+
   const handleDragOver = (event: React.DragEvent<HTMLDivElement>) => {
     event.preventDefault();
     setDragging(true);
@@ -62,7 +68,7 @@ export const ImageDnd = (): JSX.Element => {
   };
 
   return (
-    <div className={`${styles} ${status}`} onDrop={handleDrop} onDragOver={handleDragOver} onDragLeave={handleDragLeave}>
+    <div className={`${styles} ${status}`} onClick={handleClick} onDrop={handleDrop} onDragOver={handleDragOver} onDragLeave={handleDragLeave}>
       <i className='ri-image-add-line' />
       {dragging
         ? <p>Drop!</p>
