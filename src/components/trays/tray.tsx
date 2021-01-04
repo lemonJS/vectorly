@@ -11,6 +11,7 @@ import { Text } from '@components/trays/text/text';
 import { editorSelector } from '@lib/editor/selectors';
 import { projectSelector } from '@lib/projects/selectors';
 import { Stickers } from '@components/trays/stickers/stickers';
+import { Draw } from '@components/trays/draw/draw';
 
 interface Props {
   open: boolean;
@@ -57,6 +58,18 @@ export const Tray = (props: Props): JSX.Element => {
       name: 'photos'
     },
     {
+      Component: Text,
+      name: 'text'
+    },
+    {
+      Component: Emojis,
+      name: 'emojis'
+    },
+    {
+      Component: Draw,
+      name: 'draw'
+    },
+    {
       Component: Shapes,
       name: 'shapes'
     },
@@ -65,16 +78,8 @@ export const Tray = (props: Props): JSX.Element => {
       name: 'stickers'
     },
     {
-      Component: Emojis,
-      name: 'emojis'
-    },
-    {
       Component: Background,
       name: 'background'
-    },
-    {
-      Component: Text,
-      name: 'text'
     }
   ];
 

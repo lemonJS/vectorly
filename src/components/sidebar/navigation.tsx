@@ -49,6 +49,11 @@ export const Navigation = (): JSX.Element => {
       icon: 'ri-emotion-line',
     },
     {
+      title: 'Draw',
+      name: 'draw',
+      icon: 'ri-pencil-line'
+    },
+    {
       title: 'Shapes',
       name: 'shapes',
       icon: 'ri-shape-2-line',

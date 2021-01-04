@@ -4,12 +4,14 @@ export const getLayoutForElementType = (type: string): string | null => {
       return 'photos';
     case 'text':
       return 'text';
+    case 'emoji':
+      return 'emojis';
+    case 'draw':
+      return 'draw';
     case 'shape':
       return 'shapes';
     case 'sticker':
       return 'stickers';
-    case 'emoji':
-      return 'emojis';
     default:
       return null;
   }

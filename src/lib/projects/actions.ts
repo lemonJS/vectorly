@@ -37,11 +37,12 @@ export const updateProject = (payload: Partial<Project>) => (dispatch: Dispatch<
 
 export const createElement = (payload: Partial<Element>) => (dispatch: Dispatch<any>, getState: GetState) => {
   const { project } = getState();
-  const element = { ...payload, id: uuid() } as Element;
+  const element = { id: uuid(), ...payload } as Element;
 
   dispatch(updateProject({ elements: [...project.elements, element] }));
   // Set the newly created element as selected
   setTimeout(() => dispatch(setSelectionId(element.id)), 10);
+  return element;
 };
 
 export const updateElement = (id: string, payload: Partial<Element>) => (dispatch: Dispatch<any>, getState: GetState) => {
