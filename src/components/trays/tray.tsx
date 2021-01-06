@@ -27,17 +27,6 @@ const styles = css`
   &.show {
     display: flex;
   }
-  
-  @media only screen and (max-width: 1024px) {
-    background: var(--sidebar-background-color);
-    bottom: 72px;
-    height: 360px;
-    position: absolute;
-  }
-  
-  @media only screen and (max-width: 768px) {
-    bottom: 48px;
-  }
 `;
 
 export const Tray = (props: Props): JSX.Element => {

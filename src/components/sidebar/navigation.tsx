@@ -14,21 +14,6 @@ const styles = css`
   .navigation {
     flex: 1;
   }
-
-  @media only screen and (max-width: 1024px) {
-    flex-direction: row;
-    width: 100%;
-    
-    .navigation {
-      display: flex;
-    }
-  }
-
-  @media only screen and (max-width: 768px) {
-    .navigation {
-      justify-content: space-evenly;
-    }
-  }
 `;
 
 export const Navigation = (): JSX.Element => {

@@ -24,26 +24,6 @@ const styles = css`
   &.menu-open {
     grid-template-columns: 360px 1fr;
   }
-
-  @media only screen and (max-width: 1024px) {
-    grid-template-areas:
-      'header'
-      'content'
-      'sidebar';
-    grid-template-columns: minmax(0, 1fr);
-    grid-template-rows: 64px minmax(0, 1fr) 5rem;
-    height: 100%;
-    overflow: hidden;
-    width: 100%;
-    
-    &.menu-open {
-      grid-template-columns: minmax(0, 1fr);
-    }
-  }
-
-  @media only screen and (max-width: 768px) {
-    grid-template-rows: 64px minmax(0, 1fr) 48px;
-  }
 `;
 
 export const Wrapper = (props: Props): JSX.Element => {

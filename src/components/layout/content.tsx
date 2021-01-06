@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { css } from '@emotion/css';
+import { Rulers } from '@components/layout/rulers';
 
 interface Props {
   children: React.ReactNode;
@@ -17,6 +18,8 @@ const styles = css`
 
 export const Content = (props: Props): JSX.Element => (
   <main id='editor-content' className={styles}>
-    {props.children}
+    <Rulers>
+      {props.children}
+    </Rulers>
   </main>
 );

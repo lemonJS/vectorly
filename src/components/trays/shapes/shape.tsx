@@ -25,10 +25,6 @@ const styles = css`
     height: 100%;
     width: 100%;
   }
-
-  @media only screen and (max-width: 1024px) {
-    height: 150px;    
-  }
 `;
 
 export const Shape = (props: Props): JSX.Element => {
