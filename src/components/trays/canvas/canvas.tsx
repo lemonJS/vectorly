@@ -4,29 +4,39 @@ import { sample } from 'lodash';
 import { css } from '@emotion/css';
 import { useDispatch, useSelector } from 'react-redux';
 import { projectSelector } from '@lib/projects/selectors';
-import { updateElement } from '@lib/projects/actions';
+import { updateElement, updateProject } from '@lib/projects/actions';
 import { Label } from '@components/label';
 import { ColorPicker } from '@components/trays/color-picker';
 import { Button } from '@components/button';
 import { colors } from '@components/trays/data/colors';
+import { Presets } from '@components/trays/canvas/presets';
+import { Size } from '@components/trays/canvas/size';
 
 const styles = css`
+  label {
+    margin-top: 1.5rem;  
+  }
+  
   button {
-    margin-bottom: 1.5rem;
     width: 100%;
   }
 `;
 
-export const Background = (): JSX.Element => {
+export const Canvas = (): JSX.Element => {
   const dispatch = useDispatch();
 
-  const { elements } = useSelector(projectSelector);
+  const { elements, size } = useSelector(projectSelector);
   const element = elements.find(element => element.id === '__background__');
-  const { fill } = element.props;
+  const [width, height] = size;
 
   const handleChange = (value: string) => {
     const update = { fill: value };
     dispatch(updateElement(element.id, { props: update }));
+  };
+
+  const handleSize = (width: number, height: number) => {
+    const size = [width, height] as [number, number];
+    dispatch(updateProject({ size }));
   };
 
   const handleRandom = () => {
@@ -41,8 +51,12 @@ export const Background = (): JSX.Element => {
         <i className='ri-shuffle-line' />
       </Button>
 
+      <Presets height={height} width={width} handleChange={handleSize} />
+
+      <Size height={height} width={width} handleChange={handleSize} />
+
       <Label>Background Color</Label>
-      <ColorPicker selected={fill} handleChange={handleChange} />
+      <ColorPicker selected={element.props.fill} handleChange={handleChange} />
     </div>
   );
 };

@@ -6,7 +6,7 @@ import { Designs } from '@components/trays/designs/designs';
 import { Photos } from '@components/trays/photos/photos';
 import { Shapes } from '@components/trays/shapes/shapes';
 import { Emojis } from '@components/trays/emojis/emojis';
-import { Background } from '@components/trays/background/background';
+import { Canvas } from '@components/trays/canvas/canvas';
 import { Text } from '@components/trays/text/text';
 import { editorSelector } from '@lib/editor/selectors';
 import { projectSelector } from '@lib/projects/selectors';
@@ -67,8 +67,8 @@ export const Tray = (props: Props): JSX.Element => {
       name: 'stickers'
     },
     {
-      Component: Background,
-      name: 'background'
+      Component: Canvas,
+      name: 'canvas'
     }
   ];
 

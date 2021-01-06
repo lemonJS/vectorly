@@ -21,5 +21,6 @@ export const newProject = (): Project => ({
         s: [1, 1]
       }
     }
-  ]
+  ],
+  size: [1024, 768]
 });

@@ -24,8 +24,10 @@ const styles = css`
   width: 100%;
   
   #canvas {
+    box-shadow: 0 6px 18px 0 rgba(0, 35, 90, .08), 0 0 2px 0 rgba(0, 35, 90, .06);
     height: 100%;
     outline: none;
+    overflow: visible;
     user-select: none;
     width: 100%;
   }
@@ -37,6 +39,7 @@ export const SVG = (): JSX.Element => {
   const zoom = useSelector(zoomSelector);
   const project = useSelector(projectSelector);
   const elements = project?.elements || [];
+  const size = project?.size || [0, 0];
 
   const handleMouseDown = (event: React.MouseEvent<SVGElement>) => {
     const element = event.target as HTMLElement;
@@ -90,7 +93,7 @@ export const SVG = (): JSX.Element => {
   }, []);
 
   return (
-    <div className={styles} style={{ transform: `scale(${zoom / 100})` }}>
+    <div className={styles} style={{ transform: `scale(${zoom / 100})`, height: size[1], width: size[0] }}>
       <svg id='canvas' onMouseDown={handleMouseDown} onDrop={handleDrop} onDragOver={handleDragOver}>
         {elements.map(element => (
           <Element key={element.id} element={element} />

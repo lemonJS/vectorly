@@ -9,9 +9,18 @@ interface Props {
 }
 
 const styles = css`
-  background: #e9e9e9;
+  align-items: center;
+  background-color: #f9f9f9;
+  background-image: linear-gradient(45deg, #f4f4f4 25%, transparent 25%), 
+                    linear-gradient(-45deg, #f4f4f4 25%, transparent 25%), 
+                    linear-gradient(45deg, transparent 75%, #f4f4f4 75%), 
+                    linear-gradient(-45deg, transparent 75%, #f4f4f4 75%);
+  background-position: 0 0, 0 40px, 40px -40px, -40px 0px;
+  background-size: 80px 80px;
+  display: flex;
   height: 100%;
-  padding: 1.5rem;
+  justify-content: center;
+  padding: 1.5rem 0 0 1.5rem;
   position: relative;
   width: 100%;
   
@@ -20,36 +29,16 @@ const styles = css`
     overflow: hidden;
     position: absolute;
     
-    &.left,
-    &.right {
-      flex-direction: column;
-    }
-    
     &.top {
       height: 1.5rem;
       left: 1.5rem;
       top: 0;
-      width: calc(100% - 3rem);
-    }
-    
-    &.right {
-      flex-direction: column;
-      height: calc(100% - 3rem);
-      right: 0;
-      top: 1.5rem;
-      width: 1.5rem;
-    }
-    
-    &.bottom {
-      bottom: 0;
-      height: 1.5rem;
-      left: 1.5rem;
-      width: calc(100% - 3rem);
+      width: calc(100% - 1.5rem);
     }
 
     &.left {
       flex-direction: column;
-      height: calc(100% - 3rem);
+      height: calc(100% - 1.5rem);
       left: 0;
       top: 1.5rem;
       width: 1.5rem;
@@ -66,12 +55,6 @@ export const Rulers = (props: Props): JSX.Element => {
     <div className={styles}>
       {props.children}
       <div className='ruler top'>
-        {rules('horizontal')}
-      </div>
-      <div className='ruler right'>
-        {rules('vertical')}
-      </div>
-      <div className='ruler bottom'>
         {rules('horizontal')}
       </div>
       <div className='ruler left'>

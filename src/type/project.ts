@@ -32,4 +32,5 @@ export interface Element {
 export interface Project {
   elements: Element[];
   images: Image[];
+  size: [number, number];
 }

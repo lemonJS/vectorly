@@ -49,9 +49,9 @@ export const Navigation = (): JSX.Element => {
       icon: 'ri-sticky-note-line'
     },
     {
-      title: 'Background',
-      name: 'background',
-      icon: 'ri-paint-line'
+      title: 'Canvas',
+      name: 'canvas',
+      icon: 'ri-artboard-2-line'
     },
     {
       title: 'Designs',
