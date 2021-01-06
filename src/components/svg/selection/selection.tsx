@@ -13,6 +13,7 @@ interface Props {
   transform: Transform;
   parent: string;
   element: Element;
+  handleDelete: (id: string) => void;
   handleTransform: (transform: Partial<Transform>) => void;
 }
 
@@ -25,6 +26,34 @@ export class Selection extends React.Component<Props> {
 
     this.svg = document.getElementById('canvas') as HTMLElement & SVGSVGElement;
   }
+
+  public componentDidMount() {
+    document.addEventListener('keydown', this.handleKeyDown);
+  }
+
+  public componentWillUnmount() {
+    document.removeEventListener('keydown', this.handleKeyDown, false);
+  }
+
+  private handleKeyDown = (event: KeyboardEvent) => {
+    switch(event.key) {
+      case 'Delete':
+        this.props.handleDelete(this.props.element.id);
+        break;
+      case 'ArrowUp':
+        this.props.handleTransform({ y: this.props.transform.y - 1 });
+        break;
+      case 'ArrowRight':
+        this.props.handleTransform({ x: this.props.transform.x + 1 });
+        break;
+      case 'ArrowDown':
+        this.props.handleTransform({ y: this.props.transform.y + 1 });
+        break;
+      case 'ArrowLeft':
+        this.props.handleTransform({ x: this.props.transform.x - 1 });
+        break;
+    }
+  };
 
   private get scaleX() {
     return this.props.transform.s[0];

@@ -5,7 +5,7 @@ import { Element, ElementProps, Transform } from '@type/project';
 import { Selection } from '@components/svg/selection/selection';
 import { getBox } from '@lib/editor/helpers';
 import { setSelectionId } from '@lib/editor/actions';
-import { updateElement } from '@lib/projects/actions';
+import { updateElement, deleteElement } from '@lib/projects/actions';
 
 interface Props extends ElementProps {
   id: string;
@@ -33,6 +33,10 @@ export const Container = (props: Props): JSX.Element => {
     dispatch(updateElement(props.element.id, { transform: data }));
   };
 
+  const handleDelete = (id: string) => {
+    dispatch(deleteElement(id));
+  };
+
   return (
     <g>
       <g id={props.id} className='container' onClick={handleClick} ref={ref} transform={transform}>
@@ -43,6 +47,7 @@ export const Container = (props: Props): JSX.Element => {
             transform={props.element.transform}
             parent={props.id}
             element={props.element}
+            handleDelete={handleDelete}
             handleTransform={handleTransform}
           />
         )}
