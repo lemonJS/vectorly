@@ -6,7 +6,7 @@ import { Options } from '@components/controls/options';
 
 const styles = css`
   align-items: center;
-  background: var(--header-background-color);
+  background: var(--sidebar-navigation-background-color);
   display: flex;
   grid-area: header;
   justify-content: space-between;
@@ -24,7 +24,7 @@ export const Header = (): JSX.Element => (
   <header className={styles}>
     <Link href='/'>
       <a className='logo'>
-        <img src='/logo.svg' alt='logo' height='48' width='48' />
+        <img src='/logo.svg' alt='logo' height='38' width='38' />
       </a>
     </Link>
 

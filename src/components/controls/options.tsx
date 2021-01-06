@@ -19,7 +19,7 @@ const styles = css`
     color: var(--secondary-text-color);
 
     &:hover {
-      color: var(--primary-accent-color);
+      color: white;
     }
 
     &.disabled {
