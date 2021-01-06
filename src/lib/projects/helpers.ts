@@ -9,10 +9,10 @@ export const newProject = (): Project => ({
       element: 'rect',
       readonly: true,
       props: {
-        fill: 'white',
-        height: 800,
+        fill: '#f9f9f9',
+        height: '100%',
         pointerEvents: 'none',
-        width: 500
+        width: '100%'
       },
       transform: {
         x: 1,

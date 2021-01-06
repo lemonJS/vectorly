@@ -7,16 +7,12 @@ import { savingSelector } from '@lib/editor/selectors';
 
 const styles = css`
   align-items: center;
-  background: var(--foreground-color);
   border-radius: .25rem;
-  bottom: 1.5rem;
-  color: var(--primary-text-color);
+  color: var(--secondary-text-color);
   display: none;
   font-size: 14px;
   height: 42px;
-  right: 1.5rem;
   padding: 0 .5rem;
-  position: absolute;
   user-select: none;
   
   &.saving {
@@ -25,12 +21,12 @@ const styles = css`
   
   .spinner {
     height: 14px;
-    margin-right: .5rem;
+    margin-left: .5rem;
     width: 14px;
     
     div {
-      border-color: var(--primary-accent-color) transparent transparent;
-      border-width: 2px;
+      border-color: var(--secondary-text-color) transparent transparent;
+      border-width: 1px;
       height: 14px;
       width: 14px;
     }
@@ -41,9 +37,12 @@ export const Saving = (): JSX.Element => {
   const saving = useSelector(savingSelector);
 
   return (
-    <div className={`${styles} ${saving ? 'saving' : ''}`}>
-      <Spinner />
-      Saving...
-    </div>
+    <React.Fragment>
+      <div className={`${styles} ${saving ? 'saving' : ''}`}>
+        Saving...
+        <Spinner />
+      </div>
+      <span className='divider' />
+    </React.Fragment>
   );
 };

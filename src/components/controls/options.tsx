@@ -1,56 +1,45 @@
 import React from 'react';
 
 import { css } from '@emotion/css';
-import { OptionsButton } from '@components/controls/options-button';
-import { OptionsLinks } from '@components/controls/options-links';
-
-interface Props {}
-
-interface State {
-  open: boolean;
-}
+import { Undo } from '@components/controls/undo';
+import { Reset } from '@components/controls/reset';
+import { Download } from '@components/controls/download';
+import { Zoom } from '@components/controls/zoom';
+import { Saving } from '@components/controls/saving';
 
 const styles = css`
   align-items: center;
   display: flex;
   padding-right: 1.5rem;
   position: relative;
+
+  button {
+    background: none;
+    border: none;
+    color: var(--secondary-text-color);
+
+    &:hover {
+      color: var(--primary-accent-color);
+    }
+
+    &.disabled {
+      pointer-events: none;
+    }
+  }
+
+  .divider {
+    height: 16px;
+    margin: 0 .5rem;
+    width: 1px;
+  }
 `;
 
-export class Options extends React.Component<Props, State> {
-  constructor(props: Props) {
-    super(props);
-
-    this.state = { open: false };
-  }
-
-  public componentDidMount() {
-    document.addEventListener('click', this.handleClick);
-  }
-
-  public componentWillUnmount() {
-    document.removeEventListener('click', this.handleClick, true);
-  }
-
-  private handleOpen = () => {
-    this.setState({ open: true });
-  };
-
-  private handleClick = (event: MouseEvent) => {
-    const element = event.target as Element;
-
-    if (!element.closest('.dropdown-button')) {
-      this.setState({ open: false });
-    }
-  };
-
-  public render(): JSX.Element {
-    return (
-      <div className={styles}>
-        <OptionsButton handleClick={this.handleOpen} />
-
-        {this.state.open && <OptionsLinks />}
-      </div>
-    );
-  }
-}
+export const Options = (): JSX.Element => (
+  <div className={styles}>
+    <Saving />
+    <Zoom />
+    <Undo />
+    <Reset />
+    <Download />
+  </div>
+);
