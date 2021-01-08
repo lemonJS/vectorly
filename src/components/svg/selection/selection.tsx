@@ -18,13 +18,10 @@ interface Props {
 }
 
 export class Selection extends React.Component<Props> {
-  private readonly svg: HTMLElement & SVGSVGElement;
   private readonly padding = 8;
 
   public constructor(props: Props) {
     super(props);
-
-    this.svg = document.getElementById('canvas') as HTMLElement & SVGSVGElement;
   }
 
   public componentDidMount() {
@@ -117,6 +114,6 @@ export class Selection extends React.Component<Props> {
       </g>
     );
 
-    return ReactDOM.createPortal(Element, this.svg);
+    return ReactDOM.createPortal(Element, window.canvas);
   }
 }

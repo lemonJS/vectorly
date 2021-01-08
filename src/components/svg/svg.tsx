@@ -10,7 +10,7 @@ import { setSelectionId } from '@lib/editor/actions';
 import { createElement } from '@lib/projects/actions';
 import { zoomSelector } from '@lib/editor/selectors';
 
-type Svg = SVGGraphicsElement & HTMLElement;
+type Svg = SVGSVGElement & HTMLElement;
 
 declare global {
   interface Window {

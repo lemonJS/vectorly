@@ -23,7 +23,6 @@ interface State {
 }
 
 export class Scale extends React.Component<Props, State> {
-  private svg: HTMLElement & SVGSVGElement;
   private parent: HTMLElement & SVGSVGElement;
 
   public constructor(props: Props) {
@@ -39,7 +38,6 @@ export class Scale extends React.Component<Props, State> {
   }
 
   public componentDidMount() {
-    this.svg = document.getElementById('canvas') as HTMLElement & SVGSVGElement;
     this.parent = document.getElementById(this.props.parent) as HTMLElement & SVGSVGElement;
 
     document.addEventListener('keyup', this.handleKeyUp);
@@ -136,7 +134,7 @@ export class Scale extends React.Component<Props, State> {
   private duringDrag = (clientX: number, clientY: number) => {
     if (this.state.pressed) {
       const transform = calculateTransform({
-        svg: this.svg,
+        svg: window.canvas,
         box: this.state.box,
         client: [clientX, clientY],
         offset: this.state.offset,

@@ -16,7 +16,6 @@ interface State {
 }
 
 export class Move extends React.Component<Props, State> {
-  private svg: HTMLElement & SVGSVGElement;
   private parent: HTMLElement;
   private offset: { x: number, y: number };
 
@@ -27,7 +26,6 @@ export class Move extends React.Component<Props, State> {
   }
 
   public componentDidMount() {
-    this.svg = document.getElementById('canvas') as HTMLElement & SVGSVGElement;
     this.parent = document.getElementById(this.props.parent) as HTMLElement;
     this.offset = { x: 0, y: 0 };
 
@@ -84,7 +82,7 @@ export class Move extends React.Component<Props, State> {
 
   private duringDrag = (clientX: number, clientY: number) => {
     if (this.state.pressed) {
-      const { x, y } = this.svg.getBoundingClientRect();
+      const { x, y } = window.canvas.getBoundingClientRect();
 
       this.props.handleTransform({
         x: clientX - x - this.offset.x,

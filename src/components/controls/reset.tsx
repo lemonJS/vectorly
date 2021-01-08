@@ -10,12 +10,9 @@ export const Reset = (): JSX.Element => {
   const handleClear = () => dispatch(clearProject());
 
   return (
-    <React.Fragment>
-      <Button onClick={handleClear}>
-        Reset
-        <i className='ri-restart-line' />
-      </Button>
-      <span className='divider' />
-    </React.Fragment>
+    <Button onClick={handleClear}>
+      Reset
+      <i className='ri-restart-line' />
+    </Button>
   );
 };
