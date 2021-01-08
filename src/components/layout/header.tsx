@@ -16,7 +16,12 @@ const styles = css`
     align-items: center;
     display: flex;
     justify-content: center;
+    transition: transform .5s ease-in-out;
     width: 6rem;
+    
+    &:hover {
+      transform: rotate(360deg);
+    }
   }
 `;
 
