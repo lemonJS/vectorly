@@ -2,8 +2,8 @@ import React from 'react'
 
 import { css } from '@emotion/css';
 import { texts } from '@components/trays/data/texts';
-import { Button } from '@components/button';
 import { TextType } from '@components/trays/text/text-type';
+import { CreateButton } from '@components/trays/text/create-button';
 
 const styles = css`
   button {
@@ -18,10 +18,7 @@ const styles = css`
 
 export const Create = (): JSX.Element => (
   <div className={styles}>
-    <Button className='secondary'>
-      Add Text
-      <i className='ri-add-line' />
-    </Button>
+    <CreateButton />
 
     <div className='text-types'>
       {texts.map(type => (
