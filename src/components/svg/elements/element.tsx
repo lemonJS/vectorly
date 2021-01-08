@@ -2,8 +2,8 @@ import React from 'react';
 
 import { useSelector } from 'react-redux';
 import { Element as ProjectElement } from '@type/project';
-import { Container } from '@components/svg/container';
-import { Text } from '@components/svg/text';
+import { Container } from '@components/svg/elements/container';
+import { Text } from '@components/svg/elements/text';
 import { editorSelector } from '@lib/editor/selectors';
 
 interface Props {

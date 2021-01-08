@@ -37,6 +37,10 @@ export const Container = (props: Props): JSX.Element => {
     dispatch(deleteElement(id));
   };
 
+  const handleDeselect = () => {
+    dispatch(setSelectionId(null));
+  };
+
   return (
     <g>
       <g id={props.id} className='container' onClick={handleClick} ref={ref} transform={transform}>
@@ -48,6 +52,7 @@ export const Container = (props: Props): JSX.Element => {
             parent={props.id}
             element={props.element}
             handleDelete={handleDelete}
+            handleDeselect={handleDeselect}
             handleTransform={handleTransform}
           />
         )}

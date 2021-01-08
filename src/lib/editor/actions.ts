@@ -32,6 +32,10 @@ export const setSaving = (saving: boolean) => (dispatch: Dispatch<EditorAction>)
   dispatch({ type: 'EDITOR', payload: { saving } });
 };
 
+export const setDrawing = (drawing: boolean) => (dispatch: Dispatch<EditorAction>) => {
+  dispatch({ type: 'EDITOR', payload: { drawing }});
+};
+
 export const updateUndoStack = (update: Partial<Project>) => (dispatch: Dispatch<EditorAction>, getState: GetState) => {
   const { editor } = getState();
   const { undoStack, undoStackIndex } = editor;

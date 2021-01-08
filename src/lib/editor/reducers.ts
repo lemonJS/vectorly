@@ -1,6 +1,7 @@
 import { Element } from '@type/project';
 
 export type EditorState = {
+  drawing: boolean;
   menuOpen: boolean;
   menuSelected: string;
   saving: boolean;
@@ -16,6 +17,7 @@ export interface EditorAction {
 }
 
 export const initialState: EditorState = {
+  drawing: false,
   menuOpen: true,
   menuSelected: 'photos',
   saving: false,

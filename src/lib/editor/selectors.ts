@@ -10,6 +10,8 @@ export const zoomSelector = (state: State): number => state.editor.zoom;
 
 export const savingSelector = (state: State): boolean => state.editor.saving;
 
+export const drawingSelector = (state: State): boolean => state.editor.drawing;
+
 export const selectedElementSelector = (state: State): Element | null => {
   const { selectedElement } = state.editor;
   const project = projectSelector(state);

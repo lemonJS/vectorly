@@ -3,8 +3,9 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { css } from '@emotion/css';
 import { Transform } from '@type/project';
-import { Element } from '@components/svg/element';
 import { Filters } from '@components/svg/filters/filters';
+import { Drawing } from '@components/svg/drawing/drawing';
+import { Elements } from '@components/svg/elements/elements';
 import { projectSelector } from '@lib/projects/selectors';
 import { setSelectionId } from '@lib/editor/actions';
 import { createElement } from '@lib/projects/actions';
@@ -45,7 +46,6 @@ export const SVG = (): JSX.Element => {
     const element = event.target as HTMLElement;
 
     if (element.tagName === 'svg') {
-      event.stopPropagation();
       dispatch(setSelectionId(null));
     }
   };
@@ -95,12 +95,10 @@ export const SVG = (): JSX.Element => {
   return (
     <div className={styles} style={{ transform: `scale(${zoom / 100})`, height: size[1], width: size[0] }}>
       <svg id='canvas' onMouseDown={handleMouseDown} onDrop={handleDrop} onDragOver={handleDragOver}>
-        {elements.map(element => (
-          <Element key={element.id} element={element} />
-        ))}
+        <Elements elements={elements} />
+        <Drawing />
+        <Filters />
       </svg>
-
-      <Filters />
     </div>
   );
 };

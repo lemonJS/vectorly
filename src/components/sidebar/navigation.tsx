@@ -36,7 +36,7 @@ export const Navigation = (): JSX.Element => {
     {
       title: 'Draw',
       name: 'draw',
-      icon: 'ri-pencil-line'
+      icon: 'ri-brush-line'
     },
     {
       title: 'Shapes',

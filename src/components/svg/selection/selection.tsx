@@ -14,6 +14,7 @@ interface Props {
   parent: string;
   element: Element;
   handleDelete: (id: string) => void;
+  handleDeselect: VoidFunction;
   handleTransform: (transform: Partial<Transform>) => void;
 }
 
@@ -34,6 +35,9 @@ export class Selection extends React.Component<Props> {
 
   private handleKeyDown = (event: KeyboardEvent) => {
     switch(event.key) {
+      case 'Escape':
+        this.props.handleDeselect();
+        break;
       case 'Delete':
         this.props.handleDelete(this.props.element.id);
         break;
