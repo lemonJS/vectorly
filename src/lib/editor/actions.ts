@@ -87,3 +87,7 @@ export const setZoom = (direction: 'up' | 'down') => (dispatch: Dispatch<EditorA
     dispatch({ type: 'EDITOR', payload: { zoom } });
   }
 };
+
+export const setZoomScale = (zoom: number) => (dispatch: Dispatch<EditorAction>) => {
+  dispatch({ type: 'EDITOR', payload: { zoom: Math.round(zoom) } });
+};

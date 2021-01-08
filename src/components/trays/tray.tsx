@@ -22,7 +22,12 @@ const styles = css`
   flex-direction: column;
   overflow-y: scroll;
   padding: 1.5rem;
+  scrollbar-width: none;
   width: 100%;
+  
+  &::-webkit-scrollbar {
+    display: none;
+  }
 
   &.show {
     display: flex;
