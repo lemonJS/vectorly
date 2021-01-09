@@ -8,7 +8,7 @@ interface Props {
   handleZoom: (zoom: number) => void;
 }
 
-export class Zoom extends React.Component<Props> {
+export class Listeners extends React.Component<Props> {
   public constructor(props: Props) {
     super(props);
   }

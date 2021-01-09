@@ -3,7 +3,6 @@ import React from 'react';
 import { css } from '@emotion/css';
 import { Undo } from '@components/controls/undo';
 import { Reset } from '@components/controls/reset';
-import { Zoom } from '@components/controls/zoom';
 import { Saving } from '@components/controls/saving';
 
 const styles = css`
@@ -36,7 +35,6 @@ const styles = css`
 export const Options = (): JSX.Element => (
   <div className={styles}>
     <Saving />
-    <Zoom />
     <Undo />
     <Reset />
   </div>
