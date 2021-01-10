@@ -31,11 +31,6 @@ export const Sidebar = () => {
       icon: 'ri-font-size',
     },
     {
-      title: 'Emojis',
-      name: 'emojis',
-      icon: 'ri-emotion-line',
-    },
-    {
       title: 'Draw',
       name: 'draw',
       icon: 'ri-brush-line'
@@ -46,19 +41,14 @@ export const Sidebar = () => {
       icon: 'ri-shape-2-line',
     },
     {
+      title: 'Emojis',
+      name: 'emojis',
+      icon: 'ri-emotion-line',
+    },
+    {
       title: 'Stickers',
       name: 'stickers',
       icon: 'ri-sticky-note-line'
-    },
-    {
-      title: 'Canvas',
-      name: 'canvas',
-      icon: 'ri-artboard-2-line'
-    },
-    {
-      title: 'Designs',
-      name: 'designs',
-      icon: 'ri-paint-brush-line',
     }
   ];
 

@@ -2,11 +2,9 @@ import React from 'react';
 
 import { useSelector } from 'react-redux';
 import { css } from '@emotion/css';
-import { Designs } from '@components/trays/designs/designs';
 import { Photos } from '@components/trays/photos/photos';
 import { Shapes } from '@components/trays/shapes/shapes';
 import { Emojis } from '@components/trays/emojis/emojis';
-import { Canvas } from '@components/trays/canvas/canvas';
 import { Text } from '@components/trays/text/text';
 import { editorSelector } from '@lib/editor/selectors';
 import { projectSelector } from '@lib/projects/selectors';
@@ -46,10 +44,6 @@ export const Tray = (): JSX.Element => {
 
   const trays = [
     {
-      Component: Designs,
-      name: 'designs'
-    },
-    {
       Component: Photos,
       name: 'photos'
     },
@@ -72,10 +66,6 @@ export const Tray = (): JSX.Element => {
     {
       Component: Stickers,
       name: 'stickers'
-    },
-    {
-      Component: Canvas,
-      name: 'canvas'
     }
   ];
 
