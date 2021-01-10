@@ -5,6 +5,7 @@ import { Content } from '@components/layout/content';
 import { Header } from '@components/header/header';
 import { Sidebar } from '@components/sidebar/sidebar';
 import { Tray } from '@components/trays/tray';
+import { Listeners } from '@components/layout/listeners';
 
 interface Props {
   children: React.ReactNode;
@@ -16,12 +17,15 @@ const styles = css`
 `;
 
 export const Wrapper = (props: Props): JSX.Element => (
-  <div className={styles}>
-    <Header />
-    <Sidebar />
-    <Content>
-      {props.children}
-    </Content>
-    <Tray />
-  </div>
+  <Listeners>
+    <div className={styles}>
+      <Header />
+      <Sidebar />
+      <Content>
+        {props.children}
+      </Content>
+      <Tray />
+    </div>
+  </Listeners>
 );
+

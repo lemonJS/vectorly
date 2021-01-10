@@ -22,7 +22,7 @@ const styles = css`
     margin: 0;
   }
   
-  &:disabled {
+  &.disabled {
     pointer-events: none;
   }
 

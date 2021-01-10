@@ -102,7 +102,7 @@ export class Selection extends React.Component<Props> {
     };
 
     const Element = (
-      <g transform={this.transform}>
+      <g id='selection' transform={this.transform}>
         <Outline {...props} />
         <Move {...props} />
         <Rotate {...props} />

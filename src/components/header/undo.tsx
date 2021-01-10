@@ -46,11 +46,11 @@ export const Undo = (): JSX.Element => {
 
   return (
     <div className={styles}>
-      <Button disabled={!canUndo} onClick={handleUndo} label='Undo'>
+      <Button className={canUndo ? '' : 'disabled'} onClick={handleUndo} label='Undo'>
         <i className='ri-arrow-go-back-line' />
       </Button>
       <Divider />
-      <Button disabled={!canRedo} onClick={handleRedo} label='Redo'>
+      <Button className={canRedo ? '' : 'disabled'} onClick={handleRedo} label='Redo'>
         <i className='ri-arrow-go-forward-line' />
       </Button>
     </div>

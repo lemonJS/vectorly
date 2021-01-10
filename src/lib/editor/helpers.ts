@@ -1,3 +1,7 @@
+import React from 'react';
+
+import { Transform } from '@type/project';
+
 export const getLayoutForElementType = (type: string): string | null => {
   switch(type) {
     case 'photo':
@@ -20,3 +24,22 @@ export const getLayoutForElementType = (type: string): string | null => {
 export const getBox = (group: SVGGElement | null): DOMRect => group
   ? group.getBBox()
   : { x: 0, y: 0, width: 0, height: 0 } as DOMRect;
+
+export const getElementFromDataTransfer = (data: string) => {
+  try {
+    return JSON.parse(data);
+  } catch {
+    return null;
+  }
+};
+
+export const getDropTransform = (event: React.DragEvent<HTMLDivElement>): Transform => {
+  const bounds = window.canvas.getBoundingClientRect();
+
+  return {
+    x: event.clientX - bounds.x,
+    y: event.clientY - bounds.y,
+    r: 0,
+    s: [1, 1]
+  };
+};

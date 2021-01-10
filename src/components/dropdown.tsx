@@ -47,9 +47,8 @@ export class Dropdown extends React.Component<Props, State> {
       : this.open();
   };
 
-  private handleClick = (event: MouseEvent) => {
-    const element = event.target as Element;
-    console.log(element);
+  private handleClick = (_event: MouseEvent) => {
+    // const element = event.target as Element;
   };
 
   public render(): JSX.Element {
