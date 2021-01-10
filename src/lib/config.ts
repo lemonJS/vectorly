@@ -7,11 +7,11 @@ interface Config {
 export const config: Config = {
   styles: {
     // Accent Colors:
-    'primary-accent-color': '#4aacd9',
+    'primary-accent-color': '#6946F6',
     'tertiary-accent-color': '#e66767',
 
     // Backgrounds:
-    'background-color': '#ebeff2',
+    'background-color': '#e5e5e5',
     'foreground-color': '#ffffff',
 
     // Layout

@@ -25,7 +25,7 @@ const styles = css`
   width: 100%;
   
   #canvas {
-    box-shadow: 0 6px 18px 0 rgba(0, 35, 90, .08), 0 0 2px 0 rgba(0, 35, 90, .06);
+    box-shadow: 0 0 3rem rgba(0, 0, 0, .02);
     height: 100%;
     outline: none;
     overflow: visible;

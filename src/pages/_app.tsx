@@ -16,9 +16,12 @@ injectGlobal`
   }
   
   html, body {
-    background: var(--background-color);
+    background-color: var(--background-color);
+    background-image: radial-gradient(#ccc 10%, var(--background-color) 10%);
+    background-position: 0 0;
+    background-size: 1rem 1rem;
     color: var(--primary-text-color);
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Poppins', sans-serif;
     font-size: 1rem;
     font-weight: 400;
     margin: 0;

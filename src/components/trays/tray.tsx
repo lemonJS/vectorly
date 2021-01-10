@@ -13,17 +13,19 @@ import { projectSelector } from '@lib/projects/selectors';
 import { Stickers } from '@components/trays/stickers/stickers';
 import { Draw } from '@components/trays/draw/draw';
 
-interface Props {
-  open: boolean;
-}
-
 const styles = css`
+  background: var(--foreground-color);
+  border-radius: .5rem;
+  box-shadow: 0 0 1.5rem rgba(0, 0, 0, .1);
   display: none;
   flex-direction: column;
-  overflow-y: scroll;
+  height: calc(100% - 3rem);
+  overflow-y: auto;
   padding: 1.5rem;
-  scrollbar-width: none;
-  width: 100%;
+  position: absolute;
+  right: 1.5rem;
+  top: 1.5rem;
+  width: 20rem;
   
   &::-webkit-scrollbar {
     display: none;
@@ -34,9 +36,9 @@ const styles = css`
   }
 `;
 
-export const Tray = (props: Props): JSX.Element => {
+export const Tray = (): JSX.Element => {
   const project = useSelector(projectSelector);
-  const { menuSelected } = useSelector(editorSelector);
+  const { menuOpen, menuSelected } = useSelector(editorSelector);
 
   if (!project) {
     return null;
@@ -80,7 +82,7 @@ export const Tray = (props: Props): JSX.Element => {
   return (
     <React.Fragment>
       {trays.map(({ name, Component }) => (
-        <div key={name} className={`${styles} ${props.open && menuSelected === name ? 'show' : ''}`}>
+        <div key={name} className={`${styles} ${menuOpen && menuSelected === name ? 'show' : ''}`}>
           <Component />
         </div>
       ))}

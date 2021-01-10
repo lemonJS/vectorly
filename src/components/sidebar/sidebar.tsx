@@ -1,32 +1,70 @@
 import React from 'react';
 
 import { css } from '@emotion/css';
-import { Navigation } from '@components/sidebar/navigation';
-import { Tray } from '@components/trays/tray';
-
-interface Props {
-  open: boolean;
-}
+import { Button } from '@components/sidebar/button';
 
 const styles = css`
-  background: var(--sidebar-background-color);
+  background: var(--foreground-color);
+  border-radius: .5rem;
+  box-shadow: 0 0 1.5rem rgba(0, 0, 0, .1);
   display: flex;
-  grid-area: sidebar;
-  overflow: hidden;
+  flex-direction: column;
+  left: 1.5rem;
+  padding: .5rem;
+  position: absolute;
+  top: 50%;
+  transform: translate(0, -50%);
+  width: 3.5rem;
   z-index: 1;
-  
-  &.menu-open {
-    overflow: visible;
-  }
 `;
 
-export const Sidebar = (props: Props) => {
-  const status = props.open ? 'menu-open' : '';
+export const Sidebar = () => {
+  const navigation = [
+    {
+      title: 'Photos',
+      name: 'photos',
+      icon: 'ri-image-line',
+    },
+    {
+      title: 'Text',
+      name: 'text',
+      icon: 'ri-font-size',
+    },
+    {
+      title: 'Emojis',
+      name: 'emojis',
+      icon: 'ri-emotion-line',
+    },
+    {
+      title: 'Draw',
+      name: 'draw',
+      icon: 'ri-brush-line'
+    },
+    {
+      title: 'Shapes',
+      name: 'shapes',
+      icon: 'ri-shape-2-line',
+    },
+    {
+      title: 'Stickers',
+      name: 'stickers',
+      icon: 'ri-sticky-note-line'
+    },
+    {
+      title: 'Canvas',
+      name: 'canvas',
+      icon: 'ri-artboard-2-line'
+    },
+    {
+      title: 'Designs',
+      name: 'designs',
+      icon: 'ri-paint-brush-line',
+    }
+  ];
 
   return (
-    <aside className={`${styles} ${status}`}>
-      <Navigation />
-      <Tray open={props.open} />
-    </aside>
+    <nav className={styles}>
+      {navigation.map(nav => <Button {...nav} key={nav.name} />)}
+    </nav>
   );
 };

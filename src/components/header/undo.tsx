@@ -1,9 +1,35 @@
 import React from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
-import { Button } from '@components/button';
+import { css } from '@emotion/css';
+import { Button } from '@components/header/button';
+import { Divider } from '@components/header/divider';
 import { editorSelector } from '@lib/editor/selectors';
 import { redo, undo } from '@lib/editor/actions';
+
+const styles = css`
+  align-items: center;
+  display: flex;
+  
+  button {
+    background: none;
+    border: none;
+    border-radius: 50%;
+    height: 2.5rem;
+    margin: 0 .5rem;
+    padding: 0;
+    width: 2.5rem;
+    
+    i {
+      font-size: 1.5rem;
+      margin: 0;
+    }
+    
+    &:hover {
+      background: #eee;
+    }
+  }
+`;
 
 export const Undo = (): JSX.Element => {
   const dispatch = useDispatch();
@@ -19,17 +45,14 @@ export const Undo = (): JSX.Element => {
   const handleRedo = () => dispatch(redo());
 
   return (
-    <React.Fragment>
-      <Button className={canUndo ? '' : 'disabled'} onClick={handleUndo}>
-        Undo
+    <div className={styles}>
+      <Button disabled={!canUndo} onClick={handleUndo} label='Undo'>
         <i className='ri-arrow-go-back-line' />
       </Button>
-      <span className='divider' />
-      <Button className={canRedo ? '' : 'disabled'} onClick={handleRedo}>
-        Redo
+      <Divider />
+      <Button disabled={!canRedo} onClick={handleRedo} label='Redo'>
         <i className='ri-arrow-go-forward-line' />
       </Button>
-      <span className='divider' />
-    </React.Fragment>
+    </div>
   );
 };
