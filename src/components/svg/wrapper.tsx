@@ -1,11 +1,12 @@
 import React from 'react';
 
 import { css } from '@emotion/css';
+import { connect } from 'react-redux';
 import { State as ReduxState } from '@type/redux';
 import { Element } from '@type/project';
 import { getElementFromDataTransfer, getDropTransform } from '@lib/editor/helpers';
 import { createElement } from '@lib/projects/actions';
-import { connect } from 'react-redux';
+import { Presets } from '@components/svg/presets/presets';
 
 interface Props {
   children: React.ReactNode;
@@ -23,6 +24,7 @@ interface State {
 const styles = css`
   display: flex;
   height: 100%;
+  position: relative;
   width: 100%;
 `;
 
@@ -127,6 +129,7 @@ export class SvgWrapper extends React.Component<Props, State> {
 
     return (
       <div ref={this.ref} {...props}>
+        <Presets />
         {this.props.children}
       </div>
     );

@@ -3,7 +3,7 @@ import React from 'react';
 import { css } from '@emotion/css';
 
 interface Props {
-
+  children: React.ReactNode;
 }
 
 interface State {
@@ -56,7 +56,7 @@ export class Dropdown extends React.Component<Props, State> {
 
     return (
       <div className={`${styles} dropdown`}>
-        <p>Hello</p>
+        {this.props.children}
       </div>
     );
   }
