@@ -4,6 +4,7 @@ import { css } from '@emotion/css';
 import { Radio } from '@components/radio';
 
 interface Props {
+  category: string;
   name: string;
   size: number[];
 }
@@ -14,7 +15,7 @@ const styles = css`
   
   p {
     margin: 0;
-    width: 110px;
+    width: 70px;
   }
   
   span {
@@ -23,11 +24,15 @@ const styles = css`
   }
 `;
 
-export const PresetsListItem = (props: Props): JSX.Element => (
-  <li key={props.name} className={styles}>
-    <Radio id={`${props.name.toLowerCase()}-${props.size.join('-')}`} name='preset' value={props.size.join('-')}>
-      <p>{props.name}</p>
-      <span>{props.size[0]} x {props.size[1]} px</span>
-    </Radio>
-  </li>
-);
+export const PresetsListItem = (props: Props): JSX.Element => {
+  const id = `${props.category}-${props.name}-${props.size.join('-')}`.toLowerCase();
+
+  return (
+    <li key={props.name} className={styles}>
+      <Radio id={id} name='preset' value={props.size.join('-')}>
+        <p>{props.name}</p>
+        <span>{props.size[0]} x {props.size[1]} px</span>
+      </Radio>
+    </li>
+  );
+};

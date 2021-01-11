@@ -16,6 +16,7 @@ const styles = css`
   box-shadow: 0 0 1.5rem rgba(0, 0, 0, .1);
   padding: 1.5rem;
   position: absolute;
+  z-index: 1;
 `;
 
 export class Dropdown extends React.Component<Props, State> {
@@ -23,14 +24,6 @@ export class Dropdown extends React.Component<Props, State> {
     super(props);
 
     this.state = { open: false };
-  }
-
-  public componentDidMount() {
-    document.addEventListener('click', this.handleClick);
-  }
-
-  public componentWillUnmount() {
-    document.removeEventListener('click', this.handleClick, false);
   }
 
   public open = () => {
@@ -47,15 +40,11 @@ export class Dropdown extends React.Component<Props, State> {
       : this.open();
   };
 
-  private handleClick = (_event: MouseEvent) => {
-    // const element = event.target as Element;
-  };
-
   public render(): JSX.Element {
     if (!this.state.open) return null;
 
     return (
-      <div className={`${styles} dropdown`}>
+      <div id='dropdown' className={`dropdown ${styles}`}>
         {this.props.children}
       </div>
     );

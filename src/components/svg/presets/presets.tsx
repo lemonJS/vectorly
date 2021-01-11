@@ -4,10 +4,15 @@ import { css } from '@emotion/css';
 import { Dropdown } from '@components/dropdown';
 import { PresetsList } from '@components/svg/presets/presets-list';
 
+interface Props {
+  zoom: number;
+}
+
 const styles = css`
   left: 0;
   position: absolute;
-  top: -1.25rem;
+  top: 0;
+  transform-origin: top left;
   
   button {
     align-items: center;
@@ -34,19 +39,28 @@ const styles = css`
   
   .dropdown {
     top: -1rem;
-    right: -20rem;
+    right: -17rem;
+    width: 254px;
   }
 `;
 
-export const Presets = (): JSX.Element => {
+export const Presets = (props: Props): JSX.Element => {
   const ref: React.MutableRefObject<Dropdown> = React.useRef(null);
+
+  // This component is zoomed in and out with the
+  // art board but it should remain at one size.
+  // We nee to revert the scale of the parent
+  const scale = 1 / (props.zoom / 100);
+
+  const translateX = 0;
+  const translateY = -24;
 
   const handleClick = () => {
     ref.current.toggle();
   };
 
   return (
-    <div className={styles}>
+    <div className={styles} style={{ transform: `scale(${scale}) translate(${translateX}px, ${translateY}px)` }}>
       <button onClick={handleClick}>
         Facebook Post 1200 x 900
         <i className='ri-settings-3-line' />

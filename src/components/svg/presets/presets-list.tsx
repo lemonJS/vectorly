@@ -48,8 +48,6 @@ const presets = [
 ];
 
 const styles = css`
-  width: 254px;
-  
   .wrapper {
     margin-bottom: 1rem;
     

@@ -129,7 +129,7 @@ export class SvgWrapper extends React.Component<Props, State> {
 
     return (
       <div ref={this.ref} {...props}>
-        <Presets />
+        <Presets zoom={this.props.zoom} />
         {this.props.children}
       </div>
     );

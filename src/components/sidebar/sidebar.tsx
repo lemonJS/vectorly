@@ -28,7 +28,7 @@ export const Sidebar = () => {
     {
       title: 'Text',
       name: 'text',
-      icon: 'ri-font-size',
+      icon: 'ri-font-size-2',
     },
     {
       title: 'Draw',

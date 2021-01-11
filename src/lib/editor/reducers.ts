@@ -3,7 +3,7 @@ import { Element } from '@type/project';
 export type EditorState = {
   drawing: boolean;
   menuOpen: boolean;
-  menuSelected: string;
+  menuSelected: string | null;
   saving: boolean;
   selectedElement: Element | null;
   undoStack: string[];
@@ -18,8 +18,8 @@ export interface EditorAction {
 
 export const initialState: EditorState = {
   drawing: false,
-  menuOpen: true,
-  menuSelected: 'photos',
+  menuOpen: false,
+  menuSelected: null,
   saving: false,
   selectedElement: null,
   undoStack: [],
