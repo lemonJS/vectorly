@@ -2,6 +2,7 @@ import React from 'react';
 
 import { cloneDeep } from 'lodash';
 import { useDispatch } from 'react-redux';
+import { v4 as uuid } from 'uuid';
 import { Element } from '@type/project';
 import { css } from '@emotion/css';
 import { Button } from '@components/button';
@@ -34,6 +35,7 @@ export const Actions = (props: Props): JSX.Element => {
 
   const handleDuplicate = () => {
     const element = cloneDeep(props.element);
+    element.id = uuid();
     element.transform.x += 20;
     element.transform.y += 20;
     dispatch(createElement(element));
