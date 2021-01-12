@@ -36,6 +36,7 @@ export interface Preset {
 }
 
 export interface Project {
+  title: string;
   elements: Element[];
   images: Image[];
   preset: Preset;

@@ -1,6 +1,7 @@
 import { Project } from '@type/project';
 
 export const newProject = (): Project => ({
+  title: 'Untitled Project',
   images: [],
   elements: [
     {
