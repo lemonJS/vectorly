@@ -3,14 +3,14 @@ import React from 'react';
 import { css } from '@emotion/css';
 import { connect } from 'react-redux';
 import { State as ReduxState } from '@type/redux';
-import { Element } from '@type/project';
+import { Element, Preset } from '@type/project';
 import { getElementFromDataTransfer, getDropTransform } from '@lib/editor/helpers';
 import { createElement } from '@lib/projects/actions';
 import { Presets } from '@components/svg/presets/presets';
 
 interface Props {
   children: React.ReactNode;
-  size: [number, number];
+  preset: Preset;
   zoom: number;
   createElement: (element: Partial<Element>) => void;
 }
@@ -44,7 +44,7 @@ export class SvgWrapper extends React.Component<Props, State> {
   }
 
   private get height() {
-    return this.props.size[1];
+    return this.props.preset.height;
   }
 
   private get scale() {
@@ -56,7 +56,7 @@ export class SvgWrapper extends React.Component<Props, State> {
   }
 
   private get width() {
-    return this.props.size[0];
+    return this.props.preset.width;
   }
 
   private handleMouseUp = () => {
@@ -137,8 +137,8 @@ export class SvgWrapper extends React.Component<Props, State> {
 }
 
 const mapStateToProps = (state: ReduxState) => ({
-  size: state.project?.size || [0, 0],
-  zoom: state.editor?.zoom || 1
+  preset: state.project.preset,
+  zoom: state.editor.zoom
 });
 
 const mapDispatchToProps = (dispatch: any) => ({

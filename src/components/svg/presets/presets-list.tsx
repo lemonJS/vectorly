@@ -2,50 +2,14 @@ import React from 'react';
 
 import { groupBy } from 'lodash';
 import { css } from '@emotion/css';
+import { Preset } from '@type/project';
+import { presets } from '@lib/presets';
 import { PresetsListItem } from '@components/svg/presets/presets-list-item';
 
-const presets = [
-  {
-    category: 'Facebook',
-    name: 'Post',
-    size: [1200, 900]
-  },
-  {
-    category: 'Facebook',
-    name: 'Story',
-    size: [1200, 900]
-  },
-  {
-    category: 'Facebook',
-    name: 'Cover',
-    size: [820, 312]
-  },
-  {
-    category: 'Facebook',
-    name: 'Profile',
-    size: [512, 512]
-  },
-  {
-    category: 'Twitter',
-    name: 'Post',
-    size: [1200, 900]
-  },
-  {
-    category: 'Twitter',
-    name: 'Fleet',
-    size: [1200, 900]
-  },
-  {
-    category: 'Twitter',
-    name: 'Cover',
-    size: [820, 312]
-  },
-  {
-    category: 'Twitter',
-    name: 'Profile',
-    size: [512, 512]
-  }
-];
+interface Props {
+  preset: Preset;
+  handleChange: (id: string) => void;
+}
 
 const styles = css`
   .wrapper {
@@ -69,7 +33,7 @@ const styles = css`
   }
 `;
 
-export const PresetsList = (): JSX.Element => {
+export const PresetsList = (props: Props): JSX.Element => {
   const groups = groupBy(presets, 'category');
 
   return (
@@ -78,7 +42,14 @@ export const PresetsList = (): JSX.Element => {
         <div className='wrapper' key={name}>
           <label className='heading'>{name}</label>
           <ul>
-            {presets.map(preset => <PresetsListItem key={preset.name} {...preset} />)}
+            {presets.map(p => (
+              <PresetsListItem
+                key={p.id}
+                preset={p}
+                selected={p.id === props.preset.id}
+                handleChange={props.handleChange}
+              />
+            ))}
           </ul>
         </div>
       ))}

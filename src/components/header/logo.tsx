@@ -4,11 +4,8 @@ import Link from 'next/link';
 import { css } from '@emotion/css';
 
 const styles = css`
+  display: block;
   margin: 0 1rem;
-  
-  img {
-    display: block;
-  }
 `;
 
 export const Logo = (): JSX.Element => (

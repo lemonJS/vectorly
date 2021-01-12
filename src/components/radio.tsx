@@ -54,7 +54,7 @@ const styles = css`
 export function Radio(props: Props): JSX.Element {
   return (
     <div className={styles}>
-      <input type='radio' id={props.id} name={props.name} value={props.value} />
+      <input type='radio' id={props.id} name={props.name} value={props.value} checked={props.checked} onChange={props.onChange} />
       <label htmlFor={props.id}>
         <i className='unchecked ri-checkbox-blank-circle-line' />
         <i className='checked ri-checkbox-circle-line' />

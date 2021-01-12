@@ -8,6 +8,7 @@ import { setSelectionId } from '@lib/editor/actions';
 import { sync } from '@lib/projects/sync';
 import { loadImages } from '@lib/images';
 import { newProject } from '@lib/projects/helpers';
+import { presets } from '@lib/presets';
 
 export const getProject = () => (dispatch: Dispatch<any>) => {
   const data = localStorage.getItem('project');
@@ -67,4 +68,11 @@ export const deleteImage = (id: string) => (dispatch: Dispatch<any>, getState: G
   const elements = project.elements.filter(element => element.props['data-id'] !== id);
 
   dispatch(updateProject({ images, elements }));
+};
+
+export const setPreset = (id: string) => (dispatch: Dispatch<any>) => {
+  const p = presets.find(p => p.id === id);
+  const preset = { id: p.id, height: p.height, width: p.width };
+
+  dispatch(updateProject({ preset }));
 };

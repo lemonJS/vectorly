@@ -1,8 +1,12 @@
 import React from 'react';
 
+import { useDispatch, useSelector } from 'react-redux';
 import { css } from '@emotion/css';
 import { Dropdown } from '@components/dropdown';
+import { presets } from '@lib/presets';
 import { PresetsList } from '@components/svg/presets/presets-list';
+import { projectSelector } from '@lib/projects/selectors';
+import { setPreset } from '@lib/projects/actions';
 
 interface Props {
   zoom: number;
@@ -45,6 +49,9 @@ const styles = css`
 `;
 
 export const Presets = (props: Props): JSX.Element => {
+  const dispatch = useDispatch();
+  const { preset } = useSelector(projectSelector);
+
   const ref: React.MutableRefObject<Dropdown> = React.useRef(null);
 
   // This component is zoomed in and out with the
@@ -59,15 +66,25 @@ export const Presets = (props: Props): JSX.Element => {
     ref.current.toggle();
   };
 
+  const handleChange = (id: string) => {
+    ref.current.close();
+    dispatch(setPreset(id));
+  };
+
+  const { category, name, height, width } = presets.find(p => p.id === preset.id);
+
   return (
     <div className={styles} style={{ transform: `scale(${scale}) translate(${translateX}px, ${translateY}px)` }}>
       <button onClick={handleClick}>
-        Facebook Post 1200 x 900
+        {category} {name} {width} x {height}
         <i className='ri-settings-3-line' />
       </button>
 
       <Dropdown ref={ref}>
-        <PresetsList />
+        <PresetsList
+          preset={preset}
+          handleChange={handleChange}
+        />
       </Dropdown>
     </div>
   );

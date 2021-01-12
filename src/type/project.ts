@@ -29,8 +29,14 @@ export interface Element {
   text?: string;
 }
 
+export interface Preset {
+  id: string;
+  height: number;
+  width: number;
+}
+
 export interface Project {
   elements: Element[];
   images: Image[];
-  size: [number, number];
+  preset: Preset;
 }

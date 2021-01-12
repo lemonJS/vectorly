@@ -22,5 +22,9 @@ export const newProject = (): Project => ({
       }
     }
   ],
-  size: [1024, 768]
+  preset: {
+    id: 'facebook-post-1200-900',
+    height: 900,
+    width: 1200
+  }
 });

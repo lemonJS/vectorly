@@ -2,11 +2,12 @@ import React from 'react';
 
 import { css } from '@emotion/css';
 import { Radio } from '@components/radio';
+import { PresetItem } from '@lib/presets';
 
 interface Props {
-  category: string;
-  name: string;
-  size: number[];
+  preset: PresetItem;
+  selected: boolean;
+  handleChange: (id: string) => void;
 }
 
 const styles = css`
@@ -25,13 +26,15 @@ const styles = css`
 `;
 
 export const PresetsListItem = (props: Props): JSX.Element => {
-  const id = `${props.category}-${props.name}-${props.size.join('-')}`.toLowerCase();
+  const handleChange = () => {
+    props.handleChange(props.preset.id);
+  };
 
   return (
-    <li key={props.name} className={styles}>
-      <Radio id={id} name='preset' value={props.size.join('-')}>
-        <p>{props.name}</p>
-        <span>{props.size[0]} x {props.size[1]} px</span>
+    <li key={props.preset.id} className={styles}>
+      <Radio id={props.preset.id} name='preset' value={props.preset.id} checked={props.selected} onChange={handleChange}>
+        <p>{props.preset.name}</p>
+        <span>{props.preset.width} x {props.preset.height} px</span>
       </Radio>
     </li>
   );

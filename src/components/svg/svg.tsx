@@ -33,7 +33,9 @@ export const SVG = (): JSX.Element => {
     // Store this against the window as a cache for the
     // SVG element positioning
     window.canvas = document.getElementById('canvas') as Svg;
-  }, []);
+  });
+
+  if (!project) return null;
 
   return (
     <Wrapper>
