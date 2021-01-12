@@ -23,6 +23,7 @@ const styles = css`
   }
   
   &.disabled {
+    color: #bbb;
     pointer-events: none;
   }
 
