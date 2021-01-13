@@ -25,7 +25,8 @@ const styles = css`
 
 export const Title = (): JSX.Element => {
   const dispatch = useDispatch();
-  const { title } = useSelector(projectSelector);
+  const project = useSelector(projectSelector);
+  const title = project?.title || 'Untitled Project';
 
   const [edit, setEdit] = React.useState(false);
 

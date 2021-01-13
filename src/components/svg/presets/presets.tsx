@@ -9,7 +9,7 @@ import { projectSelector } from '@lib/projects/selectors';
 import { setPreset } from '@lib/projects/actions';
 
 interface Props {
-  zoom: number;
+  scale: number;
 }
 
 const styles = css`
@@ -57,7 +57,7 @@ export const Presets = (props: Props): JSX.Element => {
   // This component is zoomed in and out with the
   // art board but it should remain at one size.
   // We nee to revert the scale of the parent
-  const scale = 1 / (props.zoom / 100);
+  const scale = 1 / props.scale;
 
   const translateX = 0;
   const translateY = -24;

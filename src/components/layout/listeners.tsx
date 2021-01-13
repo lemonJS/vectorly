@@ -1,18 +1,21 @@
 import React from 'react';
 
-import { clamp } from 'lodash';
 import { connect } from 'react-redux';
 import { State } from '@type/redux';
-import { setZoomScale, setSelectionId } from '@lib/editor/actions';
+import { Position } from '@lib/editor/reducers';
+import { setSelectionId, setPosition } from '@lib/editor/actions';
+import { calculatePosition } from '@lib/positioning';
 
 interface Props {
   children: React.ReactNode;
-  zoom: number;
-  handleZoom: (zoom: number) => void;
+  position: Position;
+  handlePosition: (position: Partial<Position>) => void;
   handleElementDismiss: VoidFunction;
 }
 
 export class GlobalListeners extends React.Component<Props> {
+  private readonly factor = 0.05;
+
   public constructor(props: Props) {
     super(props);
   }
@@ -35,8 +38,14 @@ export class GlobalListeners extends React.Component<Props> {
     if (event.ctrlKey || event.metaKey) {
       event.preventDefault();
 
-      const scale = clamp(this.props.zoom + event.deltaY * -0.5, 10, 200);
-      this.props.handleZoom(scale);
+      const position = calculatePosition({
+        client: [event.clientX, event.clientY],
+        delta: event.deltaY * -this.factor,
+        factor: this.factor,
+        position: this.props.position
+      });
+
+      this.props.handlePosition(position);
     }
   };
 
@@ -67,11 +76,11 @@ export class GlobalListeners extends React.Component<Props> {
 }
 
 const mapStateToProps = (state: State) => ({
-  zoom: state.editor.zoom
+  position: state.editor.position
 });
 
 const mapDispatchToProps = (dispatch: any) => ({
-  handleZoom: (zoom: number) => dispatch(setZoomScale(zoom)),
+  handlePosition: (position: Partial<Position>) => dispatch(setPosition(position)),
   handleElementDismiss: () => dispatch(setSelectionId(null))
 });
 

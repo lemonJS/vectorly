@@ -3,8 +3,8 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { css } from '@emotion/css';
 import { Button } from '@components/header/button';
-import { zoomSelector } from '@lib/editor/selectors';
-import { setZoom, setZoomScale } from '@lib/editor/actions';
+import { positionSelector } from '@lib/editor/selectors';
+import { setPosition } from '@lib/editor/actions';
 
 const styles = css`
   align-items: center;
@@ -24,17 +24,21 @@ const styles = css`
 
 export const Zoom = (): JSX.Element => {
   const dispatch = useDispatch();
-  const zoom = useSelector(zoomSelector);
+  const { s: scale } = useSelector(positionSelector);
+  const zoom = Math.floor(scale * 100);
 
   const [edit, setEdit] =  React.useState(false);
 
   const handleZoom = (direction: 'up' | 'down') => () => {
-    dispatch(setZoom(direction));
+    const value = direction === 'up'
+      ? scale + .1
+      : scale - .1;
+    dispatch(setPosition({ s: value }));
   };
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const value = Number(event.target.value);
-    dispatch(setZoomScale(value));
+    const value = Number(event.target.value) / 100;
+    dispatch(setPosition({ s: value }));
   };
 
   const handleBlur = () => setEdit(false);

@@ -3,7 +3,7 @@ import { GetState } from '@type/redux';
 import { Project } from '@type/project';
 import { getLayoutForElementType } from '@lib/editor/helpers';
 import { projectSelector } from '@lib/projects/selectors';
-import { EditorAction } from '@lib/editor/reducers';
+import { EditorAction, Position } from '@lib/editor/reducers';
 
 export const setSelectionId = (id: string | null) => (dispatch: Dispatch<EditorAction | any>, getState: GetState) => {
   const project = projectSelector(getState());
@@ -75,21 +75,9 @@ export const redo = () => (dispatch: Dispatch<EditorAction>, getState: GetState)
   dispatch({ type: 'PROJECT', payload: JSON.parse(undoStack[index]) });
 };
 
-export const setZoom = (direction: 'up' | 'down') => (dispatch: Dispatch<EditorAction>, getState: GetState) => {
-  const step = 10;
-  const { editor } = getState();
+export const setPosition = (position: Partial<Position>) => (dispatch: Dispatch<EditorAction>, getState: GetState) => {
+  const update = { ...getState().editor.position, ...position };
 
-  const zoom = direction === 'up'
-    ? editor.zoom + step
-    : editor.zoom - step;
-
-  if (zoom > 10 && zoom <= 200) {
-    dispatch({ type: 'EDITOR', payload: { zoom } });
-  }
+  dispatch({ type: 'EDITOR', payload: { position: update } });
 };
 
-export const setZoomScale = (zoom: number) => (dispatch: Dispatch<EditorAction>) => {
-  if (zoom > 10 && zoom <= 200) {
-    dispatch({ type: 'EDITOR', payload: { zoom: Math.round(zoom) } });
-  }
-};

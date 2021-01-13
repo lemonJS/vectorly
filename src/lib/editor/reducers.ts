@@ -4,11 +4,11 @@ export type EditorState = {
   drawing: boolean;
   menuOpen: boolean;
   menuSelected: string | null;
+  position: Position;
   saving: boolean;
   selectedElement: Element | null;
   undoStack: string[];
   undoStackIndex: number,
-  zoom: number;
 };
 
 export interface EditorAction {
@@ -16,15 +16,25 @@ export interface EditorAction {
   payload: Partial<EditorState>;
 }
 
+export interface Position {
+  s: number;
+  x: number;
+  y: number;
+}
+
 export const initialState: EditorState = {
   drawing: false,
   menuOpen: false,
   menuSelected: null,
+  position: {
+    s: 1,
+    x: 0,
+    y: 0
+  },
   saving: false,
   selectedElement: null,
   undoStack: [],
-  undoStackIndex: 0,
-  zoom: 100
+  undoStackIndex: 0
 };
 
 export const editor = (state = initialState, action: EditorAction) => {

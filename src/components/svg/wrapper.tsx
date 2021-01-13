@@ -4,21 +4,23 @@ import { css } from '@emotion/css';
 import { connect } from 'react-redux';
 import { State as ReduxState } from '@type/redux';
 import { Element, Preset } from '@type/project';
+import { Position } from '@lib/editor/reducers';
 import { getElementFromDataTransfer, getDropTransform } from '@lib/editor/helpers';
 import { createElement } from '@lib/projects/actions';
 import { Presets } from '@components/svg/presets/presets';
+import { setPosition } from '@lib/editor/actions';
 
 interface Props {
   children: React.ReactNode;
+  position: Position;
   preset: Preset;
-  zoom: number;
+  handlePosition: (position: Partial<Position>) => void;
   createElement: (element: Partial<Element>) => void;
 }
 
 interface State {
   pressed: boolean;
   offset: [number, number];
-  translate: [number, number];
 }
 
 const styles = css`
@@ -36,8 +38,7 @@ export class SvgWrapper extends React.Component<Props, State> {
 
     this.state = {
       pressed: false,
-      offset: [0, 0],
-      translate: [0, 0]
+      offset: [0, 0]
     };
 
     this.ref = React.createRef();
@@ -48,11 +49,11 @@ export class SvgWrapper extends React.Component<Props, State> {
   }
 
   private get scale() {
-    return this.props.zoom / 100;
+    return this.props.position.s;
   }
 
   private get translate() {
-    return `${this.state.translate[0]}px, ${this.state.translate[1]}px`;
+    return `${this.props.position.x}px, ${this.props.position.y}px`;
   }
 
   private get width() {
@@ -69,8 +70,8 @@ export class SvgWrapper extends React.Component<Props, State> {
     const element = event.target as HTMLDivElement;
 
     const offset = [
-      event.clientX - this.state.translate[0],
-      event.clientY - this.state.translate[1]
+      event.clientX - this.props.position.x,
+      event.clientY - this.props.position.y
     ] as [number, number];
 
     if (!element.closest('#selection')) {
@@ -80,12 +81,10 @@ export class SvgWrapper extends React.Component<Props, State> {
 
   private handleMouseMove = (event: React.MouseEvent<HTMLDivElement>) => {
     if (this.state.pressed) {
-      const translate = [
-        event.clientX - this.state.offset[0],
-        event.clientY - this.state.offset[1]
-      ] as [number, number];
-
-      this.setState({ translate });
+      this.props.handlePosition({
+        x: event.clientX - this.state.offset[0],
+        y: event.clientY - this.state.offset[1]
+      });
     }
   };
 
@@ -129,7 +128,7 @@ export class SvgWrapper extends React.Component<Props, State> {
 
     return (
       <div ref={this.ref} {...props}>
-        <Presets zoom={this.props.zoom} />
+        <Presets scale={this.scale} />
         {this.props.children}
       </div>
     );
@@ -137,12 +136,13 @@ export class SvgWrapper extends React.Component<Props, State> {
 }
 
 const mapStateToProps = (state: ReduxState) => ({
-  preset: state.project.preset,
-  zoom: state.editor.zoom
+  position: state.editor.position,
+  preset: state.project.preset
 });
 
 const mapDispatchToProps = (dispatch: any) => ({
-  createElement: (element: Partial<Element>) => dispatch(createElement(element))
+  createElement: (element: Partial<Element>) => dispatch(createElement(element)),
+  handlePosition: (position: Partial<Position>) => dispatch(setPosition(position))
 });
 
 export const Wrapper = connect(
