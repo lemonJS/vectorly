@@ -4,7 +4,7 @@ import { css } from '@emotion/css';
 import { Element, ElementProps } from '@type/project';
 import { ColorPicker } from '@components/trays/color-picker';
 import { Label } from '@components/label';
-import { Opacity } from '@components/trays/opacity';
+// import { Opacity } from '@components/trays/opacity';
 
 interface Props {
   element: Element;
@@ -12,9 +12,7 @@ interface Props {
 }
 
 const styles = css`
-  label {
-   margin-top: 2rem;
-  }
+  padding: 0 1.5rem;
 `;
 
 export const Colors = (props: Props): JSX.Element => {
@@ -30,9 +28,9 @@ export const Colors = (props: Props): JSX.Element => {
 
   return (
     <div className={styles}>
-      <Label>Colors</Label>
+      <Label>Fill</Label>
       <ColorPicker selected={fill} handleChange={handleColor} />
-      <Opacity selected={opacity} handleUpdate={handleOpacity} />
+      {/*<Opacity selected={opacity} handleUpdate={handleOpacity} />*/}
     </div>
   );
 };

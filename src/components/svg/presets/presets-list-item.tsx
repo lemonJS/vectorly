@@ -21,7 +21,7 @@ const styles = css`
   
   span {
     color: #999999;
-    font-weight: 300;
+    font-weight: 400;
   }
 `;
 

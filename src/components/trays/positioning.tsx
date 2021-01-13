@@ -2,10 +2,8 @@ import React from 'react';
 
 import { css } from '@emotion/css';
 import { Element } from '@type/project';
-import { Divider } from '@components/divider';
 import { Label } from '@components/label';
-import { Input } from '@components/input';
-import { Slider } from '@components/slider';
+import { Input } from '@components/trays/input';
 
 interface Props {
   element: Element;
@@ -13,26 +11,15 @@ interface Props {
 }
 
 const styles = css`
-  hr {
-    margin-top: 2rem;
+  .heading {
+    padding: 0 1.5rem;  
   }
   
-  label {
-    margin-top: 2rem;
-  }
-  
-  .input-group {
-    align-items: center;
-    display: flex;
-    
-    .inputs {
-      flex: 1;
-    }
-    
-    i {
-      color: white;
-      margin: 0 .5rem;
-    }
+  .grid {
+    display: grid;
+    grid-gap: .5rem;
+    grid-template-columns: repeat(auto-fill, 90px);
+    padding: 0 1rem;
   }
 `;
 
@@ -41,50 +28,31 @@ export const Positioning = (props: Props): JSX.Element => {
   const element = document.getElementById(id);
   const bounds = element.getBoundingClientRect();
 
-  const handleTransform = (property: string) => (event: React.ChangeEvent<HTMLInputElement>) => {
-    const element = event.target as HTMLInputElement;
-    const value = Number(element.value);
-
-    const update = { ...transform, [property]: value }
+  const handleTransform = (property: string) => (value: string) => {
+    const update = { ...transform, [property]: Number(value) }
     props.handleUpdate({ transform: update });
   };
 
-  const handleRotate = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const element = event.target as HTMLInputElement;
-    const value = Number(element.value);
-
-    const update = { ...transform, r: value + 90 }
+  const handleRotate = (value: string) => {
+    const update = { ...transform, r: Number(value) + 90 }
     props.handleUpdate({ transform: update });
   };
 
   return (
     <div className={styles}>
-      <Divider />
+      <Label className='heading'>Size &amp; position</Label>
 
-      <Label>Dimensions</Label>
-      <div className='input-group'>
-        <div className='input-x'>
-          <Input readOnly defaultValue={Math.ceil(bounds.width)} />
-        </div>
-        <i className='ri-close-line' />
-        <div className='input-y'>
-          <Input readOnly defaultValue={Math.ceil(bounds.height)} />
-        </div>
+      <div className='grid'>
+        <Input icon='X' value={Math.ceil(transform.x)} handleChange={handleTransform('x')} />
+
+        <Input icon='Y' value={Math.ceil(transform.y)} handleChange={handleTransform('y')} />
+
+        <Input icon='W' value={Math.ceil(bounds.width)} handleChange={console.log} />
+
+        <Input icon='H' value={Math.ceil(bounds.height)} handleChange={console.log} />
+
+        <Input icon={<i className='ri-clockwise-line' />} value={transform.r - 90} handleChange={handleRotate} />
       </div>
-
-      <Label>Position</Label>
-      <div className='input-group'>
-        <div className='inputs input-x'>
-          <Input value={Math.ceil(transform.x)} onChange={handleTransform('x')} />
-        </div>
-        <i className='ri-close-line' />
-        <div className='inputs input-y'>
-          <Input value={Math.ceil(transform.y)} onChange={handleTransform('y')} />
-        </div>
-      </div>
-
-      <Label>Rotation</Label>
-      <Slider min={-270} max={90} value={transform.r - 90} step={1} onChange={handleRotate} />
     </div>
   );
 };

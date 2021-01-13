@@ -35,7 +35,7 @@ export const CreateButton = (): JSX.Element => {
   };
 
   return (
-    <Button className='secondary' onClick={handleClick}>
+    <Button onClick={handleClick}>
       Add Text
       <i className='ri-add-line' />
     </Button>

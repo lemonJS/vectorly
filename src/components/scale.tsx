@@ -6,46 +6,66 @@ interface Props {
   max: number;
   min: number;
   value: number;
+  suffix?: string;
   handleChange: (value: number) => void;
 }
 
 const styles = css`
   align-items: center;
-  background: var(--secondary-button-background-color);
-  border: 2px solid var(--secondary-button-border-color);
+  background: white;
+  border: 1px solid transparent;
   border-radius: .25rem;
-  color: var(--secondary-button-text-color);
   display: flex;
-  height: 42px;
+  height: 2rem;
   
-  button {
+  .action {
     align-items: center;
-    background: none;
+    background: #eee;
     border: none;
-    color: var(--secondary-button-text-color);
     cursor: pointer;
-    display: flex;
+    display: none;
     font-size: 1rem;
+    flex-shrink: 0;
+    height: 30px;
     justify-content: center;
-    width: 3rem;
+    margin-left: 1px;
+    width: 30px;
     
     &:hover {
       color: var(--primary-accent-color);
       font-size: 1.2rem;
     }
+    
+    &:last-of-type {
+      border-radius: 0 .25rem .25rem 0;
+    }
   }
   
   .value {
-    flex: 1;
-    text-align: center;
+    background: none;
+    border: none;
+    cursor: text;
+    font: inherit;
+    font-size: 14px;
+    font-weight: 400;
+    outline: none;
+    padding: .3rem .5rem .3rem .5rem;
+    text-align: left;
+    width: calc(100% - 62px);
   }
   
   &:hover {
-    border-color: var(--primary-accent-color);
+    border-color: #bbb;
+    
+    .action {
+      display: flex;
+    }
   }
 `;
 
 export const Scale = (props: Props): JSX.Element => {
+  const [edit, setEdit] = React.useState(false);
+
   const handleDown = () => {
     const value = props.value - 1;
 
@@ -62,17 +82,28 @@ export const Scale = (props: Props): JSX.Element => {
     }
   };
 
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const value = Number(event.target.value);
+    props.handleChange(value);
+  };
+
+  const handleEditStart = () => setEdit(true);
+
+  const handleEditEnd = () => setEdit(false);
+
   return (
-    <div className={styles}>
-      <button onClick={handleDown}>
+    <div className={`scale ${styles}`}>
+      {edit
+        ? <input className='value' value={props.value} autoFocus onBlur={handleEditEnd} onChange={handleChange} />
+        : <button className='value' onClick={handleEditStart}>{props.value} {props.suffix || ''}</button>
+      }
+
+
+      <button className='action' onClick={handleDown}>
         <i className='ri-subtract-line' />
       </button>
 
-      <div className='value'>
-        {props.value}
-      </div>
-
-      <button onClick={handleUp}>
+      <button className='action' onClick={handleUp}>
         <i className='ri-add-line' />
       </button>
     </div>

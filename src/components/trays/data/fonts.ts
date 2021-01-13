@@ -17,3 +17,10 @@ export const fonts = [
   'Brush Script MT',
   'Comic Sans MS'
 ];
+
+export const weights = [
+  'Lighter',
+  'Normal',
+  'Bold',
+  'Bolder'
+];

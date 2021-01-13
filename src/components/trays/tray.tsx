@@ -17,12 +17,14 @@ const styles = css`
   box-shadow: 0 0 1.5rem rgba(0, 0, 0, .1);
   display: none;
   flex-direction: column;
-  height: calc(100% - 3rem);
+  max-height: calc(100% - 3rem);
+  overflow-x: hidden;
   overflow-y: auto;
-  padding: 1.5rem;
+  padding: 1.5rem 0;
   position: absolute;
   right: 1.5rem;
-  top: 1.5rem;
+  top: 50%;
+  transform: translate(0, -50%);
   width: 20rem;
   
   &::-webkit-scrollbar {

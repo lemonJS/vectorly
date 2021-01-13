@@ -17,6 +17,8 @@ export const setSelectionId = (id: string | null) => (dispatch: Dispatch<EditorA
   if (element) {
     const menu = getLayoutForElementType(element.type);
     dispatch(setMenuSelected(menu));
+  } else {
+    dispatch(setMenuSelected(null));
   }
 };
 

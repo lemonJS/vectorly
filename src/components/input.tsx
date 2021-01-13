@@ -5,10 +5,9 @@ import { css } from '@emotion/css';
 interface Props extends React.InputHTMLAttributes<HTMLInputElement> {}
 
 export const styles = css`
-  background: var(--secondary-button-background-color);
-  border: 2px solid var(--secondary-button-border-color);
+  background: white;
+  border: 1px solid var(--secondary-accent-color);
   border-radius: .25rem;
-  color: var(--secondary-button-text-color);
   display: block;
   font: inherit;
   font-size: 14px;

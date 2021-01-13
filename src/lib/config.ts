@@ -8,6 +8,7 @@ export const config: Config = {
   styles: {
     // Accent Colors:
     'primary-accent-color': '#6946F6',
+    'secondary-accent-color': '#bbbbbb',
     'tertiary-accent-color': '#e66767',
 
     // Backgrounds:
@@ -20,8 +21,8 @@ export const config: Config = {
     'sidebar-navigation-background-color': '#283037',
 
     // Buttons
-    'primary-button-background-color': '#4aacd9',
-    'primary-button-border-color': '#51aacc',
+    'primary-button-background-color': '#6946F6',
+    'primary-button-border-color': '#6946F6',
     'primary-button-text-color': '#ffffff',
 
     'secondary-button-background-color': null,
@@ -33,7 +34,7 @@ export const config: Config = {
     'tertiary-button-text-color': '#e66767',
 
     // Text
-    'primary-text-color': '#2a2e37',
+    'primary-text-color': '#111',
     'secondary-text-color': '#878787'
   }
 }

@@ -3,10 +3,12 @@ import React from 'react';
 import { css } from '@emotion/css';
 
 const styles = css`
-  color: var(--sidebar-navigation-background-color);
+  background: #eee;
   height: 1px;
+  margin: 1.5rem 0;
+  width: 100%;
 `;
 
 export const Divider = () => (
-  <hr className={styles} />
+  <div className={styles} />
 );

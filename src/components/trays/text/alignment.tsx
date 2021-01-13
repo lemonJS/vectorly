@@ -11,45 +11,39 @@ interface Props {
 }
 
 const styles = css`
-  label {
-    margin-top: 2rem;
+  .heading {
+    padding: 0 1.5rem;
   }
   
   .group {
+    border: 1px solid transparent;
+    border-radius: .25rem;
     display: flex;
-  }
-  
-  button {
-    align-items: center;
-    display: flex;
-    flex: 1;
-    justify-content: center;
-    padding: 0;
-    
-    i {
-      margin: 0;
+    margin: 0 1.5rem;
+    width: 6rem;
+
+    button {
+      align-items: center;
+      border: none;
+      display: flex;
+      height: 2rem;
+      justify-content: center;
+      padding: 0;
+      width: 2rem;
+
+      i {
+        margin: 0;
+      }
+      
+      &:hover,
+      &.selected {
+        background: #eee;
+        color: var(--primary-accent-color);
+      }
     }
     
-    &:nth-of-type(1) {
-      border-radius: .25rem 0 0 .25rem;
-      border-right-width: 0;
-    }
-    
-    &:nth-of-type(2) { 
-      border-radius: 0;
-      border-left-width: 0;
-      border-right-width: 0;
-    }
-    
-    &:nth-of-type(3) {
-      border-radius: 0 .25rem .25rem 0;
-      border-left-width: 0;
-    }
-    
-    &.selected {
-      background: var(--secondary-button-border-color);
-      border-color: var(--secondary-button-border-color);
-      color: var(--secondary-button-background-color);
+    &:hover {
+      border-color: #bbb;
     }
   }
 `;
@@ -63,7 +57,7 @@ export const Alignment = (props: Props): JSX.Element => {
 
   return (
     <div className={styles}>
-      <Label>Text Alignment</Label>
+      <Label className='heading'>Text Alignment</Label>
 
       <div className='group'>
         <Button className={`${textAnchor === 'start' ? 'selected' : '' } secondary`} onClick={handleTextAnchor('start')}>

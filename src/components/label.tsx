@@ -5,10 +5,9 @@ import { css } from '@emotion/css';
 interface Props extends React.LabelHTMLAttributes<HTMLLabelElement> {}
 
 const styles = css`
-  color: white;
   display: block;
   font-size: 14px;
-  font-weight: 600;
+  font-weight: 500;
   margin-bottom: .75rem;
 `;
 

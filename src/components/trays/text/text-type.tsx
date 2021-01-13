@@ -12,10 +12,7 @@ interface Props {
 
 const styles = css`
   align-items: center;
-  background: var(--sidebar-navigation-background-color);
-  border: 2px solid var(--sidebar-navigation-background-color);
   border-radius: .25rem;
-  color: white;
   cursor: pointer;
   display: flex;
   height: 100px;

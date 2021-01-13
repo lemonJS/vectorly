@@ -2,9 +2,11 @@ import React from 'react';
 
 import { css } from '@emotion/css';
 import { Element, ElementProps } from '@type/project';
+import { fonts, weights } from '@components/trays/data/fonts';
 import { Label } from '@components/label';
-import { Button } from '@components/button';
+import { Select } from '@components/trays/select';
 import { Scale } from '@components/scale';
+import { StyleAdvanced } from '@components/trays/text/style-advanced';
 
 interface Props {
   element: Element;
@@ -12,87 +14,70 @@ interface Props {
 }
 
 const styles = css`
-  label {
-    margin-top: 2rem;
+  .heading {
+    padding: 0 1.5rem;
   }
   
-  .styles {
-    display: flex;
-    justify-content: space-between;
-    
-    button {
-      align-items: center;
-      display: flex;
-      justify-content: center;
-      padding: 0;
-      width: 42px;
-      
-      i {
-        margin: 0;
-      }
-      
-      &.selected {
-        background: var(--secondary-button-border-color);
-        border-color: var(--secondary-button-border-color);
-        color: var(--secondary-button-background-color);
-      }
-    }
-  } 
+  .row {
+    display: grid;
+    grid-gap: .5rem;
+    grid-template-columns: repeat(auto-fill, 124px);
+    padding: 0 1rem;
+  }
+  
+  .select,
+  .scale {
+    flex: 1;
+  }
 `;
 
 export const Style = (props: Props): JSX.Element => {
-  const { fontWeight, fontStyle, textDecoration, letterSpacing } = props.element.props;
+  const { fontFamily, fontSize, fontWeight } = props.element.props;
 
-  const handleBold = () => {
-    props.handleUpdate({ fontWeight: fontWeight === 'bold' ? 'normal' : 'bold' });
+  const handleFontSize = (value: number) => {
+    props.handleUpdate({ fontSize: value });
   };
 
-  const handleItalic = () => {
-    props.handleUpdate({ fontStyle: fontStyle === 'italic' ? 'normal' : 'italic' });
+  const handleFontFamily = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    const element = event.target as HTMLSelectElement;
+    props.handleUpdate({ fontFamily: element.value });
   };
 
-  const handleLetterSpacing = (value: number) => {
-    props.handleUpdate({ letterSpacing: value });
-  };
-
-  const handleDecoration = (type: string) => () => {
-    const decoration = textDecoration
-      .toString()
-      .split(' ')
-      .filter(d => d !== 'none');
-
-    const list = decoration.includes(type)
-      ? decoration.filter(d => d !== type)
-      : [...decoration, type];
-
-    if (list.length === 0) {
-      list.push('none');
-    }
-
-    props.handleUpdate({ textDecoration: list.join(' ') });
+  const handleFontWeight = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    const element = event.target as HTMLSelectElement;
+    console.log(element);
+    // TODO
   };
 
   return (
     <div className={styles}>
-      <Label>Font Style</Label>
+      <Label className='heading'>Text style</Label>
 
-      <div className='styles'>
-        <Button onClick={handleBold} className={`${fontWeight === 'bold' ? 'selected' : '' } secondary`}>
-          <i className='ri-bold' />
-        </Button>
-        <Button onClick={handleItalic} className={`${fontStyle === 'italic' ? 'selected' : '' } secondary`}>
-          <i className='ri-italic' />
-        </Button>
-        <Button onClick={handleDecoration('underline')} className={`${textDecoration.toString().includes('underline') ? 'selected' : '' } secondary`}>
-          <i className='ri-underline' />
-        </Button>
-        <Button onClick={handleDecoration('line-through')} className={`${textDecoration.toString().includes('line-through') ? 'selected' : '' } secondary`}>
-          <i className='ri-strikethrough' />
-        </Button>
+      <div className='row'>
+        <Select className='select' value={fontFamily} onChange={handleFontFamily}>
+          {fonts.map(font => (
+            <option key={font} value={font}>{font}</option>
+          ))}
+        </Select>
       </div>
 
-      <Label>Letter Spacing</Label>
-      <Scale max={10} min={-10} value={Number(letterSpacing ?? 1)} handleChange={handleLetterSpacing} />
+      <div className='row'>
+        <Select className='select' value={fontWeight} onChange={handleFontWeight}>
+          {weights.map(font => (
+            <option key={font} value={font}>{font}</option>
+          ))}
+        </Select>
+
+        <Scale
+          max={100}
+          min={12}
+          value={Number(fontSize)}
+          suffix='px'
+          handleChange={handleFontSize}
+        />
+      </div>
+
+      <StyleAdvanced />
     </div>
   );
 };
