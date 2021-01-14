@@ -98,7 +98,6 @@ export const Scale = (props: Props): JSX.Element => {
         : <button className='value' onClick={handleEditStart}>{props.value} {props.suffix || ''}</button>
       }
 
-
       <button className='action' onClick={handleDown}>
         <i className='ri-subtract-line' />
       </button>

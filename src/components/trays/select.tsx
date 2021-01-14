@@ -21,7 +21,8 @@ const styles = css`
     cursor: pointer;
     font: inherit;
     font-size: 14px;
-    padding: .3rem 1.5rem .3rem .5rem;
+    outline: none;
+    padding: .3rem 1.5rem .3rem .25rem;
     width: 100%;
   }
   

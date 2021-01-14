@@ -16,15 +16,15 @@ const styles = css`
 `;
 
 export const Colors = (props: Props): JSX.Element => {
-  const { fill, opacity } = props.element.props;
+  const { fill } = props.element.props;
 
   const handleColor = (hex: string) => {
     props.handleUpdate({ fill: hex });
   };
 
-  const handleOpacity = (value: number) => {
-    props.handleUpdate({ opacity: value });
-  };
+  // const handleOpacity = (value: number) => {
+  //   props.handleUpdate({ opacity: value });
+  // };
 
   return (
     <div className={styles}>

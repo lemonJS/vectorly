@@ -6,7 +6,6 @@ import { fonts, weights } from '@components/trays/data/fonts';
 import { Label } from '@components/label';
 import { Select } from '@components/trays/select';
 import { Scale } from '@components/scale';
-import { StyleAdvanced } from '@components/trays/text/style-advanced';
 
 interface Props {
   element: Element;
@@ -45,8 +44,7 @@ export const Style = (props: Props): JSX.Element => {
 
   const handleFontWeight = (event: React.ChangeEvent<HTMLSelectElement>) => {
     const element = event.target as HTMLSelectElement;
-    console.log(element);
-    // TODO
+    props.handleUpdate({ fontWeight: element.value });
   };
 
   return (
@@ -64,7 +62,7 @@ export const Style = (props: Props): JSX.Element => {
       <div className='row'>
         <Select className='select' value={fontWeight} onChange={handleFontWeight}>
           {weights.map(font => (
-            <option key={font} value={font}>{font}</option>
+            <option key={font} value={font.toLowerCase()}>{font}</option>
           ))}
         </Select>
 
@@ -76,8 +74,6 @@ export const Style = (props: Props): JSX.Element => {
           handleChange={handleFontSize}
         />
       </div>
-
-      <StyleAdvanced />
     </div>
   );
 };

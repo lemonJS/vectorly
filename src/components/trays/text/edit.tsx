@@ -3,6 +3,7 @@ import React from 'react'
 import { useDispatch } from 'react-redux';
 import { Element, ElementProps } from '@type/project';
 import { Style } from '@components/trays/text/style';
+import { StyleAdvanced } from '@components/trays/text/style-advanced';
 import { Divider } from '@components/divider';
 import { Alignment } from '@components/trays/text/alignment';
 import { Colors } from '@components/trays/text/colors';
@@ -29,6 +30,7 @@ export const Edit = (props: Props): JSX.Element => {
       <Positioning element={props.element} handleUpdate={handleUpdate} />
       <Divider />
       <Style element={props.element} handleUpdate={handlePropsUpdate} />
+      <StyleAdvanced element={props.element} handleUpdate={handlePropsUpdate} />
       <Divider />
       <Alignment element={props.element} handleUpdate={handlePropsUpdate} />
       <Divider />
