@@ -3,7 +3,7 @@ import React from 'react';
 import { css } from '@emotion/css';
 import { Element, ElementProps } from "@type/project";
 import { Button } from '@components/button';
-import { Label } from '@components/label';
+import { Label } from '@components/trays/label';
 import { ButtonGroup } from '@components/trays/button-group';
 
 interface Props {
@@ -12,9 +12,6 @@ interface Props {
 }
 
 const styles = css`
-  .heading {
-    padding: 0 1.5rem;
-  }
 `;
 
 export const Alignment = (props: Props): JSX.Element => {
@@ -26,7 +23,7 @@ export const Alignment = (props: Props): JSX.Element => {
 
   return (
     <div className={styles}>
-      <Label className='heading'>Text Alignment</Label>
+      <Label>Text Alignment</Label>
 
       <ButtonGroup>
         <Button className={`${textAnchor === 'start' ? 'selected' : '' } secondary`} onClick={handleTextAnchor('start')}>

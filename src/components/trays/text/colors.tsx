@@ -2,9 +2,9 @@ import React from 'react';
 
 import { css } from '@emotion/css';
 import { Element, ElementProps } from '@type/project';
-import { ColorPicker } from '@components/trays/color-picker';
-import { Label } from '@components/label';
+import { Label } from '@components/trays/label';
 import { Input } from '@components/trays/input';
+import { ColorPicker } from '@components/trays/color-picker';
 
 interface Props {
   element: Element;
@@ -12,16 +12,18 @@ interface Props {
 }
 
 const styles = css`
-  padding: 0 1.5rem;
-  
-  .heading {
+  label {
     align-items: center;
-    display: flex;
+    display: flex;  
     justify-content: space-between;
     
-    label {
-      width: 90px;
+    .input {
+      width: 50px;
     }
+  }
+  
+  .picker {
+    padding: 0 1.5rem;
   }
 `;
 
@@ -34,16 +36,14 @@ export const Colors = (props: Props): JSX.Element => {
     props.handleUpdate({ fill: hex });
   };
 
-  const handleOpacity = (value: number) => {
-    props.handleUpdate({ opacity: value / 100 });
+  const handleOpacity = (value: string) => {
+    props.handleUpdate({ opacity: Number(value) / 100 });
   };
 
   return (
     <div className={styles}>
-      <Label className='heading'>
-        <div>
-          Fill
-        </div>
+      <Label>
+        <span>Fill</span>
         <Input
           value={value}
           icon={<i className='ri-contrast-drop-line' />}
@@ -51,7 +51,9 @@ export const Colors = (props: Props): JSX.Element => {
           handleChange={handleOpacity}
         />
       </Label>
-      <ColorPicker selected={fill} handleChange={handleColor} />
+      <div className='picker'>
+        <ColorPicker selected={fill} handleChange={handleColor} />
+      </div>
     </div>
   );
 };

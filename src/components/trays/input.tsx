@@ -6,7 +6,7 @@ interface Props {
   icon: React.ReactNode;
   value: string | number;
   suffix?: string;
-  handleChange: (value: number) => void;
+  handleChange: (value: string) => void;
 }
 
 const styles = css`
@@ -56,8 +56,7 @@ export const Input = (props: Props): JSX.Element => {
   const handleEditEnd = () => setEdit(false);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const value = Number(event.target.value);
-    props.handleChange(value);
+    props.handleChange(event.target.value);
   };
 
   return (

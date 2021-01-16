@@ -6,6 +6,7 @@ import { Scale } from '@components/scale';
 import { Element, ElementProps } from '@type/project';
 import { ButtonGroup } from '@components/trays/button-group';
 import { Button } from '@components/button';
+import { Grid, Col, Row } from '@components/grid';
 
 interface Props {
   element: Element;
@@ -31,21 +32,12 @@ const styles = css`
     margin: 0;
   }
   
-  .styles {
-    padding: 1rem;
-    
-    .row {
-      display: flex;
-      
-      .column {
-        flex: 1;
-      }
-      
-      &.single {
-        flex-direction: column;
-        margin-top: 1rem;
-      }
-    }
+  .grid {
+    padding: 0 1rem;
+  }
+  
+  .row {
+    margin-top: 1rem;
   }
 `;
 
@@ -84,34 +76,35 @@ export const StyleAdvanced = (props: Props): JSX.Element => {
   return (
     <div className={styles}>
       {show && (
-        <div className='styles'>
-          <div className='row'>
-            <div className='column'>
+        <Grid className='grid'>
+          <Row className='row'>
+            <Col>
               <Label className='label'>Line height</Label>
               <Scale max={0} min={0} value={0} suffix='px' handleChange={console.log} />
-            </div>
-
-            <div className='column'>
+            </Col>
+            <Col>
               <Label className='label'>Letter spacing</Label>
-              <Scale max={1} min={20} value={Number(letterSpacing)} suffix='px' handleChange={handleLetterSpacing} />
-            </div>
-          </div>
-
-          <div className='row single'>
-            <Label className='label'>Text decoration</Label>
-            <ButtonGroup>
-              <Button onClick={handleDecoration('underline')} className={`${textDecoration.toString().includes('underline') ? 'selected' : ''} secondary`}>
-                <i className='ri-underline' />
-              </Button>
-              <Button onClick={handleDecoration('line-through')} className={`${textDecoration.toString().includes('line-through') ? 'selected' : '' } secondary`}>
-                <i className='ri-strikethrough' />
-              </Button>
-              <Button onClick={handleItalic} className={`${fontStyle === 'italic' ? 'selected' : '' } secondary`}>
-                <i className='ri-italic' />
-              </Button>
-            </ButtonGroup>
-          </div>
-        </div>
+              <Scale max={20} min={1} value={Number(letterSpacing)} suffix='px' handleChange={handleLetterSpacing} />
+            </Col>
+          </Row>
+          <Row className='row'>
+            <Col>
+              <Label className='label'>Text decoration</Label>
+              <ButtonGroup>
+                <Button onClick={handleDecoration('underline')} className={`${textDecoration.toString().includes('underline') ? 'selected' : ''} secondary`}>
+                  <i className='ri-underline' />
+                </Button>
+                <Button onClick={handleDecoration('line-through')} className={`${textDecoration.toString().includes('line-through') ? 'selected' : '' } secondary`}>
+                  <i className='ri-strikethrough' />
+                </Button>
+                <Button onClick={handleItalic} className={`${fontStyle === 'italic' ? 'selected' : '' } secondary`}>
+                  <i className='ri-italic' />
+                </Button>
+              </ButtonGroup>
+            </Col>
+            <Col />
+          </Row>
+        </Grid>
       )}
 
       <button className='toggle' onClick={toggleShow}>
