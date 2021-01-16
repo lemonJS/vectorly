@@ -2,8 +2,9 @@ import React from 'react';
 
 import { css } from '@emotion/css';
 import { Element } from '@type/project';
-import { Label } from '@components/label';
+import { Label } from '@components/trays/label';
 import { Input } from '@components/trays/input';
+import { Grid, Row, Col } from '@components/grid';
 
 interface Props {
   element: Element;
@@ -11,15 +12,9 @@ interface Props {
 }
 
 const styles = css`
-  .heading {
-    padding: 0 1.5rem;  
-  }
-  
   .grid {
-    display: grid;
-    grid-gap: .5rem;
-    grid-template-columns: repeat(auto-fill, 90px);
     padding: 0 1rem;
+    width: 260px;
   }
 `;
 
@@ -34,25 +29,38 @@ export const Positioning = (props: Props): JSX.Element => {
   };
 
   const handleRotate = (value: string) => {
-    const update = { ...transform, r: Number(value) + 90 }
+    const update = { ...transform, r: Number(value) };
     props.handleUpdate({ transform: update });
   };
 
   return (
     <div className={styles}>
-      <Label className='heading'>Size &amp; position</Label>
+      <Label>Size &amp; position</Label>
 
-      <div className='grid'>
-        <Input icon='X' value={Math.ceil(transform.x)} handleChange={handleTransform('x')} />
-
-        <Input icon='Y' value={Math.ceil(transform.y)} handleChange={handleTransform('y')} />
-
-        <Input icon='W' value={Math.ceil(bounds.width)} handleChange={console.log} />
-
-        <Input icon='H' value={Math.ceil(bounds.height)} handleChange={console.log} />
-
-        <Input icon={<i className='ri-clockwise-line' />} value={transform.r - 90} handleChange={handleRotate} />
-      </div>
+      <Grid className='grid'>
+        <Row>
+          <Col>
+            <Input icon='X' value={Math.ceil(transform.x)} handleChange={handleTransform('x')} />
+          </Col>
+          <Col>
+            <Input icon='Y' value={Math.ceil(transform.y)} handleChange={handleTransform('y')} />
+          </Col>
+        </Row>
+        <Row>
+          <Col>
+            <Input icon='W' value={Math.ceil(bounds.width)} handleChange={console.log} />
+          </Col>
+          <Col>
+            <Input icon='H' value={Math.ceil(bounds.height)} handleChange={console.log} />
+          </Col>
+        </Row>
+        <Row>
+          <Col>
+            <Input icon={<i className='ri-clockwise-line' />} value={transform.r} handleChange={handleRotate} />
+          </Col>
+          <Col />
+        </Row>
+      </Grid>
     </div>
   );
 };
