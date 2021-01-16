@@ -6,6 +6,8 @@ import { TextType } from '@components/trays/text/text-type';
 import { CreateButton } from '@components/trays/text/create-button';
 
 const styles = css`
+  padding: 1.5rem;
+  
   button {
     width: 100%;
   }

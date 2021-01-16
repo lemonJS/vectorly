@@ -8,12 +8,7 @@ import { projectSelector } from '@lib/projects/selectors';
 export const Create = (): JSX.Element => {
   const { images } = useSelector(projectSelector);
 
-  return (
-    <React.Fragment>
-      {images.length > 0
-        ? <Images images={images} />
-        : <ImageUpload />
-      }
-    </React.Fragment>
-  );
+  return images.length > 0
+    ? <Images images={images} />
+    : <ImageUpload />;
 };

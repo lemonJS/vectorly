@@ -10,17 +10,17 @@ interface Props {
 
 const styles = css`
   display: grid;
-  grid-gap: .5rem;
+  grid-gap: 1rem;
   grid-template-columns: repeat(auto-fill, minmax(2rem, 1fr));
   
   .color {
-    border: 3px solid var(--sidebar-navigation-background-color);
+    border: 2px solid #eee;
     border-radius: 50%;
     height: 2rem;
     width: 2rem;
     
     &:hover {
-      scale: 2;
+      transform: scale(2);
     }
     
     &.selected {
@@ -33,10 +33,10 @@ export const ColorPicker = (props: Props): JSX.Element => (
   <div className={styles}>
     {colors.map(color => (
       <div
-        key={color.hex}
-        className={`color ${color.hex === props.selected ? 'selected' : ''}`}
-        style={{ backgroundColor: color.hex }}
-        onClick={() => props.handleChange(color.hex)}
+        key={color}
+        className={`color ${color === props.selected ? 'selected' : ''}`}
+        style={{ backgroundColor: color }}
+        onClick={() => props.handleChange(color)}
       />
     ))}
   </div>

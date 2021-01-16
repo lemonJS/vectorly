@@ -5,7 +5,8 @@ import { css } from '@emotion/css';
 interface Props {
   icon: React.ReactNode;
   value: string | number;
-  handleChange: (value: string) => void;
+  suffix?: string;
+  handleChange: (value: number) => void;
 }
 
 const styles = css`
@@ -21,18 +22,21 @@ const styles = css`
     border-color: #bbb;
   }
   
-  input {
+  .input {
     background: none;
     border: none;
     font: inherit;
     font-weight: 400;
+    margin: 0;
     outline: none;
+    padding: 0;
+    text-align: left;
     width: 100%;
   }
   
   .icon {
     color: #999;
-    display: block;
+    display: flex;
     font-size: 16px;
     flex-shrink: 0;
     margin-right: 1rem;
@@ -44,9 +48,38 @@ const styles = css`
   }
 `;
 
-export const Input = (props: Props): JSX.Element => (
-  <label className={styles}>
-    <span className='icon'>{props.icon}</span>
-    <input type='text' value={props.value} onChange={event => props.handleChange(event.target.value)} />
-  </label>
-);
+export const Input = (props: Props): JSX.Element => {
+  const [edit, setEdit] = React.useState(false);
+
+  const handleEditStart = () => setEdit(true);
+
+  const handleEditEnd = () => setEdit(false);
+
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const value = Number(event.target.value);
+    props.handleChange(value);
+  };
+
+  return (
+    <label className={styles}>
+      <span className='icon'>{props.icon}</span>
+
+      {edit && (
+        <input
+          autoFocus
+          className='input'
+          type='text'
+          value={props.value}
+          onBlur={handleEditEnd}
+          onChange={handleChange}
+        />
+      )}
+
+      {!edit && (
+        <button className='input' onClick={handleEditStart}>
+          {props.value} {props.suffix || ''}
+        </button>
+      )}
+    </label>
+  );
+};

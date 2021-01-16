@@ -51,7 +51,7 @@ export const Positioning = (props: Props): JSX.Element => {
 
         <Input icon='H' value={Math.ceil(bounds.height)} handleChange={console.log} />
 
-        <Input icon={<i className='ri-clockwise-line' />} value={transform.r - 90} handleChange={handleRotate} />
+        <Input icon={<i className='ri-clockwise-line' />} value={Math.ceil(transform.r)} handleChange={handleRotate} />
       </div>
     </div>
   );

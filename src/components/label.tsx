@@ -15,7 +15,7 @@ export const Label = (props: Props): JSX.Element => {
   const { className, children, ...rest } = props;
 
   return (
-    <label className={`${styles} ${className}`} {...rest}>
+    <label className={`${styles} ${className || ''}`} {...rest}>
       {children}
     </label>
   );

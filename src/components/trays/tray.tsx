@@ -17,10 +17,9 @@ const styles = css`
   box-shadow: 0 0 1.5rem rgba(0, 0, 0, .1);
   display: none;
   flex-direction: column;
-  max-height: calc(100% - 3rem);
+  height: calc(100% - 3rem);
   overflow-x: hidden;
   overflow-y: auto;
-  padding: 1.5rem 0;
   position: absolute;
   right: 1.5rem;
   top: 50%;

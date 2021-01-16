@@ -1,6 +1,7 @@
 import React from 'react'
 
 import { useDispatch } from 'react-redux';
+import { css } from '@emotion/css';
 import { Element, ElementProps } from '@type/project';
 import { Style } from '@components/trays/text/style';
 import { StyleAdvanced } from '@components/trays/text/style-advanced';
@@ -14,6 +15,10 @@ interface Props {
   element: Element;
 }
 
+const styles = css`
+  padding: 1.5rem 0;
+`;
+
 export const Edit = (props: Props): JSX.Element => {
   const dispatch = useDispatch();
 
@@ -26,7 +31,7 @@ export const Edit = (props: Props): JSX.Element => {
   };
 
   return (
-    <div>
+    <div className={styles}>
       <Positioning element={props.element} handleUpdate={handleUpdate} />
       <Divider />
       <Style element={props.element} handleUpdate={handlePropsUpdate} />

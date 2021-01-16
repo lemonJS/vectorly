@@ -6,8 +6,6 @@ import { uploadImages } from '@lib/projects/actions';
 
 const styles = css`
   align-items: center;
-  background: #F2F2F2;
-  border: 1px dashed #bbb;
   border-radius: .5rem;
   cursor: pointer;
   display: flex;
