@@ -12,6 +12,7 @@ import { setPosition } from '@lib/editor/actions';
 
 interface Props {
   children: React.ReactNode;
+  drawing: boolean;
   position: Position;
   preset: Preset;
   handlePosition: (position: Partial<Position>) => void;
@@ -80,7 +81,7 @@ export class SvgWrapper extends React.Component<Props, State> {
   };
 
   private handleMouseMove = (event: React.MouseEvent<HTMLDivElement>) => {
-    if (this.state.pressed) {
+    if (this.state.pressed && !this.props.drawing) {
       this.props.handlePosition({
         x: event.clientX - this.state.offset[0],
         y: event.clientY - this.state.offset[1]
@@ -136,6 +137,7 @@ export class SvgWrapper extends React.Component<Props, State> {
 }
 
 const mapStateToProps = (state: ReduxState) => ({
+  drawing: state.editor.drawing,
   position: state.editor.position,
   preset: state.project.preset
 });
