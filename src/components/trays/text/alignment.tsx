@@ -11,8 +11,7 @@ interface Props {
   handleUpdate: (update: Partial<ElementProps>) => void;
 }
 
-const styles = css`
-`;
+const styles = css``;
 
 export const Alignment = (props: Props): JSX.Element => {
   const { textAnchor } = props.element.props;

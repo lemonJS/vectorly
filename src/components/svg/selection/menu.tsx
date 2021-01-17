@@ -30,37 +30,35 @@ const styles = css`
 
 export const Menu = (props: Props): JSX.Element => {
   const dispatch = useDispatch();
-  const project = useSelector(projectSelector);
-
-  const elements = project.elements.filter(e => !e.readonly);
+  const { elements } = useSelector(projectSelector);
 
   const total = elements.length;
   const index = elements.findIndex(element => element.id === props.element.id);
 
   const scaleX = 1 / props.element.transform.s[0];
   const scaleY = 1 / props.element.transform.s[1];
-  const rotate = -props.element.transform.r;
+  const rotate = - props.element.transform.r;
 
   const items = [
     {
       name: 'Bring forward',
-      disabled: total === 1 || index === total - 1,
+      disabled: total === 2 || index === total - 1,
       handleClick: () => dispatch(updateElementIndex(index, index + 1))
     },
     {
       name: 'Bring to front',
-      disabled: total === 1 || index === total - 1,
+      disabled: total === 2 || index === total - 1,
       handleClick: () => dispatch(updateElementIndex(index, total - 1))
     },
     {
       name: 'Send backwards',
-      disabled: total === 1 || index === 0,
+      disabled: total === 2 || index === 1,
       handleClick: () => dispatch(updateElementIndex(index, index - 1))
     },
     {
       name: 'Send to back',
-      disabled: total === 1 || index === 0,
-      handleClick: () => dispatch(updateElementIndex(index, 0))
+      disabled: total === 2 || index === 1,
+      handleClick: () => dispatch(updateElementIndex(index, 1))
     },
     {
       name: 'Delete',

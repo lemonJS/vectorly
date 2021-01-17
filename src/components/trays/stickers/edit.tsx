@@ -1,12 +1,9 @@
 import React from 'react';
 
 import { useDispatch } from 'react-redux';
-import { Project, Element, ElementProps } from '@type/project';
-import { Close } from '@components/trays/close';
-import { Actions } from '@components/trays/actions';
+import { Element, ElementProps } from '@type/project';
 import { Positioning } from '@components/trays/positioning';
-import { updateProject, updateElement } from '@lib/projects/actions';
-import { Stacking } from '@components/trays/stacking';
+import { updateElement } from '@lib/projects/actions';
 import { Opacity } from '@components/trays/stickers/opacity';
 
 interface Props {
@@ -20,21 +17,14 @@ export const Edit = (props: Props): JSX.Element => {
     dispatch(updateElement(props.element.id, { props: update }));
   };
 
-  const handleProjectUpdate = (update: Partial<Project>) => {
-    dispatch(updateProject(update));
-  };
-
   const handleUpdate = (update: Partial<Element>) => {
     dispatch(updateElement(props.element.id, update));
   };
 
   return (
     <div>
-      <Close title='Edit Sticker' />
-      <Opacity element={props.element} handleUpdate={handlePropsUpdate} />
       <Positioning element={props.element} handleUpdate={handleUpdate} />
-      <Stacking element={props.element} handleUpdate={handleProjectUpdate} />
-      <Actions element={props.element} />
+      <Opacity element={props.element} handleUpdate={handlePropsUpdate} />
     </div>
   );
 };
