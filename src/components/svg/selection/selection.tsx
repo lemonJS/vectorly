@@ -6,6 +6,7 @@ import { Outline } from '@components/svg/selection/outline';
 import { Move } from '@components/svg/selection/move';
 import { Rotate } from '@components/svg/selection/rotate';
 import { Scale } from '@components/svg/selection/scale';
+import { Options } from '@components/svg/selection/options';
 import { TextEditor } from '@components/svg/selection/text-editor';
 
 interface Props {
@@ -115,6 +116,7 @@ export class Selection extends React.Component<Props> {
         <Scale position='bottom-center' {...props} />
         <Scale position='bottom-left' {...props} />
         <Scale position='center-left' {...props} />
+        <Options {...props} />
       </g>
     );
 

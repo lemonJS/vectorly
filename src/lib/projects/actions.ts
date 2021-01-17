@@ -1,5 +1,5 @@
 import { v4 as uuid } from 'uuid';
-import { merge } from 'lodash';
+import { clone, merge } from 'lodash';
 import { Dispatch } from 'redux';
 import { Project, Element } from '@type/project';
 import { GetState } from '@type/redux';
@@ -44,6 +44,14 @@ export const createElement = (payload: Partial<Element>) => (dispatch: Dispatch<
 export const updateElement = (id: string, payload: Partial<Element>) => (dispatch: Dispatch<any>, getState: GetState) => {
   const { project } = getState();
   const elements = project.elements.map(el => el.id === id ? merge(el, payload) : el);
+
+  dispatch(updateProject({ elements }));
+};
+
+export const updateElementIndex = (oldIndex: number, newIndex: number) => (dispatch: Dispatch<any>, getState: GetState) => {
+  const { project } = getState();
+  const elements = clone(project.elements);
+  [elements[oldIndex], elements[newIndex]] = [elements[newIndex], elements[oldIndex]];
 
   dispatch(updateProject({ elements }));
 };
