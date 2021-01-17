@@ -19,7 +19,7 @@ const styles = css`
   
   .menu {
     background: white;
-    border-radius: .5rem;
+    border-radius: var(--border-radius-md);
     box-shadow: 0 0 1.5rem rgba(0, 0, 0, .1);
     height: 100%;
     padding: .5rem;

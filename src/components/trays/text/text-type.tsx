@@ -12,7 +12,7 @@ interface Props {
 
 const styles = css`
   align-items: center;
-  border-radius: .25rem;
+  border-radius: var(--border-radius-sm);
   cursor: pointer;
   display: flex;
   height: 100px;
@@ -20,7 +20,7 @@ const styles = css`
   margin-bottom: 1.5rem;
   
   &:hover {
-    border-color: var(--primary-accent-color);
+    border-color: var(--primary);
   }
   
   &.heading {

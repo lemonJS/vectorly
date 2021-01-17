@@ -8,7 +8,7 @@ interface Props {
 
 const styles = css`
   border: 1px solid transparent;
-  border-radius: .25rem;
+  border-radius: var(--border-radius-sm);
   display: flex;
   margin: 0 1.5rem;
   width: 6rem;
@@ -28,13 +28,13 @@ const styles = css`
     
     &:hover,
     &.selected {
-      background: #eee;
-      color: var(--primary-accent-color);
+      background: var(--gray-100);
+      color: var(--primary);
     }
   }
   
   &:hover {
-    border-color: #bbb;
+    border-color: var(--gray-300);
   }
 `;
 

@@ -14,13 +14,13 @@ const styles = css`
   align-items: center;
   background: white;
   border: 1px solid transparent;
-  border-radius: .25rem;
+  border-radius: var(--border-radius-sm);
   display: flex;
   height: 2rem;
   
   .action {
     align-items: center;
-    background: #eee;
+    background: var(--gray-100);
     border: none;
     cursor: pointer;
     display: none;
@@ -32,12 +32,12 @@ const styles = css`
     width: 30px;
     
     &:hover {
-      color: var(--primary-accent-color);
+      color: var(--primary);
       font-size: 1.2rem;
     }
     
     &:last-of-type {
-      border-radius: 0 .25rem .25rem 0;
+      border-radius: 0 var(--border-radius-sm) var(--border-radius-sm) 0;
     }
   }
   
@@ -55,7 +55,7 @@ const styles = css`
   }
   
   &:hover {
-    border-color: #bbb;
+    border-color: var(--gray-300);
     
     .action {
       display: flex;

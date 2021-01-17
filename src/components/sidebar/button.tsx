@@ -32,10 +32,10 @@ const styles = css`
   }
 
   &:hover {
-    background: #eee;
+    background: var(--gray-100);
 
     i {
-      color: var(--primary-accent-color);
+      color: var(--primary);
     }
 
     &:after {
@@ -45,13 +45,13 @@ const styles = css`
 
   &.selected {
     i {
-      color: var(--primary-accent-color);
+      color: var(--primary);
     }
   }
 
   &:after {
-    background: #111;
-    border-radius: .25rem;
+    background: var(--gray-700);
+    border-radius: var(--border-radius-sm);
     color: white;
     content: attr(data-label);
     display: none;

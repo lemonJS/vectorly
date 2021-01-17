@@ -20,7 +20,7 @@ const styles = css`
   }
   
   span {
-    color: #999999;
+    color: var(--gray-500);
     font-weight: 400;
   }
 `;

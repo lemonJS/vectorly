@@ -1,3 +1,4 @@
+import { clamp } from 'lodash';
 import { Dispatch } from 'redux';
 import { GetState } from '@type/redux';
 import { Project } from '@type/project';
@@ -78,7 +79,9 @@ export const redo = () => (dispatch: Dispatch<EditorAction>, getState: GetState)
 };
 
 export const setPosition = (position: Partial<Position>) => (dispatch: Dispatch<EditorAction>, getState: GetState) => {
-  const update = { ...getState().editor.position, ...position };
+  const update: Position = { ...getState().editor.position, ...position };
+
+  update.s = clamp(update.s, .25, 4);
 
   dispatch({ type: 'EDITOR', payload: { position: update } });
 };

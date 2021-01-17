@@ -21,7 +21,7 @@ const styles = css`
   }
   
   .heading {
-    color: #999;
+    color: var(--gray-500);
     display: block;
     font-size: 10px;
     margin-bottom: .5rem;

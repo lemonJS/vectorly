@@ -123,6 +123,7 @@ export class SvgWrapper extends React.Component<Props, State> {
         cursor: this.state.pressed ? 'grab' : 'default',
         height: this.height,
         transform: `scale(${this.scale}) translate(${this.translate})`,
+        transformOrigin: '0px 0px',
         width: this.width
       }
     };

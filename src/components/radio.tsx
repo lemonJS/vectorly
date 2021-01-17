@@ -18,7 +18,7 @@ const styles = css`
     
     &:hover {
       i {
-        color: var(--primary-accent-color);
+        color: var(--primary);
       }
     }
   }
@@ -40,12 +40,12 @@ const styles = css`
   }
     
   .checked {
-    color: var(--primary-accent-color);
+    color: var(--primary);
     display: none;
   }
   
   i {
-    color: #bbb;
+    color: var(--gray-300);
     font-size: 1.5rem;
     margin-right: .5rem;
   }

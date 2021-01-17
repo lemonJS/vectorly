@@ -51,7 +51,6 @@ export const updateElement = (id: string, payload: Partial<Element>) => (dispatc
 export const updateElementIndex = (oldIndex: number, newIndex: number) => (dispatch: Dispatch<any>, getState: GetState) => {
   const { project } = getState();
   const elements = clone(project.elements);
-  console.log(elements);
   [elements[oldIndex], elements[newIndex]] = [elements[newIndex], elements[oldIndex]];
 
   dispatch(updateProject({ elements }));

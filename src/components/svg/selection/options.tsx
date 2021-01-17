@@ -51,7 +51,7 @@ export class Options extends React.Component<Props, State> {
           rx={this.rx}
           ry={this.ry}
           cursor='pointer'
-          fill='var(--primary-accent-color)'
+          fill='var(--primary)'
           onClick={this.handleClick}
         />
         <path

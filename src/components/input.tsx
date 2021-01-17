@@ -6,8 +6,8 @@ interface Props extends React.InputHTMLAttributes<HTMLInputElement> {}
 
 export const styles = css`
   background: white;
-  border: 1px solid var(--secondary-accent-color);
-  border-radius: .25rem;
+  border: 1px solid var(--gray-300);
+  border-radius: var(--border-radius-sm);
   display: block;
   font: inherit;
   font-size: 14px;
@@ -19,7 +19,7 @@ export const styles = css`
   
   &:hover,
   &:focus {
-    border-color: var(--primary-accent-color);
+    border-color: var(--primary);
     outline: none;
   }
 `;

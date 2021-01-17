@@ -188,7 +188,7 @@ export class Scale extends React.Component<Props, State> {
         cx={this.cx}
         cy={this.cy}
         cursor={this.cursor}
-        fill='var(--primary-accent-color)'
+        fill='var(--primary)'
         rx={this.rx}
         ry={this.ry}
         onMouseDown={this.handleMouseDown}

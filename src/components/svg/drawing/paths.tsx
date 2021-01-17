@@ -111,7 +111,7 @@ export class Paths extends React.Component<Props, State> {
       <path
         d={this.path}
         fill='transparent'
-        stroke='var(--primary-accent-color)'
+        stroke='var(--primary)'
         strokeLinecap='round'
         strokeLinejoin='round'
         strokeWidth={5}

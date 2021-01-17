@@ -8,9 +8,9 @@ interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 }
 
 const styles = css`
-  background: var(--primary-button-background-color);
-  border: 1px solid var(--primary-button-border-color);
-  border-radius: .25rem;
+  background: var(--primary);
+  border: 1px solid var(--primary);
+  border-radius: var(--border-radius-sm);
   cursor: pointer;
   color: white;
   font: inherit;
@@ -27,25 +27,13 @@ const styles = css`
   }
   
   &:focus {
-    outline: 1px solid var(--primary-accent-color);
+    outline: 1px solid var(--primary);
   }
   
   &.secondary {
     background: white;
-    border: 1px solid var(--secondary-accent-color);;
-    color: #111;
-  }
-  
-  &.tertiary {
-    background: var(--tertiary-button-background-color);
-    border: 2px solid var(--tertiary-button-border-color);
-    color: var(--tertiary-button-text-color);
-    
-    &:hover {
-      background: var(--tertiary-button-border-color);
-      border-color: var(--tertiary-button-border-color);
-      color: var(--tertiary-button-background-color);
-    }
+    border: 1px solid var(--gray-300);
+    color: var(--gray-700);
   }
   
   &:disabled {

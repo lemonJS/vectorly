@@ -36,7 +36,7 @@ const styles = css`
 
     &:hover {
       i {
-        color: var(--primary-accent-color);
+        color: var(--primary);
       }
     }
   }

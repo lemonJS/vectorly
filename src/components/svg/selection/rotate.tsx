@@ -133,7 +133,7 @@ export class Rotate extends React.Component<Props, State> {
           rx={this.rx}
           ry={this.ry}
           cursor='all-scroll'
-          fill='var(--primary-accent-color)'
+          fill='var(--primary)'
           onMouseDown={this.handleMouseDown}
           onTouchStart={this.handleTouchStart}
         />

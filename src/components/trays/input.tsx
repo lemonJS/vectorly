@@ -12,14 +12,14 @@ interface Props {
 const styles = css`
   align-items: center;
   border: 1px solid transparent;
-  border-radius: .25rem;
+  border-radius: var(--border-radius-sm);
   display: flex;
   font-size: 16px;
   height: 32px;
   padding: .5rem;
   
   &:hover {
-    border-color: #bbb;
+    border-color: var(--gray-300);
   }
   
   .input {
@@ -35,7 +35,7 @@ const styles = css`
   }
   
   .icon {
-    color: #999;
+    color: var(--gray-500);
     display: flex;
     font-size: 16px;
     flex-shrink: 0;

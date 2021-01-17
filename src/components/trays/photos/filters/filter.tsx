@@ -10,16 +10,15 @@ interface Props {
 }
 
 const styles = css`
-  background: var(--sidebar-navigation-background-color);
-  border: 2px solid var(--sidebar-navigation-background-color);
-  border-radius: .25rem;
+  border: 2px solid transparent;
+  border-radius: var(--border-radius-sm);
   cursor: pointer;
   height: 88px;
   overflow: hidden;
   
   &:hover,
   &.selected {
-    border-color: var(--primary-accent-color);
+    border-color: var(--primary);
   }
 `;
 

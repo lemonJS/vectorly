@@ -6,36 +6,18 @@ interface Config {
 
 export const config: Config = {
   styles: {
-    // Accent Colors:
-    'primary-accent-color': '#6946F6',
-    'secondary-accent-color': '#bbbbbb',
-    'tertiary-accent-color': '#e66767',
+    'primary': '#6946F6',
+    'background': '#e5e5e5',
+    'foreground': '#ffffff',
 
-    // Backgrounds:
-    'background-color': '#e5e5e5',
-    'foreground-color': '#ffffff',
+    'gray-100': '#eeeeee',
+    'gray-200': '#cccccc',
+    'gray-300': '#bbbbbb',
+    'gray-500': '#999999',
+    'gray-700': '#111111',
 
-    // Layout
-    'header-background-color': '#ffffff',
-    'sidebar-background-color': '#36404a',
-    'sidebar-navigation-background-color': '#283037',
-
-    // Buttons
-    'primary-button-background-color': '#6946F6',
-    'primary-button-border-color': '#6946F6',
-    'primary-button-text-color': '#ffffff',
-
-    'secondary-button-background-color': null,
-    'secondary-button-border-color': '#d9e0e6',
-    'secondary-button-text-color': '#d9e0e6',
-
-    'tertiary-button-background-color': null,
-    'tertiary-button-border-color': '#e66767',
-    'tertiary-button-text-color': '#e66767',
-
-    // Text
-    'primary-text-color': '#111',
-    'secondary-text-color': '#878787'
+    'border-radius-sm': '.25rem',
+    'border-radius-md': '.5rem'
   }
 }
 

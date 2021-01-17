@@ -124,7 +124,7 @@ export class Move extends React.Component<Props, State> {
           rx={this.rx}
           ry={this.ry}
           cursor='move'
-          fill='var(--primary-accent-color)'
+          fill='var(--primary)'
           onMouseDown={this.handleMouseDown}
           onTouchStart={this.handleTouchStart}
         />

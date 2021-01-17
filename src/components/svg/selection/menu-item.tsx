@@ -11,7 +11,7 @@ interface Props {
 const styles = css`
   background: none;
   border: none;
-  border-radius: .25rem;
+  border-radius: var(--border-radius-sm);
   cursor: pointer;
   height: 2rem;
   font-size: 1rem;
@@ -21,8 +21,8 @@ const styles = css`
   width: 100%;
 
   &:hover {
-    background: #eee;
-    color: var(--primary-accent-color);
+    background: var(--gray-100);
+    color: var(--primary);
   }
   
   &:disabled {

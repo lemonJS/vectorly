@@ -7,7 +7,7 @@ interface Props extends React.InputHTMLAttributes<HTMLSelectElement> {}
 const styles = css`
   background: white;
   border: 1px solid transparent;
-  border-radius: .25rem;
+  border-radius: var(--border-radius-sm);
   cursor: pointer;
   height: 32px;
   line-height: 20px;
@@ -28,8 +28,8 @@ const styles = css`
   
   span {
     align-items: center;
-    background: #eee;
-    border-radius: 0 .25rem .25rem 0;
+    background: var(--gray-100);
+    border-radius: 0 var(--border-radius-sm) var(--border-radius-sm) 0;
     display: none;
     height: 30px;
     justify-content: center;
@@ -46,7 +46,7 @@ const styles = css`
   }
   
   &:hover {
-    border-color: #bbb;
+    border-color: var(--gray-300);
     
     span {
       display: flex;

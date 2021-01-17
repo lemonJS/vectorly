@@ -23,15 +23,15 @@ const styles = css`
   }
   
   &.disabled {
-    color: #bbb;
+    color: var(--gray-300);
     pointer-events: none;
   }
 
   &:hover {
-    background: #eee;
+    background: var(--gray-100);
     
     i {
-      color: var(--primary-accent-color);
+      color: var(--primary);
     }
     
     &:after {
@@ -40,8 +40,8 @@ const styles = css`
   }
   
   &:after {
-    background: #111;
-    border-radius: .25rem;
+    background: var(--gray-700);
+    border-radius: var(--border-radius-sm);
     color: white;
     content: attr(data-label);
     display: none;

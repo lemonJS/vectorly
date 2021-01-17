@@ -6,7 +6,7 @@ import { uploadImages } from '@lib/projects/actions';
 
 const styles = css`
   align-items: center;
-  border-radius: .5rem;
+  border-radius: var(--border-radius-md);
   cursor: pointer;
   display: flex;
   flex: 1;
@@ -16,7 +16,7 @@ const styles = css`
   text-align: center;
   
   &.dragging {
-    border-color: var(--primary-accent-color);
+    border-color: var(--primary);
   }
   
   p {
@@ -28,7 +28,7 @@ const styles = css`
     }
 
     label {
-      color: var(--primary-accent-color);
+      color: var(--primary);
       cursor: pointer;
       text-decoration: underline;
     }
@@ -39,7 +39,7 @@ const styles = css`
   }
   
   i {
-    color: var(--primary-accent-color);
+    color: var(--primary);
     font-size: 2.5rem;
   }
 `;

@@ -26,7 +26,7 @@ const styles = css`
     }
     
     &:hover {
-      background: #eee;
+      background: var(--gray-100);
     }
   }
 `;

@@ -32,8 +32,8 @@ const styles = css`
     
     &::-webkit-slider-thumb {
       appearance: none;
-      background: var(--sidebar-navigation-background-color);
-      border: 2px solid var(--secondary-button-border-color);
+      background: var(--primary);
+      border: 2px solid var(--gray-500);
       border-radius: 50%;
       cursor: pointer;
       height: 1.5rem;
@@ -41,31 +41,31 @@ const styles = css`
       width: 1.5rem;
       
       &:hover {
-        background: var(--primary-accent-color);
+        background: var(--primary);
       }
     }
     
     &::-moz-range-thumb {
-      background: var(--sidebar-navigation-background-color);
-      border: 2px solid var(--secondary-button-border-color);
+      background: var(--primary);
+      border: 2px solid var(--gray-500);
       border-radius: 50%;
       cursor: pointer;
       height: 1.5rem;
       width: 1.5rem;
       
       &:hover {
-        background: var(--primary-accent-color);
+        background: var(--primary);
       }
     }
     
     &::-webkit-slider-runnable-track {
-      background: var(--secondary-button-border-color);
+      background: var(--gray-500);
       height: 2px;
       width: 100%;
     }
     
     &::-moz-range-track {
-      background: var(--secondary-button-border-color);
+      background: var(--gray-500);
       height: 2px;
       width: 100%;
     }

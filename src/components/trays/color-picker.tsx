@@ -14,7 +14,7 @@ const styles = css`
   grid-template-columns: repeat(auto-fill, minmax(28px, 1fr));
   
   .color {
-    border: 2px solid #eee;
+    border: 2px solid var(--gray-100);
     border-radius: 50%;
     height: 2rem;
     width: 2rem;

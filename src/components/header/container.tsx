@@ -8,8 +8,8 @@ interface Props {
 
 const styles = css`
   align-items: center;
-  background: var(--foreground-color);
-  border-radius: .5rem;
+  background: var(--foreground);
+  border-radius: var(--border-radius-md);
   box-shadow: 0 0 1.5rem rgba(0, 0, 0, .1);
   display: flex;
   height: 3rem;

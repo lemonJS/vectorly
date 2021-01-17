@@ -11,11 +11,11 @@ interface Props {
 }
 
 const styles = css`
-  background-color: var(--sidebar-navigation-background-color);
+  background-color: var(--primary);
   background-position: center center;
   background-size: cover;
   border: 2px solid transparent;
-  border-radius: .25rem;
+  border-radius: var(--border-radius-sm);
   cursor: pointer;
   height: 200px;
   margin-bottom: 1.5rem;
@@ -23,7 +23,7 @@ const styles = css`
   width: 100%;
   
   &:hover {
-    border-color: var(--primary-accent-color);
+    border-color: var(--primary);
     
     button {
       display: flex;
