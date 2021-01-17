@@ -10,7 +10,7 @@ interface Props {
 
 const styles = css`
   display: grid;
-  padding-top: 1.5rem;
+  padding: 1.5rem;
 `;
 
 export const Images = (props: Props): JSX.Element => (

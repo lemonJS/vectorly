@@ -7,6 +7,8 @@ import { drawingSelector } from '@lib/editor/selectors';
 import { setDrawing } from '@lib/editor/actions';
 
 const styles = css`
+  padding: 1.5rem;
+  
   button {
     width: 100%;
   }
@@ -23,7 +25,7 @@ export const Create = (): JSX.Element => {
 
   return (
     <div className={styles}>
-      <Button className='secondary' onClick={handleClick}>
+      <Button onClick={handleClick}>
         {drawing ? 'End' : 'Start'} Drawing
         <i className='ri-brush-line' />
       </Button>

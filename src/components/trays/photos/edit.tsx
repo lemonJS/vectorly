@@ -1,8 +1,10 @@
 import React from 'react';
 
 import { useDispatch } from 'react-redux';
+import { css } from '@emotion/css';
 import { Element, ElementProps } from '@type/project';
 import { Colors } from '@components/trays/photos/colors';
+import { Divider } from '@components/divider';
 import { Positioning } from '@components/trays/positioning';
 import { updateElement } from '@lib/projects/actions';
 import { Filters } from '@components/trays/photos/filters/filters';
@@ -10,6 +12,10 @@ import { Filters } from '@components/trays/photos/filters/filters';
 interface Props {
   element: Element;
 }
+
+const styles = css`
+  padding: 1.5rem 0;
+`;
 
 export const Edit = (props: Props): JSX.Element => {
   const dispatch = useDispatch();
@@ -23,9 +29,11 @@ export const Edit = (props: Props): JSX.Element => {
   };
 
   return (
-    <div>
+    <div className={styles}>
       <Positioning element={props.element} handleUpdate={handleUpdate} />
+      <Divider />
       <Filters element={props.element} handleUpdate={handlePropsUpdate} />
+      <Divider />
       <Colors element={props.element} handleUpdate={handlePropsUpdate} />
     </div>
   );

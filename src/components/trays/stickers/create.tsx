@@ -6,6 +6,7 @@ import { Input } from '@components/input';
 import { Sticker } from '@components/trays/stickers/sticker';
 
 const styles = css` 
+  padding: 1.5rem;
   width: 100%;
   
   .stickers {

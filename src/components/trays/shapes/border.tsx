@@ -3,10 +3,11 @@ import React from 'react';
 import { css } from '@emotion/css';
 import { Element, ElementProps } from '@type/project';
 import { ColorPicker } from '@components/trays/color-picker';
-import { Label } from '@components/label';
+import { Label } from '@components/trays/label';
 import { Scale } from '@components/scale';
 import { Button } from '@components/button';
-import { Opacity } from '@components/trays/opacity';
+import { ButtonGroup } from '@components/trays/button-group';
+import { Input } from '@components/trays/input';
 
 interface Props {
   element: Element;
@@ -15,32 +16,32 @@ interface Props {
 
 const styles = css`
   label {
-    margin-top: 2rem;
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+
+    .input {
+      width: 50px;
+    }
+  }
+  
+  .scale {
+    margin: 0 1rem 1.5rem 1rem;
   }
   
   .button-group {
-    display: flex;
-    justify-content: space-between;
-    
-    button {
-      padding: 0;
-      width: 60px;
-      
-      i {
-        margin: 0;
-      }
-      
-      &.selected {
-        background: var(--secondary-button-border-color);
-        border-color: var(--secondary-button-border-color);
-        color: var(--secondary-button-background-color);
-      }
-    }
+    margin-bottom: 1.5rem;
+  }
+  
+  .color-picker {
+    padding: 0 1.5rem;
   }
 `;
 
 export const Border = (props: Props): JSX.Element => {
   const { strokeWidth, strokeDasharray, stroke, strokeOpacity } = props.element.props;
+
+  const opacity = strokeOpacity ? Number(strokeOpacity) * 100 : 100;
 
   const handleBorderWidth = (value: number) => {
     props.handleUpdate({ strokeWidth: value });
@@ -62,17 +63,19 @@ export const Border = (props: Props): JSX.Element => {
     props.handleUpdate({ stroke: hex });
   };
 
-  const handleStrokeOpacity = (value: number) => {
-    props.handleUpdate({ strokeOpacity: value });
+  const handleStrokeOpacity = (value: string) => {
+    props.handleUpdate({ strokeOpacity: Number(value) / 100 });
   };
 
   return (
     <div className={styles}>
       <Label>Border Thickness</Label>
+
       <Scale min={1} max={20} value={Number(strokeWidth)} handleChange={handleBorderWidth} />
 
       <Label>Border Style</Label>
-      <div className='button-group'>
+
+      <ButtonGroup>
         <Button onClick={handleBorderSolid} className={`${strokeDasharray === 'none' ? 'selected' : '' } secondary`}>
           <i className='ri-subtract-line' />
         </Button>
@@ -82,11 +85,19 @@ export const Border = (props: Props): JSX.Element => {
         <Button onClick={handleBorderHidden} className={`${stroke === 'transparent' ? 'selected' : '' } secondary`}>
           <i className='ri-eye-off-line' />
         </Button>
-      </div>
+      </ButtonGroup>
 
-      <Label>Border Color</Label>
+      <Label>
+        <span>Border Color</span>
+        <Input
+          value={opacity}
+          icon={<i className='ri-contrast-drop-line' />}
+          suffix='%'
+          handleChange={handleStrokeOpacity}
+        />
+      </Label>
+
       <ColorPicker selected={stroke} handleChange={handleBorderColor} />
-      <Opacity title='Border Opacity' selected={strokeOpacity} handleUpdate={handleStrokeOpacity} />
     </div>
   );
 };

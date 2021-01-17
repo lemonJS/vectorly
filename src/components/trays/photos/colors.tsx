@@ -1,5 +1,6 @@
 import React from 'react';
 
+import { css } from '@emotion/css';
 import { Element, ElementProps } from '@type/project';
 import { Opacity } from '@components/trays/opacity';
 
@@ -7,6 +8,10 @@ interface Props {
   element: Element;
   handleUpdate: (update: Partial<ElementProps>) => void;
 }
+
+const styles = css`
+  padding: 0 1.5rem;
+`;
 
 export const Colors = (props: Props): JSX.Element => {
   const { opacity } = props.element.props;
@@ -16,7 +21,7 @@ export const Colors = (props: Props): JSX.Element => {
   };
 
   return (
-    <div>
+    <div className={styles}>
       <Opacity selected={opacity} handleUpdate={handleOpacity} />
     </div>
   );

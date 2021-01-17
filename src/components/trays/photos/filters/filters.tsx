@@ -3,7 +3,6 @@ import React from 'react';
 import { css } from '@emotion/css';
 import { Label } from '@components/label';
 import { Element, ElementProps } from '@type/project';
-import { Divider } from '@components/divider';
 import { Filter } from '@components/trays/photos/filters/filter';
 
 interface Props {
@@ -12,6 +11,8 @@ interface Props {
 }
 
 const styles = css`
+  padding: 0 1.5rem;
+  
   .filters {
     display: grid;
     grid-gap: 1.5rem;
@@ -56,7 +57,6 @@ export const Filters = (props: Props): JSX.Element => {
           />
         ))}
       </div>
-      <Divider />
     </div>
   );
 };

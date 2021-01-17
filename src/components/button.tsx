@@ -4,6 +4,7 @@ import { css } from '@emotion/css';
 
 interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   loading?: boolean;
+  secondary?: boolean;
 }
 
 const styles = css`
@@ -11,6 +12,7 @@ const styles = css`
   border: 1px solid var(--primary-button-border-color);
   border-radius: .25rem;
   cursor: pointer;
+  color: white;
   font: inherit;
   font-size: 14px;
   height: 42px;
@@ -31,6 +33,7 @@ const styles = css`
   &.secondary {
     background: white;
     border: 1px solid var(--secondary-accent-color);;
+    color: #111;
   }
   
   &.tertiary {
@@ -46,16 +49,16 @@ const styles = css`
   }
   
   &:disabled {
-    opacity: .8;
+    opacity: .5;
     pointer-events: none;
   }
 `;
 
 export const Button = (props: Props): JSX.Element => {
-  const { children, className, ...rest } = props;
+  const { children, className, secondary, ...rest } = props;
 
   return (
-    <button className={`${styles} ${className || ''}`} {...rest}>
+    <button className={`${styles} ${secondary ? 'secondary' : ''} ${className || ''}`} {...rest}>
       {children}
     </button>
   );

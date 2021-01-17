@@ -1,7 +1,6 @@
 import React from 'react';
 
 import { css } from '@emotion/css';
-import { Button } from '@components/button';
 
 interface Props {
   name: string;
@@ -12,6 +11,8 @@ interface Props {
 const styles = css`
   background: none;
   border: none;
+  border-radius: .25rem;
+  cursor: pointer;
   height: 2rem;
   font-size: 1rem;
   margin-bottom: .5rem;
@@ -23,6 +24,11 @@ const styles = css`
     background: #eee;
     color: var(--primary-accent-color);
   }
+  
+  &:disabled {
+    opacity: .75;
+    pointer-events: none;
+  }
 
   &:last-of-type {
     margin-bottom: 0;
@@ -30,7 +36,7 @@ const styles = css`
 `;
 
 export const MenuItem = (props: Props): JSX.Element => (
-  <Button disabled={props.disabled} className={styles} onClick={props.handleClick}>
+  <button disabled={props.disabled} className={styles} onClick={props.handleClick}>
     {props.name}
-  </Button>
+  </button>
 );

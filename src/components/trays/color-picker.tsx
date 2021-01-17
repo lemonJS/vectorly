@@ -11,7 +11,7 @@ interface Props {
 const styles = css`
   display: grid;
   grid-gap: 1rem;
-  grid-template-columns: repeat(auto-fill, minmax(2rem, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(28px, 1fr));
   
   .color {
     border: 2px solid #eee;
@@ -30,7 +30,7 @@ const styles = css`
 `;
 
 export const ColorPicker = (props: Props): JSX.Element => (
-  <div className={styles}>
+  <div className={`color-picker ${styles}`}>
     {colors.map(color => (
       <div
         key={color}

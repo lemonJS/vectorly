@@ -9,14 +9,14 @@ const styles = css`
   font-size: 14px;
   font-weight: 500;
   margin-bottom: .75rem;
-  padding: 0 1.5rem;
+  padding: 0 .5rem 0 1.5rem;
 `;
 
 export const Label = (props: Props): JSX.Element => {
   const { className, children, ...rest } = props;
 
   return (
-    <label className={`${styles} ${className}`} {...rest}>
+    <label className={`${styles} ${className || ''}`} {...rest}>
       {children}
     </label>
   );

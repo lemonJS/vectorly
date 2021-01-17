@@ -8,6 +8,8 @@ import { Label } from '@components/label';
 import { Emoji } from '@components/trays/emojis/emoji';
 
 const styles = css`
+  padding: 1.5rem;
+  
   .emojis {
     display: grid;
     grid-gap: 1.5rem;

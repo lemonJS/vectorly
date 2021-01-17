@@ -6,6 +6,7 @@ import { Input } from '@components/input';
 import { Shape } from '@components/trays/shapes/shape';
 
 const styles = css` 
+  padding: 1.5rem;
   width: 100%;
   
   .shapes {
