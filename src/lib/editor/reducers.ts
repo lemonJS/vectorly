@@ -37,7 +37,7 @@ export const initialState: EditorState = {
   undoStackIndex: 0
 };
 
-export const editor = (state = initialState, action: EditorAction) => {
+export const editor = (state = initialState, action: EditorAction): EditorState => {
   switch (action.type) {
     case 'EDITOR':
       return { ...state, ...action.payload };

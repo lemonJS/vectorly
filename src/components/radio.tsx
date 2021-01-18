@@ -2,7 +2,7 @@ import React from 'react';
 
 import { css } from '@emotion/css';
 
-interface Props extends React.InputHTMLAttributes<HTMLInputElement> {}
+type Props = React.InputHTMLAttributes<HTMLInputElement>
 
 const styles = css`
   margin: 0;

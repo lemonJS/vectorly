@@ -30,8 +30,8 @@ export const calculateTransform = (payload: TransformPayload): Partial<Transform
 
   const out: Partial<Transform> = { s: [1, 1] };
 
-  let h: number = 0;
-  let w: number = 0;
+  let h = 0;
+  let w = 0;
   let x: number | undefined;
   let y: number | undefined;
 

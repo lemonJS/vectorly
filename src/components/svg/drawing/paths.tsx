@@ -23,19 +23,19 @@ export class Paths extends React.Component<Props, State> {
     };
   }
 
-  public componentDidMount() {
+  public componentDidMount(): void {
     document.addEventListener('mouseup', this.handleMouseUp);
     document.addEventListener('mousedown', this.handleMouseDown);
     document.addEventListener('mousemove', this.handleMouseMove);
   }
 
-  public componentWillUnmount() {
+  public componentWillUnmount(): void {
     document.removeEventListener('mouseup', this.handleMouseUp, false);
     document.removeEventListener('mousedown', this.handleMouseDown, false);
     document.removeEventListener('mousemove', this.handleMouseMove, false);
   }
 
-  private handleMouseUp = (_event: MouseEvent) => {
+  private handleMouseUp = (): void => {
     if (this.state.pressed && this.path) {
       const { path, transform } = this.getCreationParams;
       this.props.handleCreate(path, transform);
@@ -44,7 +44,7 @@ export class Paths extends React.Component<Props, State> {
     this.setState({ pressed: false, coords: [] });
   };
 
-  private handleMouseDown = (event: MouseEvent) => {
+  private handleMouseDown = (event: MouseEvent): void => {
     const element = event.target as HTMLElement;
 
     if (element.closest('#canvas')) {
@@ -52,7 +52,7 @@ export class Paths extends React.Component<Props, State> {
     }
   };
 
-  private handleMouseMove = throttle((event: MouseEvent) => {
+  private handleMouseMove = throttle((event: MouseEvent): void => {
     if (this.state.pressed && this.props.active) {
       const { x, y } = window.canvas.getBoundingClientRect();
       const coords = [event.clientX - x, event.clientY - y];
@@ -61,7 +61,7 @@ export class Paths extends React.Component<Props, State> {
     }
   }, 10);
 
-  private convertCoordsToPath = (coords: number[][]) => {
+  private convertCoordsToPath = (coords: number[][]): string => {
     const x = coords
       .map(c => `${c.join(' ')} L `)
       .join('')
@@ -70,7 +70,7 @@ export class Paths extends React.Component<Props, State> {
     return `M ${x}`;
   }
 
-  private get path() {
+  private get path(): string {
     if (this.state.coords.length === 0) {
       return '';
     }
@@ -78,7 +78,7 @@ export class Paths extends React.Component<Props, State> {
     return this.convertCoordsToPath(this.state.coords);
   }
 
-  private get getCreationParams() {
+  private get getCreationParams(): { path: string, transform: Transform } {
     // Get a list of all the x and y coords
     const xCoords = this.state.coords.map(c => Number(c[0]));
     const yCoords = this.state.coords.map(c => Number(c[1]));

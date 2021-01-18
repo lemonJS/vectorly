@@ -18,7 +18,7 @@ const styles = css`
   z-index: 1;
 `;
 
-export const Sidebar = () => {
+export const Sidebar = (): JSX.Element => {
   const navigation = [
     {
       title: 'Photos',

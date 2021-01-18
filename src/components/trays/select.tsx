@@ -2,7 +2,7 @@ import React from 'react';
 
 import { css } from '@emotion/css';
 
-interface Props extends React.InputHTMLAttributes<HTMLSelectElement> {}
+type Props = React.InputHTMLAttributes<HTMLSelectElement>;
 
 const styles = css`
   background: white;

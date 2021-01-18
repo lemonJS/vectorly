@@ -37,7 +37,7 @@ export class Scale extends React.Component<Props, State> {
     };
   }
 
-  public componentDidMount() {
+  public componentDidMount(): void {
     this.parent = document.getElementById(this.props.parent) as HTMLElement & SVGSVGElement;
 
     document.addEventListener('keyup', this.handleKeyUp);
@@ -50,7 +50,7 @@ export class Scale extends React.Component<Props, State> {
     document.addEventListener('touchmove', this.handleTouchMove);
   }
 
-  public componentWillUnmount() {
+  public componentWillUnmount(): void {
     document.removeEventListener('keyup', this.handleKeyUp, false);
     document.removeEventListener('keydown', this.handleKeyDown, false);
 
@@ -61,7 +61,7 @@ export class Scale extends React.Component<Props, State> {
     document.removeEventListener('touchmove', this.handleTouchMove, false);
   }
 
-  private get cx() {
+  private get cx(): number {
     switch(this.props.position) {
       case 'top-right':
       case 'bottom-right':
@@ -75,7 +75,7 @@ export class Scale extends React.Component<Props, State> {
     }
   }
 
-  private get cy() {
+  private get cy(): number {
     switch(this.props.position) {
       case 'bottom-right':
       case 'bottom-left':
@@ -89,15 +89,15 @@ export class Scale extends React.Component<Props, State> {
     }
   }
 
-  private get rx() {
+  private get rx(): number {
     return 6 / this.props.transform.s[0];
   }
 
-  private get ry() {
+  private get ry(): number {
     return 6 / this.props.transform.s[1];
   }
 
-  private get cursor() {
+  private get cursor(): string {
     switch (this.props.position) {
       case 'top-left':
         return 'nw-resize';
@@ -120,7 +120,7 @@ export class Scale extends React.Component<Props, State> {
     }
   }
 
-  private beginDrag = (clientX: number, clientY: number) => {
+  private beginDrag = (clientX: number, clientY: number): void => {
     const box = this.parent.getBBox();
 
     this.setState({
@@ -131,7 +131,7 @@ export class Scale extends React.Component<Props, State> {
     });
   };
 
-  private duringDrag = (clientX: number, clientY: number) => {
+  private duringDrag = (clientX: number, clientY: number): void => {
     if (this.state.pressed) {
       const transform = calculateTransform({
         svg: window.canvas,
@@ -146,43 +146,43 @@ export class Scale extends React.Component<Props, State> {
     }
   };
 
-  private endDrag = () => {
+  private endDrag = (): void => {
     this.setState({ pressed: false });
   };
 
-  private handleMouseDown = (event: React.MouseEvent<SVGEllipseElement>) => {
+  private handleMouseDown = (event: React.MouseEvent<SVGEllipseElement>): void => {
     this.beginDrag(event.clientX, event.clientY);
   };
 
-  private handleTouchStart = (event: React.TouchEvent<SVGEllipseElement>) => {
+  private handleTouchStart = (event: React.TouchEvent<SVGEllipseElement>): void => {
     if (event.touches[0]) {
       this.beginDrag(event.touches[0].clientX, event.touches[0].clientY);
     }
   };
 
-  private handleMouseMove = (event: MouseEvent) => {
+  private handleMouseMove = (event: MouseEvent): void => {
     this.duringDrag(event.clientX, event.clientY);
   };
 
-  private handleTouchMove = (event: TouchEvent) => {
+  private handleTouchMove = (event: TouchEvent): void => {
     if (event.touches[0]) {
       this.duringDrag(event.touches[0].clientX, event.touches[0].clientY);
     }
   };
 
-  private handleMouseUp = () => {
+  private handleMouseUp = (): void => {
     this.endDrag();
   };
 
-  private handleTouchEnd = () => {
+  private handleTouchEnd = (): void => {
     this.endDrag();
   };
 
-  private handleKeyUp = () => {
+  private handleKeyUp = (): void => {
     this.setState({ shift: false });
   };
 
-  private handleKeyDown = (event: KeyboardEvent) => {
+  private handleKeyDown = (event: KeyboardEvent): void => {
     this.setState({ shift: event.shiftKey });
   };
 

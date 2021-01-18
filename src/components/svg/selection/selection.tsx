@@ -26,15 +26,15 @@ export class Selection extends React.Component<Props> {
     super(props);
   }
 
-  public componentDidMount() {
+  public componentDidMount(): void {
     document.addEventListener('keydown', this.handleKeyDown);
   }
 
-  public componentWillUnmount() {
+  public componentWillUnmount(): void {
     document.removeEventListener('keydown', this.handleKeyDown, false);
   }
 
-  private handleKeyDown = (event: KeyboardEvent) => {
+  private handleKeyDown = (event: KeyboardEvent): void => {
     switch(event.key) {
       case 'Escape':
         this.props.handleDeselect();
@@ -57,41 +57,41 @@ export class Selection extends React.Component<Props> {
     }
   };
 
-  private get scaleX() {
+  private get scaleX(): number {
     return this.props.transform.s[0];
   }
 
-  private get scaleY() {
+  private get scaleY(): number {
     return this.props.transform.s[1];
   }
 
-  private get height() {
+  private get height(): number {
     return this.props.box.height + ((this.padding * 2) / this.scaleY);
   }
 
-  private get left() {
+  private get left(): number {
     return this.props.transform.x - this.padding;
   }
 
-  private get rotate() {
+  private get rotate(): string {
     const x = this.props.transform.x + ((this.props.box.width / 2) * this.scaleX);
     const y = this.props.transform.y + ((this.props.box.height / 2) * this.scaleY);
     return `${this.props.transform.r} ${x} ${y}`;
   }
 
-  private get top() {
+  private get top(): number {
     return this.props.transform.y - this.padding;
   }
 
-  private get width() {
+  private get width(): number {
     return this.props.box.width + ((this.padding * 2) / this.scaleX);
   }
 
-  private get transform() {
+  private get transform(): string {
     return `rotate(${this.rotate}) translate(${this.left} ${this.top}) scale(${this.scaleX} ${this.scaleY})`;
   }
 
-  public render() {
+  public render(): JSX.Element {
     const props = {
       height: this.height,
       transform: this.props.transform,

@@ -6,7 +6,7 @@ import { getLayoutForElementType } from '@lib/editor/helpers';
 import { projectSelector } from '@lib/projects/selectors';
 import { EditorAction, Position } from '@lib/editor/reducers';
 
-export const setSelectionId = (id: string | null) => (dispatch: Dispatch<EditorAction | any>, getState: GetState) => {
+export const setSelectionId = (id: string | null) => (dispatch: Dispatch<EditorAction | any>, getState: GetState): void => {
   const project = projectSelector(getState());
 
   // Set the currently selected item
@@ -23,23 +23,23 @@ export const setSelectionId = (id: string | null) => (dispatch: Dispatch<EditorA
   }
 };
 
-export const setMenuOpen = (open: boolean) => (dispatch: Dispatch<EditorAction>) => {
+export const setMenuOpen = (open: boolean) => (dispatch: Dispatch<EditorAction>): void => {
   dispatch({ type: 'EDITOR', payload: { menuOpen: open } });
 };
 
-export const setMenuSelected = (name: string | null) => (dispatch: Dispatch<EditorAction>) => {
+export const setMenuSelected = (name: string | null) => (dispatch: Dispatch<EditorAction>): void => {
   dispatch({ type: 'EDITOR', payload: { menuSelected: name, menuOpen: true } });
 };
 
-export const setSaving = (saving: boolean) => (dispatch: Dispatch<EditorAction>) => {
+export const setSaving = (saving: boolean) => (dispatch: Dispatch<EditorAction>): void => {
   dispatch({ type: 'EDITOR', payload: { saving } });
 };
 
-export const setDrawing = (drawing: boolean) => (dispatch: Dispatch<EditorAction>) => {
+export const setDrawing = (drawing: boolean) => (dispatch: Dispatch<EditorAction>): void => {
   dispatch({ type: 'EDITOR', payload: { drawing }});
 };
 
-export const updateUndoStack = (update: Partial<Project>) => (dispatch: Dispatch<EditorAction>, getState: GetState) => {
+export const updateUndoStack = (update: Partial<Project>) => (dispatch: Dispatch<EditorAction>, getState: GetState): void => {
   const { editor } = getState();
   const { undoStack, undoStackIndex } = editor;
 
@@ -50,7 +50,7 @@ export const updateUndoStack = (update: Partial<Project>) => (dispatch: Dispatch
   dispatch({ type: 'EDITOR', payload: { undoStack: stack, undoStackIndex: stack.length - 1 } });
 };
 
-export const undo = () => (dispatch: Dispatch<EditorAction>, getState: GetState) => {
+export const undo = () => (dispatch: Dispatch<EditorAction>, getState: GetState): void => {
   const { editor } = getState();
   const { undoStack, undoStackIndex } = editor;
 
@@ -64,7 +64,7 @@ export const undo = () => (dispatch: Dispatch<EditorAction>, getState: GetState)
   dispatch({ type: 'PROJECT', payload: JSON.parse(undoStack[index]) });
 };
 
-export const redo = () => (dispatch: Dispatch<EditorAction>, getState: GetState) => {
+export const redo = () => (dispatch: Dispatch<EditorAction>, getState: GetState): void=> {
   const { editor } = getState();
   const { undoStack, undoStackIndex } = editor;
 
@@ -78,7 +78,7 @@ export const redo = () => (dispatch: Dispatch<EditorAction>, getState: GetState)
   dispatch({ type: 'PROJECT', payload: JSON.parse(undoStack[index]) });
 };
 
-export const setPosition = (position: Partial<Position>) => (dispatch: Dispatch<EditorAction>, getState: GetState) => {
+export const setPosition = (position: Partial<Position>) => (dispatch: Dispatch<EditorAction>, getState: GetState): void => {
   const update: Position = { ...getState().editor.position, ...position };
 
   update.s = clamp(update.s, .25, 4);

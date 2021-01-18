@@ -17,21 +17,21 @@ export class GlobalListeners extends React.Component<Props> {
     super(props);
   }
 
-  public componentDidMount() {
+  public componentDidMount(): void {
     document.addEventListener('wheel', this.handleWheel, { passive: false });
     document.addEventListener('keyup', this.handleKeyUp);
     document.addEventListener('keydown', this.handleKeyDown);
     document.addEventListener('mousedown', this.handleMouseDown);
   }
 
-  public componentWillUnmount() {
+  public componentWillUnmount(): void {
     document.removeEventListener('wheel', this.handleWheel, false);
     document.removeEventListener('keyup', this.handleKeyUp, false);
     document.removeEventListener('keydown', this.handleKeyDown, false);
     document.removeEventListener('mousedown', this.handleMouseDown, false);
   }
 
-  private handleWheel = (event: WheelEvent) => {
+  private handleWheel = (event: WheelEvent): void => {
     if (event.ctrlKey || event.metaKey) {
       event.preventDefault();
 
@@ -40,7 +40,7 @@ export class GlobalListeners extends React.Component<Props> {
       const x = (event.clientX - this.props.position.x) / scale;
       const y = (event.clientY - this.props.position.y) / scale;
 
-      let delta = -event.deltaY;
+      const delta = -event.deltaY;
       (delta > 0) ? (scale *= 1.2) : (scale /= 1.2);
 
       const position = {
@@ -53,16 +53,16 @@ export class GlobalListeners extends React.Component<Props> {
     }
   };
 
-  private handleKeyUp = (_event: KeyboardEvent) => {
+  private handleKeyUp = (): void => {
     this.setState({ command: false });
   };
 
-  private handleKeyDown = (event: KeyboardEvent) => {
+  private handleKeyDown = (event: KeyboardEvent): void => {
     const keys = ['Meta', 'Left WinKey'];
     this.setState({ command: keys.includes(event.key) });
   };
 
-  private handleMouseDown = (event: MouseEvent) => {
+  private handleMouseDown = (event: MouseEvent): void => {
     const element = event.target as Element;
 
     if (element.id === window.canvas.id) {

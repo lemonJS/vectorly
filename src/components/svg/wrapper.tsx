@@ -45,11 +45,11 @@ export class SvgWrapper extends React.Component<Props, State> {
     this.ref = React.createRef();
   }
 
-  private get height() {
+  private get height(): number {
     return this.props.preset.height;
   }
 
-  private get scale() {
+  private get scale(): number {
     return this.props.position.s;
   }
 
@@ -61,13 +61,13 @@ export class SvgWrapper extends React.Component<Props, State> {
     return this.props.preset.width;
   }
 
-  private handleMouseUp = () => {
+  private handleMouseUp = (): void => {
     if (this.state.pressed) {
       this.setState({ offset: [0, 0], pressed: false });
     }
   };
 
-  private handleMouseDown = (event: React.MouseEvent<HTMLDivElement>) => {
+  private handleMouseDown = (event: React.MouseEvent<HTMLDivElement>): void => {
     const element = event.target as HTMLDivElement;
 
     const offset = [
@@ -80,7 +80,7 @@ export class SvgWrapper extends React.Component<Props, State> {
     }
   };
 
-  private handleMouseMove = (event: React.MouseEvent<HTMLDivElement>) => {
+  private handleMouseMove = (event: React.MouseEvent<HTMLDivElement>): void => {
     if (this.state.pressed && !this.props.drawing) {
       this.props.handlePosition({
         x: event.clientX - this.state.offset[0],
@@ -89,11 +89,11 @@ export class SvgWrapper extends React.Component<Props, State> {
     }
   };
 
-  private handleMouseLeave = () => {
+  private handleMouseLeave = (): void => {
     this.setState({ offset: [0, 0], pressed: false });
   };
 
-  private handleDrop = (event: React.DragEvent<HTMLDivElement>) => {
+  private handleDrop = (event: React.DragEvent<HTMLDivElement>): void => {
     event.preventDefault();
 
     const data = event.dataTransfer.getData('element');
@@ -106,11 +106,11 @@ export class SvgWrapper extends React.Component<Props, State> {
     }
   };
 
-  private handleDragOver = (event: React.DragEvent<HTMLDivElement>) => {
+  private handleDragOver = (event: React.DragEvent<HTMLDivElement>): void => {
     event.preventDefault();
   };
 
-  public render() {
+  public render(): JSX.Element {
     const props = {
       className: styles,
       onDrop: this.handleDrop,

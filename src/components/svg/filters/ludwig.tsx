@@ -1,6 +1,6 @@
 import React from 'react';
 
-export const Ludwig = () => (
+export const Ludwig = (): JSX.Element => (
   <defs>
     <filter id='ludwig' colorInterpolationFilters='sRGB' filterUnits='objectBoundingBox' primitiveUnits='objectBoundingBox' x='0' y='0' width='100%' height='100%'>
       <feColorMatrix result='scbs' type='saturate' values='.8'/>

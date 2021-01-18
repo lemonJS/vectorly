@@ -20,7 +20,7 @@ const loadImage = async (file: File): Promise<ProjectImage> => {
   });
 };
 
-const buildImageObject = (base64: string, element: HTMLImageElement, file: File) => ({
+const buildImageObject = (base64: string, element: HTMLImageElement, file: File): ProjectImage => ({
   id: uuid(),
   data: base64,
   height: element.height,
@@ -28,8 +28,7 @@ const buildImageObject = (base64: string, element: HTMLImageElement, file: File)
   width: element.width
 });
 
-export const loadImages = async (files: File[]) => {
+export const loadImages = async (files: File[]): Promise<ProjectImage[]> => {
   const results = files.map(loadImage);
   return Promise.all(results);
 };
-

@@ -37,7 +37,7 @@ export const initialState: ProjectsState = {
   }
 };
 
-export const project = (state = initialState, action: ProjectsAction) => {
+export const project = (state = initialState, action: ProjectsAction): Project => {
   switch (action.type) {
     case 'PROJECT':
       return action.payload;

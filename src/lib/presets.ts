@@ -64,4 +64,4 @@ export const presets: PresetItem[] = [
   }
 ];
 
-export const getPreset = (id: string) => presets.find(p => p.id === id) || presets[0] as PresetItem;
+export const getPreset = (id: string): PresetItem => presets.find(p => p.id === id) || presets[0];

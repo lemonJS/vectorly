@@ -2,7 +2,7 @@ import React from 'react';
 
 import { css } from '@emotion/css';
 
-interface Props extends React.LabelHTMLAttributes<HTMLLabelElement> {}
+type Props = React.LabelHTMLAttributes<HTMLLabelElement>
 
 const styles = css`
   display: block;

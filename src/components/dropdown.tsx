@@ -26,15 +26,15 @@ export class Dropdown extends React.Component<Props, State> {
     this.state = { open: false };
   }
 
-  public open = () => {
+  public open = (): void => {
     this.setState({ open: true });
   };
 
-  public close = () => {
+  public close = (): void => {
     this.setState({ open: false });
   };
 
-  public toggle = () => {
+  public toggle = (): void => {
     this.state.open
       ? this.close()
       : this.open();

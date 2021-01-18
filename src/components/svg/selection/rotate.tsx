@@ -30,7 +30,7 @@ export class Rotate extends React.Component<Props, State> {
     };
   }
 
-  public componentDidMount() {
+  public componentDidMount(): void {
     document.addEventListener('keyup', this.handleKeyUp);
     document.addEventListener('keydown', this.handleKeyDown);
 
@@ -41,7 +41,7 @@ export class Rotate extends React.Component<Props, State> {
     document.addEventListener('touchmove', this.handleTouchMove);
   }
 
-  public componentWillUnmount() {
+  public componentWillUnmount(): void {
     document.removeEventListener('keyup', this.handleKeyUp, false);
     document.removeEventListener('keydown', this.handleKeyDown, false);
 
@@ -52,27 +52,27 @@ export class Rotate extends React.Component<Props, State> {
     document.removeEventListener('touchmove', this.handleTouchMove, false);
   }
 
-  private get x() {
+  private get x(): number {
     return (this.props.width / 2);
   }
 
-  private get y() {
+  private get y(): number {
     return (this.props.height + 24 / this.props.transform.s[1]);
   }
 
-  private get rx() {
+  private get rx(): number {
     return 12 / this.props.transform.s[0];
   }
 
-  private get ry() {
+  private get ry(): number {
     return 12 / this.props.transform.s[1];
   }
 
-  private beginDrag = () => {
+  private beginDrag = (): void => {
     this.setState({ pressed: true });
   };
 
-  private duringDrag = (clientX: number, clientY: number) => {
+  private duringDrag = (clientX: number, clientY: number): void => {
     if (this.state.pressed) {
       const bound = this.parent.getBoundingClientRect();
       const x = bound.left + bound.width / 2;
@@ -90,41 +90,41 @@ export class Rotate extends React.Component<Props, State> {
     }
   };
 
-  private endDrag = () => {
+  private endDrag = (): void => {
     this.setState({ pressed: false });
   };
 
-  private handleMouseDown = () => {
+  private handleMouseDown = (): void => {
     this.beginDrag();
   };
 
-  private handleTouchStart = () => {
+  private handleTouchStart = (): void => {
     this.beginDrag();
   }
 
-  private handleMouseMove = (event: MouseEvent) => {
+  private handleMouseMove = (event: MouseEvent): void => {
     this.duringDrag(event.clientX, event.clientY);
   };
 
-  private handleTouchMove = (event: TouchEvent) => {
+  private handleTouchMove = (event: TouchEvent): void => {
     if (event.touches[0]) {
       this.duringDrag(event.touches[0].clientX, event.touches[0].clientY);
     }
   };
 
-  private handleMouseUp = () => {
+  private handleMouseUp = (): void => {
     this.endDrag();
   };
 
-  private handleTouchEnd = () => {
+  private handleTouchEnd = (): void => {
     this.endDrag();
   };
 
-  private handleKeyUp = () => {
+  private handleKeyUp = (): void => {
     this.setState({ shift: false });
   };
 
-  private handleKeyDown = (event: KeyboardEvent) => {
+  private handleKeyDown = (event: KeyboardEvent): void => {
     this.setState({ shift: event.shiftKey });
   };
 

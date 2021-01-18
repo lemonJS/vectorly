@@ -25,7 +25,7 @@ export class Move extends React.Component<Props, State> {
     this.state = { pressed: false };
   }
 
-  public componentDidMount() {
+  public componentDidMount(): void {
     this.parent = document.getElementById(this.props.parent) as HTMLElement;
     this.offset = { x: 0, y: 0 };
 
@@ -36,7 +36,7 @@ export class Move extends React.Component<Props, State> {
     document.addEventListener('touchmove', this.handleTouchMove);
   }
 
-  public componentWillUnmount() {
+  public componentWillUnmount(): void {
     document.removeEventListener('mouseup', this.handleMouseUp, false);
     document.removeEventListener('mousemove', this.handleMouseMove, false);
 
@@ -44,23 +44,23 @@ export class Move extends React.Component<Props, State> {
     document.removeEventListener('touchmove', this.handleTouchMove, false);
   }
 
-  private get x() {
+  private get x(): number {
     return (this.props.width / 2);
   }
 
-  private get y() {
+  private get y(): number {
     return - 24 / this.props.transform.s[1];
   }
 
-  private get rx() {
+  private get rx(): number {
     return 12 / this.props.transform.s[0];
   }
 
-  private get ry() {
+  private get ry(): number {
     return 12 / this.props.transform.s[1];
   }
 
-  private beginDrag = (element: HTMLDivElement, clientX: number, clientY: number) => {
+  private beginDrag = (element: HTMLDivElement, clientX: number, clientY: number): void => {
     // The bounds of the the drag handle
     const { x: x1, y: y1 } = element.getBoundingClientRect();
     // The bounds of the element that is being moved
@@ -80,7 +80,7 @@ export class Move extends React.Component<Props, State> {
     this.setState({ pressed: true });
   };
 
-  private duringDrag = (clientX: number, clientY: number) => {
+  private duringDrag = (clientX: number, clientY: number): void => {
     if (this.state.pressed) {
       const { x, y } = window.canvas.getBoundingClientRect();
 
@@ -91,31 +91,31 @@ export class Move extends React.Component<Props, State> {
     }
   };
 
-  private handleMouseUp = () => {
+  private handleMouseUp = (): void => {
     this.setState({ pressed: false });
   };
 
-  private handleTouchEnd = () => {
+  private handleTouchEnd = (): void => {
     this.setState({ pressed: false });
   };
 
-  private handleMouseDown = (event: React.MouseEvent<SVGEllipseElement>) => {
+  private handleMouseDown = (event: React.MouseEvent<SVGEllipseElement>): void => {
     const element = event.target as HTMLDivElement;
     this.beginDrag(element, event.clientX, event.clientY);
   };
 
-  private handleTouchStart = (event: React.TouchEvent<SVGEllipseElement>) => {
+  private handleTouchStart = (event: React.TouchEvent<SVGEllipseElement>): void => {
     const element = event.target as HTMLDivElement;
     if (event.touches[0]) {
       this.beginDrag(element, event.touches[0].clientX, event.touches[0].clientY);
     }
   };
 
-  private handleMouseMove = (event: MouseEvent) => {
+  private handleMouseMove = (event: MouseEvent): void => {
     this.duringDrag(event.clientX, event.clientY);
   };
 
-  private handleTouchMove = (event: TouchEvent) => {
+  private handleTouchMove = (event: TouchEvent): void => {
     if (event.touches[0]) {
       this.duringDrag(event.touches[0].clientX, event.touches[0].clientY);
     }

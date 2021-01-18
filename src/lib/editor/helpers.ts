@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Transform } from '@type/project';
+import { Transform, Element } from '@type/project';
 
 export const getLayoutForElementType = (type: string): string | null => {
   switch(type) {
@@ -25,11 +25,11 @@ export const getBox = (group: SVGGElement | null): DOMRect => group
   ? group.getBBox()
   : { x: 0, y: 0, width: 0, height: 0 } as DOMRect;
 
-export const getBoundingClientRect = (element: HTMLElement | null) => element
+export const getBoundingClientRect = (element: HTMLElement | null): DOMRect=> element
   ? element.getBoundingClientRect()
   : { x: 0, y: 0, width: 0, height: 0 } as DOMRect;
 
-export const getElementFromDataTransfer = (data: string) => {
+export const getElementFromDataTransfer = (data: string): Partial<Element> | null => {
   try {
     return JSON.parse(data);
   } catch {

@@ -9,6 +9,6 @@ const styles = css`
   width: 100%;
 `;
 
-export const Divider = () => (
+export const Divider = (): JSX.Element => (
   <div className={styles} />
 );
