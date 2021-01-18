@@ -13,13 +13,13 @@ const textAlignMap: TextAlignMap = {
   end: 'right'
 };
 
-const getFontStyle = (fontStyle: string | number) => fontStyle as Property.FontStyle;
+const getFontStyle = (fontStyle: string | number = 'normal') => fontStyle as Property.FontStyle;
 
-const getFontWeight = (fontWeight: string | number) => fontWeight as Property.FontWeight;
+const getFontWeight = (fontWeight: string | number = 400) => fontWeight as Property.FontWeight;
 
-const getLineHeight = (fontSize: string | number) => (fontSize as number) + 4 + 'px';
+const getLineHeight = (fontSize: string | number = 16) => (fontSize as number) + 4 + 'px';
 
-const getTextAlign = (textAnchor: keyof TextAlignMap) => textAlignMap[textAnchor] as Property.TextAlign;
+const getTextAlign = (textAnchor: keyof TextAlignMap = 'left') => textAlignMap[textAnchor] as Property.TextAlign;
 
 export const convertTextPropertiesToCss = (properties: ElementProps): React.CSSProperties => ({
   color: properties.fill,

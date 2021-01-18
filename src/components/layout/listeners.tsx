@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import { State } from '@type/redux';
 import { Position } from '@lib/editor/reducers';
 import { setSelectionId, setPosition } from '@lib/editor/actions';
-import { calculatePosition } from '@lib/positioning';
 
 interface Props {
   children: React.ReactNode;
@@ -14,8 +13,6 @@ interface Props {
 }
 
 export class GlobalListeners extends React.Component<Props> {
-  private readonly factor = 0.05;
-
   public constructor(props: Props) {
     super(props);
   }
@@ -38,12 +35,19 @@ export class GlobalListeners extends React.Component<Props> {
     if (event.ctrlKey || event.metaKey) {
       event.preventDefault();
 
-      const position = calculatePosition({
-        client: [event.clientX, event.clientY],
-        delta: event.deltaY * -this.factor,
-        factor: this.factor,
-        position: this.props.position
-      });
+      let scale = this.props.position.s;
+
+      const x = (event.clientX - this.props.position.x) / scale;
+      const y = (event.clientY - this.props.position.y) / scale;
+
+      let delta = -event.deltaY;
+      (delta > 0) ? (scale *= 1.2) : (scale /= 1.2);
+
+      const position = {
+        s: scale,
+        x: event.clientX - x * scale,
+        y: event.clientY - y * scale
+      };
 
       this.props.handlePosition(position);
     }

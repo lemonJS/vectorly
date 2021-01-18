@@ -41,7 +41,8 @@ export class Text extends React.Component<Props> {
   }
 
   private get lines() {
-    return this.props.element.text.split('\n');
+    const text = this.props.element.text || ''
+    return text.split('\n');
   }
 
   private get fillOpacity() {
@@ -50,7 +51,7 @@ export class Text extends React.Component<Props> {
       : undefined;
   }
 
-  public render(): JSX.Element {
+  public render(): JSX.Element | null {
     if (!this.props.element.text) return null;
 
     return (

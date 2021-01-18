@@ -8,7 +8,7 @@ const loadImage = async (file: File): Promise<ProjectImage> => {
     reader.readAsDataURL(file);
     reader.onload = event => {
       const image = new Image();
-      const base64 = event.target.result as string;
+      const base64 = event.target?.result as string;
 
       image.src = base64
       image.onload = event => {

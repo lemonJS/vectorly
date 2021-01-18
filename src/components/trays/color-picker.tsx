@@ -4,7 +4,7 @@ import { css } from '@emotion/css';
 import { colors } from '@components/trays/data/colors';
 
 interface Props {
-  selected: string;
+  selected?: string;
   handleChange: (value: string) => void;
 }
 

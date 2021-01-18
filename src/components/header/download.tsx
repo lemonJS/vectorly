@@ -14,10 +14,12 @@ const styles = css`
 `;
 
 export const Download = (): JSX.Element => {
-  const ref: React.MutableRefObject<Dropdown> = React.useRef();
+  const ref: React.MutableRefObject<Dropdown | null> = React.useRef(null);
 
   const handleClick = () => {
-    ref.current.toggle();
+    if (ref.current) {
+      ref.current.toggle();
+    }
   };
 
   return (

@@ -14,13 +14,15 @@ const styles = css`
 `;
 
 export const Opacity = (props: Props): JSX.Element => {
+  const opacity = props.element.props.opacity || 1;
+
   const handleOpacity = (value: number) => {
     props.handleUpdate({ opacity: value });
   };
 
   return (
     <div className={styles}>
-      <OpacitySlider selected={props.element.props.opacity} handleUpdate={handleOpacity} />
+      <OpacitySlider selected={opacity} handleUpdate={handleOpacity} />
     </div>
   );
 };

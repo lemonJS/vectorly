@@ -27,7 +27,7 @@ const styles = css`
   }
 `;
 
-export const TextEditor = (props: Props): JSX.Element => {
+export const TextEditor = (props: Props): JSX.Element | null => {
   const dispatch = useDispatch();
 
   const handleChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {

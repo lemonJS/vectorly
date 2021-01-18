@@ -2,6 +2,7 @@ import React from 'react';
 
 import { css } from '@emotion/css';
 import { Element } from '@type/project';
+import { getBoundingClientRect } from '@lib/editor/helpers';
 import { Label } from '@components/trays/label';
 import { Input } from '@components/trays/input';
 import { Grid, Row, Col } from '@components/grid';
@@ -21,7 +22,7 @@ const styles = css`
 export const Positioning = (props: Props): JSX.Element => {
   const { id, transform } = props.element;
   const element = document.getElementById(id);
-  const bounds = element.getBoundingClientRect();
+  const bounds = getBoundingClientRect(element);
 
   const handleTransform = (property: string) => (value: string) => {
     const update = { ...transform, [property]: Number(value) }

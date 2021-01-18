@@ -40,7 +40,7 @@ export const Filters = (props: Props): JSX.Element => {
   ];
 
   const handleClick = (filter: string) => {
-    props.handleUpdate({ filter: filter ? `url(#${filter})` : null });
+    props.handleUpdate({ filter: filter ? `url(#${filter})` : undefined });
   };
 
   return (

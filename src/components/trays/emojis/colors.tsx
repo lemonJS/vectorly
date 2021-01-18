@@ -22,7 +22,7 @@ export const Colors = (props: Props): JSX.Element => {
 
   return (
     <div className={styles}>
-      <Opacity selected={opacity} handleUpdate={handleOpacity} />
+      <Opacity selected={opacity || 1} handleUpdate={handleOpacity} />
     </div>
   );
 };

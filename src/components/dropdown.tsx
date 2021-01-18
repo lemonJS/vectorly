@@ -40,7 +40,7 @@ export class Dropdown extends React.Component<Props, State> {
       : this.open();
   };
 
-  public render(): JSX.Element {
+  public render(): JSX.Element | null {
     if (!this.state.open) return null;
 
     return (

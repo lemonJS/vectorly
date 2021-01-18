@@ -39,10 +39,6 @@ export const Tray = (): JSX.Element => {
   const project = useSelector(projectSelector);
   const { menuOpen, menuSelected } = useSelector(editorSelector);
 
-  if (!project) {
-    return null;
-  }
-
   const trays = [
     {
       Component: Photos,
@@ -72,7 +68,7 @@ export const Tray = (): JSX.Element => {
 
   return (
     <React.Fragment>
-      {trays.map(({ name, Component }) => (
+      {project && trays.map(({ name, Component }) => (
         <div key={name} className={`${styles} ${menuOpen && menuSelected === name ? 'show' : ''}`}>
           <Component />
         </div>

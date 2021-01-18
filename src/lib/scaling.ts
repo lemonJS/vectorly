@@ -30,10 +30,10 @@ export const calculateTransform = (payload: TransformPayload): Partial<Transform
 
   const out: Partial<Transform> = { s: [1, 1] };
 
-  let x: number;
-  let y: number;
-  let h: number;
-  let w: number;
+  let h: number = 0;
+  let w: number = 0;
+  let x: number | undefined;
+  let y: number | undefined;
 
   switch (position) {
     case 'top-left':
@@ -76,8 +76,10 @@ export const calculateTransform = (payload: TransformPayload): Partial<Transform
       break;
   }
 
-  out.s[0] = Math.max(w, MIN_SIZE) / width;
-  out.s[1] = Math.max(h, MIN_SIZE) / height;
+  out.s = [
+    Math.max(w, MIN_SIZE) / width,
+    Math.max(h, MIN_SIZE) / height
+  ];
 
   if (x && w >= MIN_SIZE) out.x = x;
   if (y && h >= MIN_SIZE) out.y = y;

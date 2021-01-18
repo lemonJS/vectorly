@@ -57,10 +57,9 @@ export const StyleAdvanced = (props: Props): JSX.Element => {
   };
 
   const handleDecoration = (type: string) => () => {
-    const decoration = textDecoration
-      .toString()
-      .split(' ')
-      .filter(d => d !== 'none');
+    const decoration = textDecoration?.toString().split(' ').filter(d => d !== 'none');
+
+    if (!decoration) return;
 
     const list = decoration.includes(type)
       ? decoration.filter(d => d !== type)
@@ -91,10 +90,10 @@ export const StyleAdvanced = (props: Props): JSX.Element => {
             <Col>
               <Label className='label'>Text decoration</Label>
               <ButtonGroup>
-                <Button onClick={handleDecoration('underline')} className={`${textDecoration.toString().includes('underline') ? 'selected' : ''} secondary`}>
+                <Button onClick={handleDecoration('underline')} className={`${textDecoration?.toString().includes('underline') ? 'selected' : ''} secondary`}>
                   <i className='ri-underline' />
                 </Button>
-                <Button onClick={handleDecoration('line-through')} className={`${textDecoration.toString().includes('line-through') ? 'selected' : '' } secondary`}>
+                <Button onClick={handleDecoration('line-through')} className={`${textDecoration?.toString().includes('line-through') ? 'selected' : '' } secondary`}>
                   <i className='ri-strikethrough' />
                 </Button>
                 <Button onClick={handleItalic} className={`${fontStyle === 'italic' ? 'selected' : '' } secondary`}>

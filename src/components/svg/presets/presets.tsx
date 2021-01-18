@@ -52,7 +52,7 @@ export const Presets = (props: Props): JSX.Element => {
   const dispatch = useDispatch();
   const { preset } = useSelector(projectSelector);
 
-  const ref: React.MutableRefObject<Dropdown> = React.useRef(null);
+  const ref: React.MutableRefObject<Dropdown | null> = React.useRef(null);
 
   // This component is zoomed in and out with the
   // art board but it should remain at one size.
@@ -63,15 +63,19 @@ export const Presets = (props: Props): JSX.Element => {
   const translateY = -24;
 
   const handleClick = () => {
-    ref.current.toggle();
+    if (ref.current) {
+      ref.current.toggle();
+    }
   };
 
   const handleChange = (id: string) => {
-    ref.current.close();
-    dispatch(setPreset(id));
+    if (ref.current) {
+      ref.current.close();
+      dispatch(setPreset(id));
+    }
   };
 
-  const { category, name, height, width } = presets.find(p => p.id === preset.id);
+  const { category, name, height, width } = presets.find(p => p.id === preset.id) || presets[0];
 
   return (
     <div className={styles} style={{ transform: `scale(${scale}) translate(${translateX}px, ${translateY}px)` }}>

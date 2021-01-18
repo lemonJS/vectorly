@@ -80,8 +80,8 @@ export class Paths extends React.Component<Props, State> {
 
   private get getCreationParams() {
     // Get a list of all the x and y coords
-    const xCoords = this.state.coords.map(c => c[0]);
-    const yCoords = this.state.coords.map(c => c[1]);
+    const xCoords = this.state.coords.map(c => Number(c[0]));
+    const yCoords = this.state.coords.map(c => Number(c[1]));
 
     // Find the smallest of all of them
     const xOffset = Math.min(...xCoords);

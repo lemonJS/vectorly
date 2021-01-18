@@ -60,18 +60,24 @@ export const ImageUpload = (): JSX.Element => {
   };
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const files = Array.from(event.target.files);
-    dispatch(uploadImages(files));
+    const files = event.target.files;
+
+    if (files) {
+      dispatch(uploadImages(Array.from(files)));
+    }
   };
 
   const handleDrop = (event: React.DragEvent<HTMLDivElement>) => {
     event.preventDefault();
 
     if (event.dataTransfer.items) {
-      const files = Array
-        .from(event.dataTransfer.items)
-        .filter(item => item.kind === 'file')
-        .map(item => item.getAsFile());
+      const files: File[] = [];
+      const items = event.dataTransfer.items;
+
+      for (let i=0; i<items.length; i++) {
+        const file = items[i].getAsFile();
+        if (file) files.push(file);
+      }
 
       dispatch(uploadImages(files));
     }

@@ -1,4 +1,4 @@
 import { State } from '@type/redux';
-import { ProjectsState } from '@lib/projects/reducers';
+import { Project } from '@type/project';
 
-export const projectSelector = (state: State): ProjectsState => state.project;
+export const projectSelector = (state: State): Project => state.project as Project;

@@ -3,8 +3,8 @@ import React from 'react';
 import { css } from '@emotion/css';
 
 interface Props {
-  href: string;
-  filter?: string;
+  href?: string;
+  filter: string | null
   handleClick: (filter: string) => void;
   selected: boolean;
 }
@@ -26,14 +26,16 @@ export const Filter = (props: Props): JSX.Element => {
   const status = props.selected ? 'selected' : '';
 
   const handleClick = () => {
-    props.handleClick(props.filter);
+    if (props.filter) {
+      props.handleClick(props.filter);
+    }
   };
 
   return (
     <div className={`${styles} ${status}`} onClick={handleClick}>
       <svg viewBox='0 0 88 88'>
         <image
-          filter={props.filter ? `url(#${props.filter})` : null}
+          filter={props.filter ? `url(#${props.filter})` : undefined}
           height='100%'
           href={props.href}
           preserveAspectRatio='xMidYMid slice'

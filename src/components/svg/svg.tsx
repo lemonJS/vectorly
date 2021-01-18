@@ -27,15 +27,13 @@ const styles = css`
 
 export const SVG = (): JSX.Element => {
   const project = useSelector(projectSelector);
-  const elements = project?.elements || [];
+  const elements = project.elements || [];
 
   React.useEffect(() => {
     // Store this against the window as a cache for the
     // SVG element positioning
     window.canvas = document.getElementById('canvas') as Svg;
   });
-
-  if (!project) return null;
 
   return (
     <Wrapper>
