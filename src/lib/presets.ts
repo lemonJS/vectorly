@@ -63,3 +63,5 @@ export const presets: PresetItem[] = [
     width: 512
   }
 ];
+
+export const getPreset = (id: string) => presets.find(p => p.id === id) || presets[0] as PresetItem;

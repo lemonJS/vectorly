@@ -106,7 +106,9 @@ export class Move extends React.Component<Props, State> {
 
   private handleTouchStart = (event: React.TouchEvent<SVGEllipseElement>) => {
     const element = event.target as HTMLDivElement;
-    this.beginDrag(element, event.touches[0].clientX, event.touches[0].clientY);
+    if (event.touches[0]) {
+      this.beginDrag(element, event.touches[0].clientX, event.touches[0].clientY);
+    }
   };
 
   private handleMouseMove = (event: MouseEvent) => {
@@ -114,7 +116,9 @@ export class Move extends React.Component<Props, State> {
   };
 
   private handleTouchMove = (event: TouchEvent) => {
-    this.duringDrag(event.touches[0].clientX, event.touches[0].clientY);
+    if (event.touches[0]) {
+      this.duringDrag(event.touches[0].clientX, event.touches[0].clientY);
+    }
   };
 
   public render(): JSX.Element {

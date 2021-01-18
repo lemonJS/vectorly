@@ -44,8 +44,8 @@ export const Create = (): JSX.Element => {
 
   const popular = emojis
     .ordered
-    .slice(0, 27)
-    .map(e => emojis.lib[e]);
+    .map(e => emojis.lib[e])
+    .slice(0, 27);
 
   const all = Object
     .values(emojis.lib)

@@ -107,7 +107,9 @@ export class Rotate extends React.Component<Props, State> {
   };
 
   private handleTouchMove = (event: TouchEvent) => {
-    this.duringDrag(event.touches[0].clientX, event.touches[0].clientY);
+    if (event.touches[0]) {
+      this.duringDrag(event.touches[0].clientX, event.touches[0].clientY);
+    }
   };
 
   private handleMouseUp = () => {

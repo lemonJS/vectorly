@@ -72,12 +72,12 @@ export const ImageUpload = (): JSX.Element => {
 
     if (event.dataTransfer.items) {
       const files: File[] = [];
-      const items = event.dataTransfer.items;
+      const items = Array.from(event.dataTransfer.items);
 
-      for (let i=0; i<items.length; i++) {
-        const file = items[i].getAsFile();
+      items.forEach(item => {
+        const file = item.getAsFile();
         if (file) files.push(file);
-      }
+      });
 
       dispatch(uploadImages(files));
     }

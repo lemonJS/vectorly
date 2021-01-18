@@ -3,7 +3,7 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { css } from '@emotion/css';
 import { Dropdown } from '@components/dropdown';
-import { presets } from '@lib/presets';
+import { getPreset } from '@lib/presets';
 import { PresetsList } from '@components/svg/presets/presets-list';
 import { projectSelector } from '@lib/projects/selectors';
 import { setPreset } from '@lib/projects/actions';
@@ -75,7 +75,7 @@ export const Presets = (props: Props): JSX.Element => {
     }
   };
 
-  const { category, name, height, width } = presets.find(p => p.id === preset.id) || presets[0];
+  const { category, name, height, width } = getPreset(preset.id);
 
   return (
     <div className={styles} style={{ transform: `scale(${scale}) translate(${translateX}px, ${translateY}px)` }}>

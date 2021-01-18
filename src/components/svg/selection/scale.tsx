@@ -155,7 +155,9 @@ export class Scale extends React.Component<Props, State> {
   };
 
   private handleTouchStart = (event: React.TouchEvent<SVGEllipseElement>) => {
-    this.beginDrag(event.touches[0].clientX, event.touches[0].clientY);
+    if (event.touches[0]) {
+      this.beginDrag(event.touches[0].clientX, event.touches[0].clientY);
+    }
   };
 
   private handleMouseMove = (event: MouseEvent) => {
@@ -163,7 +165,9 @@ export class Scale extends React.Component<Props, State> {
   };
 
   private handleTouchMove = (event: TouchEvent) => {
-    this.duringDrag(event.touches[0].clientX, event.touches[0].clientY);
+    if (event.touches[0]) {
+      this.duringDrag(event.touches[0].clientX, event.touches[0].clientY);
+    }
   };
 
   private handleMouseUp = () => {

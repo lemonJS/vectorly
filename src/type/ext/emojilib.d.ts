@@ -1,11 +1,18 @@
 declare module 'emojilib' {
-  interface EmojiLib {
+  interface Emoji {
     category: string;
     char: string;
     fitzpatrick_scale: boolean;
     keywords: string[];
   }
 
-  export declare const ordered = [];
-  export declare const lib: EmojiLib[] = [];
+  interface Lib {
+    [key: string]: Emoji;
+  }
+
+  export declare const lib: {
+    [key: string]: Emoji;
+  }
+
+  export declare const ordered: (keyof Lib)[];
 }
