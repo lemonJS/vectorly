@@ -15,7 +15,13 @@ export const setSelectionId = (id: string | null) => (dispatch: Dispatch<EditorA
 };
 
 export const setControl = (control: string | null) => (dispatch: Dispatch<EditorAction>): void => {
-  dispatch({ type: 'EDITOR', payload: { control } });
+  const payload: Partial<EditorState> = { control };
+
+  // You need to clear the selected element if you're no longer
+  // selecting anything
+  if (control !== 'selector') payload.selectedElement = null;
+
+  dispatch({ type: 'EDITOR', payload });
 };
 
 export const setSaving = (saving: boolean) => (dispatch: Dispatch<EditorAction>): void => {

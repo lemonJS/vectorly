@@ -7,12 +7,13 @@ import { Element } from '@type/project';
 import { Position } from '@lib/editor/reducers';
 import { getElementFromDataTransfer, getDropTransform } from '@lib/editor/helpers';
 import { createElement } from '@lib/projects/actions';
-import { setPosition } from '@lib/editor/actions';
+import { setPosition, setSelectionId } from '@lib/editor/actions';
 
 interface Props {
   children: React.ReactNode;
   control: string;
   position: Position;
+  clearSelection: VoidFunction;
   handlePosition: (position: Partial<Position>) => void;
   createElement: (element: Partial<Element>) => void;
 }
@@ -31,8 +32,6 @@ const styles = css`
 `;
 
 export class SvgWrapper extends React.Component<Props, State> {
-  private readonly ref: React.RefObject<HTMLDivElement>;
-
   public constructor(props: Props) {
     super(props);
 
@@ -40,25 +39,29 @@ export class SvgWrapper extends React.Component<Props, State> {
       pressed: false,
       offset: [0, 0]
     };
+  }
 
-    this.ref = React.createRef();
+  public componentDidMount(): void {
+    document.addEventListener('wheel', this.handleWheel, { passive: false });
+  }
+
+  public componentWillUnmount(): void {
+    document.removeEventListener('wheel', this.handleWheel);
   }
 
   private get active(): boolean {
     return this.props.control === 'move';
   }
 
-  private get scale(): number {
-    return this.props.position.s;
-  }
+  private handleMouseUp = (event: React.MouseEvent<HTMLElement>): void => {
+    const element = event.target as HTMLElement;
 
-  private get translate() {
-    return `${this.props.position.x}px, ${this.props.position.y}px`;
-  }
-
-  private handleMouseUp = (): void => {
     if (this.state.pressed) {
       this.setState({ offset: [0, 0], pressed: false });
+    }
+
+    if (element.id === 'canvas') {
+      this.props.clearSelection();
     }
   };
 
@@ -89,8 +92,6 @@ export class SvgWrapper extends React.Component<Props, State> {
   };
 
   private handleDrop = (event: React.DragEvent<HTMLDivElement>): void => {
-    event.preventDefault();
-
     const data = event.dataTransfer.getData('element');
     const payload = getElementFromDataTransfer(data);
 
@@ -105,6 +106,28 @@ export class SvgWrapper extends React.Component<Props, State> {
     event.preventDefault();
   };
 
+  private handleWheel = (event: WheelEvent): void => {
+    if (event.ctrlKey || event.metaKey) {
+      event.preventDefault();
+
+      let scale = this.props.position.s;
+
+      const x = (event.clientX - this.props.position.x) / scale;
+      const y = (event.clientY - this.props.position.y) / scale;
+
+      const delta = -event.deltaY;
+      (delta > 0) ? (scale *= 1.2) : (scale /= 1.2);
+
+      const position = {
+        s: scale,
+        x: event.clientX - x * scale,
+        y: event.clientY - y * scale
+      };
+
+      this.props.handlePosition(position);
+    }
+  };
+
   public render(): JSX.Element {
     const props = {
       className: styles,
@@ -115,13 +138,12 @@ export class SvgWrapper extends React.Component<Props, State> {
       onMouseDown: this.handleMouseDown,
       onMouseLeave: this.handleMouseLeave,
       style: {
-        cursor: this.active ? 'grab' : undefined,
-        transform: `scale(${this.scale}) translate(${this.translate})`
+        cursor: this.active ? 'grab' : undefined
       }
     };
 
     return (
-      <div ref={this.ref} {...props}>
+      <div {...props}>
         {this.props.children}
       </div>
     );
@@ -134,6 +156,7 @@ const mapStateToProps = (state: ReduxState) => ({
 });
 
 const mapDispatchToProps = (dispatch: any) => ({
+  clearSelection: () => dispatch(setSelectionId(null)),
   createElement: (element: Partial<Element>) => dispatch(createElement(element)),
   handlePosition: (position: Partial<Position>) => dispatch(setPosition(position))
 });

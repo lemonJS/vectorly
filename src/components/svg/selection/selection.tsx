@@ -21,9 +21,11 @@ interface Props {
 
 export class Selection extends React.Component<Props> {
   private readonly padding = 8;
+  private readonly target: HTMLElement;
 
   public constructor(props: Props) {
     super(props);
+    this.target = document.getElementById('canvas');
   }
 
   public componentDidMount(): void {
@@ -120,6 +122,6 @@ export class Selection extends React.Component<Props> {
       </g>
     );
 
-    return ReactDOM.createPortal(Element, window.canvas);
+    return ReactDOM.createPortal(Element, this.target);
   }
 }

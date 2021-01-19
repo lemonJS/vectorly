@@ -82,11 +82,9 @@ export class Move extends React.Component<Props, State> {
 
   private duringDrag = (clientX: number, clientY: number): void => {
     if (this.state.pressed) {
-      const { x, y } = window.canvas.getBoundingClientRect();
-
       this.props.handleTransform({
-        x: clientX - x - this.offset.x,
-        y: clientY - y - this.offset.y
+        x: clientX - this.offset.x,
+        y: clientY - this.offset.y
       });
     }
   };

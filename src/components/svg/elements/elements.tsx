@@ -1,16 +1,24 @@
 import React from 'react';
 
+import { useSelector } from 'react-redux';
 import { Element } from '@components/svg/elements/element';
-import { Element as ProjectElement } from '@type/project';
+import { projectSelector } from '@lib/projects/selectors';
+import { selectedElementSelector } from '@lib/editor/selectors';
 
-interface Props {
-  elements: ProjectElement[];
+export const Elements = (): JSX.Element => {
+  const project = useSelector(projectSelector);
+  const selectedElement = useSelector(selectedElementSelector);
+  const elements = project.elements || [];
+
+  return (
+    <React.Fragment>
+      {elements.map(element => (
+        <Element
+          key={element.id}
+          element={element}
+          selected={selectedElement?.id === element.id}
+        />
+      ))}
+    </React.Fragment>
+  );
 }
-
-export const Elements = (props: Props): JSX.Element => (
-  <React.Fragment>
-    {props.elements.map(element => (
-      <Element key={element.id} element={element} />
-    ))}
-  </React.Fragment>
-);

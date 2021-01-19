@@ -134,7 +134,6 @@ export class Scale extends React.Component<Props, State> {
   private duringDrag = (clientX: number, clientY: number): void => {
     if (this.state.pressed) {
       const transform = calculateTransform({
-        svg: window.canvas,
         box: this.state.box,
         client: [clientX, clientY],
         offset: this.state.offset,

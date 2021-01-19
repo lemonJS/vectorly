@@ -1,7 +1,6 @@
 import { Transform } from '@type/project';
 
 interface TransformPayload {
-  svg: HTMLElement & SVGSVGElement;
   box: [number, number];
   client: [number, number];
   offset: [number, number];
@@ -19,14 +18,12 @@ interface TransformPayload {
 const MIN_SIZE = 32;
 
 export const calculateTransform = (payload: TransformPayload): Partial<Transform> => {
-  const { svg, position, shift } = payload;
+  const { position, shift } = payload;
 
   const [clientX, clientY] = payload.client;
   const [width, height] = payload.box;
   const [offsetX, offsetY] = payload.offset;
   const [scaleX, scaleY] = payload.scale;
-
-  const svgBoundingRect = svg.getBoundingClientRect();
 
   const out: Partial<Transform> = { s: [1, 1] };
 
@@ -37,20 +34,20 @@ export const calculateTransform = (payload: TransformPayload): Partial<Transform
 
   switch (position) {
     case 'top-left':
-      x = offsetX + clientX - offsetX - svgBoundingRect.x;
-      y = offsetY + clientY - offsetY - svgBoundingRect.y;
+      x = offsetX + clientX - offsetX;
+      y = offsetY + clientY - offsetY;
       w = (width * scaleX) - (clientX - offsetX);
       h = (height * scaleY) - (clientY - offsetY);
       break;
     case 'top-center':
-      y = offsetY + clientY - offsetY - svgBoundingRect.y;
+      y = offsetY + clientY - offsetY;
       w = width * scaleX;
       h = (height * scaleY) - (clientY - offsetY);
       break;
     case 'top-right':
       w = width + (clientX - offsetX);
       h = (height * scaleY) - (clientY - offsetY);
-      y = offsetY + clientY - offsetY - svgBoundingRect.y
+      y = offsetY + clientY - offsetY;
       break;
     case 'center-right':
       w = (width * scaleX) + (clientX - offsetX);
@@ -67,12 +64,12 @@ export const calculateTransform = (payload: TransformPayload): Partial<Transform
     case 'bottom-left':
       w = (width * scaleX) - (clientX - offsetX);
       h = (height * scaleY) + (clientY - offsetY);
-      x = offsetX + clientX - offsetX - svgBoundingRect.x;
+      x = offsetX + clientX - offsetX;
       break;
     case 'center-left':
       w = (width * scaleX) - (clientX - offsetX);
       h = height * scaleY;
-      x = offsetX + clientX - offsetX - svgBoundingRect.x;
+      x = offsetX + clientX - offsetX;
       break;
   }
 

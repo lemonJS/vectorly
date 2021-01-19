@@ -1,7 +1,7 @@
 import { Element } from '@type/project';
 
 export type EditorState = {
-  control: string | null;
+  control: string;
   position: Position;
   saving: boolean;
   selectedElement: Element | null;
@@ -21,7 +21,7 @@ export interface Position {
 }
 
 export const initialState: EditorState = {
-  control: null,
+  control: 'move',
   position: {
     s: 1,
     x: 0,
