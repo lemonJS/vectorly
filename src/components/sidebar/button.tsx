@@ -2,8 +2,8 @@ import React from 'react';
 
 import { css } from '@emotion/css';
 import { useDispatch, useSelector } from 'react-redux';
-import { editorSelector } from '@lib/editor/selectors';
-import { setMenuOpen, setMenuSelected } from '@lib/editor/actions';
+import { controlSelector } from '@lib/editor/selectors';
+import { setControl } from '@lib/editor/actions';
 
 interface Props {
   name: string;
@@ -67,17 +67,15 @@ const styles = css`
 export const Button = (props: Props): JSX.Element => {
   const dispatch = useDispatch();
 
-  const { menuSelected, menuOpen } = useSelector(editorSelector);
-  const status = menuSelected === props.name ? 'selected' : '';
+  const control = useSelector(controlSelector);
+  const active = props.name === control;
 
   const handleClick = () => {
-    props.name === menuSelected
-      ? dispatch(setMenuOpen(!menuOpen))
-      : dispatch(setMenuSelected(props.name));
+    dispatch(setControl(active ? null : props.name));
   };
 
   return (
-    <button className={`${styles} ${status}`} onClick={handleClick} data-label={props.title}>
+    <button className={`${styles} ${active ? 'selected' : ''}`} onClick={handleClick} data-label={props.title}>
       <i className={props.icon} />
     </button>
   );

@@ -7,12 +7,9 @@ interface Props {
 }
 
 const styles = css`
-  align-items: center;
-  display: flex;
-  justify-content: center;
   height: 100%;
-  overflow: hidden;
   position: relative;
+  width: 100%;
 `;
 
 export const Content = (props: Props): JSX.Element => (

@@ -21,6 +21,16 @@ const styles = css`
 export const Sidebar = (): JSX.Element => {
   const navigation = [
     {
+      title: 'Select',
+      name: 'select',
+      icon: 'ri-cursor-fill'
+    },
+    {
+      title: 'Move',
+      name: 'move',
+      icon: 'ri-drag-move-2-fill'
+    },
+    {
       title: 'Photos',
       name: 'photos',
       icon: 'ri-image-line',

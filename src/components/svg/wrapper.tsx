@@ -3,18 +3,16 @@ import React from 'react';
 import { css } from '@emotion/css';
 import { connect } from 'react-redux';
 import { State as ReduxState } from '@type/redux';
-import { Element, Preset } from '@type/project';
+import { Element } from '@type/project';
 import { Position } from '@lib/editor/reducers';
 import { getElementFromDataTransfer, getDropTransform } from '@lib/editor/helpers';
 import { createElement } from '@lib/projects/actions';
-import { Presets } from '@components/svg/presets/presets';
 import { setPosition } from '@lib/editor/actions';
 
 interface Props {
   children: React.ReactNode;
-  drawing: boolean;
+  control: string;
   position: Position;
-  preset: Preset;
   handlePosition: (position: Partial<Position>) => void;
   createElement: (element: Partial<Element>) => void;
 }
@@ -28,6 +26,7 @@ const styles = css`
   display: flex;
   height: 100%;
   position: relative;
+  transform-origin: 0 0;
   width: 100%;
 `;
 
@@ -45,8 +44,8 @@ export class SvgWrapper extends React.Component<Props, State> {
     this.ref = React.createRef();
   }
 
-  private get height(): number {
-    return this.props.preset.height;
+  private get active(): boolean {
+    return this.props.control === 'move';
   }
 
   private get scale(): number {
@@ -55,10 +54,6 @@ export class SvgWrapper extends React.Component<Props, State> {
 
   private get translate() {
     return `${this.props.position.x}px, ${this.props.position.y}px`;
-  }
-
-  private get width() {
-    return this.props.preset.width;
   }
 
   private handleMouseUp = (): void => {
@@ -81,7 +76,7 @@ export class SvgWrapper extends React.Component<Props, State> {
   };
 
   private handleMouseMove = (event: React.MouseEvent<HTMLDivElement>): void => {
-    if (this.state.pressed && !this.props.drawing) {
+    if (this.state.pressed && this.active) {
       this.props.handlePosition({
         x: event.clientX - this.state.offset[0],
         y: event.clientY - this.state.offset[1]
@@ -120,17 +115,13 @@ export class SvgWrapper extends React.Component<Props, State> {
       onMouseDown: this.handleMouseDown,
       onMouseLeave: this.handleMouseLeave,
       style: {
-        cursor: this.state.pressed ? 'grab' : 'default',
-        height: this.height,
-        transform: `scale(${this.scale}) translate(${this.translate})`,
-        transformOrigin: '0px 0px',
-        width: this.width
+        cursor: this.active ? 'grab' : undefined,
+        transform: `scale(${this.scale}) translate(${this.translate})`
       }
     };
 
     return (
       <div ref={this.ref} {...props}>
-        <Presets scale={this.scale} />
         {this.props.children}
       </div>
     );
@@ -138,9 +129,8 @@ export class SvgWrapper extends React.Component<Props, State> {
 }
 
 const mapStateToProps = (state: ReduxState) => ({
-  drawing: state.editor.drawing,
-  position: state.editor.position,
-  preset: state.project.preset
+  control: state.editor.control,
+  position: state.editor.position
 });
 
 const mapDispatchToProps = (dispatch: any) => ({

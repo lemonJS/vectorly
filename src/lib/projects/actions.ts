@@ -1,5 +1,5 @@
 import { v4 as uuid } from 'uuid';
-import { clone, merge, pick } from 'lodash';
+import { clone, merge } from 'lodash';
 import { Dispatch } from 'redux';
 import { Project, Element } from '@type/project';
 import { GetState } from '@type/redux';
@@ -8,7 +8,6 @@ import { setSelectionId } from '@lib/editor/actions';
 import { projectSelector } from '@lib/projects/selectors';
 import { sync } from '@lib/projects/sync';
 import { loadImages } from '@lib/images';
-import { presets } from '@lib/presets';
 
 export const getProject = () => (dispatch: Dispatch<any>, getState: GetState): void => {
   let project: Project;
@@ -81,12 +80,3 @@ export const deleteImage = (id: string) => (dispatch: Dispatch<any>, getState: G
   dispatch(updateProject({ images, elements }));
 };
 
-export const setPreset = (id: string) => (dispatch: Dispatch<any>): void => {
-  const preset = presets.find(p => p.id === id);
-
-  if (preset) {
-    dispatch(updateProject({
-      preset: pick(preset, ['id', 'height', 'width'])
-    }));
-  }
-};

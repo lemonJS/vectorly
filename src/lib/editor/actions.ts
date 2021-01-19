@@ -2,41 +2,24 @@ import { clamp } from 'lodash';
 import { Dispatch } from 'redux';
 import { GetState } from '@type/redux';
 import { Project } from '@type/project';
-import { getLayoutForElementType } from '@lib/editor/helpers';
 import { projectSelector } from '@lib/projects/selectors';
-import { EditorAction, Position } from '@lib/editor/reducers';
+import { EditorAction, EditorState, Position } from '@lib/editor/reducers';
 
-export const setSelectionId = (id: string | null) => (dispatch: Dispatch<EditorAction | any>, getState: GetState): void => {
+export const setSelectionId = (id: string | null) => (dispatch: Dispatch<EditorAction>, getState: GetState): void => {
   const project = projectSelector(getState());
+  const selectedElement = project.elements.find(e => e.id === id) || null;
 
-  // Set the currently selected item
-  dispatch({ type: 'EDITOR', payload: { selectedElement: { id } } });
+  const payload: Partial<EditorState> = { selectedElement };
 
-  // Switch the tray over to the matching one
-  const element = project.elements.find(e => e.id === id) || null;
-
-  if (element) {
-    const menu = getLayoutForElementType(element.type);
-    dispatch(setMenuSelected(menu));
-  } else {
-    dispatch(setMenuSelected(null));
-  }
+  dispatch({ type: 'EDITOR', payload });
 };
 
-export const setMenuOpen = (open: boolean) => (dispatch: Dispatch<EditorAction>): void => {
-  dispatch({ type: 'EDITOR', payload: { menuOpen: open } });
-};
-
-export const setMenuSelected = (name: string | null) => (dispatch: Dispatch<EditorAction>): void => {
-  dispatch({ type: 'EDITOR', payload: { menuSelected: name, menuOpen: true } });
+export const setControl = (control: string | null) => (dispatch: Dispatch<EditorAction>): void => {
+  dispatch({ type: 'EDITOR', payload: { control } });
 };
 
 export const setSaving = (saving: boolean) => (dispatch: Dispatch<EditorAction>): void => {
   dispatch({ type: 'EDITOR', payload: { saving } });
-};
-
-export const setDrawing = (drawing: boolean) => (dispatch: Dispatch<EditorAction>): void => {
-  dispatch({ type: 'EDITOR', payload: { drawing }});
 };
 
 export const updateUndoStack = (update: Partial<Project>) => (dispatch: Dispatch<EditorAction>, getState: GetState): void => {

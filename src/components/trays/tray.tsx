@@ -5,9 +5,8 @@ import { css } from '@emotion/css';
 import { Photos } from '@components/trays/photos/photos';
 import { Shapes } from '@components/trays/shapes/shapes';
 import { Text } from '@components/trays/text/text';
-import { editorSelector } from '@lib/editor/selectors';
+import { controlSelector } from '@lib/editor/selectors';
 import { projectSelector } from '@lib/projects/selectors';
-import { Draw } from '@components/trays/draw/draw';
 
 const styles = css`
   background: var(--foreground);
@@ -35,7 +34,7 @@ const styles = css`
 
 export const Tray = (): JSX.Element => {
   const project = useSelector(projectSelector);
-  const { menuOpen, menuSelected } = useSelector(editorSelector);
+  const control = useSelector(controlSelector);
 
   const trays = [
     {
@@ -47,10 +46,6 @@ export const Tray = (): JSX.Element => {
       name: 'text'
     },
     {
-      Component: Draw,
-      name: 'draw'
-    },
-    {
       Component: Shapes,
       name: 'shapes'
     }
@@ -59,7 +54,7 @@ export const Tray = (): JSX.Element => {
   return (
     <React.Fragment>
       {project && trays.map(({ name, Component }) => (
-        <div key={name} className={`${styles} ${menuOpen && menuSelected === name ? 'show' : ''}`}>
+        <div key={name} className={`${styles} ${control === name ? 'show' : ''}`}>
           <Component />
         </div>
       ))}

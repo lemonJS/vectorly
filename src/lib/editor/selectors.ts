@@ -10,7 +10,7 @@ export const positionSelector = (state: State): Position => state.editor.positio
 
 export const savingSelector = (state: State): boolean => state.editor.saving;
 
-export const drawingSelector = (state: State): boolean => state.editor.drawing;
+export const controlSelector = (state: State): string => state.editor.control;
 
 export const selectedElementSelector = (state: State): Element | null => {
   const { selectedElement } = state.editor;

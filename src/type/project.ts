@@ -24,20 +24,12 @@ export interface Element {
   type: string;
   element: string;
   transform: Transform;
-  readonly?: boolean;
   props: ElementProps;
   text?: string;
-}
-
-export interface Preset {
-  id: string;
-  height: number;
-  width: number;
 }
 
 export interface Project {
   title: string;
   elements: Element[];
   images: Image[];
-  preset: Preset;
 }

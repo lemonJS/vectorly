@@ -57,7 +57,7 @@ export const Positioning = (props: Props): JSX.Element => {
         </Row>
         <Row>
           <Col>
-            <Input icon={<i className='ri-clockwise-line' />} value={transform.r} handleChange={handleRotate} />
+            <Input icon={<i className='ri-clockwise-line' />} value={Math.ceil(transform.r)} handleChange={handleRotate} />
           </Col>
           <Col />
         </Row>

@@ -1,9 +1,7 @@
 import { Element } from '@type/project';
 
 export type EditorState = {
-  drawing: boolean;
-  menuOpen: boolean;
-  menuSelected: string | null;
+  control: string | null;
   position: Position;
   saving: boolean;
   selectedElement: Element | null;
@@ -23,9 +21,7 @@ export interface Position {
 }
 
 export const initialState: EditorState = {
-  drawing: false,
-  menuOpen: false,
-  menuSelected: null,
+  control: null,
   position: {
     s: 1,
     x: 0,
