@@ -2,16 +2,15 @@ import React from 'react';
 
 import ReactDOM from 'react-dom';
 import { Element, Transform } from '@type/project';
-import { Outline } from '@components/svg/selection/outline';
+import { Border } from '@components/svg/selection/border';
 import { Move } from '@components/svg/selection/move';
 import { Rotate } from '@components/svg/selection/rotate';
 import { Scale } from '@components/svg/selection/scale';
 import { Options } from '@components/svg/selection/options';
 import { TextEditor } from '@components/svg/selection/text-editor';
+import { Base, Props as BaseProps } from '@components/svg/selection/base';
 
-interface Props {
-  box: SVGRect;
-  transform: Transform;
+interface Props extends BaseProps {
   parent: string;
   element: Element;
   handleDelete: (id: string) => void;
@@ -19,8 +18,7 @@ interface Props {
   handleTransform: (transform: Partial<Transform>) => void;
 }
 
-export class Selection extends React.Component<Props> {
-  private readonly padding = 8;
+export class Selection extends Base<Props> {
   private readonly target: HTMLElement;
 
   public constructor(props: Props) {
@@ -59,40 +57,6 @@ export class Selection extends React.Component<Props> {
     }
   };
 
-  private get scaleX(): number {
-    return this.props.transform.s[0];
-  }
-
-  private get scaleY(): number {
-    return this.props.transform.s[1];
-  }
-
-  private get height(): number {
-    return this.props.box.height + ((this.padding * 2) / this.scaleY);
-  }
-
-  private get left(): number {
-    return this.props.transform.x - this.padding;
-  }
-
-  private get rotate(): string {
-    const x = this.props.transform.x + ((this.props.box.width / 2) * this.scaleX);
-    const y = this.props.transform.y + ((this.props.box.height / 2) * this.scaleY);
-    return `${this.props.transform.r} ${x} ${y}`;
-  }
-
-  private get top(): number {
-    return this.props.transform.y - this.padding;
-  }
-
-  private get width(): number {
-    return this.props.box.width + ((this.padding * 2) / this.scaleX);
-  }
-
-  private get transform(): string {
-    return `rotate(${this.rotate}) translate(${this.left} ${this.top}) scale(${this.scaleX} ${this.scaleY})`;
-  }
-
   public render(): JSX.Element {
     const props = {
       height: this.height,
@@ -106,7 +70,7 @@ export class Selection extends React.Component<Props> {
 
     const Element = (
       <g id='selection' transform={this.transform}>
-        <Outline {...props} />
+        <Border {...props} />
         <Move {...props} />
         <Rotate {...props} />
         <TextEditor {...props} />

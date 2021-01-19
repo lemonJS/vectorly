@@ -3,6 +3,7 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Element, ElementProps, Transform } from '@type/project';
 import { Selection } from '@components/svg/selection/selection';
+import { Outline } from '@components/svg/selection/outline';
 import { getBox } from '@lib/editor/helpers';
 import { setSelectionId } from '@lib/editor/actions';
 import { updateElement, deleteElement } from '@lib/projects/actions';
@@ -17,6 +18,8 @@ interface Props extends ElementProps {
 export const Container = (props: Props): JSX.Element => {
   const dispatch = useDispatch();
   const control = useSelector(controlSelector);
+
+  const [hover, setHover] = React.useState(false);
 
   const ref = React.useRef<SVGGElement>(null);
   const box = getBox(ref.current);
@@ -43,10 +46,19 @@ export const Container = (props: Props): JSX.Element => {
     dispatch(setSelectionId(null));
   };
 
+  const handleMouseEnter = () => {
+    setHover(true);
+  };
+
+  const handleMouseLeave = () => {
+    setHover(false);
+  };
+
   return (
     <g>
-      <g id={props.id} className='container' onClick={handleClick} ref={ref} transform={transform}>
+      <g id={props.id} className='container' onClick={handleClick} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} ref={ref} transform={transform}>
         {props.children}
+
         {props.selected && (
           <Selection
             box={box}
@@ -56,6 +68,13 @@ export const Container = (props: Props): JSX.Element => {
             handleDelete={handleDelete}
             handleDeselect={handleDeselect}
             handleTransform={handleTransform}
+          />
+        )}
+
+        {!props.selected && hover && (
+          <Outline
+            box={box}
+            transform={props.element.transform}
           />
         )}
       </g>

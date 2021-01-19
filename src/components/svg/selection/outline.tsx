@@ -1,17 +1,29 @@
 import React from 'react';
 
-interface Props {
-  height: number;
-  width: number;
-}
+import ReactDOM from 'react-dom';
+import { Border } from '@components/svg/selection/border';
+import { Base, Props } from '@components/svg/selection/base';
 
-export const Outline = (props: Props): JSX.Element => (
-  <rect
-    fill='transparent'
-    height={props.height}
-    stroke='var(--primary)'
-    strokeWidth={2}
-    width={props.width}
-    vectorEffect='non-scaling-stroke'
-  />
-);
+export class Outline extends Base<Props> {
+  private readonly target: HTMLElement;
+
+  public constructor(props: Props) {
+    super(props);
+    this.target = document.getElementById('canvas');
+  }
+
+  public render(): JSX.Element {
+    const props = {
+      height: this.height,
+      width: this.width
+    };
+
+    const Element = (
+      <g id='outline' transform={this.transform}>
+        <Border {...props} />
+      </g>
+    );
+
+    return ReactDOM.createPortal(Element, this.target);
+  }
+}

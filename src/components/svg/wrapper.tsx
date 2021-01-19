@@ -27,7 +27,6 @@ const styles = css`
   display: flex;
   height: 100%;
   position: relative;
-  transform-origin: 0 0;
   width: 100%;
 `;
 
