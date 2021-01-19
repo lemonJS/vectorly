@@ -1,12 +1,11 @@
 import React from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
-import { Element, ElementProps, Transform } from '@type/project';
+import { Element, ElementProps } from '@type/project';
 import { Selection } from '@components/svg/selection/selection';
 import { Outline } from '@components/svg/selection/outline';
 import { getBox } from '@lib/editor/helpers';
 import { setSelectionId } from '@lib/editor/actions';
-import { updateElement, deleteElement } from '@lib/projects/actions';
 import { controlSelector } from '@lib/editor/selectors';
 
 interface Props extends ElementProps {
@@ -18,6 +17,7 @@ interface Props extends ElementProps {
 export const Container = (props: Props): JSX.Element => {
   const dispatch = useDispatch();
   const control = useSelector(controlSelector);
+  const isSelect = control === 'select';
 
   const [hover, setHover] = React.useState(false);
 
@@ -28,31 +28,14 @@ export const Container = (props: Props): JSX.Element => {
   const transform = `translate(${x} ${y}) rotate(${r} ${(box.width * s[0]) / 2} ${(box.height * s[1]) / 2}) scale(${s[0]} ${s[1]})`;
 
   const handleClick = () => {
-    if (!props.selected && control === 'select') {
+    if (!props.selected && isSelect) {
       dispatch(setSelectionId(props.element.id));
     }
   };
 
-  const handleTransform = (update: Partial<Transform>) => {
-    const data = { ...props.element.transform, ...update };
-    dispatch(updateElement(props.element.id, { transform: data }));
-  };
+  const handleMouseEnter = () => setHover(true);
 
-  const handleDelete = (id: string) => {
-    dispatch(deleteElement(id));
-  };
-
-  const handleDeselect = () => {
-    dispatch(setSelectionId(null));
-  };
-
-  const handleMouseEnter = () => {
-    setHover(true);
-  };
-
-  const handleMouseLeave = () => {
-    setHover(false);
-  };
+  const handleMouseLeave = () => setHover(false);
 
   return (
     <g>
@@ -65,13 +48,10 @@ export const Container = (props: Props): JSX.Element => {
             transform={props.element.transform}
             parent={props.id}
             element={props.element}
-            handleDelete={handleDelete}
-            handleDeselect={handleDeselect}
-            handleTransform={handleTransform}
           />
         )}
 
-        {!props.selected && hover && (
+        {!props.selected && isSelect && hover && (
           <Outline
             box={box}
             transform={props.element.transform}

@@ -1,6 +1,7 @@
 import React from 'react';
 
 import ReactDOM from 'react-dom';
+import { connect } from 'react-redux';
 import { Element, Transform } from '@type/project';
 import { Border } from '@components/svg/selection/border';
 import { Move } from '@components/svg/selection/move';
@@ -9,21 +10,20 @@ import { Scale } from '@components/svg/selection/scale';
 import { Options } from '@components/svg/selection/options';
 import { TextEditor } from '@components/svg/selection/text-editor';
 import { Base, Props as BaseProps } from '@components/svg/selection/base';
+import { setSelectionId } from '@lib/editor/actions';
+import { deleteElement, updateElement } from '@lib/projects/actions';
 
 interface Props extends BaseProps {
   parent: string;
   element: Element;
-  handleDelete: (id: string) => void;
-  handleDeselect: VoidFunction;
-  handleTransform: (transform: Partial<Transform>) => void;
+  clearSelection: VoidFunction;
+  deleteElement: (id: string) => void;
+  updateElement: (id: string, update: Partial<Element>) => void;
 }
 
-export class Selection extends Base<Props> {
-  private readonly target: HTMLElement;
-
+export class SelectionWrapper extends Base<Props> {
   public constructor(props: Props) {
     super(props);
-    this.target = document.getElementById('canvas');
   }
 
   public componentDidMount(): void {
@@ -34,25 +34,30 @@ export class Selection extends Base<Props> {
     document.removeEventListener('keydown', this.handleKeyDown, false);
   }
 
+  private handleTransform = (transform: Partial<Transform>) => {
+    const data = { ...this.props.element.transform, ...transform };
+    this.props.updateElement(this.props.element.id, { transform: data });
+  };
+
   private handleKeyDown = (event: KeyboardEvent): void => {
     switch(event.key) {
       case 'Escape':
-        this.props.handleDeselect();
+        this.props.clearSelection();
         break;
       case 'Delete':
-        this.props.handleDelete(this.props.element.id);
+        this.props.deleteElement(this.props.element.id);
         break;
       case 'ArrowUp':
-        this.props.handleTransform({ y: this.props.transform.y - 1 });
+        this.handleTransform({ y: this.props.transform.y - 1 });
         break;
       case 'ArrowRight':
-        this.props.handleTransform({ x: this.props.transform.x + 1 });
+        this.handleTransform({ x: this.props.transform.x + 1 });
         break;
       case 'ArrowDown':
-        this.props.handleTransform({ y: this.props.transform.y + 1 });
+        this.handleTransform({ y: this.props.transform.y + 1 });
         break;
       case 'ArrowLeft':
-        this.props.handleTransform({ x: this.props.transform.x - 1 });
+        this.handleTransform({ x: this.props.transform.x - 1 });
         break;
     }
   };
@@ -63,7 +68,7 @@ export class Selection extends Base<Props> {
       transform: this.props.transform,
       padding: this.padding,
       parent: this.props.parent,
-      handleTransform: this.props.handleTransform,
+      handleTransform: this.handleTransform,
       element: this.props.element,
       width: this.width
     };
@@ -89,3 +94,14 @@ export class Selection extends Base<Props> {
     return ReactDOM.createPortal(Element, this.target);
   }
 }
+
+const mapDispatchToProps = (dispatch: any) => ({
+  clearSelection: () => dispatch(setSelectionId(null)),
+  deleteElement: (id: string) => dispatch(deleteElement(id)),
+  updateElement: (id: string, update: Partial<Element>) => dispatch(updateElement(id, update))
+});
+
+export const Selection = connect(
+  null,
+  mapDispatchToProps
+)(SelectionWrapper);

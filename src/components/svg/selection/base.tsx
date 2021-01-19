@@ -9,9 +9,11 @@ export interface Props {
 
 export abstract class Base<P extends Props> extends React.Component<P> {
   public readonly padding = 8;
+  public readonly target: HTMLElement;
 
   protected constructor(props: P) {
     super(props);
+    this.target = document.getElementById('canvas');
   }
 
   public get scaleX(): number {
