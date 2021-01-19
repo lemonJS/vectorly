@@ -1,11 +1,13 @@
 import React from 'react';
 
 import { Transform } from '@type/project';
+import { Position } from '@lib/editor/reducers';
 
 interface Props {
   height: number;
   padding: number;
   parent: string;
+  position: Position;
   transform: Transform;
   handleTransform: (transform: Partial<Transform>) => void;
   width: number;
@@ -61,6 +63,8 @@ export class Move extends React.Component<Props, State> {
   }
 
   private beginDrag = (element: HTMLDivElement, clientX: number, clientY: number): void => {
+    // TODO: I think I'm being an idiot here, surely there's an easier way!
+
     // The bounds of the the drag handle
     const { x: x1, y: y1 } = element.getBoundingClientRect();
     // The bounds of the element that is being moved
@@ -83,8 +87,8 @@ export class Move extends React.Component<Props, State> {
   private duringDrag = (clientX: number, clientY: number): void => {
     if (this.state.pressed) {
       this.props.handleTransform({
-        x: clientX - this.offset.x,
-        y: clientY - this.offset.y
+        x: (clientX - this.props.position.x) - this.offset.x,
+        y: (clientY - this.props.position.y) - this.offset.y
       });
     }
   };

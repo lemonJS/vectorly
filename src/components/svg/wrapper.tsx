@@ -5,9 +5,10 @@ import { connect } from 'react-redux';
 import { State as ReduxState } from '@type/redux';
 import { Element } from '@type/project';
 import { Position } from '@lib/editor/reducers';
-import { getElementFromDataTransfer, getDropTransform } from '@lib/editor/helpers';
+import { getElementFromDataTransfer, getDropTransform, getBoundingClientRect } from '@lib/editor/helpers';
 import { createElement } from '@lib/projects/actions';
 import { setPosition, setSelectionId } from '@lib/editor/actions';
+import { canvas, canvasContainer } from '@lib/constants';
 
 interface Props {
   children: React.ReactNode;
@@ -42,6 +43,7 @@ export class SvgWrapper extends React.Component<Props, State> {
 
   public componentDidMount(): void {
     document.addEventListener('wheel', this.handleWheel, { passive: false });
+    this.centerAlignArtBoard();
   }
 
   public componentWillUnmount(): void {
@@ -52,6 +54,17 @@ export class SvgWrapper extends React.Component<Props, State> {
     return this.props.control === 'move';
   }
 
+  private centerAlignArtBoard = (): void => {
+    // TODO: Support scaling up/down to make it a snug fit
+    const container = document.getElementById(canvasContainer);
+    const bound = getBoundingClientRect(container);
+
+    this.props.handlePosition({
+      x: (window.innerWidth - bound.width) / 2,
+      y: (window.innerHeight - bound.height) / 2
+    });
+  };
+
   private handleMouseUp = (event: React.MouseEvent<HTMLElement>): void => {
     const element = event.target as HTMLElement;
 
@@ -59,7 +72,7 @@ export class SvgWrapper extends React.Component<Props, State> {
       this.setState({ offset: [0, 0], pressed: false });
     }
 
-    if (element.id === 'canvas') {
+    if (element.id === canvas) {
       this.props.clearSelection();
     }
   };

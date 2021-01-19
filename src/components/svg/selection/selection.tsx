@@ -12,10 +12,13 @@ import { TextEditor } from '@components/svg/selection/text-editor';
 import { Base, Props as BaseProps } from '@components/svg/selection/base';
 import { setSelectionId } from '@lib/editor/actions';
 import { deleteElement, updateElement } from '@lib/projects/actions';
+import { State } from '@type/redux';
+import { Position } from '@lib/editor/reducers';
 
 interface Props extends BaseProps {
   parent: string;
   element: Element;
+  position: Position;
   clearSelection: VoidFunction;
   deleteElement: (id: string) => void;
   updateElement: (id: string, update: Partial<Element>) => void;
@@ -67,6 +70,7 @@ export class SelectionWrapper extends Base<Props> {
       height: this.height,
       transform: this.props.transform,
       padding: this.padding,
+      position: this.props.position,
       parent: this.props.parent,
       handleTransform: this.handleTransform,
       element: this.props.element,
@@ -79,14 +83,14 @@ export class SelectionWrapper extends Base<Props> {
         <Move {...props} />
         <Rotate {...props} />
         <TextEditor {...props} />
-        <Scale position='top-left' {...props} />
-        <Scale position='top-center' {...props} />
-        <Scale position='top-right' {...props} />
-        <Scale position='center-right' {...props} />
-        <Scale position='bottom-right' {...props} />
-        <Scale position='bottom-center' {...props} />
-        <Scale position='bottom-left' {...props} />
-        <Scale position='center-left' {...props} />
+        <Scale location='top-left' {...props} />
+        <Scale location='top-center' {...props} />
+        <Scale location='top-right' {...props} />
+        <Scale location='center-right' {...props} />
+        <Scale location='bottom-right' {...props} />
+        <Scale location='bottom-center' {...props} />
+        <Scale location='bottom-left' {...props} />
+        <Scale location='center-left' {...props} />
         <Options {...props} />
       </g>
     );
@@ -95,6 +99,10 @@ export class SelectionWrapper extends Base<Props> {
   }
 }
 
+const mapStateToProps = (state: State) => ({
+  position: state.editor.position
+});
+
 const mapDispatchToProps = (dispatch: any) => ({
   clearSelection: () => dispatch(setSelectionId(null)),
   deleteElement: (id: string) => dispatch(deleteElement(id)),
@@ -102,6 +110,6 @@ const mapDispatchToProps = (dispatch: any) => ({
 });
 
 export const Selection = connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(SelectionWrapper);

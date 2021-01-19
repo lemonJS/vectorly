@@ -1,9 +1,12 @@
 import React from 'react';
 
 import { Transform } from '@type/project';
+import { canvas } from '@lib/constants';
+import { Position } from '@lib/editor/reducers';
 
 export interface Props {
   box: SVGRect;
+  position: Position;
   transform: Transform;
 }
 
@@ -13,7 +16,16 @@ export abstract class Base<P extends Props> extends React.Component<P> {
 
   protected constructor(props: P) {
     super(props);
-    this.target = document.getElementById('canvas');
+
+    this.target = document.getElementById(canvas);
+  }
+
+  public get x() {
+    return this.props.position.x + this.props.transform.x
+  }
+
+  public get y() {
+    return this.props.position.y + this.props.transform.y;
   }
 
   public get scaleX(): number {
@@ -29,17 +41,17 @@ export abstract class Base<P extends Props> extends React.Component<P> {
   }
 
   public get left(): number {
-    return this.props.transform.x - this.padding;
+    return this.x - this.padding;
   }
 
   public get rotate(): string {
-    const x = this.props.transform.x + ((this.props.box.width / 2) * this.scaleX);
-    const y = this.props.transform.y + ((this.props.box.height / 2) * this.scaleY);
+    const x = this.x + ((this.props.box.width / 2) * this.scaleX);
+    const y = this.y + ((this.props.box.height / 2) * this.scaleY);
     return `${this.props.transform.r} ${x} ${y}`;
   }
 
   public get top(): number {
-    return this.props.transform.y - this.padding;
+    return this.y - this.padding;
   }
 
   public get width(): number {

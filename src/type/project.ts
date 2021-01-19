@@ -24,6 +24,7 @@ export interface Element {
   type: string;
   element: string;
   transform: Transform;
+  readonly?: boolean;
   props: ElementProps;
   text?: string;
 }

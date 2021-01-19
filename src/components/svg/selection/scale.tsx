@@ -8,7 +8,7 @@ interface Props {
   height: number;
   parent: string;
   padding: number;
-  position: 'top-left' | 'top-center' | 'top-right' | 'center-right' | 'bottom-right' | 'bottom-center' | 'bottom-left' | 'center-left';
+  location: 'top-left' | 'top-center' | 'top-right' | 'center-right' | 'bottom-right' | 'bottom-center' | 'bottom-left' | 'center-left';
   transform: Transform;
   handleTransform: (transform: Partial<Transform>) => void;
   width: number;
@@ -62,7 +62,7 @@ export class Scale extends React.Component<Props, State> {
   }
 
   private get cx(): number {
-    switch(this.props.position) {
+    switch(this.props.location) {
       case 'top-right':
       case 'bottom-right':
       case 'center-right':
@@ -76,7 +76,7 @@ export class Scale extends React.Component<Props, State> {
   }
 
   private get cy(): number {
-    switch(this.props.position) {
+    switch(this.props.location) {
       case 'bottom-right':
       case 'bottom-left':
       case 'bottom-center':
@@ -98,7 +98,7 @@ export class Scale extends React.Component<Props, State> {
   }
 
   private get cursor(): string {
-    switch (this.props.position) {
+    switch (this.props.location) {
       case 'top-left':
         return 'nw-resize';
       case 'top-center':
@@ -137,7 +137,7 @@ export class Scale extends React.Component<Props, State> {
         box: this.state.box,
         client: [clientX, clientY],
         offset: this.state.offset,
-        position: this.props.position,
+        position: this.props.location,
         scale: this.state.scale,
         shift: this.state.shift
       });

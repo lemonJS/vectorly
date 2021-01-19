@@ -1,63 +1,115 @@
 import React from 'react';
 
-import { useDispatch, useSelector } from 'react-redux';
-import { Element, ElementProps } from '@type/project';
+import { connect } from 'react-redux';
+import { Element } from '@type/project';
 import { Selection } from '@components/svg/selection/selection';
 import { Outline } from '@components/svg/selection/outline';
 import { getBox } from '@lib/editor/helpers';
 import { setSelectionId } from '@lib/editor/actions';
-import { controlSelector } from '@lib/editor/selectors';
+import { State as StoreState } from '@type/redux';
 
-interface Props extends ElementProps {
+interface Props {
   id: string;
   element: Element;
+  children: React.ReactNode;
+  control: string;
   selected: boolean;
+  setSelectionId: (id: string | null) => void;
 }
 
-export const Container = (props: Props): JSX.Element => {
-  const dispatch = useDispatch();
-  const control = useSelector(controlSelector);
-  const isSelect = control === 'select';
+interface State {
+  hover: boolean;
+}
 
-  const [hover, setHover] = React.useState(false);
+class ContainerWrapper extends React.Component<Props, State> {
+  private readonly ref: React.MutableRefObject<SVGGElement>;
 
-  const ref = React.useRef<SVGGElement>(null);
-  const box = getBox(ref.current);
+  public constructor(props: Props) {
+    super(props);
 
-  const { x, y, r, s } = props.element.transform;
-  const transform = `translate(${x} ${y}) rotate(${r} ${(box.width * s[0]) / 2} ${(box.height * s[1]) / 2}) scale(${s[0]} ${s[1]})`;
+    this.state = { hover: false };
+    this.ref = React.createRef();
+  }
 
-  const handleClick = () => {
-    if (!props.selected && isSelect) {
-      dispatch(setSelectionId(props.element.id));
+  private get transform(): string {
+    const { x, y, r, s } = this.props.element.transform;
+    const rx = (this.box.width * s[0]) / 2;
+    const ry = (this.box.height * s[1]) / 2;
+    return `translate(${x} ${y}) rotate(${r} ${rx} ${ry}) scale(${s[0]} ${s[1]})`;
+  }
+
+  private get isSelectControl(): boolean {
+    return this.props.control === 'select';
+  }
+
+  private get isInteractable() {
+    return !this.props.selected && this.isSelectControl && !this.props.element.readonly;
+  }
+
+  private get box(): DOMRect {
+    return getBox(this.ref.current);
+  }
+
+  private handleClick = (): void => {
+    if (this.isInteractable) {
+      this.props.setSelectionId(this.props.element.id);
     }
   };
 
-  const handleMouseEnter = () => setHover(true);
+  private handleMouseEnter = (): void => {
+    this.setState({ hover: true });
+  };
 
-  const handleMouseLeave = () => setHover(false);
+  private handleMouseLeave = (): void => {
+    this.setState({ hover: false });
+  };
 
-  return (
-    <g>
-      <g id={props.id} className='container' onClick={handleClick} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} ref={ref} transform={transform}>
-        {props.children}
+  public render(): JSX.Element {
+    const props = {
+      id: this.props.id,
+      className: 'container',
+      onClick: this.handleClick,
+      onMouseEnter: this.handleMouseEnter,
+      onMouseLeave: this.handleMouseLeave,
+      ref: this.ref,
+      transform: this.transform
+    };
 
-        {props.selected && (
-          <Selection
-            box={box}
-            transform={props.element.transform}
-            parent={props.id}
-            element={props.element}
-          />
-        )}
+    return (
+      <g>
+        <g {...props}>
+          {this.props.children}
 
-        {!props.selected && isSelect && hover && (
-          <Outline
-            box={box}
-            transform={props.element.transform}
-          />
-        )}
+          {this.props.selected && (
+            <Selection
+              box={this.box}
+              transform={this.props.element.transform}
+              parent={this.props.id}
+              element={this.props.element}
+            />
+          )}
+
+          {this.isInteractable && this.state.hover && (
+            <Outline
+              box={this.box}
+              transform={this.props.element.transform}
+            />
+          )}
+        </g>
       </g>
-    </g>
-  );
-};
+    );
+  }
+}
+
+const mapStateToProps = (state: StoreState) => ({
+  control: state.editor.control
+});
+
+const mapDispatchToProps = (dispatch: any) => ({
+  setSelectionId: (id: string) => dispatch(setSelectionId(id))
+});
+
+export const Container = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(ContainerWrapper);

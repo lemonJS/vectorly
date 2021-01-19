@@ -1,10 +1,13 @@
 import React from 'react';
 
 import ReactDOM from 'react-dom';
+import { connect } from 'react-redux';
 import { Border } from '@components/svg/selection/border';
 import { Base, Props } from '@components/svg/selection/base';
+import { State } from '@type/redux';
 
-export class Outline extends Base<Props> {
+
+export class OutlineWrapper extends Base<Props> {
   public constructor(props: Props) {
     super(props);
   }
@@ -24,3 +27,11 @@ export class Outline extends Base<Props> {
     return ReactDOM.createPortal(Element, this.target);
   }
 }
+
+const mapStateToProps = (state: State) => ({
+  position: state.editor.position
+});
+export const Outline = connect(
+  mapStateToProps,
+  null
+)(OutlineWrapper);
