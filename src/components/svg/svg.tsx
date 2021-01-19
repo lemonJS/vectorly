@@ -3,7 +3,6 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { css } from '@emotion/css';
 import { Wrapper } from '@components/svg/wrapper';
-import { Filters } from '@components/svg/filters/filters';
 import { Drawing } from '@components/svg/drawing/drawing';
 import { Elements } from '@components/svg/elements/elements';
 import { projectSelector } from '@lib/projects/selectors';
@@ -40,7 +39,6 @@ export const SVG = (): JSX.Element => {
       <svg id='canvas' className={styles}>
         <Elements elements={elements} />
         <Drawing />
-        <Filters />
       </svg>
     </Wrapper>
   );

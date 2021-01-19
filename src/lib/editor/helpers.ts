@@ -8,14 +8,10 @@ export const getLayoutForElementType = (type: string): string | null => {
       return 'photos';
     case 'text':
       return 'text';
-    case 'emoji':
-      return 'emojis';
     case 'drawing':
       return 'draw';
     case 'shape':
       return 'shapes';
-    case 'sticker':
-      return 'stickers';
     default:
       return null;
   }

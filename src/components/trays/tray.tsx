@@ -4,11 +4,9 @@ import { useSelector } from 'react-redux';
 import { css } from '@emotion/css';
 import { Photos } from '@components/trays/photos/photos';
 import { Shapes } from '@components/trays/shapes/shapes';
-import { Emojis } from '@components/trays/emojis/emojis';
 import { Text } from '@components/trays/text/text';
 import { editorSelector } from '@lib/editor/selectors';
 import { projectSelector } from '@lib/projects/selectors';
-import { Stickers } from '@components/trays/stickers/stickers';
 import { Draw } from '@components/trays/draw/draw';
 
 const styles = css`
@@ -49,20 +47,12 @@ export const Tray = (): JSX.Element => {
       name: 'text'
     },
     {
-      Component: Emojis,
-      name: 'emojis'
-    },
-    {
       Component: Draw,
       name: 'draw'
     },
     {
       Component: Shapes,
       name: 'shapes'
-    },
-    {
-      Component: Stickers,
-      name: 'stickers'
     }
   ];
 

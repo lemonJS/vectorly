@@ -39,16 +39,6 @@ export const Sidebar = (): JSX.Element => {
       title: 'Shapes',
       name: 'shapes',
       icon: 'ri-shape-2-line',
-    },
-    {
-      title: 'Emojis',
-      name: 'emojis',
-      icon: 'ri-emotion-line',
-    },
-    {
-      title: 'Stickers',
-      name: 'stickers',
-      icon: 'ri-sticky-note-line'
     }
   ];
 
