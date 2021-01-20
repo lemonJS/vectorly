@@ -21,11 +21,11 @@ export abstract class Base<P extends Props> extends React.Component<P> {
   }
 
   public get x(): number {
-    return this.props.position.x + this.props.transform.x
+    return (this.props.position.x + this.props.transform.x) * this.props.position.s;
   }
 
   public get y(): number {
-    return this.props.position.y + this.props.transform.y;
+    return (this.props.position.y + this.props.transform.y) * this.props.position.s;
   }
 
   public get scaleX(): number {
@@ -37,7 +37,7 @@ export abstract class Base<P extends Props> extends React.Component<P> {
   }
 
   public get height(): number {
-    return this.props.box.height + ((this.padding * 2) / this.scaleY);
+    return (this.props.box.height * this.props.position.s) + ((this.padding * 2) / this.scaleY);
   }
 
   public get left(): number {
@@ -55,7 +55,7 @@ export abstract class Base<P extends Props> extends React.Component<P> {
   }
 
   public get width(): number {
-    return this.props.box.width + ((this.padding * 2) / this.scaleX);
+    return (this.props.box.width * this.props.position.s) + ((this.padding * 2) / this.scaleX);
   }
 
   public get transform(): string {
