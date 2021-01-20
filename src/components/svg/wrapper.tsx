@@ -48,8 +48,17 @@ export class SvgWrapper extends React.Component<Props, State> {
     document.removeEventListener('wheel', this.handleWheel);
   }
 
-  private get active(): boolean {
-    return this.props.control === 'move';
+  private get cursor(): string {
+    switch(this.props.control) {
+      case 'move':
+        return 'grab';
+      case 'draw':
+        return 'crosshair';
+      case 'text':
+        return 'text';
+      default:
+        return 'default';
+    }
   }
 
   private centerAlignArtBoard = (): void => {
@@ -89,7 +98,7 @@ export class SvgWrapper extends React.Component<Props, State> {
   };
 
   private handleMouseMove = (event: React.MouseEvent<HTMLDivElement>): void => {
-    if (this.state.pressed && this.active) {
+    if (this.state.pressed && this.props.control === 'move') {
       this.props.handlePosition({
         x: event.clientX - this.state.offset[0],
         y: event.clientY - this.state.offset[1]
@@ -148,7 +157,7 @@ export class SvgWrapper extends React.Component<Props, State> {
       onMouseDown: this.handleMouseDown,
       onMouseLeave: this.handleMouseLeave,
       style: {
-        cursor: this.active ? 'grab' : undefined
+        cursor: this.cursor
       }
     };
 

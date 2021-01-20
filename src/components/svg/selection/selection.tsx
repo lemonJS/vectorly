@@ -10,7 +10,6 @@ import { Move } from '@components/svg/selection/move';
 import { Rotate } from '@components/svg/selection/rotate';
 import { Scale } from '@components/svg/selection/scale';
 import { Options } from '@components/svg/selection/options';
-import { TextEditor } from '@components/svg/selection/text-editor';
 import { Base, Props as BaseProps } from '@components/svg/selection/base';
 
 interface Props extends BaseProps {
@@ -80,7 +79,6 @@ export class SelectionWrapper extends Base<Props> {
         <Border {...props} />
         <Move {...props} />
         <Rotate {...props} />
-        <TextEditor {...props} />
         <Scale location='top-left' {...props} />
         <Scale location='top-center' {...props} />
         <Scale location='top-right' {...props} />

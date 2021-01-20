@@ -38,12 +38,13 @@ class ContainerWrapper extends React.Component<Props, State> {
     return `translate(${x} ${y}) rotate(${r} ${rx} ${ry}) scale(${s[0]} ${s[1]})`;
   }
 
-  private get isSelectControl(): boolean {
-    return this.props.control === 'select';
+  private get canSelect(): boolean {
+    return this.props.control === 'select' ||
+      (this.props.control === 'text' && this.props.element.type === 'text');
   }
 
   private get isInteractable() {
-    return !this.props.selected && this.isSelectControl && !this.props.element.readonly;
+    return !this.props.selected && this.canSelect && !this.props.element.readonly;
   }
 
   private get box(): DOMRect {

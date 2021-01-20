@@ -45,19 +45,13 @@ export class Text extends React.Component<Props> {
     return text.split('\n');
   }
 
-  private get fillOpacity() {
-    return this.props.selected && this.props.element.type === 'text'
-      ? 0
-      : undefined;
-  }
-
   public render(): JSX.Element | null {
     if (!this.props.element.text) return null;
 
     return (
       <React.Fragment>
         {this.lines.map((line, index) => (
-          <tspan alignmentBaseline='text-before-edge' fillOpacity={this.fillOpacity} textAnchor={this.textAnchor} key={line} y={this.y(index)} x={this.x}>{line}</tspan>
+          <tspan alignmentBaseline='text-before-edge' textAnchor={this.textAnchor} key={line} y={this.y(index)} x={this.x}>{line}</tspan>
         ))}
       </React.Fragment>
     );
