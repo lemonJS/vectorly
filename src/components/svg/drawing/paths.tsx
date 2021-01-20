@@ -58,8 +58,8 @@ export class Paths extends React.Component<Props, State> {
   private handleMouseMove = throttle((event: MouseEvent): void => {
     if (this.state.pressed && this.props.active) {
       const coords = [
-        event.clientX - this.props.position.x,
-        event.clientY - this.props.position.y
+        (event.clientX / this.props.position.s) - this.props.position.x,
+        (event.clientY / this.props.position.s) - this.props.position.y
       ];
 
       this.setState(state => ({ coords: [...state.coords, coords] }));
