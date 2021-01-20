@@ -2,7 +2,7 @@ import { v4 as uuid } from 'uuid';
 import { clone, merge } from 'lodash';
 import { Dispatch } from 'redux';
 import { Project, Element, ProjectsAction, projectSelector, sync } from '@store/project';
-import { setSelectionId } from '@store/editor';
+import { setSelectionId, setControl } from '@store/editor';
 import { GetState } from '@store/store';
 import { loadImages } from '@lib/images';
 
@@ -36,7 +36,10 @@ export const createElement = (payload: Partial<Element>) => (dispatch: Dispatch<
 
   dispatch(updateProject({ elements: [...project.elements, element] }));
   // Set the newly created element as selected
-  setTimeout(() => dispatch(setSelectionId(element.id)), 10);
+  setTimeout(() => {
+    dispatch(setSelectionId(element.id));
+    dispatch(setControl('select'));
+  }, 10);
 };
 
 export const updateElement = (id: string, payload: Partial<Element>) => (dispatch: Dispatch<any>, getState: GetState): void => {

@@ -11,9 +11,7 @@ interface Props {
 
 const styles = css`
   display: block;
-  height: 210px;
   overflow: visible;
-  width: 180px;
   
   .menu {
     background: white;
@@ -36,6 +34,7 @@ export const Menu = (props: Props): JSX.Element => {
   const scaleX = 1 / props.element.transform.s[0];
   const scaleY = 1 / props.element.transform.s[1];
   const rotate = - props.element.transform.r;
+  const transform = `scale(${scaleX}, ${scaleY}) translate(24, 0) rotate(${rotate})`;
 
   const items = [
     {
@@ -66,8 +65,8 @@ export const Menu = (props: Props): JSX.Element => {
   ];
 
   return (
-    <foreignObject className={styles}>
-      <div className='menu' style={{ transform: `scale(${scaleX}, ${scaleY}) translate(24px, 0) rotate(${rotate}deg)` }}>
+    <foreignObject className={styles} height='210' width='180' transform={transform}>
+      <div className='menu'>
         {items.map(item => (
           <MenuItem
             key={item.name}

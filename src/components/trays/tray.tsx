@@ -5,8 +5,8 @@ import { css } from '@emotion/css';
 import { Photos } from '@components/trays/photos/photos';
 import { Shapes } from '@components/trays/shapes/shapes';
 import { Text } from '@components/trays/text/text';
-import { controlSelector } from '@store/editor';
-import { projectSelector } from '@store/project';
+import { selectedElementSelector } from '@store/editor';
+import { getLayoutForElement } from '@lib/helpers';
 
 const styles = css`
   background: var(--foreground);
@@ -33,8 +33,8 @@ const styles = css`
 `;
 
 export const Tray = (): JSX.Element => {
-  const project = useSelector(projectSelector);
-  const control = useSelector(controlSelector);
+  const element = useSelector(selectedElementSelector);
+  const activeTray = getLayoutForElement(element);
 
   const trays = [
     {
@@ -53,8 +53,8 @@ export const Tray = (): JSX.Element => {
 
   return (
     <React.Fragment>
-      {project && trays.map(({ name, Component }) => (
-        <div key={name} className={`${styles} ${control === name ? 'show' : ''}`}>
+      {trays.map(({ name, Component }) => (
+        <div key={name} className={`${styles} ${activeTray === name ? 'show' : ''}`}>
           <Component />
         </div>
       ))}

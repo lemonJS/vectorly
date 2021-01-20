@@ -26,3 +26,18 @@ export const getDropTransform = (event: React.DragEvent<HTMLDivElement>): Transf
     s: [1, 1]
   };
 };
+
+export const getLayoutForElement = (element?: Element): string | null => {
+  switch(element?.type) {
+    case 'photo':
+      return 'photos';
+    case 'text':
+      return 'text';
+    case 'drawing':
+      return 'draw';
+    case 'shape':
+      return 'shapes';
+    default:
+      return null;
+  }
+}
