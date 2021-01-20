@@ -20,6 +20,7 @@ interface Props {
 interface State {
   pressed: boolean;
   offset: [number, number];
+  spacebar: boolean;
 }
 
 const styles = css`
@@ -35,21 +36,28 @@ export class SvgWrapper extends React.Component<Props, State> {
 
     this.state = {
       pressed: false,
-      offset: [0, 0]
+      offset: [0, 0],
+      spacebar: false
     };
   }
 
   public componentDidMount(): void {
     document.addEventListener('wheel', this.handleWheel, { passive: false });
+    document.addEventListener('keyup', this.handleKeyUp);
+    document.addEventListener('keydown', this.handleKeyDown);
     this.centerAlignArtBoard();
   }
 
   public componentWillUnmount(): void {
     document.removeEventListener('wheel', this.handleWheel);
+    document.removeEventListener('keyup', this.handleKeyUp);
+    document.removeEventListener('keydown', this.handleKeyDown);
   }
 
   private get cursor(): string {
-    switch(this.props.control) {
+    const control = this.state.spacebar ? 'move' : this.props.control;
+
+    switch(control) {
       case 'move':
         return 'grab';
       case 'draw':
@@ -61,6 +69,10 @@ export class SvgWrapper extends React.Component<Props, State> {
     }
   }
 
+  private get move(): boolean {
+    return this.state.pressed && (this.props.control === 'move' || this.state.spacebar);
+  }
+
   private centerAlignArtBoard = (): void => {
     // TODO: Support scaling up/down to make it a snug fit
     const container = document.getElementById(canvasContainer);
@@ -70,6 +82,16 @@ export class SvgWrapper extends React.Component<Props, State> {
       x: (window.innerWidth - bound.width) / 2,
       y: (window.innerHeight - bound.height) / 2
     });
+  };
+
+  private handleKeyUp = (): void => {
+    this.setState({ spacebar: false });
+  };
+
+  private handleKeyDown = (event: KeyboardEvent): void => {
+    if (!this.state.spacebar) {
+      this.setState({ spacebar: event.code === 'Space' });
+    }
   };
 
   private handleMouseUp = (event: React.MouseEvent<HTMLElement>): void => {
@@ -98,7 +120,7 @@ export class SvgWrapper extends React.Component<Props, State> {
   };
 
   private handleMouseMove = (event: React.MouseEvent<HTMLDivElement>): void => {
-    if (this.state.pressed && this.props.control === 'move') {
+    if (this.move) {
       this.props.handlePosition({
         x: event.clientX - this.state.offset[0],
         y: event.clientY - this.state.offset[1]
