@@ -2,9 +2,12 @@ import React from 'react';
 
 import { throttle } from 'lodash';
 import { Transform } from '@type/project';
+import { Position } from '@lib/editor/reducers';
+import { canvas } from '@lib/constants';
 
 interface Props {
   active: boolean;
+  position: Position;
   handleCreate: (path: string, transform: Transform) => void;
 }
 
@@ -47,14 +50,17 @@ export class Paths extends React.Component<Props, State> {
   private handleMouseDown = (event: MouseEvent): void => {
     const element = event.target as HTMLElement;
 
-    if (element.closest('#canvas')) {
+    if (element.closest(`#${canvas}`)) {
       this.setState({ pressed: true });
     }
   };
 
   private handleMouseMove = throttle((event: MouseEvent): void => {
     if (this.state.pressed && this.props.active) {
-      const coords = [event.clientX, event.clientY];
+      const coords = [
+        event.clientX - this.props.position.x,
+        event.clientY - this.props.position.y
+      ];
 
       this.setState(state => ({ coords: [...state.coords, coords] }));
     }

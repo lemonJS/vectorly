@@ -3,13 +3,13 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Element, Transform } from '@type/project';
 import { Paths } from '@components/svg/drawing/paths';
-import { controlSelector } from '@lib/editor/selectors';
+import { editorSelector } from '@lib/editor/selectors';
 import { createElement } from '@lib/projects/actions';
 import { setControl } from '@lib/editor/actions';
 
 export const Drawing = (): JSX.Element => {
   const dispatch = useDispatch();
-  const control = useSelector(controlSelector);
+  const { control, position } = useSelector(editorSelector);
 
   const handleCreate = (path: string, transform: Transform) => {
     const drawing: Partial<Element> = {
@@ -33,5 +33,5 @@ export const Drawing = (): JSX.Element => {
     dispatch(setControl('select'));
   };
 
-  return <Paths handleCreate={handleCreate} active={control === 'draw'} />
+  return <Paths handleCreate={handleCreate} position={position} active={control === 'draw'} />;
 };

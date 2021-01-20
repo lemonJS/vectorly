@@ -20,11 +20,11 @@ export abstract class Base<P extends Props> extends React.Component<P> {
     this.target = document.getElementById(canvas);
   }
 
-  public get x() {
+  public get x(): number {
     return this.props.position.x + this.props.transform.x
   }
 
-  public get y() {
+  public get y(): number {
     return this.props.position.y + this.props.transform.y;
   }
 
