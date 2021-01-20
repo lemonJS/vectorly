@@ -6,7 +6,6 @@ import { Position } from '@store/editor';
 interface Props {
   height: number;
   padding: number;
-  parent: string;
   position: Position;
   transform: Transform;
   handleTransform: (transform: Partial<Transform>) => void;
@@ -15,22 +14,20 @@ interface Props {
 
 interface State {
   pressed: boolean;
+  offset: [number, number, number, number];
 }
 
 export class Move extends React.Component<Props, State> {
-  private parent: HTMLElement;
-  private offset: { x: number, y: number };
-
   public constructor(props: Props) {
     super(props);
 
-    this.state = { pressed: false };
+    this.state = {
+      pressed: false,
+      offset: [0, 0, 0, 0]
+    };
   }
 
   public componentDidMount(): void {
-    this.parent = document.getElementById(this.props.parent) as HTMLElement;
-    this.offset = { x: 0, y: 0 };
-
     document.addEventListener('mouseup', this.handleMouseUp);
     document.addEventListener('mousemove', this.handleMouseMove);
 
@@ -62,33 +59,20 @@ export class Move extends React.Component<Props, State> {
     return 12 / this.props.transform.s[1];
   }
 
-  private beginDrag = (element: HTMLDivElement, clientX: number, clientY: number): void => {
-    // TODO: I think I'm being an idiot here, surely there's an easier way!
-
-    // The bounds of the the drag handle
-    const { x: x1, y: y1 } = element.getBoundingClientRect();
-    // The bounds of the element that is being moved
-    const { x: x2, y: y2 } = this.parent.getBoundingClientRect();
-
-    // The offset between where the mouse was clicked,
-    // and the drag handle (0,0 of the drag handle can't
-    // be used or it will jump by a few pixels)
-    const diffX = clientX - x1;
-    const diffY = clientY - y1;
-
-    // Store where exactly the user grabbed the handle
-    // so it can be subtracted later. Otherwise it will
-    // jump around all over the place
-    this.offset = { x: x1 - x2 + diffX, y: y1 - y2 + diffY };
-
-    this.setState({ pressed: true });
+  private beginDrag = (clientX: number, clientY: number): void => {
+    this.setState({
+      pressed: true,
+      offset: [clientX, clientY, this.props.transform.x, this.props.transform.y]
+    });
   };
 
   private duringDrag = (clientX: number, clientY: number): void => {
     if (this.state.pressed) {
+      const [startX, startY, transformX, transformY] = this.state.offset;
+
       this.props.handleTransform({
-        x: (clientX - this.props.position.x) - this.offset.x,
-        y: (clientY - this.props.position.y) - this.offset.y
+        x: transformX + (clientX - startX),
+        y: transformY + (clientY - startY)
       });
     }
   };
@@ -102,14 +86,12 @@ export class Move extends React.Component<Props, State> {
   };
 
   private handleMouseDown = (event: React.MouseEvent<SVGEllipseElement>): void => {
-    const element = event.target as HTMLDivElement;
-    this.beginDrag(element, event.clientX, event.clientY);
+    this.beginDrag(event.clientX, event.clientY);
   };
 
   private handleTouchStart = (event: React.TouchEvent<SVGEllipseElement>): void => {
-    const element = event.target as HTMLDivElement;
     if (event.touches[0]) {
-      this.beginDrag(element, event.touches[0].clientX, event.touches[0].clientY);
+      this.beginDrag(event.touches[0].clientX, event.touches[0].clientY);
     }
   };
 
