@@ -1,7 +1,7 @@
 import { debounce } from 'lodash';
 import { Dispatch } from 'redux';
 import { Project } from '@type/project';
-import { setSaving, updateUndoStack } from '@lib/editor/actions';
+import { setSaving, updateUndoStack } from '../editor/actions';
 
 export const sync = debounce((dispatch: Dispatch<any>, project: Project) => {
   dispatch(setSaving(true));

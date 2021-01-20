@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Transform, Element } from '@type/project';
+import { Transform, Element } from '@store/project';
 
 export const getBox = (group: SVGGElement | null): DOMRect => group
   ? group.getBBox()

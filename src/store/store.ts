@@ -2,8 +2,8 @@ import thunk from 'redux-thunk';
 import { createStore, applyMiddleware, combineReducers } from 'redux';
 import { State } from '@type/redux';
 
-import { project, initialState as initialProjectState } from '@lib/projects/reducers';
-import { editor, initialState as initialEditorState } from '@lib/editor/reducers';
+import { project, initialState as initialProjectState } from '@lib/../store/projects/reducers';
+import { editor, initialState as initialEditorState } from '@lib/../store/editor/reducers';
 
 const initialState: State = {
   editor: initialEditorState,

@@ -3,10 +3,10 @@ import { clone, merge } from 'lodash';
 import { Dispatch } from 'redux';
 import { Project, Element } from '@type/project';
 import { GetState } from '@type/redux';
-import { ProjectsAction } from '@lib/projects/reducers';
-import { setSelectionId } from '@lib/editor/actions';
-import { projectSelector } from '@lib/projects/selectors';
-import { sync } from '@lib/projects/sync';
+import { ProjectsAction } from './reducers';
+import { setSelectionId } from '../editor/actions';
+import { projectSelector } from './selectors';
+import { sync } from './sync';
 import { loadImages } from '@lib/images';
 
 export const getProject = () => (dispatch: Dispatch<any>, getState: GetState): void => {
