@@ -2,7 +2,7 @@ import React from 'react';
 
 import { useDispatch } from 'react-redux';
 import { Button } from '@components/button';
-import { createElement } from '@lib/projects/actions';
+import { createElement } from '@store/project';
 
 export const CreateButton = (): JSX.Element => {
   const dispatch = useDispatch();

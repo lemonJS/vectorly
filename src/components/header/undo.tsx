@@ -4,8 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { css } from '@emotion/css';
 import { Button } from '@components/header/button';
 import { Divider } from '@components/header/divider';
-import { editorSelector } from '@lib/editor/selectors';
-import { redo, undo } from '@lib/editor/actions';
+import { editorSelector, redo, undo } from '@store/editor';
 
 const styles = css`
   align-items: center;

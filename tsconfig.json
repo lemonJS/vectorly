@@ -32,7 +32,7 @@
     "paths": {
       "@components/*": ["src/components/*"],
       "@lib/*": ["src/lib/*"],
-      "@type/*": ["src/type/*"]
+      "@store/*": ["src/store/*"]
     }
   },
   "include": [

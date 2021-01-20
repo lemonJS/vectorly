@@ -1,8 +1,8 @@
 import React from 'react';
 
 import { throttle } from 'lodash';
-import { Transform } from '@type/project';
-import { Position } from '@lib/editor/reducers';
+import { Transform } from '@store/project';
+import { Position } from '@store/editor';
 import { canvas } from '@lib/constants';
 
 interface Props {

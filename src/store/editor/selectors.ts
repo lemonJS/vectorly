@@ -1,8 +1,7 @@
 import { clone } from 'lodash';
-import { Element } from '@type/project';
-import { State } from '@type/redux';
-import { EditorState, Position } from '@lib/editor/reducers';
-import { projectSelector } from '@lib/projects/selectors';
+import { State } from '@store/store';
+import { Element } from '@store/project';
+import { EditorState, Position } from '@store/editor';
 
 export const editorSelector = (state: State): EditorState => state.editor;
 
@@ -14,10 +13,6 @@ export const controlSelector = (state: State): string => state.editor.control;
 
 export const selectedElementSelector = (state: State): Element | null => {
   const { selectedElement } = state.editor;
-  const project = projectSelector(state);
 
-  if (!selectedElement || !project) return null;
-
-  // Clone here to force React to redraw
-  return clone(project.elements.find(e => e.id === selectedElement.id) || null);
+  return selectedElement ? clone(selectedElement) : null;
 };

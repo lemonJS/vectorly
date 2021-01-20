@@ -1,12 +1,12 @@
 import React from 'react';
 
 import { connect } from 'react-redux';
-import { Element } from '@type/project';
+import { Element } from '@store/project';
 import { Selection } from '@components/svg/selection/selection';
 import { Outline } from '@components/svg/selection/outline';
-import { getBox } from '@lib/editor/helpers';
-import { setSelectionId } from '@lib/editor/actions';
-import { State as StoreState } from '@type/redux';
+import { getBox } from '@lib/helpers';
+import { setSelectionId } from '@store/editor';
+import { State as StoreState } from '@store/store';
 
 interface Props {
   id: string;

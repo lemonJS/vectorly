@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { css } from '@emotion/css';
-import { Element, ElementProps } from "@type/project";
+import { Element, ElementProps } from "@store/project";
 import { Button } from '@components/button';
 import { Label } from '@components/trays/label';
 import { ButtonGroup } from '@components/trays/button-group';

@@ -1,9 +1,8 @@
 import React from 'react';
 
 import { css } from '@emotion/css';
-import { Element } from '@type/project';
+import { Element, updateElement } from '@store/project';
 import { useDispatch } from 'react-redux';
-import { updateElement } from '@lib/projects/actions';
 import { convertTextPropertiesToCss } from '@lib/text';
 
 interface Props {

@@ -2,7 +2,7 @@ import React from 'react';
 
 import { css } from '@emotion/css';
 import { useDispatch } from 'react-redux';
-import { uploadImages } from '@lib/projects/actions';
+import { uploadImages } from '@store/project';
 
 const styles = css`
   align-items: center;

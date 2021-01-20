@@ -3,7 +3,7 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { Edit } from '@components/trays/text/edit';
 import { Create } from '@components/trays/text/create';
-import { selectedElementSelector } from '@lib/editor/selectors';
+import { selectedElementSelector } from '@store/editor';
 
 export const Text = (): JSX.Element => {
   const element = useSelector(selectedElementSelector);

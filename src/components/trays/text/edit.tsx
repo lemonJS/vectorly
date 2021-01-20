@@ -2,14 +2,13 @@ import React from 'react'
 
 import { useDispatch } from 'react-redux';
 import { css } from '@emotion/css';
-import { Element, ElementProps } from '@type/project';
+import { Element, ElementProps, updateElement } from '@store/project';
 import { Style } from '@components/trays/text/style';
 import { StyleAdvanced } from '@components/trays/text/style-advanced';
 import { Divider } from '@components/divider';
 import { Alignment } from '@components/trays/text/alignment';
 import { Colors } from '@components/trays/text/colors';
 import { Positioning } from '@components/trays/positioning';
-import { updateElement } from '@lib/projects/actions';
 
 interface Props {
   element: Element;

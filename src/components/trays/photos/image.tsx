@@ -2,9 +2,8 @@ import React from 'react';
 
 import { useDispatch } from 'react-redux';
 import { css } from '@emotion/css';
-import { Image as ProjectImage } from '@type/project';
+import { Image as ProjectImage, createElement } from '@store/project';
 import { DeleteImage } from '@components/trays/photos/delete-image';
-import { createElement } from '@lib/projects/actions';
 
 interface Props {
   image: ProjectImage;

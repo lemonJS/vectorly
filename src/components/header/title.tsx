@@ -2,8 +2,7 @@ import React from 'react';
 
 import { css } from '@emotion/css';
 import { useDispatch, useSelector } from 'react-redux';
-import { projectSelector } from '@lib/projects/selectors';
-import { updateProject } from '@lib/projects/actions';
+import { projectSelector, updateProject } from '@store/project';
 
 const styles = css`
   align-items: center;

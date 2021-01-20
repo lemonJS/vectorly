@@ -1,12 +1,9 @@
 import { v4 as uuid } from 'uuid';
 import { clone, merge } from 'lodash';
 import { Dispatch } from 'redux';
-import { Project, Element } from '@type/project';
-import { GetState } from '@type/redux';
-import { ProjectsAction } from './reducers';
-import { setSelectionId } from '../editor/actions';
-import { projectSelector } from './selectors';
-import { sync } from './sync';
+import { Project, Element, ProjectsAction, projectSelector, sync } from '@store/project';
+import { setSelectionId } from '@store/editor';
+import { GetState } from '@store/store';
 import { loadImages } from '@lib/images';
 
 export const getProject = () => (dispatch: Dispatch<any>, getState: GetState): void => {

@@ -1,7 +1,7 @@
 import React from 'react'
 
 import { Property } from 'csstype';
-import { ElementProps } from '@type/project';
+import { ElementProps } from '@store/project';
 
 interface TextAlignMap {
   [key: string]: string;

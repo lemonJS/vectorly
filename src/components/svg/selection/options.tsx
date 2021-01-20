@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Element, Transform } from '@type/project';
+import { Element, Transform } from '@store/project';
 import { Menu } from '@components/svg/selection/menu';
 
 interface Props {

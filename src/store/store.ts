@@ -1,14 +1,20 @@
 import thunk from 'redux-thunk';
 import { createStore, applyMiddleware, combineReducers } from 'redux';
-import { State } from '@type/redux';
 
-import { project, initialState as initialProjectState } from '@lib/../store/projects/reducers';
-import { editor, initialState as initialEditorState } from '@lib/../store/editor/reducers';
+import { project, initialState as initialProjectState, ProjectsState } from '@store/project';
+import { editor, initialState as initialEditorState, EditorState } from '@store/editor';
 
 const initialState: State = {
   editor: initialEditorState,
   project: initialProjectState,
 };
+
+export interface State {
+  editor: EditorState,
+  project: ProjectsState,
+}
+
+export type GetState = () => State;
 
 export const store = createStore(
   combineReducers({

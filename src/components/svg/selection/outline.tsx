@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom';
 import { connect } from 'react-redux';
 import { Border } from '@components/svg/selection/border';
 import { Base, Props } from '@components/svg/selection/base';
-import { State } from '@type/redux';
+import { State } from '@store/store';
 
 
 export class OutlineWrapper extends Base<Props> {

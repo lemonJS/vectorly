@@ -2,12 +2,11 @@ import React from 'react';
 
 import { useDispatch } from 'react-redux';
 import { css } from '@emotion/css';
-import { Element, ElementProps } from '@type/project';
+import { Element, ElementProps, updateElement } from '@store/project';
 import { Divider } from '@components/divider';
 import { Background } from '@components/trays/shapes/background';
 import { Border } from '@components/trays/shapes/border';
 import { Positioning } from '@components/trays/positioning';
-import { updateElement } from '@lib/projects/actions';
 
 interface Props {
   element: Element;

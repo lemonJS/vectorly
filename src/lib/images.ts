@@ -1,5 +1,5 @@
 import { v4 as uuid } from 'uuid';
-import { Image as ProjectImage } from '@type/project';
+import { Image as ProjectImage } from '@store/project';
 
 const loadImage = async (file: File): Promise<ProjectImage> => {
   return new Promise(resolve => {

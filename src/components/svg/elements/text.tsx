@@ -1,7 +1,7 @@
 import React from 'react';
 
-import { Element } from '@type/project';
-import { getBox } from "@lib/editor/helpers";
+import { Element } from '@store/project';
+import { getBox } from "@lib/helpers";
 
 interface Props {
   element: Element;

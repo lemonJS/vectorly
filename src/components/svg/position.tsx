@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { useSelector } from 'react-redux';
-import { positionSelector } from '@lib/editor/selectors';
+import { positionSelector } from '@store/editor';
 import { canvasContainer } from '@lib/constants';
 
 interface Props {

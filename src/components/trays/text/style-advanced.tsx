@@ -3,7 +3,7 @@ import React from 'react';
 import { css } from '@emotion/css';
 import { Label } from '@components/label';
 import { Scale } from '@components/scale';
-import { Element, ElementProps } from '@type/project';
+import { Element, ElementProps } from '@store/project';
 import { ButtonGroup } from '@components/trays/button-group';
 import { Button } from '@components/button';
 import { Grid, Col, Row } from '@components/grid';

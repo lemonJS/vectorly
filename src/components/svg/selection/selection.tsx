@@ -2,7 +2,9 @@ import React from 'react';
 
 import ReactDOM from 'react-dom';
 import { connect } from 'react-redux';
-import { Element, Transform } from '@type/project';
+import { State } from '@store/store';
+import { Element, Transform, deleteElement, updateElement } from '@store/project';
+import { Position, setSelectionId } from '@store/editor';
 import { Border } from '@components/svg/selection/border';
 import { Move } from '@components/svg/selection/move';
 import { Rotate } from '@components/svg/selection/rotate';
@@ -10,10 +12,6 @@ import { Scale } from '@components/svg/selection/scale';
 import { Options } from '@components/svg/selection/options';
 import { TextEditor } from '@components/svg/selection/text-editor';
 import { Base, Props as BaseProps } from '@components/svg/selection/base';
-import { setSelectionId } from '@lib/editor/actions';
-import { deleteElement, updateElement } from '@lib/projects/actions';
-import { State } from '@type/redux';
-import { Position } from '@lib/editor/reducers';
 
 interface Props extends BaseProps {
   parent: string;

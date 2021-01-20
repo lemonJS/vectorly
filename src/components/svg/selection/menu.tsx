@@ -3,9 +3,7 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { css } from '@emotion/css';
 import { MenuItem } from '@components/svg/selection/menu-item';
-import { Element } from '@type/project';
-import { projectSelector } from '@lib/projects/selectors';
-import { deleteElement, updateElementIndex } from '@lib/projects/actions';
+import { Element, projectSelector, deleteElement, updateElementIndex } from '@store/project';
 
 interface Props {
   element: Element;

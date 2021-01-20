@@ -1,4 +1,4 @@
-import { Element } from '@type/project';
+import { Element } from '@store/project';
 
 export type EditorState = {
   control: string;

@@ -2,8 +2,7 @@ import React from 'react';
 
 import { useDispatch } from 'react-redux';
 import { css } from '@emotion/css';
-import { Image } from '@type/project';
-import { deleteImage } from '@lib/projects/actions';
+import { Image, deleteImage } from '@store/project';
 
 interface Props {
   image: Image

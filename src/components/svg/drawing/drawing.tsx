@@ -1,11 +1,9 @@
 import React from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
-import { Element, Transform } from '@type/project';
+import { Element, Transform, createElement } from '@store/project';
+import { setControl, editorSelector } from '@store/editor';
 import { Paths } from '@components/svg/drawing/paths';
-import { editorSelector } from '@lib/editor/selectors';
-import { createElement } from '@lib/projects/actions';
-import { setControl } from '@lib/editor/actions';
 
 export const Drawing = (): JSX.Element => {
   const dispatch = useDispatch();

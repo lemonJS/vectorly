@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Element as ProjectElement } from '@type/project';
+import { Element as ProjectElement } from '@store/project';
 import { Container } from '@components/svg/elements/container';
 import { Text } from '@components/svg/elements/text';
 

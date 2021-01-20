@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Transform } from '@type/project';
+import { Transform } from '@store/project';
 
 interface Props {
   height: number;

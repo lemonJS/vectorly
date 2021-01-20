@@ -1,8 +1,8 @@
 import React from 'react';
 
 import { css } from '@emotion/css';
-import { Element } from '@type/project';
-import { getBoundingClientRect } from '@lib/editor/helpers';
+import { Element } from '@store/project';
+import { getBoundingClientRect } from '@lib/helpers';
 import { Label } from '@components/trays/label';
 import { Input } from '@components/trays/input';
 import { Grid, Row, Col } from '@components/grid';

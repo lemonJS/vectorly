@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { css } from '@emotion/css';
-import { Element, ElementProps } from '@type/project';
+import { Element, ElementProps } from '@store/project';
 import { Label } from '@components/trays/label';
 import { Input } from '@components/trays/input';
 import { ColorPicker } from '@components/trays/color-picker';

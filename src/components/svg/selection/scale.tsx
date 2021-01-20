@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { clone } from 'lodash';
-import { Transform } from '@type/project';
+import { Transform } from '@store/project';
 import { calculateTransform } from '@lib/scaling';
 
 interface Props {

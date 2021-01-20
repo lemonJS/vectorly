@@ -5,8 +5,8 @@ import { css } from '@emotion/css';
 import { Photos } from '@components/trays/photos/photos';
 import { Shapes } from '@components/trays/shapes/shapes';
 import { Text } from '@components/trays/text/text';
-import { controlSelector } from '@lib/editor/selectors';
-import { projectSelector } from '@lib/projects/selectors';
+import { controlSelector } from '@store/editor';
+import { projectSelector } from '@store/project';
 
 const styles = css`
   background: var(--foreground);

@@ -3,8 +3,7 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { css } from '@emotion/css';
 import { Button } from '@components/header/button';
-import { positionSelector } from '@lib/editor/selectors';
-import { setPosition } from '@lib/editor/actions';
+import { positionSelector, setPosition } from '@store/editor';
 
 const styles = css`
   align-items: center;

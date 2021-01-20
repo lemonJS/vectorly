@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { css } from '@emotion/css';
-import { Image as ProjectImage } from '@type/project';
+import { Image as ProjectImage } from '@store/project';
 import { Image } from '@components/trays/photos/image';
 
 interface Props {

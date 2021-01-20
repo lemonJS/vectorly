@@ -2,8 +2,7 @@ import React from 'react';
 
 import { css } from '@emotion/css';
 import { useDispatch, useSelector } from 'react-redux';
-import { controlSelector } from '@lib/editor/selectors';
-import { setControl } from '@lib/editor/actions';
+import { controlSelector, setControl } from '@store/editor';
 
 interface Props {
   name: string;

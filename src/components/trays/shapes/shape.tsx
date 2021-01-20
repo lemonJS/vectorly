@@ -4,7 +4,7 @@ import { cloneDeep } from 'lodash';
 import { useDispatch } from 'react-redux';
 import { css } from '@emotion/css';
 import { ShapeListItem } from '@components/trays/data/shapes';
-import { createElement } from '@lib/projects/actions';
+import { createElement } from '@store/project';
 
 interface Props {
   shape: ShapeListItem;

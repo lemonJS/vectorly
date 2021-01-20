@@ -2,8 +2,8 @@ import React from 'react';
 
 import { useSelector } from 'react-redux';
 import { Element } from '@components/svg/elements/element';
-import { projectSelector } from '@lib/projects/selectors';
-import { selectedElementSelector } from '@lib/editor/selectors';
+import { projectSelector } from '@store/project';
+import { selectedElementSelector } from '@store/editor';
 
 export const Elements = (): JSX.Element => {
   const project = useSelector(projectSelector);

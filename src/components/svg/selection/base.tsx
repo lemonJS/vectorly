@@ -1,8 +1,8 @@
 import React from 'react';
 
-import { Transform } from '@type/project';
 import { canvas } from '@lib/constants';
-import { Position } from '@lib/editor/reducers';
+import { Transform } from '@store/project';
+import { Position } from '@store/editor';
 
 export interface Props {
   box: SVGRect;

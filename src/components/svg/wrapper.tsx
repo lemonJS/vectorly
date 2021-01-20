@@ -2,12 +2,10 @@ import React from 'react';
 
 import { css } from '@emotion/css';
 import { connect } from 'react-redux';
-import { State as ReduxState } from '@type/redux';
-import { Element } from '@type/project';
-import { Position } from '@lib/editor/reducers';
-import { getElementFromDataTransfer, getDropTransform, getBoundingClientRect } from '@lib/editor/helpers';
-import { createElement } from '@lib/projects/actions';
-import { setPosition, setSelectionId } from '@lib/editor/actions';
+import { State as ReduxState } from '@store/store';
+import { Element, createElement } from '@store/project';
+import { Position, setPosition, setSelectionId } from '@store/editor';
+import { getElementFromDataTransfer, getDropTransform, getBoundingClientRect } from '@lib/helpers';
 import { canvas, canvasContainer } from '@lib/constants';
 
 interface Props {

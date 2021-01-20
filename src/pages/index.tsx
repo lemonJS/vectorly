@@ -4,7 +4,7 @@ import Head from 'next/head';
 import { useDispatch } from 'react-redux';
 import { css } from '@emotion/css';
 import { SVG } from '@components/svg/svg';
-import { getProject } from '@lib/projects/actions';
+import { getProject } from '@store/project';
 import { Header } from '@components/header/header';
 import { Sidebar } from '@components/sidebar/sidebar';
 import { Tray } from '@components/trays/tray';

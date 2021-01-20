@@ -1,9 +1,8 @@
 import { clamp } from 'lodash';
 import { Dispatch } from 'redux';
-import { GetState } from '@type/redux';
-import { Project } from '@type/project';
-import { projectSelector } from '@lib/projects/selectors';
-import { EditorAction, EditorState, Position } from '@lib/editor/reducers';
+import { GetState } from '@store/store';
+import { Project, projectSelector } from '@store/project';
+import { EditorAction, EditorState, Position } from '@store/editor';
 
 export const setSelectionId = (id: string | null) => (dispatch: Dispatch<EditorAction>, getState: GetState): void => {
   const project = projectSelector(getState());

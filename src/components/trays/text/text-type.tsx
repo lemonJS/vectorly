@@ -2,8 +2,7 @@ import React from 'react';
 
 import { useDispatch } from 'react-redux';
 import { css } from '@emotion/css';
-import { Element } from '@type/project';
-import { createElement } from '@lib/projects/actions';
+import { Element, createElement } from '@store/project';
 
 interface Props {
   children: React.ReactNode;

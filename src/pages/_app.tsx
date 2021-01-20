@@ -3,7 +3,7 @@ import React from 'react';
 import { AppProps } from 'next/app';
 import { injectGlobal } from '@emotion/css';
 import { Provider } from 'react-redux';
-import { store } from '@lib/store';
+import { store } from '@store/store';
 
 injectGlobal`
   @import 'https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css';
